@@ -1,0 +1,2036 @@
+local Workspace = game:GetService("Workspace")
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+local TweenService = game:GetService("TweenService")
+local UIS = game:GetService("UserInputService")
+
+local Character, Humanoid, HumanoidRootPart
+
+local GuiName = "Beh"
+
+local GameType
+
+if game.PlaceId == 18199615050 then
+    GameType = "Lobby"
+elseif game.PlaceId == 18794863104 then
+    GameType = "MainGame"
+else
+    GameType = "Unknown"
+end
+
+local MapType
+
+local function hasProperty(instance, property)
+    local success = pcall(function()
+        local _ = instance[property]
+    end)
+    return success
+end
+
+local Bools = {
+    IsLoaded = false
+}
+
+GetPlayer = function(character)
+    Character = character
+    Humanoid = Character:WaitForChild("Humanoid")
+    HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+
+    Humanoid.Died:Connect(function()
+        Character, Humanoid, HumanoidRootPart = nil
+    end)
+
+    return Humanoid, HumanoidRootPart
+end
+
+if Player.Character then
+	GetPlayer(Player.Character)
+end
+
+Player.CharacterAdded:Connect(GetPlayer)
+
+if Humanoid then
+    Humanoid.WalkSpeed = 10
+    Humanoid.JumpPower = 0
+end
+
+local savedTabStates = {}
+local originalStates = {}
+
+local function FadeOutWithSaves(container, duration)
+    local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
+    
+    for _, v in pairs(container:GetDescendants()) do
+        local currentProperties = {}
+        local targetProperties = {}
+        savedTabStates[v] = savedTabStates[v] or {}
+
+        if v:IsA("Frame") or v:IsA("ScrollingFrame") or v:IsA("ViewportFrame") then
+            currentProperties["BackgroundTransparency"] = v.BackgroundTransparency
+            targetProperties["BackgroundTransparency"] = 1
+        elseif v:IsA("TextLabel") or v:IsA("TextBox") or v:IsA("TextButton") then
+            currentProperties["BackgroundTransparency"] = v.BackgroundTransparency
+            currentProperties["TextTransparency"] = v.TextTransparency
+            targetProperties["BackgroundTransparency"] = 1
+            targetProperties["TextTransparency"] = 1
+        elseif v:IsA("ImageLabel") or v:IsA("ImageButton") then
+            currentProperties["BackgroundTransparency"] = v.BackgroundTransparency
+            currentProperties["ImageTransparency"] = v.ImageTransparency
+            targetProperties["BackgroundTransparency"] = 1
+            targetProperties["ImageTransparency"] = 1
+        elseif v:IsA("Texture") then
+            currentProperties["Transparency"] = v.Transparency
+            targetProperties["Transparency"] = 1
+        elseif v:IsA("BasePart") or v:IsA("UIStroke") then
+            savedTabStates[v].Transparency = v.Transparency
+        elseif v:IsA("UIGradient") and v.Parent.Name == "Divider" then
+            savedTabStates[v] = { Transparency = v.Transparency }
+            
+            task.spawn(function()
+                local startTime = os.clock()
+                while os.clock() - startTime < duration do
+                    local elapsed = os.clock() - startTime
+                    local linearAlpha = math.clamp(elapsed / duration, 0, 1)
+                    local sineAlpha = 0.5 - 0.5 * math.cos(linearAlpha * math.pi)
+                    
+                    local initialSequence = savedTabStates[v].Transparency
+                    local targetPoints = {}
+                    for _, keypoint in ipairs(initialSequence.Keypoints) do
+                        local currentVal = keypoint.Value + (1 - keypoint.Value) * sineAlpha
+                        table.insert(targetPoints, NumberSequenceKeypoint.new(keypoint.Time, currentVal))
+                    end
+                    v.Transparency = NumberSequence.new(targetPoints)
+                    task.wait()
+                end
+
+                v.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+                
+                v.Transparency = NumberSequence.new({
+                    NumberSequenceKeypoint.new(0.000, 0),
+                    NumberSequenceKeypoint.new(0.167, 0.375),
+                    NumberSequenceKeypoint.new(0.500, 0.106),
+                    NumberSequenceKeypoint.new(0.650, 0.419),
+                    NumberSequenceKeypoint.new(1.000, 0)
+                })
+            end)
+        end
+
+        if next(targetProperties) then
+            savedTabStates[v] = currentProperties
+            TweenService:Create(v, tweenInfo, targetProperties):Play()
+        end
+    end
+end
+
+local function FadeInWithSaves(container, duration)
+    local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
+    
+    for _, v in pairs(container:GetDescendants()) do
+        local savedProperties = savedTabStates[v]
+        
+        if savedProperties then
+            if v:IsA("UIGradient") then
+                local initialSequence = savedProperties.Transparency
+                
+                task.spawn(function()
+                    local startTime = os.clock()
+                    while os.clock() - startTime < duration do
+                        local elapsed = os.clock() - startTime
+                        local linearAlpha = math.clamp(elapsed / duration, 0, 1)
+                        local sineAlpha = 0.5 - 0.5 * math.cos(linearAlpha * math.pi)
+                        
+                        local targetPoints = {}
+                        for _, keypoint in ipairs(initialSequence.Keypoints) do
+                            local currentVal = 1 - ((1 - keypoint.Value) * sineAlpha)
+                            table.insert(targetPoints, NumberSequenceKeypoint.new(keypoint.Time, currentVal))
+                        end
+                        
+                        v.Transparency = NumberSequence.new(targetPoints)
+                        task.wait()
+                    end
+                    v.Transparency = initialSequence
+                end)
+            else
+                TweenService:Create(v, tweenInfo, savedProperties):Play()
+            end
+        else
+            local fallbackProperties = {}
+            if (v:IsA("Frame") and not v.Name == "Text") or v:IsA("ViewportFrame") then
+                fallbackProperties["BackgroundTransparency"] = 0
+            elseif v:IsA("ScrollingFrame") then
+                fallbackProperties["BackgroundTransparency"] = 1
+            elseif v:IsA("TextLabel") or v:IsA("TextBox") or (v:IsA("TextButton") and not v.Name == "Button") then
+                fallbackProperties["BackgroundTransparency"] = 1
+                fallbackProperties["TextTransparency"] = 0
+            elseif v:IsA("ImageLabel") or v:IsA("ImageButton") then
+                fallbackProperties["BackgroundTransparency"] = 1
+                fallbackProperties["ImageTransparency"] = 0
+            elseif v:IsA("Texture") then
+                fallbackProperties["Transparency"] = 0
+            elseif v:IsA("BasePart") or v:IsA("UIStroke") then
+                if savedProperties and savedProperties.Transparency ~= nil then
+                    TweenService:Create(v, tweenInfo, {
+                        Transparency = savedProperties.Transparency
+                    }):Play()
+                end
+            elseif v:IsA("UIGradient") and v.Parent.Name == "Divider" then
+                local fallbackSequence = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0), NumberSequenceKeypoint.new(0.167, 0.375), NumberSequenceKeypoint.new(0.500, 0.106), NumberSequenceKeypoint.new(0.650, 0.419), NumberSequenceKeypoint.new(1.000, 0)}
+                
+                task.spawn(function()
+                    local startTime = os.clock()
+                    while os.clock() - startTime < duration do
+                        local elapsed = os.clock() - startTime
+                        local linearAlpha = math.clamp(elapsed / duration, 0, 1)
+                        local sineAlpha = 0.5 - 0.5 * math.cos(linearAlpha * math.pi)
+                        
+                        local targetPoints = {}
+                        for _, keypoint in ipairs(fallbackSequence.Keypoints) do
+                            local currentVal = 1 - ((1 - keypoint.Value) * sineAlpha)
+                            table.insert(targetPoints, NumberSequenceKeypoint.new(keypoint.Time, currentVal))
+                        end
+                        
+                        v.Transparency = NumberSequence.new(targetPoints)
+                        task.wait()
+                    end
+                    v.Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0.000, 0),
+                        NumberSequenceKeypoint.new(0.167, 0.375),
+                        NumberSequenceKeypoint.new(0.500, 0.106),
+                        NumberSequenceKeypoint.new(0.650, 0.419),
+                        NumberSequenceKeypoint.new(1.000, 0)
+                    })
+                end)
+            end
+
+            if next(fallbackProperties) then
+                TweenService:Create(v, tweenInfo, fallbackProperties):Play()
+            end
+        end
+    end
+end
+
+local function FadeIn(time, v)
+    local tweenInfo = TweenInfo.new(time, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0)
+    local targets = {}
+
+    if v:IsA("Frame") or v:IsA("ScrollingFrame") or v:IsA("TextBox") then
+        targets["BackgroundTransparency"] = 1
+    end
+
+    if v:IsA("TextLabel") or v:IsA("TextBox") or v:IsA("TextButton") then
+        targets["BackgroundTransparency"] = 1
+        targets["TextTransparency"] = 1
+    end
+
+    if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+        targets["ImageTransparency"] = 1
+    end
+
+    if v:IsA("UIStroke") or v:IsA("BasePart") or v:IsA("Decal") or v:IsA("Texture") then
+        targets["Transparency"] = 1
+    end
+
+    if next(targets) then
+        TweenService:Create(v, tweenInfo, targets):Play()
+    else
+        if v:IsA("UIGradient") then
+            TweenService:Create(v, tweenInfo, {Offset = Vector2.new(1, 0)}):Play()
+        end
+    end
+end
+
+local function FadeOut(time, v)
+    local tweenInfo = TweenInfo.new(time, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0)
+    local targets = {}
+
+    if v:IsA("Frame") or v:IsA("ScrollingFrame") or v:IsA("TextBox") then
+        targets["BackgroundTransparency"] = 0
+    end
+
+    if v:IsA("TextLabel") or v:IsA("TextBox") or v:IsA("TextButton") then
+        targets["BackgroundTransparency"] = 0
+        targets["TextTransparency"] = 0
+    end
+
+    if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+        targets["ImageTransparency"] = 0
+    end
+
+    if v:IsA("UIStroke") or v:IsA("BasePart") or v:IsA("Decal") or v:IsA("Texture") then
+        targets["Transparency"] = 0
+    end
+
+    if next(targets) then
+        TweenService:Create(v, tweenInfo, targets):Play()
+    else
+        if v:IsA("UIGradient") then
+            TweenService:Create(v, tweenInfo, {Offset = Vector2.new(1, 0)}):Play()
+        end
+    end
+end
+
+for _, gui in pairs(PlayerGui:GetChildren()) do
+    if gui:IsA("ScreenGui") and gui.Name == GuiName then
+        for _, v in pairs(gui:GetDescendants()) do
+            FadeIn(0.5, v)
+        end
+
+        task.wait(0.5)
+
+        gui:Destroy()
+
+        task.wait(1)
+    end
+end
+
+local Guis = {}
+local CurrentTab = 1
+
+local Time = os.clock()
+
+local function FormatTime(seconds)
+    local minutes = math.floor(seconds / 60)
+    local remainingSeconds = math.floor(seconds % 60)
+    return string.format("%02d:%02d", minutes, remainingSeconds)
+end
+
+local function Create()
+    Guis["1"] = Instance.new("ScreenGui", PlayerGui);
+    Guis["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+    Guis["1"]["Name"] = GuiName;
+    Guis["1"].DisplayOrder = 500
+
+    Guis["2"] = Instance.new("Frame", Guis["1"]);
+    Guis["2"]["Visible"] = false
+    Guis["2"]["BackgroundTransparency"] = 1
+    Guis["2"]["BorderSizePixel"] = 0;
+    Guis["2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["2"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+    Guis["2"]["Size"] = UDim2.new(0, 700, 0, 400);
+    Guis["2"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
+    Guis["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+
+    Guis["FrameDragDetector"] = Instance.new("UIDragDetector", Guis["2"]);
+    Guis["FrameDragDetector"]["BoundingBehavior"] = "EntireObject"
+
+    Guis["TabHolder"] = Instance.new("Frame", Guis["2"]);
+    Guis["TabHolder"]["Size"] = UDim2.new(0, 100, 1);
+    Guis["TabHolder"]["BackgroundTransparency"] = 1;
+    Guis["TabHolder"]["Name"] = "TabHolder";
+
+    if Guis["2"] then
+
+        Guis["2"].Visible = true
+        local info = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
+        local tween = TweenService:Create(Guis["2"], info, {BackgroundTransparency = 0});
+        tween:Play()
+    else
+        warn("Guis2 not found. ")
+    end
+
+    Guis["3"] = Instance.new("UICorner", Guis["2"]);
+
+    Guis["4"] = Instance.new("UIGradient", Guis["2"]);
+    Guis["4"]["Rotation"] = 90;
+    Guis["4"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(0, 0, 0)),ColorSequenceKeypoint.new(0.221, Color3.fromRGB(21, 21, 21)),ColorSequenceKeypoint.new(0.588, Color3.fromRGB(52, 52, 52)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(90, 32, 36))};
+
+    Guis["Button1"] = Instance.new("TextButton", Guis["TabHolder"]);
+    Guis["Button1"]["TextWrapped"] = true;
+    Guis["Button1"]["TextStrokeTransparency"] = 0.8;
+    Guis["Button1"]["RichText"] = true;
+    Guis["Button1"]["BorderSizePixel"] = 0;
+    Guis["Button1"]["TextStrokeColor3"] = Color3.fromRGB(101, 0, 0);
+    Guis["Button1"]["TextSize"] = 18;
+    Guis["Button1"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Button1"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Button1"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+    Guis["Button1"]["ZIndex"] = 100;
+    Guis["Button1"]["BackgroundTransparency"] = 1;
+    Guis["Button1"]["Size"] = UDim2.new(0, 65, 0, 35);
+    Guis["Button1"]["LayoutOrder"] = 5;
+    Guis["Button1"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["Button1"]["Text"] = [[MAIN]];
+    Guis["Button1"]["Position"] = UDim2.new(0.17, 0, 0.045, 0);
+    Guis["Button1"]["Name"] = "Button1";
+
+    Guis["Button1Cover"] = Instance.new("Frame", Guis["Button1"]);
+    Guis["Button1Cover"]["BackgroundTransparency"] = 1;
+    Guis["Button1Cover"]["BorderSizePixel"] = 0;
+    Guis["Button1Cover"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Button1Cover"]["Size"] = UDim2.new(0, 65, 0, 35);
+    Guis["Button1Cover"]["Position"] = UDim2.new(-0.00667, 0, -0.00286, 0);
+    Guis["Button1Cover"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["Button1Cover"]["Name"] = "Button1Cover";
+
+    Guis["Button2"] = Instance.new("TextButton", Guis["TabHolder"]);
+    Guis["Button2"]["TextWrapped"] = true;
+    Guis["Button2"]["TextStrokeTransparency"] = 0.8;
+    Guis["Button2"]["RichText"] = true;
+    Guis["Button2"]["BorderSizePixel"] = 0;
+    Guis["Button2"]["TextStrokeColor3"] = Color3.fromRGB(101, 0, 0);
+    Guis["Button2"]["TextSize"] = 18;
+    Guis["Button2"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Button2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Button2"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+    Guis["Button2"]["ZIndex"] = 100;
+    Guis["Button2"]["BackgroundTransparency"] = 1;
+    Guis["Button2"]["Size"] = UDim2.new(0, 65, 0, 35);
+    Guis["Button2"]["LayoutOrder"] = 5;
+    Guis["Button2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["Button2"]["Text"] = [[PLAYER]];
+    Guis["Button2"]["Position"] = UDim2.new(0.17, 0, 0.15, 0);
+    Guis["Button2"]["Name"] = "Button2";
+
+    Guis["Button2Cover"] = Instance.new("Frame", Guis["Button2"]);
+    Guis["Button2Cover"]["BackgroundTransparency"] = 1;
+    Guis["Button2Cover"]["BorderSizePixel"] = 0;
+    Guis["Button2Cover"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Button2Cover"]["Size"] = UDim2.new(0, 65, 0, 35);
+    Guis["Button2Cover"]["Position"] = UDim2.new(-0.00667, 0, -0.00286, 0);
+    Guis["Button2Cover"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["Button2Cover"]["Name"] = "Button2Cover";
+
+    Guis["Idk2"] = Instance.new("UICorner", Guis["Button1Cover"]);
+
+    Guis["a2"] = Instance.new("UIGradient", Guis["Button1Cover"]);
+    Guis["a2"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(191, 79, 90)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(90, 32, 36))};
+
+    Guis["Idk"] = Instance.new("UICorner", Guis["Button2Cover"]);
+
+    Guis["a"] = Instance.new("UIGradient", Guis["Button2Cover"]);
+    Guis["a"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(191, 79, 90)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(90, 32, 36))};
+
+    Guis["b"] = Instance.new("TextLabel", Guis["2"]);
+    Guis["b"]["BorderSizePixel"] = 0;
+    Guis["b"]["TextSize"] = 15;
+    Guis["b"]["TextTransparency"] = 0.25;
+    Guis["b"]["TextStrokeColor3"] = Color3.fromRGB(101, 0, 0);
+    Guis["b"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["b"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+    Guis["b"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["b"]["TextTransparency"] = 0.2;
+    Guis["b"]["BackgroundTransparency"] = 1;
+    Guis["b"]["Size"] = UDim2.new(0, 102, 0, 18);
+    Guis["b"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["b"]["Text"] = [[DISCORD SERVER - DISCORD.GG/w74z9mTKkJ]];
+    Guis["b"]["Name"] = "Discord";
+    Guis["b"]["Position"] = UDim2.new(0.215000004, 0, -0.000850000011, 0);
+
+    Guis["Top"] = Instance.new("Frame", Guis["2"]);
+    Guis["Top"]["Name"] = "Top";
+    Guis["Top"]["Size"] = UDim2.new(0, 700, 0, 18);
+    Guis["Top"]["Position"] = UDim2.new(0, 0, 0, 0);
+    Guis["Top"]["BackgroundTransparency"] = 1;
+
+    Guis["Minimize"] = Instance.new("ImageButton", Guis["Top"]);
+    Guis["Minimize"]["Size"] = UDim2.new(0, 9, 0, 9);
+    Guis["Minimize"]["Position"] = UDim2.new(0, 0, 0, 350);
+    Guis["Minimize"]["BackgroundTransparency"] = 1;
+    Guis["Minimize"]["ImageTransparency"] = 0.2;
+    Guis["Minimize"]["Image"] = "rbxassetid://84561431868297";
+    Guis["Minimize"]["Position"] = UDim2.new(0, 650, 0, 10)
+
+    Guis["Close"] = Instance.new("ImageButton", Guis["Top"]);
+    Guis["Close"]["Size"] = UDim2.new(0, 9, 0, 9);
+    Guis["Close"]["Position"] = UDim2.new(0, 0, 0, 350);
+    Guis["Close"]["BackgroundTransparency"] = 1;
+    Guis["Close"]["ImageTransparency"] = 0.2;
+    Guis["Close"]["Image"] = "rbxassetid://120671325651381";
+    Guis["Close"]["Position"] = UDim2.new(0, 675, 0, 10)
+
+    Guis["4"] = Instance.new("ScrollingFrame", Guis["2"]);
+    Guis["4"]["Active"] = true;
+    Guis["4"]["BorderSizePixel"] = 0;
+    Guis["4"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+    Guis["4"]["ScrollBarImageTransparency"] = 0.5;
+    Guis["4"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["4"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+    Guis["4"]["Size"] = UDim2.new(0, 584, 0, 382);
+    Guis["4"]["Position"] = UDim2.new(0.16571, 0, 0.045, 0);
+    Guis["4"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["4"]["ScrollBarThickness"] = 2;
+    Guis["4"]["BackgroundTransparency"] = 1;
+
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1
+    Guis["5"] = Instance.new("Frame", Guis["4"]);
+    Guis["5"]["BorderSizePixel"] = 0;
+    Guis["5"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["5"]["Size"] = UDim2.new(0, 584, 0, 382);
+    Guis["5"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["5"]["Name"] = [[Tab1]];
+    Guis["5"]["BackgroundTransparency"] = 1;
+
+    Guis["Tab2"] = Instance.new("Frame", Guis["4"]);
+    Guis["Tab2"]["BorderSizePixel"] = 0;
+    Guis["Tab2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Tab2"]["Size"] = UDim2.new(0, 584, 0, 382);
+    Guis["Tab2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["Tab2"]["Name"] = [[Tab2]];
+    Guis["Tab2"]["BackgroundTransparency"] = 1;
+end
+
+local function CreateToggle(inner, Parent, Order)
+    local Toggle = Instance.new("Frame")
+    Toggle.Parent = Parent
+    Toggle.Size = UDim2.new(0, 560, 0, 20)
+    Toggle.BackgroundTransparency = 0.8
+
+    CornerToggle = Instance.new("UICorner")
+    CornerToggle.Parent = Toggle
+
+    GradientToggle = Instance.new("UIGradient")
+    GradientToggle.Parent = Toggle
+
+    GradientToggle.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0.25),NumberSequenceKeypoint.new(1.000, 0.25)};
+    GradientToggle.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))}
+end
+
+local function CreateButton(inner, Parent, Order, SizeX)
+    local Log = Instance.new("TextButton")
+    Log.LayoutOrder = Order
+    if Order == nil then Log.LayoutOrder = 0 end
+    Log.Parent = Parent
+    Log.AutomaticSize = "Y"
+    Log.Size = UDim2.new(0, SizeX, 0, 28)
+    Log.Text = ""
+    Log.Name = "Button"
+    Log.BackgroundTransparency = 0
+    if not Name then Log.Name = "Button" end
+
+    local UICornerLog = Instance.new("UICorner")
+    UICornerLog.Parent = Log
+    UICornerLog.CornerRadius = UDim.new(0, 10)
+
+    local UIGradientLog = Instance.new("UIGradient")
+    UIGradientLog.Parent = Log
+    UIGradientLog.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(1.0, 0)}
+    UIGradientLog.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
+
+    local TextLabelLog = Instance.new("TextLabel", Log)
+    TextLabelLog["TextWrapped"] = true
+    TextLabelLog["BorderSizePixel"] = 0
+    TextLabelLog["TextScaled"] = false
+    TextLabelLog["TextSize"] = 12
+    TextLabelLog["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
+    TextLabelLog["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+    TextLabelLog["TextColor3"] = Color3.fromRGB(255, 255, 255)
+    TextLabelLog["BackgroundTransparency"] = 0
+    TextLabelLog["Size"] = UDim2.new(0, 189, 0, 28)
+    TextLabelLog["BorderColor3"] = Color3.fromRGB(0, 0, 0)
+    TextLabelLog["Text"] = inner
+
+    return Log
+end
+
+local function CreateLog(inner, Parent, Order, SizeX, TextScaled, name, update)
+    local Log = Instance.new("Frame")
+    Log.LayoutOrder = Order or 0
+    Log.Parent = Parent
+    Log.AutomaticSize = Enum.AutomaticSize.Y
+    Log.Size = UDim2.new(0, SizeX, 0, 28)
+    Log.Name = name or "Frame"
+
+    local UICornerLog = Instance.new("UICorner")
+    UICornerLog.Parent = Log
+    UICornerLog.CornerRadius = UDim.new(0, 10)
+
+    local UIGradientLog = Instance.new("UIGradient")
+    UIGradientLog.Parent = Log
+    UIGradientLog.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(1.0, 0)}
+    UIGradientLog.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))}
+
+    local TextLabelLog = Instance.new("TextLabel", Log)
+    TextLabelLog.TextWrapped = true
+    TextLabelLog.BorderSizePixel = 0
+    TextLabelLog.TextScaled = TextScaled
+    TextLabelLog.TextSize = 12
+    TextLabelLog.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    TextLabelLog.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+    TextLabelLog.TextColor3 = Color3.fromRGB(255, 255, 255)
+    TextLabelLog.BackgroundTransparency = 1
+    TextLabelLog.Size = UDim2.new(0, SizeX, 0, 28)
+    TextLabelLog.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    TextLabelLog.Text = inner
+
+    if update then
+        task.spawn(function()
+            while task.wait(0.1) do
+                if Humanoid then
+                    if string.find(inner, "Walk Speed") then
+                        TextLabelLog.Text = "Walk Speed: " .. Humanoid.WalkSpeed
+                    elseif string.find(inner, "Jump Power") then
+                        TextLabelLog.Text = "Jump Power: " .. Humanoid.JumpPower
+                    elseif string.find(inner, "Stamina") then
+                        TextLabelLog.Text = "Stamina: " .. Player:GetAttribute("Stamina")
+                    end
+                end
+            end
+        end)
+    end
+
+    return TextLabelLog
+end
+
+local function CreateSlider(inner, Parent, Order, SizeX, TextScaled, min, max, type)
+    min = min or 0
+    max = max or 100
+
+    local Log = Instance.new("Frame")
+    Log.LayoutOrder = Order or 0
+    Log.Parent = Parent
+    Log.AutomaticSize = Enum.AutomaticSize.Y
+    Log.Size = UDim2.new(0, SizeX, 0, 28)
+
+    local UICornerLog = Instance.new("UICorner")
+    UICornerLog.Parent = Log
+    UICornerLog.CornerRadius = UDim.new(0, 10)
+
+    local UIGradientLog = Instance.new("UIGradient")
+    UIGradientLog.Parent = Log
+    UIGradientLog.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 80, 91)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))
+    }
+
+    local TextLabelLog = Instance.new("TextLabel", Log)
+    TextLabelLog.TextWrapped = true
+    TextLabelLog.BorderSizePixel = 0
+    TextLabelLog.TextScaled = TextScaled
+    TextLabelLog.TextSize = 12
+    TextLabelLog.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    TextLabelLog.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+    TextLabelLog.TextColor3 = Color3.fromRGB(255, 255, 255)
+    TextLabelLog.BackgroundTransparency = 1
+    TextLabelLog.Size = UDim2.new(0, SizeX, 0, 28)
+    TextLabelLog.BorderColor3 = Color3.fromRGB(0, 0, 0)
+
+    local SliderStroke = Instance.new("UIStroke", Log)
+    SliderStroke.Color = Color3.fromRGB(255, 255, 255)
+    SliderStroke.Thickness = 2
+
+    local function update(value)
+        local pct = (value - min) / (max - min)
+        pct = math.clamp(pct, 0, 0.999)
+
+        UIGradientLog.Transparency = NumberSequence.new{
+            NumberSequenceKeypoint.new(0, 0),
+            NumberSequenceKeypoint.new(pct, 0),
+            NumberSequenceKeypoint.new(pct + 0.001, 1),
+            NumberSequenceKeypoint.new(1, 1)
+        }
+
+        TextLabelLog.Text = inner
+    end
+
+    update(min)
+
+    local holding = false
+
+    Log.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            holding = true
+        end
+    end)
+
+    UIS.InputChanged:Connect(function(input)
+        if holding and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+            Guis["FrameDragDetector"].Enabled = false
+            local relativeX = input.Position.X - Log.AbsolutePosition.X
+            local pct = math.clamp(relativeX / Log.AbsoluteSize.X, 0, 1)
+            
+            local newValue = min + ((max - min) * pct)
+            update(newValue)
+            
+            if type == "WalkSpeed" and Humanoid then
+                Humanoid.WalkSpeed = newValue
+            elseif type == "JumpPower" and Humanoid then
+                Humanoid.JumpPower = newValue
+            elseif type == "Stamina" and Humanoid then
+                Player:SetAttribute("Stamina", newValue)
+            end
+        end
+    end)
+
+    UIS.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            Guis["FrameDragDetector"].Enabled = true
+            holding = false
+        end
+    end)
+
+    return TextLabelLog
+end
+
+local function CreateText(inner, Parent, Order, SizeX)
+    local Log = Instance.new("Frame")
+    Log.LayoutOrder = Order
+    if Order == nil then Log.LayoutOrder = 0 end
+    Log.Parent = Parent
+    Log.AutomaticSize = "Y"
+    Log.Size = UDim2.new(0, 189, 0, 28)
+    Log.BackgroundTransparency = 1
+    Log.Name = "Text"
+    if not SizeX then SizeX = 156 end
+
+    local TextLabelLog = Instance.new("TextLabel", Log)
+    TextLabelLog["TextWrapped"] = true
+    TextLabelLog["BorderSizePixel"] = 0
+    TextLabelLog["TextScaled"] = false
+    TextLabelLog["TextSize"] = 18
+    TextLabelLog["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
+    TextLabelLog["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+    TextLabelLog["TextColor3"] = Color3.fromRGB(255, 255, 255)
+    TextLabelLog["BackgroundTransparency"] = 1
+    TextLabelLog["Size"] = UDim2.new(0, 189, 0, 28)
+    TextLabelLog["BorderColor3"] = Color3.fromRGB(0, 0, 0)
+    TextLabelLog["Text"] = inner
+
+    Divider = Instance.new("Frame", Log);
+    Divider["BorderSizePixel"] = 0;
+    Divider["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Divider["Size"] = UDim2.new(0, SizeX, 0, 1);
+    Divider["Position"] = UDim2.new(0.01, 0, 0, 30);
+    Divider["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Divider.Rotation = 180
+    Divider["Name"] = [[Divider]];
+    Divider["BackgroundTransparency"] = 0.5;
+
+    DividerGradient = Instance.new("UIGradient", Divider);
+    DividerGradient["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    DividerGradient["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+
+    return Log
+end
+
+local function CreateDivider(Parent, Order, SizeX)
+    if not SizeX then SizeX = 156 end
+
+    Divider = Instance.new("Frame", Parent);
+    Divider["BorderSizePixel"] = 0;
+    Divider["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Divider["Size"] = UDim2.new(0, SizeX, 0, 1);
+    Divider["Position"] = UDim2.new(0, 0, 0, 0);
+    Divider["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Divider.Rotation = 180
+    Divider["Name"] = [[Divider]];
+    Divider["BackgroundTransparency"] = 0.5;
+    Divider.LayoutOrder = Order
+
+    DividerGradient = Instance.new("UIGradient", Divider);
+    DividerGradient["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    DividerGradient["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+end
+
+local function CreateEsp(inner, Parent)
+    for _, v in pairs(Parent:GetChildren()) do
+        if v.Name == "Esp" or v.Name == "BillboardGui" then
+            if v:FindFirstChild("ImageLabel") then
+                task.spawn(function()
+                    FadeIn(0.25, v.ImageLabel)
+                    for _, child in pairs(v.ImageLabel:GetDescendants()) do
+                        FadeIn(0.25, child)
+                    end
+                    task.wait(0.25)
+                    v:Destroy()
+                end)
+            end
+        end
+    end
+
+    task.wait(0.25)
+
+    local Esp = Instance.new("BillboardGui")
+    Esp.Parent = Parent
+    Esp.AlwaysOnTop = true
+    Esp.Name = "Esp"
+    Esp.Size = UDim2.new(0, 200, 0, 100)
+
+    local EspImg = Instance.new("ImageLabel", Esp)
+    EspImg.Image = "rbxassetid://134062702040680"
+    EspImg.BackgroundTransparency = 1
+    EspImg.ImageTransparency = 1
+    EspImg.ImageColor3 = Color3.fromRGB(125, 125, 125)
+    EspImg.Size = UDim2.new(0, 200, 0, 100)
+    EspImg.Position = UDim2.new(0, 150, 0, 0)
+    FadeOut(0.25, EspImg)
+
+    if Parent.Parent:GetAttribute("ItemName") then
+        CreateText(Parent.Parent:GetAttribute("ItemName"), EspImg, _, 200)
+    else
+        CreateText(Parent.Parent.Name, EspImg, _, 200)
+    end
+
+    if EspImg:FindFirstChild("Text") then
+        EspImg.Text.Position = UDim2.new(0, 27, 0, 0)
+
+        for _, v in pairs(EspImg.Text:GetDescendants()) do
+            if v:IsA("GuiObject") then
+                v.Size = UDim2.new(v.Size.X.Scale, 150, v.Size.Y.Scale, v.Size.Y.Offset)
+            end
+        end
+    end
+end
+
+Create()
+
+task.spawn(function()
+    local TabContainers = {
+            [1] = Guis["5"],
+            [2] = Guis["Tab2"]
+        }
+
+    local function SwitchTab(tabIndex, activeButtonName, activeCoverName)
+        if CurrentTab == tabIndex then return end
+        
+        local oldTabContainer = TabContainers[CurrentTab]
+        local newTabContainer = TabContainers[tabIndex]
+        
+        if oldTabContainer then
+            FadeOutWithSaves(oldTabContainer, 0.1)
+            task.wait(0.1)
+            oldTabContainer.Visible = false
+        end
+
+        CurrentTab = tabIndex
+
+        local activeCover = Guis[activeCoverName]
+        if activeCover then
+            local info = TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
+            TweenService:Create(activeCover, info, {BackgroundTransparency = 0.8}):Play()
+        end
+
+        for _, button in pairs(Guis["1"].Frame.TabHolder:GetChildren()) do
+            if button:IsA("TextButton") and button.Name ~= activeButtonName then
+                for _, child in pairs(button:GetChildren()) do
+                    if child:IsA("Frame") and child.Name ~= activeCoverName then
+                        local infoOut = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
+                        TweenService:Create(child, infoOut, {BackgroundTransparency = 1}):Play()
+                    end
+                end
+            end
+        end
+
+        if newTabContainer then
+            newTabContainer.Visible = true
+            FadeInWithSaves(newTabContainer, 0.1)
+        end
+    end
+
+    Guis["Button1"].MouseEnter:Connect(function()
+        if CurrentTab ~= 1 then
+            local info2 = TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0)
+            local tween2 = TweenService:Create(Guis["Button1Cover"], info2, {BackgroundTransparency = 0.8})
+            tween2:Play()
+        end
+    end)
+
+    Guis["Button1"].Activated:Connect(function()
+        SwitchTab(1, "Button1", "Button1Cover")
+    end)
+
+    Guis["Button1"].MouseLeave:Connect(function()
+        if CurrentTab ~= 1 then
+            local info3 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0)
+            local tween3 = TweenService:Create(Guis["Button1Cover"], info3, {BackgroundTransparency = 1})
+            tween3:Play()
+        end
+    end)
+
+    Guis["Button2"].MouseEnter:Connect(function()
+        if CurrentTab ~= 2 then
+            local info2 = TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0)
+            local tween2 = TweenService:Create(Guis["Button2Cover"], info2, {BackgroundTransparency = 0.8})
+            tween2:Play()
+        end
+    end)
+
+    Guis["Button2"].Activated:Connect(function()
+        SwitchTab(2, "Button2", "Button2Cover")
+    end)
+
+    Guis["Button2"].MouseLeave:Connect(function()
+        if CurrentTab ~= 2 then
+            local info4 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0)
+            local tween4 = TweenService:Create(Guis["Button2Cover"], info4, {BackgroundTransparency = 1})
+            tween4:Play()
+        end
+    end)
+
+    if CurrentTab == 1 then
+        Guis["5"]["Visible"] = true
+        Guis["Button1Cover"]["BackgroundTransparency"] = 0.8
+        if Guis["Tab2"] then Guis["Tab2"].Visible = false end
+    elseif CurrentTab == 2 then
+        if Guis["5"] then Guis["5"].Visible = false end
+        Guis["Tab2"]["Visible"] = true
+        Guis["Button2Cover"]["BackgroundTransparency"] = 0.8
+    end
+
+    Guis["Minimize"].Activated:Connect(function()
+        local tweenInfo = TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0)
+
+        if Guis["2"].Size == UDim2.new(0, 700, 0, 25) then
+            local targetSize = originalStates[Guis["2"]] and originalStates[Guis["2"]].Size or UDim2.new(0, 700, 0, 400)
+            TweenService:Create(Guis["2"], tweenInfo, {Size = targetSize}):Play()
+
+            for _, v in pairs(Guis["2"]:GetDescendants()) do
+                local saved = originalStates[v]
+                if saved then
+                    TweenService:Create(v, tweenInfo, saved):Play()
+                end
+            end
+        else
+            originalStates[Guis["2"]] = {Size = Guis["2"].Size}
+            TweenService:Create(Guis["2"], tweenInfo, {Size = UDim2.new(0, 700, 0, 25)}):Play()
+
+            for _, v in pairs(Guis["2"]:GetDescendants()) do
+                local targets = {}
+
+                if (v:IsA("Frame") or v:IsA("ScrollingFrame")) then
+                    originalStates[v] = {BackgroundTransparency = v.BackgroundTransparency}
+                    targets["BackgroundTransparency"] = 1
+                end
+
+                if (v:IsA("TextLabel") or v:IsA("TextBox") or v:IsA("TextButton")) and v.Name ~= "Discord" then
+                    originalStates[v] = {BackgroundTransparency = v.BackgroundTransparency, TextTransparency = v.TextTransparency}
+                    targets["BackgroundTransparency"] = 1
+                    targets["TextTransparency"] = 1
+                end
+
+                if (v:IsA("BasePart") or v:IsA("Union") or v:IsA("Texture")) then
+                    originalStates[v] = {Transparency = v.Transparency}
+                    targets["Transparency"] = 1
+                end
+
+                if (v:IsA("ImageLabel") or v:IsA("ImageButton")) and v.Name == not "Minimize" and v.Name == not "Close" then
+                    originalStates[v] = {BackgroundTransparency = v.BackgroundTransparency, ImageTransparency = v.ImageTransparency}
+                    targets["BackgroundTransparency"] = 1
+                    targets["ImageTransparency"] = 1
+                end
+
+                if v:IsA("UIStroke") then
+                    originalStates[v] = {Transparency = v.Transparency}
+                    targets["Transparency"] = 1
+                end
+
+                if next(targets) then
+                    TweenService:Create(v, tweenInfo, targets):Play()
+                else
+                    if v:IsA("UIGradient") then
+                        originalStates[v] = {Offset = v.Offset}
+                        TweenService:Create(v, tweenInfo, {Offset = Vector2.new(1, 0)}):Play()
+                    end
+                end
+
+                originalStates[Guis["b"]] = originalStates[Guis["b"]] or {Position = Guis["b"].Position}
+                TweenService:Create(Guis["b"], tweenInfo, {Position = UDim2.new(0, 150, 0, 1)}):Play()
+            end
+        end
+    end)
+
+    for _, v in pairs(Guis["2"]:GetDescendants()) do
+        if v.Name == "Divider" and v:IsA("Frame") then
+            v.Size = UDim2.new(v.Size.X.Scale, v.Size.X.Offset, v.Size.Y.Scale, 1)
+        end
+    end
+
+    Guis["Close"].Activated:Connect(function()
+        for _, gui in pairs(PlayerGui:GetChildren()) do
+            if gui:IsA("ScreenGui") and gui.Name == GuiName then
+                for _, v in pairs(gui:GetDescendants()) do
+                    local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0)
+                    local targets = {}
+
+                    if v:IsA("Frame") or v:IsA("ScrollingFrame") or v:IsA("TextBox") then
+                        targets["BackgroundTransparency"] = 1
+                    end
+
+                    if v:IsA("TextLabel") or v:IsA("TextBox") or v:IsA("TextButton") then
+                        targets["BackgroundTransparency"] = 1
+                        targets["TextTransparency"] = 1
+                    end
+
+                    if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+                        targets["BackgroundTransparency"] = 1
+                        targets["ImageTransparency"] = 1
+                    end
+
+                    if v:IsA("UIStroke") then
+                        targets["Transparency"] = 1
+                    end
+
+                    if next(targets) then
+                        TweenService:Create(v, tweenInfo, targets):Play()
+                    else
+                        if v:IsA("UIGradient") then
+                            TweenService:Create(v, tweenInfo, {Offset = Vector2.new(1, 0)}):Play()
+                        end
+                    end
+                end
+
+                task.wait(0.5)
+                gui:Destroy()
+                task.wait(1)
+            end
+        end
+    end)
+end)
+
+if GameType == "MainGame" then
+    Guis["6"] = Instance.new("ScrollingFrame", Guis["5"]);
+    Guis["6"]["Active"] = true;
+    Guis["6"]["BorderSizePixel"] = 0;
+    Guis["6"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+    Guis["6"]["Name"] = [[UserConsoleInfo]];
+    Guis["6"]["ScrollBarImageTransparency"] = 0.5;
+    Guis["6"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["6"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+    Guis["6"]["Size"] = UDim2.new(0, 319, 0, 367);
+    Guis["6"]["Position"] = UDim2.new(0.4024, 0, 0, 0);
+    Guis["6"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["6"]["ScrollBarThickness"] = 2;
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.UIGradient
+    Guis["7"] = Instance.new("UIGradient", Guis["6"]);
+    Guis["7"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0.85),NumberSequenceKeypoint.new(1.000, 0.85)};
+    Guis["7"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
+
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.UICorner
+    Guis["8"] = Instance.new("UICorner", Guis["6"]);
+
+
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.UIListLayout
+    Guis["9"] = Instance.new("UIListLayout", Guis["6"]);
+    Guis["9"]["Padding"] = UDim.new(0, 10);
+    Guis["9"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
+    Guis["9"]["FillDirection"] = Enum.FillDirection.Horizontal;
+
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame
+    Guis["a"] = Instance.new("Frame", Guis["6"]);
+    Guis["a"]["BorderSizePixel"] = 0;
+    Guis["a"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["a"]["Size"] = UDim2.new(0, 152, 0, 367);
+    Guis["a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["a"]["BackgroundTransparency"] = 1;
+
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame.Log
+    Guis["b2"] = Instance.new("TextLabel", Guis["a"]);
+    Guis["b2"]["BorderSizePixel"] = 0;
+    Guis["b2"]["TextSize"] = 18;
+    Guis["b2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["b2"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+    Guis["b2"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["b2"]["BackgroundTransparency"] = 1;
+    Guis["b2"]["RichText"] = true;
+    Guis["b2"]["Size"] = UDim2.new(0, 156, 0, 50);
+    Guis["b2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["b2"]["Text"] = [[USER INFO:]];
+    Guis["b2"]["LayoutOrder"] = -236627862;
+    Guis["b2"]["Name"] = [[Log]];
+
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame.Log.Divider
+    Guis["c"] = Instance.new("Frame", Guis["b2"]);
+    Guis["c"]["BorderSizePixel"] = 0;
+    Guis["c"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["c"]["Size"] = UDim2.new(1, -10, 0, 1);
+    Guis["c"]["Position"] = UDim2.new(0.0365, 0, 0.75624, 0);
+    Guis["c"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["c"]["Name"] = [[Divider]];
+    Guis["c"]["BackgroundTransparency"] = 0.5;
+
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame.Log.Divider.UIGradient
+    Guis["d"] = Instance.new("UIGradient", Guis["c"]);
+    Guis["d"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["d"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame.ScrollingFrame
+    Guis["e"] = Instance.new("ScrollingFrame", Guis["a"]);
+    Guis["e"]["Active"] = true;
+    Guis["e"]["BorderSizePixel"] = 0;
+    Guis["e"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+    Guis["e"]["ScrollBarImageTransparency"] = 0.5;
+    Guis["e"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["e"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+    Guis["e"]["Size"] = UDim2.new(0, 152, 0, 317);
+    Guis["e"]["Position"] = UDim2.new(0.03289, 0, 0.13624, 0);
+    Guis["e"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["e"]["ScrollBarThickness"] = 2;
+    Guis["e"]["BackgroundTransparency"] = 1;
+
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame.ScrollingFrame.UIListLayout
+    Guis["f"] = Instance.new("UIListLayout", Guis["e"]);
+    Guis["f"]["SortOrder"] = "LayoutOrder"
+    Guis["f"]["Padding"] = UDim.new(0, 10);
+
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame
+    Guis["10"] = Instance.new("Frame", Guis["6"]);
+    Guis["10"]["BorderSizePixel"] = 0;
+    Guis["10"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["10"]["Size"] = UDim2.new(0, 152, 0, 367);
+    Guis["10"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["10"]["BackgroundTransparency"] = 1;
+
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame.Log
+    Guis["11"] = Instance.new("TextLabel", Guis["10"]);
+    Guis["11"]["BorderSizePixel"] = 0;
+    Guis["11"]["TextSize"] = 18;
+    Guis["11"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["11"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+    Guis["11"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["11"]["BackgroundTransparency"] = 1;
+    Guis["11"]["RichText"] = true;
+    Guis["11"]["Size"] = UDim2.new(0, 156, 0, 50);
+    Guis["11"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["11"]["Text"] = [[CONSOLE:]];
+    Guis["11"]["LayoutOrder"] = -236627862;
+    Guis["11"]["Name"] = [[Log]];
+
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame.Log.Divider
+    Guis["12"] = Instance.new("Frame", Guis["11"]);
+    Guis["12"]["BorderSizePixel"] = 0;
+    Guis["12"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["12"]["Size"] = UDim2.new(1, -10, 0, 1);
+    Guis["12"]["Position"] = UDim2.new(0.0365, 0, 0.75624, 0);
+    Guis["12"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["12"]["Name"] = [[Divider]];
+    Guis["12"]["BackgroundTransparency"] = 0.5;
+
+    Guis["13"] = Instance.new("UIGradient", Guis["12"]);
+    Guis["13"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["13"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+
+    Guis["14"] = Instance.new("ScrollingFrame", Guis["10"]);
+    Guis["14"]["Active"] = true;
+    Guis["14"]["BorderSizePixel"] = 0;
+    Guis["14"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+    Guis["14"]["ScrollBarImageTransparency"] = 0.5;
+    Guis["14"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["14"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+    Guis["14"]["Size"] = UDim2.new(0, 152, 0, 317);
+    Guis["14"]["Position"] = UDim2.new(0.03289, 0, 0.13624, 0);
+    Guis["14"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["14"]["ScrollBarThickness"] = 2;
+    Guis["14"]["BackgroundTransparency"] = 1;
+
+    Guis["15"] = Instance.new("UIListLayout", Guis["14"]);
+    Guis["15"]["SortOrder"] = "LayoutOrder";
+    Guis["15"]["Padding"] = UDim.new(0, 10);
+
+    Guis["16"] = Instance.new("Frame", Guis["5"]);
+    Guis["16"]["BorderSizePixel"] = 0;
+    Guis["16"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["16"]["Size"] = UDim2.new(0.62, -10, 0, 1);
+    Guis["16"]["Position"] = UDim2.new(0.37274, 0, 0.47893, 0);
+    Guis["16"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["16"]["Name"] = [[Divider]];
+    Guis["16"].Rotation = 90;
+    Guis["16"]["BackgroundTransparency"] = 0.5;
+
+    Guis["17"] = Instance.new("UIGradient", Guis["16"]);
+    Guis["17"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["17"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+
+    Guis["18"] = Instance.new("Frame", Guis["5"]);
+    Guis["18"]["BorderSizePixel"] = 0;
+    Guis["18"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["18"]["Size"] = UDim2.new(0, 200, 0, 367);
+    Guis["18"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["18"]["Name"] = [[UpdateLog]];
+
+    Guis["19"] = Instance.new("UICorner", Guis["18"]);
+
+    Guis["1a"] = Instance.new("UIGradient", Guis["18"]);
+    Guis["1a"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0.85),NumberSequenceKeypoint.new(1.000, 0.85)};
+    Guis["1a"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
+
+    Guis["1c"] = Instance.new("TextLabel", Guis["18"]);
+    Guis["1c"]["TextWrapped"] = true;
+    Guis["1c"]["BorderSizePixel"] = 0;
+    Guis["1c"]["TextSize"] = 25;
+    Guis["1c"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["1c"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+    Guis["1c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["1c"]["BackgroundTransparency"] = 1;
+    Guis["1c"]["Size"] = UDim2.new(0, 200, 0, 50);
+    Guis["1c"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["1c"]["Text"] = [[UPDATE LOG:]];
+    Guis["1c"]["LayoutOrder"] = -236627862;
+    Guis["1c"]["Name"] = [[Log]];
+
+    Guis["1d"] = Instance.new("Frame", Guis["1c"]);
+    Guis["1d"]["BorderSizePixel"] = 0;
+    Guis["1d"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["1d"]["Size"] = UDim2.new(1, -10, 0, 1);
+    Guis["1d"]["Position"] = UDim2.new(0.0365, 0, 0.75624, 0);
+    Guis["1d"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["1d"]["Name"] = [[Divider]];
+    Guis["1d"]["BackgroundTransparency"] = 0.5;
+
+    Guis["1e"] = Instance.new("UIGradient", Guis["1d"]);
+    Guis["1e"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["1e"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+
+
+    Guis["1f"] = Instance.new("ScrollingFrame", Guis["18"]);
+    Guis["1f"]["Active"] = true;
+    Guis["1f"]["BorderSizePixel"] = 0;
+    Guis["1f"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+    Guis["1f"]["ScrollBarImageTransparency"] = 0.5;
+    Guis["1f"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["1f"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+    Guis["1f"]["Size"] = UDim2.new(0, 189, 0, 317);
+    Guis["1f"]["Position"] = UDim2.new(0.036, 0, 0.136, 0);
+    Guis["1f"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["1f"]["ScrollBarThickness"] = 2;
+    Guis["1f"]["BackgroundTransparency"] = 1;
+
+    Guis["20"] = Instance.new("UIListLayout", Guis["1f"]);
+    Guis["20"]["SortOrder"] = "LayoutOrder";
+    Guis["20"]["Padding"] = UDim.new(0, 10);
+
+    Guis["e2"] = Instance.new("Frame", Guis["2"]);
+    Guis["e2"]["BorderSizePixel"] = 0;
+    Guis["e2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["e2"]["Size"] = UDim2.new(0.525, -10, 0, 1);
+    Guis["e2"]["Position"] = UDim2.new(-0.100, 0, 0.50124, 0);
+    Guis["e2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["e2"]["Name"] = [[Divider]];
+    Guis["e2"].Rotation = 90;
+    Guis["e2"]["BackgroundTransparency"] = 0.5;
+
+    Guis["f"] = Instance.new("UIGradient", Guis["e2"]);
+    Guis["f"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["f"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+    
+    Guis["Tab2Info"] = Instance.new("Frame", Guis["Tab2"]);
+    Guis["Tab2Info"].Size = UDim2.new(0, 579, 0, 360);
+    Guis["Tab2Info"].Position = UDim2.new(0, 0, 0, 5);
+
+    Guis["Tab2Divider1"] = Instance.new("Frame", Guis["Tab2Info"]);
+    Guis["Tab2Divider1"]["BorderSizePixel"] = 0;
+    Guis["Tab2Divider1"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Tab2Divider1"]["Size"] = UDim2.new(0.66, -10, 0, 1);
+    Guis["Tab2Divider1"]["Position"] = UDim2.new(0.32, 0, 0.525, 0);
+    Guis["Tab2Divider1"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["Tab2Divider1"]["Name"] = [[Divider]];
+    Guis["Tab2Divider1"].Rotation = 90;
+    Guis["Tab2Divider1"]["BackgroundTransparency"] = 0.5;
+
+    Guis["Tab2DividerGradient1"] = Instance.new("UIGradient", Guis["Tab2Divider1"]);
+    Guis["Tab2DividerGradient1"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["Tab2DividerGradient1"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+    
+    Guis["Tab2Divider2"] = Instance.new("Frame", Guis["Tab2Info"]);
+    Guis["Tab2Divider2"]["BorderSizePixel"] = 0;
+    Guis["Tab2Divider2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Tab2Divider2"]["Size"] = UDim2.new(0.66, -10, 0, 1);
+    Guis["Tab2Divider2"]["Position"] = UDim2.new(0.038, 0, 0.525, 0);
+    Guis["Tab2Divider2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["Tab2Divider2"]["Name"] = [[Divider]];
+    Guis["Tab2Divider2"].Rotation = 90;
+    Guis["Tab2Divider2"]["BackgroundTransparency"] = 0.5;
+
+    Guis["Tab2DividerGradient2"] = Instance.new("UIGradient", Guis["Tab2Divider2"]);
+    Guis["Tab2DividerGradient2"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["Tab2DividerGradient2"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+    
+    Guis["Visuals"] = Instance.new("Frame", Guis["Tab2Info"])
+    Guis["Visuals"].BackgroundTransparency = 1
+    Guis["Visuals"].Size = UDim2.new(0, 195, 0, 350)
+    Guis["Visuals"].Position = UDim2.new(0, 5, 0, 5)
+    Guis["Visuals"].Name = "Visuals"
+
+    Guis["PlayerSettings"] = Instance.new("Frame", Guis["Tab2Info"])
+    Guis["PlayerSettings"].BackgroundTransparency = 1
+    Guis["PlayerSettings"].Size = UDim2.new(0, 195, 0, 350)
+    Guis["PlayerSettings"].Position = UDim2.new(0, 380, 0, 5)
+    Guis["PlayerSettings"].Name = "PlayerSettings"
+
+    Guis["VisualsLayout"] = Instance.new("UIListLayout", Guis["Visuals"])
+    Guis["VisualsLayout"].Padding = UDim.new(0, 10)
+    Guis["VisualsLayout"].HorizontalAlignment = "Center"
+    Guis["VisualsLayout"].SortOrder = "LayoutOrder"
+
+    Guis["PlayerSettingsLayout"] = Instance.new("UIListLayout", Guis["PlayerSettings"])
+    Guis["PlayerSettingsLayout"].Padding = UDim.new(0, 10)
+    Guis["PlayerSettingsLayout"].HorizontalAlignment = "Center"
+    Guis["PlayerSettingsLayout"].SortOrder = "LayoutOrder"
+
+    Guis["Tab2InfoCorner"] = Instance.new("UICorner", Guis["Tab2Info"]);
+    
+    Guis["Tab2InfoGradient"] = Instance.new("UIGradient", Guis["Tab2Info"])
+    Guis["Tab2InfoGradient"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0.85),NumberSequenceKeypoint.new(1.000, 0.85)};
+    Guis["Tab2InfoGradient"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
+
+    Guis["2ac"] = Instance.new("TextLabel", Guis["Tab2"]);
+    Guis["2ac"]["BorderSizePixel"] = 0;
+    Guis["2ac"]["TextSize"] = 18;
+    Guis["2ac"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["2ac"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+    Guis["2ac"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["2ac"]["BackgroundTransparency"] = 1;
+    Guis["2ac"]["RichText"] = true;
+    Guis["2ac"]["Size"] = UDim2.new(0, 156, 0, 50);
+    Guis["2ac"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["2ac"]["Text"] = [[TELEPORTATION]];
+    Guis["2ac"].Position = UDim2.new(0, 212.5, 0, -10)
+    Guis["2ac"]["LayoutOrder"] = -236627862;
+    Guis["2ac"]["Name"] = [[Log]];
+
+    Guis["Something"] = Instance.new("Frame", Guis["2ac"]);
+    Guis["Something"]["BorderSizePixel"] = 0;
+    Guis["Something"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Something"]["Size"] = UDim2.new(1.05, -10, 0, 1);
+    Guis["Something"]["Position"] = UDim2.new(0.01, 0, 0, 40);
+    Guis["Something"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["Something"].Rotation = 180
+    Guis["Something"]["Name"] = [[Divider]];
+    Guis["Something"]["BackgroundTransparency"] = 0.5;
+
+    Guis["SomethingGradient"] = Instance.new("UIGradient", Guis["Something"]);
+    Guis["SomethingGradient"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["SomethingGradient"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+
+    Guis["SCF"] = Instance.new("ScrollingFrame", Guis["Tab2Info"])
+    Guis["SCF"]["Active"] = true;
+    Guis["SCF"]["BorderSizePixel"] = 0;
+    Guis["SCF"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+    Guis["SCF"]["ScrollBarImageTransparency"] = 0.5;
+    Guis["SCF"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["SCF"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+    Guis["SCF"]["Size"] = UDim2.new(0, 156, 0, 180);
+    Guis["SCF"]["Position"] = UDim2.new(0, 213, 0, 200);
+    Guis["SCF"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["SCF"]["ScrollBarThickness"] = 2;
+    Guis["SCF"]["BackgroundTransparency"] = 1;
+
+    Guis["SCFLayout"] = Instance.new("UIListLayout", Guis["SCF"])
+    Guis["SCFLayout"].Padding = UDim.new(0, 10)
+    Guis["SCFLayout"].SortOrder = "LayoutOrder"
+
+    Guis["MapView"] = Instance.new("ViewportFrame", Guis["Tab2Info"])
+    Guis["MapView"].Size = UDim2.new(0, 150, 0, 150)
+    Guis["MapView"].Position = UDim2.new(0, 215, 0, 30)
+    Guis["MapView"].BackgroundTransparency = 1
+    Guis["MapView"].Ambient = Color3.fromRGB(100, 100, 100)
+    Guis["MapView"].LightColor = Game:GetService("Lighting").OutdoorAmbient
+    Guis["MapView"].LightDirection = Game:GetService("Lighting"):GetSunDirection()
+    Guis["MapView"].BackgroundTransparency = 1
+
+    Guis["Camera"] = Instance.new("Camera", Guis["MapView"])
+    
+    Guis["MapViewCorner"] = Instance.new("UICorner", Guis["MapView"])
+
+    Guis["MapViewStroke"] = Instance.new("UIStroke", Guis["MapView"])
+    Guis["MapViewStroke"].Color = Color3.fromRGB(255, 255, 255)
+
+    Guis["MapView"].CurrentCamera = Guis["Camera"]
+
+    CreateText("VISUALS", Guis["Visuals"], 0, 190)
+    CreateText("PLAYER SETTINGS", Guis["PlayerSettings"], 0, 190)
+
+    CreateLog("Walk Speed: " .. Character:FindFirstChild("Humanoid").WalkSpeed, Guis["PlayerSettings"], 1, 190, false, "WalkSpeed", true)
+    CreateLog("Jump Power: " .. Character:FindFirstChild("Humanoid").JumpPower, Guis["PlayerSettings"], 2, 190, false, "JumpPower", true)
+
+    CreateText("Adjustables", Guis["PlayerSettings"], 4, 190)
+
+    CreateSlider("Walk Speed", Guis["PlayerSettings"], 5, 190, false, 10, 100, "WalkSpeed")
+    CreateSlider("Jump Power", Guis["PlayerSettings"], 6, 190, false, 0, 100, "JumpPower")
+    CreateSlider("Stamina", Guis["PlayerSettings"], 7, 190, false, 0, 1000, "Stamina")
+
+    CreateDivider(Guis["PlayerSettings"], 8, 190)
+
+    local isInf = false
+
+    local InfStamina = CreateButton("Infinite Stamina", Guis["PlayerSettings"], 9, 190)
+    InfStamina.Activated:Connect(function()
+        isInf = not isInf
+
+        if isInf then
+            task.spawn(function()
+                while isInf do
+                    if Player:GetAttribute("Sprinting") == true then
+                        Player:SetAttribute("Sprinting", false)
+                    end
+                    task.wait(0.01)
+                end
+            end)
+        end
+    end)
+
+    local RuntimeTextLabel = CreateLog("Runtime: 00:00", Guis["e"], nil, 152)
+    local WinsTextLabel = CreateLog("Wins: " .. tostring(game:GetService("Players").LocalPlayer:GetAttribute("Wins")), Guis["e"], 1, 152)
+    local LevelTextLabel = CreateLog("Level: " .. tostring(game:GetService("Players").LocalPlayer:GetAttribute("Level")), Guis["e"], 2, 152)
+    local MoneyMadeTextLabel = CreateLog("Money Made: " .. tostring(game:GetService("Players").LocalPlayer:GetAttribute("Money")), Guis["e"], 3, 152)
+
+    task.spawn(function()
+        while true do
+            local ElapsedTime = os.clock() - Time
+            RuntimeTextLabel.Text = "Runtime: " .. FormatTime(ElapsedTime)
+            task.wait(1)
+        end
+    end)
+
+    CreateLog("-0.11: Released", Guis["1f"], nil, 189, false)
+
+    CreateLog("Loaded.", Guis["14"], -1, 152)
+
+    CreateText("Controls", Guis["SCF"])
+    CreateLog("Left Mouse Button: Drag", Guis["SCF"], 1, 156)
+    CreateLog("Mouse Button 1: Zoom in/out", Guis["SCF"], 2, 156)
+    CreateLog("Right Mouse Button: Teleport", Guis["SCF"], 3, 156)
+
+    CreateText("Rooms", Guis["SCF"], 4)
+
+    local MapFolder = Workspace:WaitForChild("Map")
+    local MapModel = nil
+    local ItemsFolder = Workspace:FindFirstChild("Items")
+    local InvisibleGhostWalls = nil
+    if MapFolder:FindFirstChild("Map") then
+        MapModel = MapFolder.Map
+    end
+
+    local RoomsFolder = nil
+
+    if MapModel then
+        RoomsFolder = MapModel:FindFirstChild("Rooms")
+    end
+
+    if not RoomsFolder then
+        RoomsFolder = MapFolder:FindFirstChild("Rooms")
+    end
+
+    if RoomsFolder then
+        RoomsFolder:FindFirstChild("Base Camp"):FindFirstChild("Truck")
+        if RoomsFolder:FindFirstChild("Base Camp").Truck then
+            local TruckPrimary = RoomsFolder:FindFirstChild("Base Camp").Truck.Primary.CFrame
+            if TruckPrimary == CFrame.new(28.9760437, 3.68303895, -67.749176, 0, -1, 0, 0, 0, -1, 1, 0, 0) then
+                MapType = "Fenway Drive"
+            elseif TruckPrimary == CFrame.new(23.4483738, -30.1618786, -64.6128387, 0, 1, 0, 0, 0, -1, -1, 0, 0) then
+                MapType = "Juniper Road"
+            elseif TruckPrimary == CFrame.new(25.9909477, 3.73003864, -111.618744, 1, 0, 0, 0, 0, -1, 0, 1, 0) then
+                MapType = "Lincoln Street"
+            elseif TruckPrimary == CFrame.new(152.138535, -6.1329999, -44.4111786, -0.998979926, 0.0451572537, -4.93600965e-07, -4.93600965e-07, -2.18153e-05, -1, -0.0451572537, -0.998979926, 2.18153e-05) then
+                MapType = "Bodega"
+            elseif TruckPrimary == CFrame.new(70.0683899, 13.7799997, 157.604065, 0.981209278, -0.192946643, -1.71363354e-06, 1.71363354e-06, 1.75833702e-05, -0.99999994, 0.192946643, 0.981209219, 1.75833702e-05) then
+                MapType = "Lilim Lane"
+            elseif TruckPrimary == CFrame.new(-33.8106422, 19.6800022, -15.1539326, -0.709856749, 0.704345942, -4.85777855e-06, -4.85777855e-06, -1.18017197e-05, -0.99999994, -0.704345942, -0.709856808, 1.18613243e-05) then
+                MapType = "Cafe"
+            elseif TruckPrimary == CFrame.new(64.6408768, 89.4869995, -21.5065556, -0.923553705, 0.383469343, 3.69548798e-06, 3.69548798e-06, 1.84774399e-05, -1, -0.383469343, -0.923553586, -1.84774399e-05) then
+                MapType = "Bridgewood"
+            elseif TruckPrimary == CFrame.new(126.896324, 3.70000172, 12.1818724, 0.0348294377, 0.999393463, 3.84747982e-05, -3.84747982e-05, 3.96966934e-05, -1.00000024, -0.999393463, 0.0348296463, 3.96966934e-05) then
+                MapType = "Prison"
+            elseif TruckPrimary == CFrame.new(-5.04826546, 4.31711769, -89.8415756, -1, 0, -0, 0, 0, -1, 0, -1, -0) then
+                MapType = "School"
+            elseif TruckPrimary == CFrame.new() then
+                MapType = "Asylum"
+            elseif TruckPrimary == CFrame.new() then
+                MapType = "Oakridge"
+            end
+        end
+    end
+
+    local CurrentFloor
+
+    function Clone()
+        if Guis["MapView"]:FindFirstChild("Map") then Guis["MapView"].Map:Destroy() end
+        if Guis["MapView"]:FindFirstChild("Items") then Guis["MapView"].Items:Destroy() end
+
+        if MapFolder then
+            local MFClone = MapFolder:Clone()
+
+            for _, d in ipairs(MFClone:GetDescendants()) do
+                if d:IsA("BasePart") then
+                    d.Anchored = true
+                    d.Transparency = d.Transparency
+                end
+            end
+
+            MFClone.Parent = Guis["MapView"]
+
+            local pos
+
+            if MFClone.Rooms:FindFirstChild("Base Camp"):FindFirstChild("BoundingBox") and MFClone.Rooms:FindFirstChild("Base Camp").BoundingBox:IsA("Folder") then
+                pos = MFClone.Rooms:FindFirstChild("Base Camp").BoundingBox.Part.CFrame.Position + Vector3.new(0, 50, 0)
+            else
+                pos = MFClone.Rooms:FindFirstChild("Base Camp").BoundingBox.Position + Vector3.new(0, 50, 0)
+            end
+            Guis["Camera"].CFrame = CFrame.new(pos, pos + Vector3.new(0, -1, 0))
+
+            for _, v in pairs(MFClone:GetDescendants()) do
+                if MapType == "Fenway Drive" then
+                    if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > 11 and v.Position.Y < 16 then
+                        v:Destroy()
+                    end
+                elseif MapType == "Juniper Road" then
+                    if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > -22 and v.Position.Y < -16 then
+                        v:Destroy()
+                    end
+                elseif MapType == "Lincoln Street" then
+                    if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > 12 and v.Position.Y < 17 then
+                        v:Destroy()
+                    end
+                elseif MapType == "Bodega" then
+                    if MFClone and MFClone:FindFirstChild("Exteriors"):FindFirstChild("Building") then MFClone.Exteriors.Building:Destroy() end
+
+                    task.spawn(function()
+                        if CurrentFloor == 1 then
+                            if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > -0.5 and v.Position.Y < 11 then
+                                v:Destroy()
+                            end
+
+                            if v:IsA("Folder") and v.Name == "Ceilings" then
+                                v:Destroy()
+                            end
+                        elseif CurrentFloor == 2 then
+                            if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > 10 and v.Position.Y < 10.5 then
+                                v:Destroy()
+                            end
+                        end
+                    end)
+                elseif MapType == "Lilim Lane" then
+                    task.spawn(function()
+                        if CurrentFloor == 1 then
+                            if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > 21 and v.Position.Y < 40 then
+                                v:Destroy()
+                            end
+
+                            if v:IsA("Folder") and v.Name == "Ceilings" then
+                                v:Destroy()
+                            end
+                        elseif CurrentFloor == 2 then
+                            if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > 33 and v.Position.Y < 40 then
+                                v:Destroy()
+                            end
+                        end
+                    end)
+                elseif MapType == "Cafe" then
+                    task.spawn(function()
+                        if CurrentFloor == 1 then
+                            if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > 29 and v.Position.Y < 52 then
+                                v:Destroy()
+                            end
+
+                            if v:IsA("Folder") and v.Name == "Ceilings" then
+                                v:Destroy()
+                            end
+                        elseif CurrentFloor == 2 then
+                            if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > 42 and v.Position.Y < 52 then
+                                v:Destroy()
+                            end
+                        end
+                    end)
+                elseif MapType == "Bridgewood" then
+                    task.spawn(function()
+                        if CurrentFloor == 1 then
+                            if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > 100 and v.Position.Y < 120 then
+                                v:Destroy()
+                            end
+
+                            if v:IsA("Folder") and v.Name == "Ceilings" then
+                                v:Destroy()
+                            end
+                        elseif CurrentFloor == 2 then
+                            if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > 115 and v.Position.Y < 120 then
+                                v:Destroy()
+                            end
+                        end
+                    end)
+                elseif MapType == "Prison" then
+                    task.spawn(function()
+                        if CurrentFloor == 1 then
+                            if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > 13 and v.Position.Y < 42 then
+                                v:Destroy()
+                            end
+
+                            if (v:IsA("Folder") and v.Name == "Ceilings") or v:IsA("Model") and v.Name == "AsphaltCeiling" then
+                                v:Destroy()
+                            end
+                        elseif CurrentFloor == 2 then
+                            if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > 26 and v.Position.Y < 42 then
+                                v:Destroy()
+                            end
+                        end
+                    end)
+                elseif MapType == "School" then
+                    task.spawn(function()
+                        if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > 31 and v.Position.Y < 69 then
+                            v:Destroy()
+                        end
+
+                        if CurrentFloor == 1 then
+                            if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > 16.5 and v.Position.Y < 69 then
+                                v:Destroy()
+                            end
+
+                            if v:IsA("Folder") and v.Name == "Ceilings" then
+                                v:Destroy()
+                            end
+                        elseif CurrentFloor == 2 then
+                            if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > 30 and v.Position.Y < 69 then
+                                v:Destroy()
+                            end
+                        end
+                    end)
+                elseif MapType == "Asylum" then
+                    task.spawn(function()
+                        if CurrentFloor == 1 then
+                            if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > 21 and v.Position.Y < 40 then
+                                v:Destroy()
+                            end
+
+                            if v:IsA("Folder") and v.Name == "Ceilings" then
+                                v:Destroy()
+                            end
+                        elseif CurrentFloor == 2 then
+                            if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > 33 and v.Position.Y < 40 then
+                                v:Destroy()
+                            end
+                        end
+                    end)
+                elseif MapType == "Oakbridge" then
+                    if (v:IsA("BasePart") or v:IsA("UnionOperation")) and v.Position.Y > 11 and v.Position.Y < 16 then
+                        v:Destroy()
+                    end
+                end
+            end
+        end
+
+        print(MapType)
+        print(CurrentFloor)
+
+        if ItemsFolder then
+            local IFClone = ItemsFolder:Clone()
+            IFClone.Parent = Guis["MapView"]
+        end
+
+        return MFClone, IFClone
+    end
+
+    if MapType == "Bodega" or MapType == "Lilim Lane" or MapType == "Cafe" or MapType == "Bridgewood" or MapType == "Prison" or MapType == "School" or MapType == "Asylum" then
+        CreateText("Floors", Guis["SCF"], -3)
+
+        local Floor1 = CreateButton("Floor 1", Guis["SCF"], -2, 156)
+        local Floor2 = CreateButton("Floor 2", Guis["SCF"], -1, 156)
+
+        CurrentFloor = 2
+
+        Floor2.Activated:Connect(function()
+            if CurrentFloor == 2 then return end
+
+            CurrentFloor = 2
+
+            Clone()
+
+            print(CurrentFloor)
+        end)
+        Floor1.Activated:Connect(function()
+            if CurrentFloor == 1 then return end
+
+            CurrentFloor = 1
+
+            Clone()
+
+            print(CurrentFloor)
+        end)
+    end
+
+    CreateText("Additions", Guis["SCF"], -5)
+    local MapFullbright = CreateButton("Map Fullbright", Guis["SCF"],-4, 156)
+
+    local MFClone, IFClone = Clone()
+
+    local ItemEsp = CreateButton("Item ESP", Guis["Visuals"], 1, 195)
+    ItemEsp.Activated:Connect(function()
+        for _, v in pairs(ItemsFolder:GetChildren()) do
+            if v:IsA("Model") then
+                if v:FindFirstChild("Handle") then
+                    CreateEsp("smth", v.Handle)
+                end
+            end
+        end
+    end)
+    local PlayerEsp = CreateButton("Player ESP", Guis["Visuals"], 1, 195)
+    PlayerEsp.Activated:Connect(function()
+        for _, v in pairs(Workspace:GetChildren()) do
+            if v:IsA("Model") and v:FindFirstChild("Humanoid") and v.Name ~= Player.Name and v.Name ~= Workspace.Ghost.Name then
+                CreateEsp("smth", v.Head)
+                for _, v in pairs(v:GetChildren()) do
+                    if v:IsA("BasePart") then
+                        v.Transparency = 0
+                        Instance.new("Highlight", v)
+                    end
+                end
+            end
+        end
+    end)
+
+    CreateText("Weather", Guis["Visuals"], 3, 189)
+    local Rain = CreateButton("Rain", Guis["Visuals"], 4, 195)
+    local Snow = CreateButton("Snow", Guis["Visuals"], 5, 195)
+    local Clear = CreateButton("Clear", Guis["Visuals"], 6, 195)
+
+    Rain.Activated:Connect(function()
+        if MapFolder then
+            for _, v in pairs(MapFolder.Weather.Rain:GetDescendants()) do
+                if v:IsA("ParticleEmitter") then
+                    if v.Enabled == false then
+                        v.Enabled = true
+                    end
+                end
+            end
+            for _, v in pairs(MapFolder.Weather.Snow:GetDescendants()) do
+                if v:IsA("Texture") then
+                    FadeIn(1, v)
+                end
+                if (v:IsA("BasePart") and v.Material == Enum.Material.Ground) or v:IsA("MeshPart") then
+                    FadeIn(1, v)
+                end
+                if v:IsA("ParticleEmitter") and v.Enabled == true then
+                    v.Enabled = false
+                end
+            end
+        end
+    end)
+
+    Snow.Activated:Connect(function()
+        if MapFolder then
+            for _, v in pairs(MapFolder.Weather.Snow:GetDescendants()) do
+                if v:IsA("Decal") then
+                    FadeOut(1, v)
+                end
+                if (v:IsA("BasePart") and v.Material == Enum.Material.Ground) or v:IsA("MeshPart") then
+                    FadeOut(1, v)
+                end
+                if v:IsA("ParticleEmitter") and v.Enabled == false then
+                    v.Enabled = true
+                end
+            end
+            for _, v in pairs(MapFolder.Weather.Rain:GetDescendants()) do
+                if v:IsA("ParticleEmitter") then
+                    if v.Enabled == true then
+                        v.Enabled = false
+                    end
+                end
+            end
+        end
+    end)
+
+    Clear.Activated:Connect(function()
+        if MapFolder then
+            for _, v in pairs(MapFolder.Weather.Snow:GetDescendants()) do
+                if v:IsA("Decal") then
+                    FadeIn(1, v)
+                end
+                if (v:IsA("BasePart") and v.Material == Enum.Material.Ground) or v:IsA("MeshPart") then
+                    FadeIn(1, v)
+                end
+                if v:IsA("ParticleEmitter") and v.Enabled == true then
+                    v.Enabled = false
+                end
+            end
+            for _, v in pairs(MapFolder.Weather.Rain:GetDescendants()) do
+                if v:IsA("ParticleEmitter") then
+                    if v.Enabled == true then
+                        v.Enabled = false
+                    end
+                end
+            end
+        end
+    end)
+
+    local Fullbright = CreateButton("Fullbright", Guis["Visuals"], 2, 195)
+
+    MapFullbright.Activated:Connect(function()
+        if Guis["MapView"].Ambient == Color3.fromRGB(255, 255, 255) then
+            local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
+
+            TweenService:Create(Guis["MapView"], tweenInfo, {
+                Ambient = Color3.fromRGB(100, 100, 100)
+            }):Play()
+        else
+            local tweenInfo = TweenInfo.new(1.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
+
+            TweenService:Create(Guis["MapView"], tweenInfo, {
+                Ambient = Color3.fromRGB(255, 255, 255)
+            }):Play()
+        end
+    end)
+
+    Fullbright.Activated:Connect(function()
+        if game:GetService("Lighting").Ambient == Color3.fromRGB(255, 255, 255) then
+            local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
+
+            TweenService:Create(game:GetService("Lighting"), tweenInfo, {
+                Ambient = Color3.fromRGB(0, 0, 0)
+            }):Play()
+        else
+            local tweenInfo = TweenInfo.new(1.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
+
+            TweenService:Create(game:GetService("Lighting"), tweenInfo, {
+                Ambient = Color3.fromRGB(255, 255, 255)
+            }):Play()
+        end
+    end)
+
+    for _, v in pairs(RoomsFolder:GetChildren()) do
+        local btn = CreateButton("Teleport To " .. v.Name, Guis["SCF"], 5, 156)
+        btn.Activated:Connect(function()
+            if v:FindFirstChild("BoundingBox") and v.BoundingBox:IsA("BasePart") then
+                HumanoidRootPart.Position = v.BoundingBox.Position
+            elseif v:FindFirstChild("BoundingBox") and v.BoundingBox:IsA("Folder") then
+                local parts = v.BoundingBox:GetChildren()
+                local randomPart = parts[math.random(1, #parts)]
+
+                HumanoidRootPart.Position = randomPart.Position
+            end
+        end)
+    end
+
+    CreateText("Closets", Guis["SCF"], 6)
+
+    if MapFolder and MapFolder:FindFirstChild("InvisibleGhostWalls") then
+        InvisibleGhostWalls = MapFolder.InvisibleGhostWalls
+    elseif MapModel and MapModel:FindFirstChild("InvisibleGhostWalls") then
+        InvisibleGhostWalls = MapModel.InvisibleGhostWalls
+    end
+
+    if InvisibleGhostWalls then
+        local Closest = CreateButton("Teleport to the closest closet", Guis["SCF"], 7, 156)
+        Closest.Activated:Connect(function()
+            local closestPart = nil
+            local closestDistance = math.huge
+
+            if not MapFolder:FindFirstChild("Closets") or not MapFolder:FindFirstChild("Closets"):FindFirstChild("Closet") then
+                for _, v in pairs(InvisibleGhostWalls:GetChildren()) do
+                    if v:IsA("BasePart") and v.Name == "GhostCloset" then
+                        local distance = (HumanoidRootPart.Position - v.Position).Magnitude
+                        if distance < closestDistance then
+                            closestDistance = distance
+                            closestPart = v.Position
+                        end
+                    end
+                end
+            else
+                local closets = {}
+
+                for _, v in pairs(MapFolder:FindFirstChild("Closets"):GetChildren()) do
+                    if v:IsA("Model") and v.Name == "Closet" then
+                        local MainCloset = v:FindFirstChild("Base"):FindFirstChild("Cube")
+                        table.insert(closets, MainCloset.Position)
+                    end
+                end
+
+                for _, closetPos in pairs(closets) do
+                    local distance = (HumanoidRootPart.Position - closetPos).Magnitude
+                    if distance < closestDistance then
+                        closestDistance = distance
+                        closestPart = closetPos
+                    end
+                end
+            end
+
+            if closestPart and HumanoidRootPart then
+                HumanoidRootPart.CFrame = CFrame.new(closestPart) * HumanoidRootPart.CFrame.Rotation
+            end
+
+            if MapFolder and (not MapFolder:FindFirstChild("Closets") or not MapFolder:FindFirstChild("Closets"):FindFirstChild("Closet")) and MapModel then
+                for _, v in pairs(MapModel:GetDescendants()) do
+                    if string.find(v.Name, "Closet") then
+                        print(v.Name)
+                    end
+                end
+            end
+        end)
+    end
+
+    local CHumanoid = CreateButton("Teleport to a random person in a closet", Guis["SCF"], 8, 156)
+    CHumanoid.Activated:Connect(function()
+        if InvisibleGhostWalls then
+            for _, v in pairs(InvisibleGhostWalls:GetChildren()) do
+                if v:IsA("BasePart") and v.Name == "GhostCloset" then
+                    local overlapParams = OverlapParams.new()
+                    local parts = workspace:GetPartBoundsInBox(v.CFrame, v.Size, overlapParams)
+
+                    local pplayers = {}
+
+                    for _, part in pairs(parts) do
+                        if part.Parent == not Player.Character and part.Parent:FindFirstChild("Humanoid") then
+                            table.insert(pplayers, part.Parent)
+                        end
+                    end
+
+                    if #pplayers > 0 then
+                        local randomPlayer = pplayers[math.random(1, #pplayers)]
+                        HumanoidRootPart.CFrame = randomPlayer.HumanoidRootPart.CFrame
+                        return
+                    end
+                end
+            end
+        end
+    end)
+
+    CreateText("Players", Guis["SCF"], 9)
+
+    local TPlayer = CreateButton("Teleport to the closest player", Guis["SCF"], 10, 156)
+    local TPlayerR = CreateButton("Teleport to a random player", Guis["SCF"], 11, 156)
+
+    TPlayer.Activated:Connect(function()
+        if #Players:GetPlayers() <= 1 then
+            CreateNotification("You are playing alone.")
+            return
+        end
+
+        for _, v in pairs(Workspace:GetChildren()) do
+            if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") then
+                if v.Name ~= "Ghost" and v.Name ~= Player.Name then
+                    HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
+                    break
+                end
+            end
+        end
+    end)
+
+    TPlayerR.Activated:Connect(function()
+        if #Players:GetPlayers() <= 1 then
+            CreateNotification("You are playing alone.")
+            return
+        end
+
+        local targets = {}
+
+        for _, v in pairs(workspace:GetChildren()) do
+            if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") then
+                if v.Name ~= "Ghost" and v.Name ~= Player.Name then
+                    table.insert(targets, v)
+                end
+            end
+        end
+
+        local randomTarget = targets[math.random(1, #targets)]
+        HumanoidRootPart.CFrame = randomTarget.HumanoidRootPart.CFrame
+    end)
+
+    for _, v in pairs (Guis["SCF"]:GetDescendants()) do
+        if v:IsA("Frame") or v:IsA("TextLabel") then
+            v.Size = UDim2.new(0, 156, 0, 30)
+        end
+    end
+
+    for _, v in pairs(Guis["2"]:GetDescendants()) do
+        if v.Name == "Divider" then
+            v.Size = UDim2.new(v.Size.X.Scale, v.Size.X.Offset, v.Size.Y.Scale, 1)
+        end
+    end
+
+    task.spawn(function()
+        local RunService = game:GetService("RunService")
+        local UserInputService = game:GetService("UserInputService")
+
+        local isDragging = false
+        local lastMousePos = Vector2.new(0, 0)
+        
+        local dragDetector = Guis["2"]:FindFirstChildOfClass("UIDragDetector") 
+
+        ItemsFolder.ChildAdded:Connect(function()
+            if ItemsFolder then
+                if Guis["MapView"]:FindFirstChild("Items") then Guis["MapView"].Items:Destroy() end
+                local IFClone = ItemsFolder:Clone()
+                IFClone.Parent = Guis["MapView"]
+            end
+        end)
+        ItemsFolder.ChildRemoved:Connect(function()
+            if ItemsFolder then
+                if Guis["MapView"]:FindFirstChild("Items") then Guis["MapView"].Items:Destroy() end
+                local IFClone = ItemsFolder:Clone()
+                IFClone.Parent = Guis["MapView"]
+            end
+        end)
+
+        local isDragging = false
+        local lastMousePos = Vector2.new(0, 0)
+
+        UserInputService.InputChanged:Connect(function(input)
+            if input.UserInputType ~= Enum.UserInputType.MouseWheel then return end
+
+            local mousePos = UserInputService:GetMouseLocation()
+            local guiObjects = Player.PlayerGui:GetGuiObjectsAtPosition(mousePos.X, mousePos.Y)
+            for _, obj in ipairs(guiObjects) do
+                if obj == Guis["MapView"] then
+                    local change = (input.Position.Z > 0) and -5 or 5
+                    Guis["Camera"].CFrame = Guis["Camera"].CFrame - Guis["Camera"].CFrame.LookVector * change
+                    break
+                end
+            end
+        end)
+
+        Guis["MapView"].InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                isDragging = true
+                Guis["FrameDragDetector"].Enabled = false
+                lastMousePos = UserInputService:GetMouseLocation()
+            end
+        end)
+
+        Guis["MapView"].InputEnded:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                isDragging = false
+                Guis["FrameDragDetector"].Enabled = true
+            end
+        end)
+
+        Guis["MapView"].InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton2 then
+                local framePos = Guis["MapView"].AbsolutePosition
+                local frameSize = Guis["MapView"].AbsoluteSize
+                local mousePos = UserInputService:GetMouseLocation()
+
+                local MouseY = mousePos.Y - 36
+
+                local relativeX = mousePos.X - framePos.X
+                local relativeY = MouseY - framePos.Y
+
+                if relativeX >= 0 and relativeX <= frameSize.X and relativeY >= 0 and relativeY <= frameSize.Y then
+                    local mapCamera = Guis["MapView"].CurrentCamera
+                    if mapCamera then
+                        local viewportSize = mapCamera.ViewportSize
+                        local scaledX = (relativeX / frameSize.X) * viewportSize.X
+                        local scaledY = (relativeY / frameSize.Y) * viewportSize.Y
+
+                        local ray = mapCamera:ViewportPointToRay(scaledX, scaledY)
+                        local raycastResult = workspace:Raycast(ray.Origin, ray.Direction * 10000)
+
+                        if raycastResult then
+                            HumanoidRootPart.CFrame = CFrame.new(raycastResult.Position) * HumanoidRootPart.CFrame.Rotation
+                        end
+                    end
+                end
+            end
+        end)
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if not isDragging then return end
+            local currentMousePos = UserInputService:GetMouseLocation()
+            local delta = currentMousePos - lastMousePos
+            if delta.Magnitude > 0 then
+                local sensitivity = 0.1
+                local currentPos = Guis["Camera"].CFrame.Position
+                local newPos = currentPos + Vector3.new(delta.Y * sensitivity, 0, -delta.X * sensitivity)
+                Guis["Camera"].CFrame = CFrame.new(newPos) * (Guis["Camera"].CFrame - currentPos)
+                lastMousePos = currentMousePos
+            end
+        end)
+    end)
+end
