@@ -300,6 +300,7 @@ end
 local Guis = {}
 
 Guis["1"] = Instance.new("ScreenGui", PlayerGui);
+Guis["1"].ResetOnSpawn = false
 Guis["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
 Guis["1"]["Name"] = GuiName;
 Guis["1"].DisplayOrder = 500
@@ -342,7 +343,7 @@ local function Create()
     if Guis["2"] then
 
         Guis["2"].Visible = true
-        FadeOut(1, Guis["2"], 0)
+        FadeOut(0.5, Guis["2"], 0)
     else
         warn("Guis2 not found. ")
     end
@@ -382,6 +383,7 @@ local function Create()
     Guis["Minimize"]["ImageTransparency"] = 0.2;
     Guis["Minimize"]["Image"] = "rbxassetid://84561431868297";
     Guis["Minimize"]["Position"] = UDim2.new(0, 650, 0, 10)
+    Guis["Minimize"].Name = "Minimize"
 
     Guis["Close"] = Instance.new("ImageButton", Guis["Top"]);
     Guis["Close"]["Size"] = UDim2.new(0, 9, 0, 9);
@@ -390,6 +392,7 @@ local function Create()
     Guis["Close"]["ImageTransparency"] = 0.2;
     Guis["Close"]["Image"] = "rbxassetid://120671325651381";
     Guis["Close"]["Position"] = UDim2.new(0, 675, 0, 10)
+    Guis["Close"].Name = "Close"
 
     Guis["4"] = Instance.new("ScrollingFrame", Guis["2"]);
     Guis["4"]["Active"] = true;
@@ -462,7 +465,7 @@ local function CreateButton(inner, Parent, Order, SizeX)
     return Log
 end
 
-local function CreateLog(inner, Parent, Order, SizeX, TextScaled, name, update)
+local function CreateLog(inner, Parent, Order, SizeX, TextScaled, name)
     local Log = Instance.new("Frame")
     Log.LayoutOrder = Order or 0
     Log.Parent = Parent
@@ -471,42 +474,27 @@ local function CreateLog(inner, Parent, Order, SizeX, TextScaled, name, update)
     Log.Name = name or "Frame"
 
     local UICornerLog = Instance.new("UICorner")
-    UICornerLog.Parent = Log
     UICornerLog.CornerRadius = UDim.new(0, 10)
+    UICornerLog.Parent = Log
 
     local UIGradientLog = Instance.new("UIGradient")
+    UIGradientLog.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0, 0), NumberSequenceKeypoint.new(1, 0)}
+    UIGradientLog.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 80, 91)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))
+    }
     UIGradientLog.Parent = Log
-    UIGradientLog.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(1.0, 0)}
-    UIGradientLog.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))}
 
-    local TextLabelLog = Instance.new("TextLabel", Log)
+    local TextLabelLog = Instance.new("TextLabel")
     TextLabelLog.TextWrapped = true
-    TextLabelLog.BorderSizePixel = 0
     TextLabelLog.TextScaled = TextScaled
     TextLabelLog.TextSize = 12
-    TextLabelLog.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    TextLabelLog.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
-    TextLabelLog.TextColor3 = Color3.fromRGB(255, 255, 255)
     TextLabelLog.BackgroundTransparency = 1
-    TextLabelLog.Size = UDim2.new(0, SizeX, 0, 28)
-    TextLabelLog.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    TextLabelLog.Size = UDim2.new(1, 0, 0, 28)
+    TextLabelLog.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold)
+    TextLabelLog.TextColor3 = Color3.fromRGB(255, 255, 255)
     TextLabelLog.Text = inner
-
-    if update then
-        task.spawn(function()
-            while task.wait(0.1) do
-                if Humanoid then
-                    if string.find(inner, "Walk Speed") then
-                        TextLabelLog.Text = "Walk Speed: " .. Humanoid.WalkSpeed
-                    elseif string.find(inner, "Jump Power") then
-                        TextLabelLog.Text = "Jump Power: " .. Humanoid.JumpPower
-                    elseif string.find(inner, "Stamina") then
-                        TextLabelLog.Text = "Stamina: " .. Player:GetAttribute("Stamina")
-                    end
-                end
-            end
-        end)
-    end
+    TextLabelLog.Parent = Log
 
     return TextLabelLog
 end
@@ -586,14 +574,14 @@ local function CreateSlider(inner, Parent, Order, SizeX, TextScaled, min, max, t
             
             task.spawn(function()
                 while Humanoid do
-                    if type == "WalkSpeed" and Humanoid then
+                    if newValue == 0 then break end
+                    if type == "WalkSpeed" then
                         Humanoid.WalkSpeed = newValue
-                    elseif type == "JumpPower" and Humanoid then
+                    elseif type == "JumpPower" then
                         Humanoid.JumpPower = newValue
-                    elseif type == "Stamina" and Humanoid then
+                    elseif type == "Stamina" then
                         Player:SetAttribute("Stamina", newValue)
                     end
-
                     task.wait(0.1)
                 end
             end)
@@ -1115,6 +1103,8 @@ if GameType == "MainGame" then
     Guis["Button3Cover"]["Position"] = UDim2.new(-0.00667, 0, -0.00286, 0);
     Guis["Button3Cover"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
     Guis["Button3Cover"]["Name"] = "Button3Cover";
+
+    Guis["Button3"].Visible = false
     
     Guis["Idk"] = Instance.new("UICorner", Guis["Button1Cover"]);
 
@@ -1337,39 +1327,55 @@ task.spawn(function()
             originalStates[Guis["2"]] = {Size = Guis["2"].Size}
             TweenService:Create(Guis["2"], tweenInfo, {Size = UDim2.new(0, 700, 0, 25)}):Play()
 
-            for _, v in pairs(Guis["2"]:GetDescendants()) do
-                local targets = {}
+            for _, v in pairs(Guis["2"]:GetChildren()) do
+                local parentTab = v:FindFirstAncestor("PlayerTab") or v:FindFirstAncestor("GhostTab")
+                if parentTab and not parentTab.Visible then continue end
 
-                if (v:IsA("Frame")) then
-                    originalStates[v] = {BackgroundTransparency = v.BackgroundTransparency}
-                    targets["BackgroundTransparency"] = 1
+                local targets = {}
+                local saved = {}
+
+                if v:IsA("Frame") then
+                    saved.BackgroundTransparency = v.BackgroundTransparency
+                    saved.Size = v.Size
+                    targets.BackgroundTransparency = 1
+                    targets.Size = UDim2.new(v.Size.X.Scale, v.Size.X.Offset, 0, 0)
                 end
 
-                if (v:IsA("ScrollingFrame") and v.Name ~= "UserConsoleInfo") then
-                    originalStates[v] = {BackgroundTransparency = v.BackgroundTransparency}
-                    targets["BackgroundTransparency"] = 1
-                    originalStates[v] = {Visible = v.Visible}
-                    targets["Visible"] = false
+                if v:IsA("ScrollingFrame") then
+                    saved.BackgroundTransparency = v.BackgroundTransparency
+                    saved.Size = v.Size
+                    targets.BackgroundTransparency = 1
+                    targets.Size = UDim2.new(v.Size.X.Scale, v.Size.X.Offset, 0, 0)
                 end
 
                 if (v:IsA("TextLabel") or v:IsA("TextBox") or v:IsA("TextButton")) and v.Name ~= "Discord" then
-                    originalStates[v] = {BackgroundTransparency = v.BackgroundTransparency, TextTransparency = v.TextTransparency}
-                    targets["BackgroundTransparency"] = 1
-                    targets["TextTransparency"] = 1
+                    saved.BackgroundTransparency = v.BackgroundTransparency
+                    saved.TextTransparency = v.TextTransparency
+                    saved.Size = v.Size
+                    targets.BackgroundTransparency = 1
+                    targets.TextTransparency = 1
+                    targets.Size = UDim2.new(v.Size.X.Scale, v.Size.X.Offset, 0, 0)
                 end
 
-                if (v:IsA("ImageLabel") or v:IsA("ImageButton")) and v.Name == not "Minimize" and v.Name == not "Close" then
-                    originalStates[v] = {BackgroundTransparency = v.BackgroundTransparency, ImageTransparency = v.ImageTransparency}
-                    targets["BackgroundTransparency"] = 1
-                    targets["ImageTransparency"] = 1
+                if v:IsA("ViewportFrame") then
+                    saved.Visible = v.Visible
+                    targets.Visible = false
+                end
+
+                if (v:IsA("ImageLabel") or v:IsA("ImageButton")) and v.Name ~= "Minimize" and v.Name ~= "Close" then
+                    saved.BackgroundTransparency = v.BackgroundTransparency
+                    saved.ImageTransparency = v.ImageTransparency
+                    targets.BackgroundTransparency = 1
+                    targets.ImageTransparency = 1
                 end
 
                 if v:IsA("UIStroke") then
-                    originalStates[v] = {Transparency = v.Transparency}
-                    targets["Transparency"] = 1
+                    saved.Transparency = v.Transparency
+                    targets.Transparency = 1
                 end
 
                 if next(targets) then
+                    originalStates[v] = saved
                     TweenService:Create(v, tweenInfo, targets):Play()
                 else
                     if v:IsA("UIGradient") then
@@ -1377,18 +1383,41 @@ task.spawn(function()
                         TweenService:Create(v, tweenInfo, {Offset = Vector2.new(1, 0)}):Play()
                     end
                 end
-
-                originalStates[Guis["b"]] = originalStates[Guis["b"]] or {Position = Guis["b"].Position}
-                TweenService:Create(Guis["b"], tweenInfo, {Position = UDim2.new(0, 150, 0, 1)}):Play()
             end
+
+            for _, v in pairs(Guis["2"].TabHolder:GetDescendants()) do
+                local parentTab = v:FindFirstAncestor("PlayerTab") or v:FindFirstAncestor("GhostTab")
+                if parentTab and not parentTab.Visible then continue end
+
+                local targets = {}
+                local saved = {}
+
+                if (v:IsA("TextLabel") or v:IsA("TextBox") or v:IsA("TextButton")) and v.Name ~= "Discord" then
+                    saved.BackgroundTransparency = v.BackgroundTransparency
+                    saved.TextTransparency = v.TextTransparency
+                    saved.Size = v.Size
+                    targets.BackgroundTransparency = 1
+                    targets.TextTransparency = 1
+                    targets.Size = UDim2.new(v.Size.X.Scale, v.Size.X.Offset, 0, 0)
+                end
+
+                if v:IsA("Frame") then
+                    saved.BackgroundTransparency = v.BackgroundTransparency
+                    saved.Size = v.Size
+                    targets.BackgroundTransparency = 1
+                    targets.Size = UDim2.new(v.Size.X.Scale, v.Size.X.Offset, 0, 0)
+                end
+
+                if next(targets) then
+                    originalStates[v] = saved
+                    TweenService:Create(v, tweenInfo, targets):Play()
+                end
+            end
+
+            originalStates[Guis["b"]] = originalStates[Guis["b"]] or {Position = Guis["b"].Position}
+            TweenService:Create(Guis["b"], tweenInfo, {Position = UDim2.new(0, 150, 0, 1)}):Play()
         end
     end)
-
-    for _, v in pairs(Guis["2"]:GetDescendants()) do
-        if v.Name == "Divider" and v:IsA("Frame") then
-            v.Size = UDim2.new(v.Size.X.Scale, v.Size.X.Offset, v.Size.Y.Scale, 1)
-        end
-    end
 
     Guis["Close"].Activated:Connect(function()
         for _, gui in pairs(PlayerGui:GetChildren()) do
@@ -1590,10 +1619,7 @@ if GameType == "MainGame" then
     Guis["MapView"].CurrentCamera = Guis["Camera"]
 
     CreateText("VISUALS", Guis["Visuals"], 0, 190)
-    CreateText("PLAYER SETTINGS", Guis["PlayerSettings"], 0, 190)
-
-    CreateLog("Walk Speed: " .. Character:FindFirstChild("Humanoid").WalkSpeed, Guis["PlayerSettings"], 1, 190, false, "WalkSpeed", true)
-    CreateLog("Jump Power: " .. Character:FindFirstChild("Humanoid").JumpPower, Guis["PlayerSettings"], 2, 190, false, "JumpPower", true)
+    --CreateText("PLAYER SETTINGS", Guis["PlayerSettings"], 0, 190)
 
     CreateText("Adjustables", Guis["PlayerSettings"], 4, 190)
 
