@@ -1,3 +1,13 @@
+if queue_on_teleport then
+    queue_on_teleport([[
+        repeat task.wait() until game:IsLoaded()
+        
+        repeat task.wait() until game:GetService("Players").LocalPlayer
+        
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/steadyrinetintin3/unnamedscript/refs/heads/main/unnamed"))()
+    ]])
+end
+
 local Workspace = game:GetService("Workspace")
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
@@ -66,7 +76,7 @@ local function FadeOutWithSaves(container, duration)
         local targetProperties = {}
         savedTabStates[v] = savedTabStates[v] or {}
 
-        if v:IsA("Frame") or v:IsA("ScrollingFrame") or v:IsA("ViewportFrame") then
+        if v:IsA("Frame") or (v:IsA("ScrollingFrame")) or v:IsA("ViewportFrame") then
             currentProperties["BackgroundTransparency"] = v.BackgroundTransparency
             targetProperties["BackgroundTransparency"] = 1
         elseif v:IsA("TextLabel") or v:IsA("TextBox") or v:IsA("TextButton") then
@@ -214,7 +224,7 @@ local function FadeIn(time, v)
     local tweenInfo = TweenInfo.new(time, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0)
     local targets = {}
 
-    if v:IsA("Frame") or v:IsA("ScrollingFrame") or v:IsA("TextBox") then
+    if v:IsA("Frame") or (v:IsA("ScrollingFrame") and v.Name ~= "UserConsoleInfo") or v:IsA("TextBox") then
         targets["BackgroundTransparency"] = 1
     end
 
@@ -247,7 +257,7 @@ local function FadeOut(time, v, transparency)
     end
     local targets = {}
 
-    if v:IsA("Frame") or v:IsA("ScrollingFrame") or v:IsA("TextBox") then
+    if v:IsA("Frame") or (v:IsA("ScrollingFrame") and v.Name ~= "UserConsoleInfo") or v:IsA("TextBox") then
         targets["BackgroundTransparency"] = transparency
     end
 
@@ -320,16 +330,19 @@ local function Create()
     Guis["FrameDragDetector"]["BoundingBehavior"] = "EntireObject"
 
     Guis["TabHolder"] = Instance.new("Frame", Guis["2"]);
-    Guis["TabHolder"]["Size"] = UDim2.new(0, 100, 1);
+    Guis["TabHolder"]["Size"] = UDim2.new(0, 100, 0.9);
+    Guis["TabHolder"].Position = UDim2.new(0, 0, 0.05, 0)
     Guis["TabHolder"]["BackgroundTransparency"] = 1;
     Guis["TabHolder"]["Name"] = "TabHolder";
+
+    Guis["TabHolderLayout"] = Instance.new("UIListLayout", Guis["TabHolder"])
+    Guis["TabHolderLayout"].Padding = UDim.new(0, 10)
+    Guis["TabHolderLayout"].HorizontalAlignment = "Center"
 
     if Guis["2"] then
 
         Guis["2"].Visible = true
-        local info = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
-        local tween = TweenService:Create(Guis["2"], info, {BackgroundTransparency = 0});
-        tween:Play()
+        FadeOut(1, Guis["2"], 0)
     else
         warn("Guis2 not found. ")
     end
@@ -339,107 +352,6 @@ local function Create()
     Guis["4"] = Instance.new("UIGradient", Guis["2"]);
     Guis["4"]["Rotation"] = 90;
     Guis["4"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(0, 0, 0)),ColorSequenceKeypoint.new(0.221, Color3.fromRGB(21, 21, 21)),ColorSequenceKeypoint.new(0.588, Color3.fromRGB(52, 52, 52)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(90, 32, 36))};
-
-    if GameType == "MainGame" then
-        Guis["Button1"] = Instance.new("TextButton", Guis["TabHolder"]);
-        Guis["Button1"]["TextWrapped"] = true;
-        Guis["Button1"]["TextStrokeTransparency"] = 0.8;
-        Guis["Button1"]["RichText"] = true;
-        Guis["Button1"]["BorderSizePixel"] = 0;
-        Guis["Button1"]["TextStrokeColor3"] = Color3.fromRGB(101, 0, 0);
-        Guis["Button1"]["TextSize"] = 18;
-        Guis["Button1"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-        Guis["Button1"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-        Guis["Button1"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-        Guis["Button1"]["ZIndex"] = 100;
-        Guis["Button1"]["BackgroundTransparency"] = 1;
-        Guis["Button1"]["Size"] = UDim2.new(0, 65, 0, 35);
-        Guis["Button1"]["LayoutOrder"] = 5;
-        Guis["Button1"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-        Guis["Button1"]["Text"] = [[MAIN]];
-        Guis["Button1"]["Position"] = UDim2.new(0.17, 0, 0.045, 0);
-        Guis["Button1"]["Name"] = "Button1";
-
-        Guis["Button1Cover"] = Instance.new("Frame", Guis["Button1"]);
-        Guis["Button1Cover"]["BackgroundTransparency"] = 1;
-        Guis["Button1Cover"]["BorderSizePixel"] = 0;
-        Guis["Button1Cover"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-        Guis["Button1Cover"]["Size"] = UDim2.new(0, 65, 0, 35);
-        Guis["Button1Cover"]["Position"] = UDim2.new(-0.00667, 0, -0.00286, 0);
-        Guis["Button1Cover"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-        Guis["Button1Cover"]["Name"] = "Button1Cover";
-
-        Guis["Button2"] = Instance.new("TextButton", Guis["TabHolder"]);
-        Guis["Button2"]["TextWrapped"] = true;
-        Guis["Button2"]["TextStrokeTransparency"] = 0.8;
-        Guis["Button2"]["RichText"] = true;
-        Guis["Button2"]["BorderSizePixel"] = 0;
-        Guis["Button2"]["TextStrokeColor3"] = Color3.fromRGB(101, 0, 0);
-        Guis["Button2"]["TextSize"] = 18;
-        Guis["Button2"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-        Guis["Button2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-        Guis["Button2"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-        Guis["Button2"]["ZIndex"] = 100;
-        Guis["Button2"]["BackgroundTransparency"] = 1;
-        Guis["Button2"]["Size"] = UDim2.new(0, 65, 0, 35);
-        Guis["Button2"]["LayoutOrder"] = 5;
-        Guis["Button2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-        Guis["Button2"]["Text"] = [[PLAYER]];
-        Guis["Button2"]["Position"] = UDim2.new(0.17, 0, 0.15, 0);
-        Guis["Button2"]["Name"] = "Button2";
-
-        Guis["Button2Cover"] = Instance.new("Frame", Guis["Button2"]);
-        Guis["Button2Cover"]["BackgroundTransparency"] = 1;
-        Guis["Button2Cover"]["BorderSizePixel"] = 0;
-        Guis["Button2Cover"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-        Guis["Button2Cover"]["Size"] = UDim2.new(0, 65, 0, 35);
-        Guis["Button2Cover"]["Position"] = UDim2.new(-0.00667, 0, -0.00286, 0);
-        Guis["Button2Cover"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-        Guis["Button2Cover"]["Name"] = "Button2Cover";
-
-        Guis["Idk2"] = Instance.new("UICorner", Guis["Button1Cover"]);
-
-        Guis["a2"] = Instance.new("UIGradient", Guis["Button1Cover"]);
-        Guis["a2"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(191, 79, 90)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(90, 32, 36))};
-
-        Guis["Idk"] = Instance.new("UICorner", Guis["Button2Cover"]);
-
-        Guis["a"] = Instance.new("UIGradient", Guis["Button2Cover"]);
-        Guis["a"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(191, 79, 90)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(90, 32, 36))};
-    elseif GameType == "Lobby" then
-        Guis["LobbyMain"] = Instance.new("TextButton", Guis["TabHolder"]);
-        Guis["LobbyMain"]["TextWrapped"] = true;
-        Guis["LobbyMain"]["TextStrokeTransparency"] = 0.8;
-        Guis["LobbyMain"]["RichText"] = true;
-        Guis["LobbyMain"]["BorderSizePixel"] = 0;
-        Guis["LobbyMain"]["TextStrokeColor3"] = Color3.fromRGB(101, 0, 0);
-        Guis["LobbyMain"]["TextSize"] = 18;
-        Guis["LobbyMain"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-        Guis["LobbyMain"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-        Guis["LobbyMain"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-        Guis["LobbyMain"]["ZIndex"] = 100;
-        Guis["LobbyMain"]["BackgroundTransparency"] = 1;
-        Guis["LobbyMain"]["Size"] = UDim2.new(0, 65, 0, 35);
-        Guis["LobbyMain"]["LayoutOrder"] = 5;
-        Guis["LobbyMain"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-        Guis["LobbyMain"]["Text"] = [[MAIN]];
-        Guis["LobbyMain"]["Position"] = UDim2.new(0.17, 0, 0.045, 0);
-        Guis["LobbyMain"]["Name"] = "LobbyMain";
-
-        Guis["LobbyMainCover"] = Instance.new("Frame", Guis["LobbyMain"]);
-        Guis["LobbyMainCover"]["BackgroundTransparency"] = 1;
-        Guis["LobbyMainCover"]["BorderSizePixel"] = 0;
-        Guis["LobbyMainCover"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-        Guis["LobbyMainCover"]["Size"] = UDim2.new(0, 65, 0, 35);
-        Guis["LobbyMainCover"]["Position"] = UDim2.new(-0.00667, 0, -0.00286, 0);
-        Guis["LobbyMainCover"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-        Guis["LobbyMainCover"]["Name"] = "LobbyMainCover";
-
-        Guis["Idk2"] = Instance.new("UICorner", Guis["LobbyMainCover"]);
-
-        Guis["a2"] = Instance.new("UIGradient", Guis["LobbyMainCover"]);
-        Guis["a2"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(191, 79, 90)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(90, 32, 36))};
-    end
 
     Guis["b"] = Instance.new("TextLabel", Guis["2"]);
     Guis["b"]["BorderSizePixel"] = 0;
@@ -491,261 +403,6 @@ local function Create()
     Guis["4"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
     Guis["4"]["ScrollBarThickness"] = 2;
     Guis["4"]["BackgroundTransparency"] = 1;
-
-
-    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1
-    Guis["5"] = Instance.new("Frame", Guis["4"]);
-    Guis["5"]["BorderSizePixel"] = 0;
-    Guis["5"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["5"]["Size"] = UDim2.new(0, 584, 0, 382);
-    Guis["5"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["5"]["Name"] = [[Tab1]];
-    Guis["5"]["BackgroundTransparency"] = 1;
-
-    Guis["Tab2"] = Instance.new("Frame", Guis["4"]);
-    Guis["Tab2"]["BorderSizePixel"] = 0;
-    Guis["Tab2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["Tab2"]["Size"] = UDim2.new(0, 584, 0, 382);
-    Guis["Tab2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["Tab2"]["Name"] = [[Tab2]];
-    Guis["Tab2"]["BackgroundTransparency"] = 1;
-
-    Guis["6"] = Instance.new("ScrollingFrame", Guis["5"]);
-    Guis["6"]["Active"] = true;
-    Guis["6"]["BorderSizePixel"] = 0;
-    Guis["6"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
-    Guis["6"]["Name"] = [[UserConsoleInfo]];
-    Guis["6"]["ScrollBarImageTransparency"] = 0.5;
-    Guis["6"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["6"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
-    Guis["6"]["Size"] = UDim2.new(0, 319, 0, 367);
-    Guis["6"]["Position"] = UDim2.new(0.4024, 0, 0, 0);
-    Guis["6"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["6"]["ScrollBarThickness"] = 2;
-
-    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.UIGradient
-    Guis["7"] = Instance.new("UIGradient", Guis["6"]);
-    Guis["7"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0.85),NumberSequenceKeypoint.new(1.000, 0.85)};
-    Guis["7"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
-
-
-    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.UICorner
-    Guis["8"] = Instance.new("UICorner", Guis["6"]);
-
-
-
-    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.UIListLayout
-    Guis["9"] = Instance.new("UIListLayout", Guis["6"]);
-    Guis["9"]["Padding"] = UDim.new(0, 10);
-    Guis["9"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
-    Guis["9"]["FillDirection"] = Enum.FillDirection.Horizontal;
-
-
-    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame
-    Guis["a"] = Instance.new("Frame", Guis["6"]);
-    Guis["a"]["BorderSizePixel"] = 0;
-    Guis["a"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["a"]["Size"] = UDim2.new(0, 152, 0, 367);
-    Guis["a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["a"]["BackgroundTransparency"] = 1;
-
-
-    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame.Log
-    Guis["b2"] = Instance.new("TextLabel", Guis["a"]);
-    Guis["b2"]["BorderSizePixel"] = 0;
-    Guis["b2"]["TextSize"] = 18;
-    Guis["b2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["b2"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-    Guis["b2"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["b2"]["BackgroundTransparency"] = 1;
-    Guis["b2"]["RichText"] = true;
-    Guis["b2"]["Size"] = UDim2.new(0, 156, 0, 50);
-    Guis["b2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["b2"]["Text"] = [[USER INFO:]];
-    Guis["b2"]["LayoutOrder"] = -236627862;
-    Guis["b2"]["Name"] = [[Log]];
-
-
-    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame.Log.Divider
-    Guis["c"] = Instance.new("Frame", Guis["b2"]);
-    Guis["c"]["BorderSizePixel"] = 0;
-    Guis["c"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["c"]["Size"] = UDim2.new(1, -10, 0, 1);
-    Guis["c"]["Position"] = UDim2.new(0.0365, 0, 0.75624, 0);
-    Guis["c"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["c"]["Name"] = [[Divider]];
-    Guis["c"]["BackgroundTransparency"] = 0.5;
-
-
-    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame.Log.Divider.UIGradient
-    Guis["d"] = Instance.new("UIGradient", Guis["c"]);
-    Guis["d"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
-    Guis["d"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
-
-
-    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame.ScrollingFrame
-    Guis["e"] = Instance.new("ScrollingFrame", Guis["a"]);
-    Guis["e"]["Active"] = true;
-    Guis["e"]["BorderSizePixel"] = 0;
-    Guis["e"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
-    Guis["e"]["ScrollBarImageTransparency"] = 0.5;
-    Guis["e"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["e"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
-    Guis["e"]["Size"] = UDim2.new(0, 152, 0, 317);
-    Guis["e"]["Position"] = UDim2.new(0.03289, 0, 0.13624, 0);
-    Guis["e"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["e"]["ScrollBarThickness"] = 2;
-    Guis["e"]["BackgroundTransparency"] = 1;
-
-
-    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame.ScrollingFrame.UIListLayout
-    Guis["f"] = Instance.new("UIListLayout", Guis["e"]);
-    Guis["f"]["SortOrder"] = "LayoutOrder"
-    Guis["f"]["Padding"] = UDim.new(0, 10);
-
-
-    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame
-    Guis["10"] = Instance.new("Frame", Guis["6"]);
-    Guis["10"]["BorderSizePixel"] = 0;
-    Guis["10"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["10"]["Size"] = UDim2.new(0, 152, 0, 367);
-    Guis["10"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["10"]["BackgroundTransparency"] = 1;
-
-
-    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame.Log
-    Guis["11"] = Instance.new("TextLabel", Guis["10"]);
-    Guis["11"]["BorderSizePixel"] = 0;
-    Guis["11"]["TextSize"] = 18;
-    Guis["11"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["11"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-    Guis["11"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["11"]["BackgroundTransparency"] = 1;
-    Guis["11"]["RichText"] = true;
-    Guis["11"]["Size"] = UDim2.new(0, 156, 0, 50);
-    Guis["11"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["11"]["Text"] = [[CONSOLE:]];
-    Guis["11"]["LayoutOrder"] = -236627862;
-    Guis["11"]["Name"] = [[Log]];
-
-
-    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame.Log.Divider
-    Guis["12"] = Instance.new("Frame", Guis["11"]);
-    Guis["12"]["BorderSizePixel"] = 0;
-    Guis["12"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["12"]["Size"] = UDim2.new(1, -10, 0, 1);
-    Guis["12"]["Position"] = UDim2.new(0.0365, 0, 0.75624, 0);
-    Guis["12"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["12"]["Name"] = [[Divider]];
-    Guis["12"]["BackgroundTransparency"] = 0.5;
-
-    Guis["13"] = Instance.new("UIGradient", Guis["12"]);
-    Guis["13"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
-    Guis["13"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
-
-    Guis["14"] = Instance.new("ScrollingFrame", Guis["10"]);
-    Guis["14"]["Active"] = true;
-    Guis["14"]["BorderSizePixel"] = 0;
-    Guis["14"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
-    Guis["14"]["ScrollBarImageTransparency"] = 0.5;
-    Guis["14"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["14"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
-    Guis["14"]["Size"] = UDim2.new(0, 152, 0, 317);
-    Guis["14"]["Position"] = UDim2.new(0.03289, 0, 0.13624, 0);
-    Guis["14"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["14"]["ScrollBarThickness"] = 2;
-    Guis["14"]["BackgroundTransparency"] = 1;
-
-    Guis["15"] = Instance.new("UIListLayout", Guis["14"]);
-    Guis["15"]["SortOrder"] = "LayoutOrder";
-    Guis["15"]["Padding"] = UDim.new(0, 10);
-
-    Guis["16"] = Instance.new("Frame", Guis["5"]);
-    Guis["16"]["BorderSizePixel"] = 0;
-    Guis["16"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["16"]["Size"] = UDim2.new(0.62, -10, 0, 1);
-    Guis["16"]["Position"] = UDim2.new(0.37274, 0, 0.47893, 0);
-    Guis["16"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["16"]["Name"] = [[Divider]];
-    Guis["16"].Rotation = 90;
-    Guis["16"]["BackgroundTransparency"] = 0.5;
-
-    Guis["17"] = Instance.new("UIGradient", Guis["16"]);
-    Guis["17"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
-    Guis["17"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
-
-    Guis["18"] = Instance.new("Frame", Guis["5"]);
-    Guis["18"]["BorderSizePixel"] = 0;
-    Guis["18"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["18"]["Size"] = UDim2.new(0, 200, 0, 367);
-    Guis["18"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["18"]["Name"] = [[UpdateLog]];
-
-    Guis["19"] = Instance.new("UICorner", Guis["18"]);
-
-    Guis["1a"] = Instance.new("UIGradient", Guis["18"]);
-    Guis["1a"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0.85),NumberSequenceKeypoint.new(1.000, 0.85)};
-    Guis["1a"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
-
-    Guis["1c"] = Instance.new("TextLabel", Guis["18"]);
-    Guis["1c"]["TextWrapped"] = true;
-    Guis["1c"]["BorderSizePixel"] = 0;
-    Guis["1c"]["TextSize"] = 25;
-    Guis["1c"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["1c"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-    Guis["1c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["1c"]["BackgroundTransparency"] = 1;
-    Guis["1c"]["Size"] = UDim2.new(0, 200, 0, 50);
-    Guis["1c"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["1c"]["Text"] = [[UPDATE LOG:]];
-    Guis["1c"]["LayoutOrder"] = -236627862;
-    Guis["1c"]["Name"] = [[Log]];
-
-    Guis["1d"] = Instance.new("Frame", Guis["1c"]);
-    Guis["1d"]["BorderSizePixel"] = 0;
-    Guis["1d"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["1d"]["Size"] = UDim2.new(1, -10, 0, 1);
-    Guis["1d"]["Position"] = UDim2.new(0.0365, 0, 0.75624, 0);
-    Guis["1d"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["1d"]["Name"] = [[Divider]];
-    Guis["1d"]["BackgroundTransparency"] = 0.5;
-
-    Guis["1e"] = Instance.new("UIGradient", Guis["1d"]);
-    Guis["1e"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
-    Guis["1e"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
-
-
-    Guis["1f"] = Instance.new("ScrollingFrame", Guis["18"]);
-    Guis["1f"]["Active"] = true;
-    Guis["1f"]["BorderSizePixel"] = 0;
-    Guis["1f"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
-    Guis["1f"]["ScrollBarImageTransparency"] = 0.5;
-    Guis["1f"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["1f"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
-    Guis["1f"]["Size"] = UDim2.new(0, 189, 0, 317);
-    Guis["1f"]["Position"] = UDim2.new(0.036, 0, 0.136, 0);
-    Guis["1f"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["1f"]["ScrollBarThickness"] = 2;
-    Guis["1f"]["BackgroundTransparency"] = 1;
-
-    Guis["20"] = Instance.new("UIListLayout", Guis["1f"]);
-    Guis["20"]["SortOrder"] = "LayoutOrder";
-    Guis["20"]["Padding"] = UDim.new(0, 10);
-
-    Guis["e2"] = Instance.new("Frame", Guis["2"]);
-    Guis["e2"]["BorderSizePixel"] = 0;
-    Guis["e2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["e2"]["Size"] = UDim2.new(0.525, -10, 0, 1);
-    Guis["e2"]["Position"] = UDim2.new(-0.100, 0, 0.50124, 0);
-    Guis["e2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["e2"]["Name"] = [[Divider]];
-    Guis["e2"].Rotation = 90;
-    Guis["e2"]["BackgroundTransparency"] = 0.5;
-
-    Guis["f"] = Instance.new("UIGradient", Guis["e2"]);
-    Guis["f"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
-    Guis["f"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
-    
 
     return Guis["FrameDragDetector"]
 end
@@ -883,6 +540,9 @@ local function CreateSlider(inner, Parent, Order, SizeX, TextScaled, min, max, t
     TextLabelLog.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     TextLabelLog.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
     TextLabelLog.TextColor3 = Color3.fromRGB(255, 255, 255)
+    TextLabelLog.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    TextLabelLog.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+    TextLabelLog.TextColor3 = Color3.fromRGB(255, 255, 255)
     TextLabelLog.BackgroundTransparency = 1
     TextLabelLog.Size = UDim2.new(0, SizeX, 0, 28)
     TextLabelLog.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -924,13 +584,19 @@ local function CreateSlider(inner, Parent, Order, SizeX, TextScaled, min, max, t
             local newValue = min + ((max - min) * pct)
             update(newValue)
             
-            if type == "WalkSpeed" and Humanoid then
-                Humanoid.WalkSpeed = newValue
-            elseif type == "JumpPower" and Humanoid then
-                Humanoid.JumpPower = newValue
-            elseif type == "Stamina" and Humanoid then
-                Player:SetAttribute("Stamina", newValue)
-            end
+            task.spawn(function()
+                while Humanoid do
+                    if type == "WalkSpeed" and Humanoid then
+                        Humanoid.WalkSpeed = newValue
+                    elseif type == "JumpPower" and Humanoid then
+                        Humanoid.JumpPower = newValue
+                    elseif type == "Stamina" and Humanoid then
+                        Player:SetAttribute("Stamina", newValue)
+                    end
+
+                    task.wait(0.1)
+                end
+            end)
         end
     end)
 
@@ -967,49 +633,44 @@ local function CreateLoader(inner, Parent, Order, SizeX, TextScaled, type)
     TextLabelLog.BorderSizePixel = 0
     TextLabelLog.TextScaled = TextScaled
     TextLabelLog.TextSize = 12
-    TextLabelLog.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    TextLabelLog.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
-    TextLabelLog.TextColor3 = Color3.fromRGB(255, 255, 255)
-    TextLabelLog.BackgroundTransparency = 1
-    TextLabelLog.Size = UDim2.new(0, SizeX, 0, 28)
-    TextLabelLog.BorderColor3 = Color3.fromRGB(0, 0, 0)
-
-    local SliderStroke = Instance.new("UIStroke", Log)
     SliderStroke.Color = Color3.fromRGB(255, 255, 255)
     SliderStroke.Thickness = 2
 
     return TextLabelLog
 end
 
-local function CreateText(inner, Parent, Order, SizeX)
-    local Log = Instance.new("Frame")
-    Log.LayoutOrder = Order
-    if Order == nil then Log.LayoutOrder = 0 end
-    Log.Parent = Parent
-    Log.AutomaticSize = "Y"
-    Log.Size = UDim2.new(0, 189, 0, 28)
-    Log.BackgroundTransparency = 1
-    Log.Name = "Text"
+local function CreateText(inner, Parent, Order, SizeX, SizeY)
     if not SizeX then SizeX = 156 end
+    if not SizeY then SizeY = 28 end
 
-    local TextLabelLog = Instance.new("TextLabel", Log)
+    local TextLabelLog = Instance.new("TextLabel", Parent)
     TextLabelLog["TextWrapped"] = true
     TextLabelLog["BorderSizePixel"] = 0
     TextLabelLog["TextScaled"] = false
     TextLabelLog["TextSize"] = 18
+    TextLabelLog.LayoutOrder = Order
     TextLabelLog["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
     TextLabelLog["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
     TextLabelLog["TextColor3"] = Color3.fromRGB(255, 255, 255)
     TextLabelLog["BackgroundTransparency"] = 1
-    TextLabelLog["Size"] = UDim2.new(0, 189, 0, 28)
+    TextLabelLog["Size"] = UDim2.new(0, SizeX, 0, SizeY)
     TextLabelLog["BorderColor3"] = Color3.fromRGB(0, 0, 0)
     TextLabelLog["Text"] = inner
 
-    Divider = Instance.new("Frame", Log);
+    Divider = Instance.new("Frame", TextLabelLog);
     Divider["BorderSizePixel"] = 0;
     Divider["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Divider["Size"] = UDim2.new(0, SizeX, 0, 1);
-    Divider["Position"] = UDim2.new(0.01, 0, 0, 30);
+    if SizeX == 156 and SizeY == 50 then
+        Divider["Size"] = UDim2.new(1, -10, 0, 1);
+        Divider["Position"] = UDim2.new(0.036, 0, 0.756, 0);
+    elseif SizeX == 200 and SizeY == 50 then
+        Divider["Size"] = UDim2.new(1, -10, 0, 1)
+        Divider["Position"] = UDim2.new(0.0365, 0, 0.75624, 0)
+    else
+        Divider["Size"] = UDim2.new(0, SizeX, 0, 1);
+        Divider["Position"] = UDim2.new(0.01, 0, 0, 30);
+    end
+    
     Divider["BorderColor3"] = Color3.fromRGB(0, 0, 0);
     Divider.Rotation = 180
     Divider["Name"] = [[Divider]];
@@ -1022,14 +683,15 @@ local function CreateText(inner, Parent, Order, SizeX)
     return Log
 end
 
-local function CreateDivider(Parent, Order, SizeX)
+local function CreateDivider(Parent, Order, SizeX, position)
     if not SizeX then SizeX = 156 end
+    if not position then position = UDim2.new(0, 0, 0, 0) end
 
     Divider = Instance.new("Frame", Parent);
     Divider["BorderSizePixel"] = 0;
     Divider["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
     Divider["Size"] = UDim2.new(0, SizeX, 0, 1);
-    Divider["Position"] = UDim2.new(0, 0, 0, 0);
+    Divider["Position"] = position
     Divider["BorderColor3"] = Color3.fromRGB(0, 0, 0);
     Divider.Rotation = 180
     Divider["Name"] = [[Divider]];
@@ -1041,7 +703,7 @@ local function CreateDivider(Parent, Order, SizeX)
     DividerGradient["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
 end
 
-local function CreateEsp(inner, Parent)
+local function CreateEsp(inner, Parent, type)
     for _, v in pairs(Parent:GetChildren()) do
         if v.Name == "Esp" or v.Name == "BillboardGui" then
             if v:FindFirstChild("ImageLabel") then
@@ -1063,30 +725,84 @@ local function CreateEsp(inner, Parent)
     Esp.Parent = Parent
     Esp.AlwaysOnTop = true
     Esp.Name = "Esp"
-    Esp.Size = UDim2.new(0, 200, 0, 100)
+    Esp.Size = UDim2.new(4, 0, 1, 0)
+    Esp.SizeOffset = Vector2.new(0.65, 1.2)
 
     local EspImg = Instance.new("ImageLabel", Esp)
     EspImg.Image = "rbxassetid://134062702040680"
     EspImg.BackgroundTransparency = 1
     EspImg.ImageTransparency = 1
     EspImg.ImageColor3 = Color3.fromRGB(125, 125, 125)
-    EspImg.Size = UDim2.new(0, 200, 0, 100)
-    EspImg.Position = UDim2.new(0, 150, 0, 0)
+    EspImg.Size = UDim2.new(1, 0, 2, 0)
+    EspImg.Position = UDim2.new(0, 0, 0, 0)
     FadeOut(0.25, EspImg)
+    
+    function CreateEspText(inner, Parent, position)
+        if not position then position = UDim2.new(0.165, 0, 0, 0) end
+        local TextLabelLog = Instance.new("TextLabel", Parent)
+        TextLabelLog["TextWrapped"] = true
+        TextLabelLog["BorderSizePixel"] = 0
+        TextLabelLog["TextScaled"] = true
+        TextLabelLog["TextSize"] = 18
+        TextLabelLog["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
+        TextLabelLog["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+        TextLabelLog["TextColor3"] = Color3.fromRGB(255, 255, 255)
+        TextLabelLog["BackgroundTransparency"] = 1
+        TextLabelLog["Size"] = UDim2.new(0.7, 0, 1, 0)
+        TextLabelLog["Position"] = position
+        TextLabelLog["BorderColor3"] = Color3.fromRGB(0, 0, 0)
+        TextLabelLog["Text"] = inner
+        if type == "Evidence" then
+            if not position then position = UDim2.new(0.165, 0, 0, 0) end
+            local TextLabelLog = Instance.new("TextLabel", Parent)
+            TextLabelLog["TextWrapped"] = true
+            TextLabelLog["BorderSizePixel"] = 0
+            TextLabelLog["TextScaled"] = true
+            TextLabelLog["TextSize"] = 18
+            TextLabelLog["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
+            TextLabelLog["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+            TextLabelLog["TextColor3"] = Color3.fromRGB(255, 255, 255)
+            TextLabelLog["BackgroundTransparency"] = 1
+            TextLabelLog["Size"] = UDim2.new(0.7, 0, 1, 0)
+            TextLabelLog["Position"] = position + UDim2.new(0, 0, 0.75, 0)
+            TextLabelLog["BorderColor3"] = Color3.fromRGB(0, 0, 0)
+            TextLabelLog["Text"] = inner
 
-    if Parent.Parent:GetAttribute("ItemName") then
-        CreateText(Parent.Parent:GetAttribute("ItemName"), EspImg, _, 200)
-    else
-        CreateText(Parent.Parent.Name, EspImg, _, 200)
+            TextLabelLog.Name = "Evidence"
+            TextLabelLog.Text = "Evidence"
+        end
+
+        Divider = Instance.new("Frame", TextLabelLog);
+        Divider["BorderSizePixel"] = 0;
+        Divider["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+        
+        Divider["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+        Divider.Rotation = 180
+        Divider["Name"] = [[Divider]];
+        Divider["BackgroundTransparency"] = 0.5;
+
+        DividerGradient = Instance.new("UIGradient", Divider);
+        DividerGradient["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+        DividerGradient["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
     end
 
-    if EspImg:FindFirstChild("Text") then
-        EspImg.Text.Position = UDim2.new(0, 27, 0, 0)
+    if type == "Evidence" then
+        if Parent.Parent:GetAttribute("ItemName") then
+            CreateEspText(Parent.Parent:GetAttribute("ItemName"), Esp)
+        elseif Parent.Name == "GhostOrb" then
+            CreateEspText(Parent.Name, Esp)
+        else
+            CreateEspText(Parent.Parent.Name, Esp)
+        end
 
-        for _, v in pairs(EspImg.Text:GetDescendants()) do
-            if v:IsA("GuiObject") then
-                v.Size = UDim2.new(v.Size.X.Scale, 150, v.Size.Y.Scale, v.Size.Y.Offset)
-            end
+        if not Esp:FindFirstChild("Evidence") then
+            CreateEspText("smth", Esp, "Evidence")
+        end
+    else
+        if Parent.Parent:GetAttribute("ItemName") then
+            CreateEspText(Parent.Parent:GetAttribute("ItemName"), Esp)
+        else
+            CreateEspText(Parent.Parent.Name, Esp)
         end
     end
 end
@@ -1102,7 +818,8 @@ local function CreateItems(Parent, Color, stroke, list)
         UIGradientLog.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(1.0, 0)}
         UIGradientLog.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))}
     elseif Color == "DarkRed" then
-        UIGradientLog.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(191, 79, 90)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(90, 32, 36))};
+        UIGradientLog.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0.85),NumberSequenceKeypoint.new(1.000, 0.85)};
+        UIGradientLog.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
     end
 
     if stroke then
@@ -1118,11 +835,344 @@ local function CreateItems(Parent, Color, stroke, list)
     end
 end
 
+local function CreateMainTab()
+    Guis["5"] = Instance.new("Frame", Guis["4"]);
+    Guis["5"]["BorderSizePixel"] = 0;
+    Guis["5"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["5"]["Size"] = UDim2.new(0, 584, 0, 382);
+    Guis["5"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["5"]["Name"] = [[Tab1]];
+    Guis["5"]["BackgroundTransparency"] = 1;
+
+    Guis["6"] = Instance.new("ScrollingFrame", Guis["5"]);
+    Guis["6"]["Active"] = true;
+    Guis["6"]["BorderSizePixel"] = 0;
+    Guis["6"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+    Guis["6"]["Name"] = [[UserConsoleInfo]];
+    Guis["6"]["ScrollBarImageTransparency"] = 0.5;
+    Guis["6"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["6"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+    Guis["6"]["Size"] = UDim2.new(0, 319, 0, 367);
+    Guis["6"]["Position"] = UDim2.new(0.4024, 0, 0, 0);
+    Guis["6"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["6"]["ScrollBarThickness"] = 2;
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.UIGradient
+    Guis["7"] = Instance.new("UIGradient", Guis["6"]);
+    Guis["7"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0.85),NumberSequenceKeypoint.new(1.000, 0.85)};
+    Guis["7"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
+
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.UICorner
+    Guis["8"] = Instance.new("UICorner", Guis["6"]);
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.UIListLayout
+    Guis["9"] = Instance.new("UIListLayout", Guis["6"]);
+    Guis["9"]["Padding"] = UDim.new(0, 10);
+    Guis["9"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
+    Guis["9"]["FillDirection"] = Enum.FillDirection.Horizontal;
+
+    Guis["a"] = Instance.new("Frame", Guis["6"]);
+    Guis["a"]["BorderSizePixel"] = 0;
+    Guis["a"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["a"]["Size"] = UDim2.new(0, 152, 0, 367);
+    Guis["a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["a"]["BackgroundTransparency"] = 1;
+
+    Guis["b2"] = CreateText("USER INFO:", Guis["a"], -236627862, 156, 50)
+
+    Guis["c"] = Instance.new("Frame", Guis["b2"]);
+    Guis["c"]["BorderSizePixel"] = 0;
+    Guis["c"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["c"]["Size"] = UDim2.new(1, -10, 0, 1);
+    Guis["c"]["Position"] = UDim2.new(0.0365, 0, 0.75624, 0);
+    Guis["c"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["c"]["Name"] = [[Divider]];
+    Guis["c"]["BackgroundTransparency"] = 0.5;
+
+    Guis["d"] = Instance.new("UIGradient", Guis["c"]);
+    Guis["d"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["d"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+
+    Guis["e"] = Instance.new("ScrollingFrame", Guis["a"]);
+    Guis["e"]["Active"] = true;
+    Guis["e"]["BorderSizePixel"] = 0;
+    Guis["e"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+    Guis["e"]["ScrollBarImageTransparency"] = 0.5;
+    Guis["e"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["e"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+    Guis["e"]["Size"] = UDim2.new(0, 152, 0, 317);
+    Guis["e"]["Position"] = UDim2.new(0.03289, 0, 0.13624, 0);
+    Guis["e"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["e"]["ScrollBarThickness"] = 2;
+    Guis["e"]["BackgroundTransparency"] = 1;
+
+    Guis["f"] = Instance.new("UIListLayout", Guis["e"]);
+    Guis["f"]["SortOrder"] = "LayoutOrder"
+    Guis["f"]["Padding"] = UDim.new(0, 10);
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame
+    Guis["10"] = Instance.new("Frame", Guis["6"]);
+    Guis["10"]["BorderSizePixel"] = 0;
+    Guis["10"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["10"]["Size"] = UDim2.new(0, 152, 0, 367);
+    Guis["10"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["10"]["BackgroundTransparency"] = 1;
+
+    Guis["11"] = CreateText("CONSOLE:", Guis["10"], -236627862, 156, 50)
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame.Log.Divider
+    Guis["12"] = Instance.new("Frame", Guis["11"]);
+    Guis["12"]["BorderSizePixel"] = 0;
+    Guis["12"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["12"]["Size"] = UDim2.new(1, -10, 0, 1);
+    Guis["12"]["Position"] = UDim2.new(0.0365, 0, 0.75624, 0);
+    Guis["12"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["12"]["Name"] = [[Divider]];
+    Guis["12"]["BackgroundTransparency"] = 0.5;
+
+    Guis["13"] = Instance.new("UIGradient", Guis["12"]);
+    Guis["13"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["13"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+
+    Guis["14"] = Instance.new("ScrollingFrame", Guis["10"]);
+    Guis["14"]["Active"] = true;
+    Guis["14"]["BorderSizePixel"] = 0;
+    Guis["14"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+    Guis["14"]["ScrollBarImageTransparency"] = 0.5;
+    Guis["14"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["14"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+    Guis["14"]["Size"] = UDim2.new(0, 152, 0, 317);
+    Guis["14"]["Position"] = UDim2.new(0.03289, 0, 0.13624, 0);
+    Guis["14"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["14"]["ScrollBarThickness"] = 2;
+    Guis["14"]["BackgroundTransparency"] = 1;
+
+    Guis["15"] = Instance.new("UIListLayout", Guis["14"]);
+    Guis["15"]["SortOrder"] = "LayoutOrder";
+    Guis["15"]["Padding"] = UDim.new(0, 10);
+
+    Guis["16"] = Instance.new("Frame", Guis["5"]);
+    Guis["16"]["BorderSizePixel"] = 0;
+    Guis["16"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["16"]["Size"] = UDim2.new(0.62, -10, 0, 1);
+    Guis["16"]["Position"] = UDim2.new(0.37274, 0, 0.47893, 0);
+    Guis["16"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["16"]["Name"] = [[Divider]];
+    Guis["16"].Rotation = 90;
+    Guis["16"]["BackgroundTransparency"] = 0.5;
+
+    Guis["17"] = Instance.new("UIGradient", Guis["16"]);
+    Guis["17"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["17"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+
+    Guis["18"] = Instance.new("Frame", Guis["5"]);
+    Guis["18"]["BorderSizePixel"] = 0;
+    Guis["18"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["18"]["Size"] = UDim2.new(0, 200, 0, 367);
+    Guis["18"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["18"]["Name"] = [[UpdateLog]];
+
+    Guis["19"] = Instance.new("UICorner", Guis["18"]);
+
+    Guis["1a"] = Instance.new("UIGradient", Guis["18"]);
+    Guis["1a"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0.85),NumberSequenceKeypoint.new(1.000, 0.85)};
+    Guis["1a"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
+
+    Guis["1c"] = CreateText("UPDATE LOG:", Guis["18"], -236627862, 200, 50)
+
+    Guis["1f"] = Instance.new("ScrollingFrame", Guis["18"]);
+    Guis["1f"]["Active"] = true;
+    Guis["1f"]["BorderSizePixel"] = 0;
+    Guis["1f"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+    Guis["1f"]["ScrollBarImageTransparency"] = 0.5;
+    Guis["1f"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["1f"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+    Guis["1f"]["Size"] = UDim2.new(0, 189, 0, 317);
+    Guis["1f"]["Position"] = UDim2.new(0.036, 0, 0.136, 0);
+    Guis["1f"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["1f"]["ScrollBarThickness"] = 2;
+    Guis["1f"]["BackgroundTransparency"] = 1;
+
+    Guis["20"] = Instance.new("UIListLayout", Guis["1f"]);
+    Guis["20"]["SortOrder"] = "LayoutOrder";
+    Guis["20"]["Padding"] = UDim.new(0, 10);
+
+    Guis["e2"] = Instance.new("Frame", Guis["2"]);
+    Guis["e2"]["BorderSizePixel"] = 0;
+    Guis["e2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["e2"]["Size"] = UDim2.new(0.525, -10, 0, 1);
+    Guis["e2"]["Position"] = UDim2.new(-0.100, 0, 0.50124, 0);
+    Guis["e2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["e2"]["Name"] = [[Divider]];
+    Guis["e2"].Rotation = 90;
+    Guis["e2"]["BackgroundTransparency"] = 0.5;
+
+    Guis["f"] = Instance.new("UIGradient", Guis["e2"]);
+    Guis["f"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["f"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+end
+
+if GameType == "MainGame" then
+    CreateMainTab()
+
+    Guis["PlayerTab"] = Instance.new("Frame", Guis["4"]);
+    Guis["PlayerTab"]["BorderSizePixel"] = 0;
+    Guis["PlayerTab"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["PlayerTab"]["Size"] = UDim2.new(0, 584, 0, 382);
+    Guis["PlayerTab"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["PlayerTab"]["Name"] = [[PlayerTab]];
+    Guis["PlayerTab"]["BackgroundTransparency"] = 1;
+
+    Guis["GhostTab"] = Instance.new("Frame", Guis["4"]);
+    Guis["GhostTab"]["BorderSizePixel"] = 0;
+    Guis["GhostTab"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["GhostTab"]["Size"] = UDim2.new(0, 584, 0, 382);
+    Guis["GhostTab"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["GhostTab"]["Name"] = [[GhostTab]];
+    Guis["GhostTab"]["BackgroundTransparency"] = 1;
+
+    Guis["Button1"] = Instance.new("TextButton", Guis["TabHolder"]);
+    Guis["Button1"]["TextWrapped"] = true;
+    Guis["Button1"]["TextStrokeTransparency"] = 0.8;
+    Guis["Button1"]["RichText"] = true;
+    Guis["Button1"]["BorderSizePixel"] = 0;
+    Guis["Button1"]["TextStrokeColor3"] = Color3.fromRGB(101, 0, 0);
+    Guis["Button1"]["TextSize"] = 18;
+    Guis["Button1"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Button1"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Button1"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+    Guis["Button1"]["ZIndex"] = 100;
+    Guis["Button1"]["BackgroundTransparency"] = 1;
+    Guis["Button1"]["Size"] = UDim2.new(0, 65, 0, 35);
+    Guis["Button1"]["LayoutOrder"] = 5;
+    Guis["Button1"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["Button1"]["Text"] = [[MAIN]];
+    Guis["Button1"]["Position"] = UDim2.new(0.17, 0, 0.045, 0);
+    Guis["Button1"]["Name"] = "Button1";
+
+    Guis["Button1Cover"] = Instance.new("Frame", Guis["Button1"]);
+    Guis["Button1Cover"]["BackgroundTransparency"] = 1;
+    Guis["Button1Cover"]["BorderSizePixel"] = 0;
+    Guis["Button1Cover"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Button1Cover"]["Size"] = UDim2.new(0, 65, 0, 35);
+    Guis["Button1Cover"]["Position"] = UDim2.new(-0.00667, 0, -0.00286, 0);
+    Guis["Button1Cover"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["Button1Cover"]["Name"] = "Button1Cover";
+
+    Guis["Button2"] = Instance.new("TextButton", Guis["TabHolder"]);
+    Guis["Button2"]["TextWrapped"] = true;
+    Guis["Button2"]["TextStrokeTransparency"] = 0.8;
+    Guis["Button2"]["RichText"] = true;
+    Guis["Button2"]["BorderSizePixel"] = 0;
+    Guis["Button2"]["TextStrokeColor3"] = Color3.fromRGB(101, 0, 0);
+    Guis["Button2"]["TextSize"] = 18;
+    Guis["Button2"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Button2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Button2"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+    Guis["Button2"]["ZIndex"] = 100;
+    Guis["Button2"]["BackgroundTransparency"] = 1;
+    Guis["Button2"]["Size"] = UDim2.new(0, 65, 0, 35);
+    Guis["Button2"]["LayoutOrder"] = 5;
+    Guis["Button2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["Button2"]["Text"] = [[PLAYER]];
+    Guis["Button2"]["Position"] = UDim2.new(0.17, 0, 0.15, 0);
+    Guis["Button2"]["Name"] = "Button2";
+
+    Guis["Button2Cover"] = Instance.new("Frame", Guis["Button2"]);
+    Guis["Button2Cover"]["BackgroundTransparency"] = 1;
+    Guis["Button2Cover"]["BorderSizePixel"] = 0;
+    Guis["Button2Cover"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Button2Cover"]["Size"] = UDim2.new(0, 65, 0, 35);
+    Guis["Button2Cover"]["Position"] = UDim2.new(-0.00667, 0, -0.00286, 0);
+    Guis["Button2Cover"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["Button2Cover"]["Name"] = "Button2Cover";
+
+    Guis["Button3"] = Instance.new("TextButton", Guis["TabHolder"]);
+    Guis["Button3"]["TextWrapped"] = true;
+    Guis["Button3"]["TextStrokeTransparency"] = 0.8;
+    Guis["Button3"]["RichText"] = true;
+    Guis["Button3"]["BorderSizePixel"] = 0;
+    Guis["Button3"]["TextStrokeColor3"] = Color3.fromRGB(101, 0, 0);
+    Guis["Button3"]["TextSize"] = 18;
+    Guis["Button3"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Button3"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Button3"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+    Guis["Button3"]["ZIndex"] = 100;
+    Guis["Button3"]["BackgroundTransparency"] = 1;
+    Guis["Button3"]["Size"] = UDim2.new(0, 65, 0, 35);
+    Guis["Button3"]["LayoutOrder"] = 5;
+    Guis["Button3"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["Button3"]["Text"] = [[GHOST]];
+    Guis["Button3"]["Position"] = UDim2.new(0.17, 0, 0.15, 0);
+    Guis["Button3"]["Name"] = "Button3";
+
+    Guis["Button3Cover"] = Instance.new("Frame", Guis["Button3"]);
+    Guis["Button3Cover"]["BackgroundTransparency"] = 1;
+    Guis["Button3Cover"]["BorderSizePixel"] = 0;
+    Guis["Button3Cover"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Button3Cover"]["Size"] = UDim2.new(0, 65, 0, 35);
+    Guis["Button3Cover"]["Position"] = UDim2.new(-0.00667, 0, -0.00286, 0);
+    Guis["Button3Cover"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["Button3Cover"]["Name"] = "Button3Cover";
+    
+    Guis["Idk"] = Instance.new("UICorner", Guis["Button1Cover"]);
+
+    Guis["a"] = Instance.new("UIGradient", Guis["Button1Cover"]);
+    Guis["a"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(191, 79, 90)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(90, 32, 36))};
+
+    Guis["Idk2"] = Instance.new("UICorner", Guis["Button2Cover"]);
+
+    Guis["a2"] = Instance.new("UIGradient", Guis["Button2Cover"]);
+    Guis["a2"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(191, 79, 90)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(90, 32, 36))};
+
+    Guis["Idk3"] = Instance.new("UICorner", Guis["Button3Cover"]);
+
+    Guis["a3"] = Instance.new("UIGradient", Guis["Button3Cover"]);
+    Guis["a3"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(191, 79, 90)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(90, 32, 36))};
+elseif GameType == "Lobby" then
+    CreateMainTab()
+
+    Guis["LobbyMain"] = Instance.new("TextButton", Guis["TabHolder"]);
+    Guis["LobbyMain"]["TextWrapped"] = true;
+    Guis["LobbyMain"]["TextStrokeTransparency"] = 0.8;
+    Guis["LobbyMain"]["RichText"] = true;
+    Guis["LobbyMain"]["BorderSizePixel"] = 0;
+    Guis["LobbyMain"]["TextStrokeColor3"] = Color3.fromRGB(101, 0, 0);
+    Guis["LobbyMain"]["TextSize"] = 18;
+    Guis["LobbyMain"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["LobbyMain"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["LobbyMain"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+    Guis["LobbyMain"]["ZIndex"] = 100;
+    Guis["LobbyMain"]["BackgroundTransparency"] = 1;
+    Guis["LobbyMain"]["Size"] = UDim2.new(0, 65, 0, 35);
+    Guis["LobbyMain"]["LayoutOrder"] = 5;
+    Guis["LobbyMain"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["LobbyMain"]["Text"] = [[MAIN]];
+    Guis["LobbyMain"]["Position"] = UDim2.new(0.17, 0, 0.045, 0);
+    Guis["LobbyMain"]["Name"] = "LobbyMain";
+
+    Guis["LobbyMainCover"] = Instance.new("Frame", Guis["LobbyMain"]);
+    Guis["LobbyMainCover"]["BackgroundTransparency"] = 1;
+    Guis["LobbyMainCover"]["BorderSizePixel"] = 0;
+    Guis["LobbyMainCover"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["LobbyMainCover"]["Size"] = UDim2.new(0, 65, 0, 35);
+    Guis["LobbyMainCover"]["Position"] = UDim2.new(-0.00667, 0, -0.00286, 0);
+    Guis["LobbyMainCover"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["LobbyMainCover"]["Name"] = "LobbyMainCover";
+
+    Guis["Idk2"] = Instance.new("UICorner", Guis["LobbyMainCover"]);
+
+    Guis["a2"] = Instance.new("UIGradient", Guis["LobbyMainCover"]);
+    Guis["a2"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(191, 79, 90)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(90, 32, 36))};
+end
+
 task.spawn(function()
     local TabContainers = {
-            [1] = Guis["5"],
-            [2] = Guis["Tab2"]
-        }
+        [1] = Guis["5"],
+        [2] = Guis["PlayerTab"],
+        [3] = Guis["GhostTab"]
+    }
 
     local function SwitchTab(tabIndex, activeButtonName, activeCoverName)
         if CurrentTab == tabIndex then return end
@@ -1201,6 +1251,26 @@ task.spawn(function()
                 tween4:Play()
             end
         end)
+
+        Guis["Button3"].MouseEnter:Connect(function()
+            if CurrentTab ~= 3 then
+                local info2 = TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0)
+                local tween2 = TweenService:Create(Guis["Button3Cover"], info2, {BackgroundTransparency = 0.8})
+                tween2:Play()
+            end
+        end)
+
+        Guis["Button3"].Activated:Connect(function()
+            SwitchTab(3, "Button3", "Button3Cover")
+        end)
+
+        Guis["Button3"].MouseLeave:Connect(function()
+            if CurrentTab ~= 3 then
+                local info4 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0)
+                local tween4 = TweenService:Create(Guis["Button3Cover"], info4, {BackgroundTransparency = 1})
+                tween4:Play()
+            end
+        end)
     elseif GameType == "Lobby" then
         Guis["LobbyMain"].MouseEnter:Connect(function()
             if CurrentTab ~= 1 then
@@ -1227,17 +1297,26 @@ task.spawn(function()
         if GameType == "MainGame" then
             Guis["5"]["Visible"] = true
             Guis["Button1Cover"]["BackgroundTransparency"] = 0.8
-            if Guis["Tab2"] then Guis["Tab2"].Visible = false end
+            if Guis["PlayerTab"] then Guis["PlayerTab"].Visible = false end
+            if Guis["GhostTab"] then Guis["GhostTab"].Visible = false end
         elseif GameType == "Lobby" then
             Guis["5"].Visible = true
             Guis["LobbyMainCover"].BackgroundTransparency = 0.8
-            if Guis["Tab2"] then Guis["Tab2"].Visible = false end
+            if Guis["PlayerTab"] then Guis["PlayerTab"].Visible = false end
         end
     elseif CurrentTab == 2 then
         if GameType == "MainGame" then
             if Guis["5"] then Guis["5"].Visible = false end
-            Guis["Tab2"]["Visible"] = true
+            if Guis["GhostTab"] then Guis["GhostTab"].Visible = false end
+            Guis["PlayerTab"]["Visible"] = true
             Guis["Button2Cover"]["BackgroundTransparency"] = 0.8
+        end
+    elseif CurrentTab == 3 then
+        if GameType == "MainGame" then
+            if Guis["5"] then Guis["5"].Visible = false end
+            if Guis["PlayerTab"] then Guis["PlayerTab"].Visible = false end
+            Guis["GhostTab"]["Visible"] = true
+            Guis["Button3Cover"]["BackgroundTransparency"] = 0.8
         end
     end
 
@@ -1261,20 +1340,22 @@ task.spawn(function()
             for _, v in pairs(Guis["2"]:GetDescendants()) do
                 local targets = {}
 
-                if (v:IsA("Frame") or v:IsA("ScrollingFrame")) then
+                if (v:IsA("Frame")) then
                     originalStates[v] = {BackgroundTransparency = v.BackgroundTransparency}
                     targets["BackgroundTransparency"] = 1
+                end
+
+                if (v:IsA("ScrollingFrame") and v.Name ~= "UserConsoleInfo") then
+                    originalStates[v] = {BackgroundTransparency = v.BackgroundTransparency}
+                    targets["BackgroundTransparency"] = 1
+                    originalStates[v] = {Visible = v.Visible}
+                    targets["Visible"] = false
                 end
 
                 if (v:IsA("TextLabel") or v:IsA("TextBox") or v:IsA("TextButton")) and v.Name ~= "Discord" then
                     originalStates[v] = {BackgroundTransparency = v.BackgroundTransparency, TextTransparency = v.TextTransparency}
                     targets["BackgroundTransparency"] = 1
                     targets["TextTransparency"] = 1
-                end
-
-                if (v:IsA("BasePart") or v:IsA("Union") or v:IsA("Texture")) then
-                    originalStates[v] = {Transparency = v.Transparency}
-                    targets["Transparency"] = 1
                 end
 
                 if (v:IsA("ImageLabel") or v:IsA("ImageButton")) and v.Name == not "Minimize" and v.Name == not "Close" then
@@ -1369,45 +1450,60 @@ CreateLog("-0.11: Released", Guis["1f"], nil, 189, false)
 CreateLog("Loaded.", Guis["14"], -1, 152)
 
 if GameType == "MainGame" then
-    Guis["Tab2Info"] = Instance.new("Frame", Guis["Tab2"]);
-    Guis["Tab2Info"].Size = UDim2.new(0, 579, 0, 360);
-    Guis["Tab2Info"].Position = UDim2.new(0, 0, 0, 5);
+    Guis["PlayerTabInfo"] = Instance.new("Frame", Guis["PlayerTab"]);
+    Guis["PlayerTabInfo"].Size = UDim2.new(0, 579, 0, 360);
+    Guis["PlayerTabInfo"].Position = UDim2.new(0, 0, 0, 5);
 
-    Guis["Tab2Divider1"] = Instance.new("Frame", Guis["Tab2Info"]);
-    Guis["Tab2Divider1"]["BorderSizePixel"] = 0;
-    Guis["Tab2Divider1"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["Tab2Divider1"]["Size"] = UDim2.new(0.66, -10, 0, 1);
-    Guis["Tab2Divider1"]["Position"] = UDim2.new(0.32, 0, 0.525, 0);
-    Guis["Tab2Divider1"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["Tab2Divider1"]["Name"] = [[Divider]];
-    Guis["Tab2Divider1"].Rotation = 90;
-    Guis["Tab2Divider1"]["BackgroundTransparency"] = 0.5;
+    Guis["GhostTabInfo"] = Instance.new("Frame", Guis["GhostTab"]);
+    Guis["GhostTabInfo"].Size = UDim2.new(0, 579, 0, 360);
+    Guis["GhostTabInfo"].Position = UDim2.new(0, 0, 0, 5);
 
-    Guis["Tab2DividerGradient1"] = Instance.new("UIGradient", Guis["Tab2Divider1"]);
-    Guis["Tab2DividerGradient1"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
-    Guis["Tab2DividerGradient1"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+    CreateItems(Guis["GhostTabInfo"], "DarkRed")
+
+    Guis["PlayerTabDivider1"] = Instance.new("Frame", Guis["PlayerTabInfo"]);
+    Guis["PlayerTabDivider1"]["BorderSizePixel"] = 0;
+    Guis["PlayerTabDivider1"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["PlayerTabDivider1"]["Size"] = UDim2.new(0.66, -10, 0, 1);
+    Guis["PlayerTabDivider1"]["Position"] = UDim2.new(0.32, 0, 0.525, 0);
+    Guis["PlayerTabDivider1"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["PlayerTabDivider1"]["Name"] = [[Divider]];
+    Guis["PlayerTabDivider1"].Rotation = 90;
+    Guis["PlayerTabDivider1"]["BackgroundTransparency"] = 0.5;
+
+    Guis["PlayerTabDividerGradient1"] = Instance.new("UIGradient", Guis["PlayerTabDivider1"]);
+    Guis["PlayerTabDividerGradient1"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["PlayerTabDividerGradient1"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
     
-    Guis["Tab2Divider2"] = Instance.new("Frame", Guis["Tab2Info"]);
-    Guis["Tab2Divider2"]["BorderSizePixel"] = 0;
-    Guis["Tab2Divider2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["Tab2Divider2"]["Size"] = UDim2.new(0.66, -10, 0, 1);
-    Guis["Tab2Divider2"]["Position"] = UDim2.new(0.038, 0, 0.525, 0);
-    Guis["Tab2Divider2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["Tab2Divider2"]["Name"] = [[Divider]];
-    Guis["Tab2Divider2"].Rotation = 90;
-    Guis["Tab2Divider2"]["BackgroundTransparency"] = 0.5;
+    Guis["PlayerTabDivider2"] = Instance.new("Frame", Guis["PlayerTabInfo"]);
+    Guis["PlayerTabDivider2"]["BorderSizePixel"] = 0;
+    Guis["PlayerTabDivider2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["PlayerTabDivider2"]["Size"] = UDim2.new(0.66, -10, 0, 1);
+    Guis["PlayerTabDivider2"]["Position"] = UDim2.new(0.038, 0, 0.525, 0);
+    Guis["PlayerTabDivider2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["PlayerTabDivider2"]["Name"] = [[Divider]];
+    Guis["PlayerTabDivider2"].Rotation = 90;
+    Guis["PlayerTabDivider2"]["BackgroundTransparency"] = 0.5;
 
-    Guis["Tab2DividerGradient2"] = Instance.new("UIGradient", Guis["Tab2Divider2"]);
-    Guis["Tab2DividerGradient2"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
-    Guis["Tab2DividerGradient2"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+    Guis["PlayerTabDividerGradient2"] = Instance.new("UIGradient", Guis["PlayerTabDivider2"]);
+    Guis["PlayerTabDividerGradient2"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["PlayerTabDividerGradient2"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
     
-    Guis["Visuals"] = Instance.new("Frame", Guis["Tab2Info"])
+    Guis["Visuals"] = Instance.new("ScrollingFrame", Guis["PlayerTabInfo"])
     Guis["Visuals"].BackgroundTransparency = 1
     Guis["Visuals"].Size = UDim2.new(0, 195, 0, 350)
     Guis["Visuals"].Position = UDim2.new(0, 5, 0, 5)
     Guis["Visuals"].Name = "Visuals"
+    Guis["Visuals"]["Active"] = true;
+    Guis["Visuals"]["BorderSizePixel"] = 0;
+    Guis["Visuals"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+    Guis["Visuals"]["ScrollBarImageTransparency"] = 0.5;
+    Guis["Visuals"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["Visuals"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+    Guis["Visuals"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["Visuals"]["ScrollBarThickness"] = 2;
+    Guis["Visuals"]["BackgroundTransparency"] = 1;
 
-    Guis["PlayerSettings"] = Instance.new("Frame", Guis["Tab2Info"])
+    Guis["PlayerSettings"] = Instance.new("Frame", Guis["PlayerTabInfo"])
     Guis["PlayerSettings"].BackgroundTransparency = 1
     Guis["PlayerSettings"].Size = UDim2.new(0, 195, 0, 350)
     Guis["PlayerSettings"].Position = UDim2.new(0, 380, 0, 5)
@@ -1423,13 +1519,13 @@ if GameType == "MainGame" then
     Guis["PlayerSettingsLayout"].HorizontalAlignment = "Center"
     Guis["PlayerSettingsLayout"].SortOrder = "LayoutOrder"
 
-    Guis["Tab2InfoCorner"] = Instance.new("UICorner", Guis["Tab2Info"]);
+    Guis["PlayerTabInfoCorner"] = Instance.new("UICorner", Guis["PlayerTabInfo"]);
     
-    Guis["Tab2InfoGradient"] = Instance.new("UIGradient", Guis["Tab2Info"])
-    Guis["Tab2InfoGradient"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0.85),NumberSequenceKeypoint.new(1.000, 0.85)};
-    Guis["Tab2InfoGradient"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
+    Guis["PlayerTabInfoGradient"] = Instance.new("UIGradient", Guis["PlayerTabInfo"])
+    Guis["PlayerTabInfoGradient"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0.85),NumberSequenceKeypoint.new(1.000, 0.85)};
+    Guis["PlayerTabInfoGradient"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
 
-    Guis["2ac"] = Instance.new("TextLabel", Guis["Tab2"]);
+    Guis["2ac"] = Instance.new("TextLabel", Guis["PlayerTab"]);
     Guis["2ac"]["BorderSizePixel"] = 0;
     Guis["2ac"]["TextSize"] = 18;
     Guis["2ac"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
@@ -1458,7 +1554,7 @@ if GameType == "MainGame" then
     Guis["SomethingGradient"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
     Guis["SomethingGradient"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
 
-    Guis["SCF"] = Instance.new("ScrollingFrame", Guis["Tab2Info"])
+    Guis["SCF"] = Instance.new("ScrollingFrame", Guis["PlayerTabInfo"])
     Guis["SCF"]["Active"] = true;
     Guis["SCF"]["BorderSizePixel"] = 0;
     Guis["SCF"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
@@ -1475,7 +1571,7 @@ if GameType == "MainGame" then
     Guis["SCFLayout"].Padding = UDim.new(0, 10)
     Guis["SCFLayout"].SortOrder = "LayoutOrder"
 
-    Guis["MapView"] = Instance.new("ViewportFrame", Guis["Tab2Info"])
+    Guis["MapView"] = Instance.new("ViewportFrame", Guis["PlayerTabInfo"])
     Guis["MapView"].Size = UDim2.new(0, 150, 0, 150)
     Guis["MapView"].Position = UDim2.new(0, 215, 0, 30)
     Guis["MapView"].BackgroundTransparency = 1
@@ -1815,10 +1911,70 @@ if GameType == "MainGame" then
         end
     end)
 
-    CreateText("Weather", Guis["Visuals"], 3, 189)
-    local Rain = CreateButton("Rain", Guis["Visuals"], 4, 195)
-    local Snow = CreateButton("Snow", Guis["Visuals"], 5, 195)
-    local Clear = CreateButton("Clear", Guis["Visuals"], 6, 195)
+    local GhostEsp = CreateButton("Ghost ESP", Guis["Visuals"], 3, 195)
+    GhostEsp.Activated:Connect(function()
+        for _, v in pairs(Workspace:GetChildren()) do
+            if v:IsA("Model") and v:FindFirstChild("Humanoid") and v.Name == Workspace.Ghost.Name then
+                CreateEsp("smth", v.Head)
+                for _, v in pairs(v:GetChildren()) do
+                    if v:IsA("BasePart") then
+                        v.Transparency = 0
+                        Instance.new("Highlight", v)
+                    end
+                end
+            end
+        end
+    end)
+
+    local EvidenceEsp = CreateButton("Evidence ESP", Guis["Visuals"], 4, 195)
+    EvidenceEsp.Activated:Connect(function()
+        while Humanoid do
+            if Workspace:FindFirstChild("Handprints") then
+                for _, v in pairs(Workspace.Handprints:GetChildren()) do
+                    if not v:FindFirstChild("Esp") then
+                        CreateEsp("smth", v, "Evidence")
+                    end
+                    v.Transparency = 0.01
+                    if not v:FindFirstChild("Highlight") then
+                        Instance.new("Highlight", v) 
+                    end
+                end
+            end
+            if Workspace:FindFirstChild("GhostOrb") then
+                Workspace.GhostOrb.Transparency = 0
+                if not Workspace.GhostOrb:FindFirstChild("Esp") then
+                    CreateEsp("smth", Workspace.GhostOrb, "Evidence")
+                end
+                if not Workspace.GhostOrb:FindFirstChild("Highlight") then
+                    Instance.new("Highlight", Workspace.GhostOrb) 
+                end
+            end
+            for _, v in pairs(ItemsFolder:GetChildren()) do
+                if v and v:GetAttribute("ItemName") then
+                    if v:GetAttribute("ItemName") == "WitheredFlowers" then
+                        if not v:FindFirstChild("Esp") then
+                            CreateEsp("smth", v, "Evidence")
+                        end
+                        for _, v1 in pairs(v:GetDescendants()) do
+                            if v1:IsA("BasePart") then
+                                if not v1:FindFirstChild("Highlight") then
+                                    Instance.new("Highlight", v1)
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+            
+            task.wait(0.1)
+        end
+    end)
+
+
+    CreateText("Weather", Guis["Visuals"], 5, 189)
+    local Rain = CreateButton("Rain", Guis["Visuals"], 6, 195)
+    local Snow = CreateButton("Snow", Guis["Visuals"], 7, 195)
+    local Clear = CreateButton("Clear", Guis["Visuals"], 8, 195)
 
     Rain.Activated:Connect(function()
         if MapFolder then
@@ -1916,10 +2072,20 @@ if GameType == "MainGame" then
             }):Play()
         else
             local tweenInfo = TweenInfo.new(1.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
-
+            
             TweenService:Create(game:GetService("Lighting"), tweenInfo, {
                 Ambient = Color3.fromRGB(255, 255, 255)
             }):Play()
+
+            task.spawn(function()
+                task.wait(1.5)
+                while game:GetService("Lighting").Ambient == Color3.fromRGB(0, 0, 0) do
+                    TweenService:Create(game:GetService("Lighting"), tweenInfo, {
+                        Ambient = Color3.fromRGB(255, 255, 255)
+                    }):Play()
+                    task.wait(1.5)
+                end
+            end)
         end
     end)
 
@@ -1994,36 +2160,40 @@ if GameType == "MainGame" then
         end)
     end
 
-    local CHumanoid = CreateButton("Teleport to a random person in a closet", Guis["SCF"], 8, 156)
-    CHumanoid.Activated:Connect(function()
-        if InvisibleGhostWalls then
-            for _, v in pairs(InvisibleGhostWalls:GetChildren()) do
-                if v:IsA("BasePart") and v.Name == "GhostCloset" then
-                    local overlapParams = OverlapParams.new()
-                    local parts = workspace:GetPartBoundsInBox(v.CFrame, v.Size, overlapParams)
+    CreateText("Players", Guis["SCF"], 9)
 
-                    local pplayers = {}
+    local TPlayer = CreateButton("Teleport to the closest player", Guis["SCF"], 10, 156)
+    local TPlayerR = CreateButton("Teleport to a random player", Guis["SCF"], 11, 156)
 
-                    for _, part in pairs(parts) do
-                        if part.Parent == not Player.Character and part.Parent:FindFirstChild("Humanoid") then
-                            table.insert(pplayers, part.Parent)
+    CreateText("Ghost", Guis["SCF"], 12)
+    local TGhost = CreateButton("Teleport to the ghost", Guis["SCF"], 13, 156)
+    local TGhostRoom = CreateButton("Teleport to the ghost room", Guis["SCF"], 14, 156)
+
+    TGhost.Activated:Connect(function()
+        if Workspace and Workspace:FindFirstChild("Ghost") then
+            if Workspace.Ghost:FindFirstChild("HumanoidRootPart") then
+                HumanoidRootPart.CFrame = Workspace.Ghost.HumanoidRootPart.CFrame
+            end
+        end
+    end)
+
+    TGhostRoom.Activated:Connect(function()
+        if Workspace and Workspace:FindFirstChild("Ghost") then
+            local GhostRoom = Workspace.Ghost:GetAttribute("FavoriteRoom")
+            if GhostRoom then
+                if RoomsFolder then
+                    local room = RoomsFolder:FindFirstChild(Workspace.Ghost:GetAttribute("FavoriteRoom"))
+                    if room then
+                        if (room:FindFirstChild("BoundingBox") and room.BoundingBox:IsA("BasePart")) then
+                            HumanoidRootPart.CFrame = room.BoundingBox.CFrame
+                        elseif (room:FindFirstChild("BoundingBox") and room.BoundingBox:IsA("Folder")) then
+                            HumanoidRootPart.CFrame = room.BoundingBox.Part.CFrame
                         end
-                    end
-
-                    if #pplayers > 0 then
-                        local randomPlayer = pplayers[math.random(1, #pplayers)]
-                        HumanoidRootPart.CFrame = randomPlayer.HumanoidRootPart.CFrame
-                        return
                     end
                 end
             end
         end
     end)
-
-    CreateText("Players", Guis["SCF"], 9)
-
-    local TPlayer = CreateButton("Teleport to the closest player", Guis["SCF"], 10, 156)
-    local TPlayerR = CreateButton("Teleport to a random player", Guis["SCF"], 11, 156)
 
     TPlayer.Activated:Connect(function()
         if #Players:GetPlayers() <= 1 then
