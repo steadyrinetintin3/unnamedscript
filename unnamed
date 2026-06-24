@@ -42,9 +42,9 @@ end
 local function v13(v77)
 	local v78 = v3:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\36\193\74\112\127\101", "\135\108\174\62\18\30\23\147")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\133\229\37\223\11", "\167\214\137\74\171\120\206\83"));
 	if v78 then
-		for v1084, v1085 in pairs(v78:GetChildren()) do
-			if (v1085:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\162\228\55\80\214\166\134\245", "\199\235\144\82\61\152")) and (v1085['ItemName']['Text'] == v77)) then
-				v12(tonumber(string.match(v1085.Name, LUAOBFUSACTOR_DECRYPT_STR_0("\66\18\242", "\75\103\118\217"))));
+		for v1089, v1090 in pairs(v78:GetChildren()) do
+			if (v1090:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\162\228\55\80\214\166\134\245", "\199\235\144\82\61\152")) and (v1090['ItemName']['Text'] == v77)) then
+				v12(tonumber(string.match(v1090.Name, LUAOBFUSACTOR_DECRYPT_STR_0("\66\18\242", "\75\103\118\217"))));
 			end
 		end
 	end
@@ -78,9 +78,9 @@ local v24;
 local v25 = nil;
 local function v26()
 	if v17 then
-		for v1086, v1087 in pairs(v17:GetChildren()) do
-			if ((v1087:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\203\202\201\56\234", "\93\134\165\173")) and (v1087:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\155\252\192\192\54\203\182", "\30\222\146\161\162\90\174\210")) == false)) or not v1087:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\192\64\113\8\233\75\116", "\106\133\46\16"))) then
-				v9['Activate']:FireServer(v1087);
+		for v1091, v1092 in pairs(v17:GetChildren()) do
+			if ((v1092:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\203\202\201\56\234", "\93\134\165\173")) and (v1092:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\155\252\192\192\54\203\182", "\30\222\146\161\162\90\174\210")) == false)) or not v1092:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\192\64\113\8\233\75\116", "\106\133\46\16"))) then
+				v9['Activate']:FireServer(v1092);
 			end
 		end
 	end
@@ -118,14 +118,14 @@ local function v32(v86, v87)
 	end
 	local v88 = nil;
 	if not v87 then
-		local v1011 = EvidencePage:FindFirstChild(v86);
-		if v1011 then
-			v88 = v1011:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\248\132\31\225\184\213\193\222\153", "\175\187\235\113\149\217\188")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\24\170\149\73\224\109\113\51\161", "\24\92\207\225\44\131\25"));
+		local v1015 = EvidencePage:FindFirstChild(v86);
+		if v1015 then
+			v88 = v1015:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\248\132\31\225\184\213\193\222\153", "\175\187\235\113\149\217\188")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\24\170\149\73\224\109\113\51\161", "\24\92\207\225\44\131\25"));
 		end
 	else
-		local v1012 = v3:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\97\220\173\94\21\124\71", "\29\43\179\216\44\123")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\149\214\44\72\184\203", "\44\221\185\64")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\49\230\79\90\96", "\19\97\135\40\63")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\158\93\52\62\123", "\81\206\60\83\91\79")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\124\162\215\122\59", "\196\46\203\176\18\79\163\45")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\136\35\121\27", "\143\216\66\30\126\68\155")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\141\192\2\216\209\151\206\241\175\219", "\129\202\168\109\171\165\195\183"));
-		if (v1012 and v1012:FindFirstChild(v86)) then
-			v88 = v1012:FindFirstChild(v86):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\6\93\35\221\221\0\239\45\86", "\134\66\56\87\184\190\116"));
+		local v1016 = v3:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\97\220\173\94\21\124\71", "\29\43\179\216\44\123")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\149\214\44\72\184\203", "\44\221\185\64")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\49\230\79\90\96", "\19\97\135\40\63")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\158\93\52\62\123", "\81\206\60\83\91\79")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\124\162\215\122\59", "\196\46\203\176\18\79\163\45")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\136\35\121\27", "\143\216\66\30\126\68\155")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\141\192\2\216\209\151\206\241\175\219", "\129\202\168\109\171\165\195\183"));
+		if (v1016 and v1016:FindFirstChild(v86)) then
+			v88 = v1016:FindFirstChild(v86):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\6\93\35\221\221\0\239\45\86", "\134\66\56\87\184\190\116"));
 		end
 	end
 	if not v88 then
@@ -133,9 +133,9 @@ local function v32(v86, v87)
 	end
 	local v89 = v88['Parent']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\20\56\14\179\21\226\38\61\40", "\85\92\81\105\219\121\139\65"));
 	if (v89 and not v89['Visible']) then
-		for v1088, v1089 in pairs(getconnections(v88.MouseButton1Click)) do
-			v1089:Disable();
-			v1089:Fire();
+		for v1093, v1094 in pairs(getconnections(v88.MouseButton1Click)) do
+			v1094:Disable();
+			v1094:Fire();
 		end
 	end
 end
@@ -182,18 +182,18 @@ local function v38(v90, v91)
 		elseif (v635:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\185\212\107\32\19\72\115\137\243\88", "\26\236\157\44\82\114\44")) and (v635['Parent']['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\14\39\195\82\46\43\199", "\59\74\78\181"))) then
 			v30[v635] = {[LUAOBFUSACTOR_DECRYPT_STR_0("\17\195\91\84\160\53\208\72\95\189\38\200", "\211\69\177\58\58")]=v635['Transparency']};
 			task.spawn(function()
-				local v1562 = os.clock();
-				while (os.clock() - v1562) < v91 do
-					local v1570 = os.clock() - v1562;
-					local v1571 = math.clamp(v1570 / v91, 0, 1);
-					local v1572 = 0.5 - (0.5 * math.cos(v1571 * math['pi']));
-					local v1573 = v30[v635]['Transparency'];
-					local v1574 = {};
-					for v1577, v1578 in ipairs(v1573.Keypoints) do
-						local v1579 = v1578['Value'] + ((1 - v1578['Value']) * v1572);
-						table.insert(v1574, NumberSequenceKeypoint.new(v1578.Time, v1579));
+				local v1583 = os.clock();
+				while (os.clock() - v1583) < v91 do
+					local v1591 = os.clock() - v1583;
+					local v1592 = math.clamp(v1591 / v91, 0, 1);
+					local v1593 = 0.5 - (0.5 * math.cos(v1592 * math['pi']));
+					local v1594 = v30[v635]['Transparency'];
+					local v1595 = {};
+					for v1598, v1599 in ipairs(v1594.Keypoints) do
+						local v1600 = v1599['Value'] + ((1 - v1599['Value']) * v1593);
+						table.insert(v1595, NumberSequenceKeypoint.new(v1599.Time, v1600));
 					end
-					v635['Transparency'] = NumberSequence.new(v1574);
+					v635['Transparency'] = NumberSequence.new(v1595);
 					task.wait();
 				end
 				v635['Color'] = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))});
@@ -212,72 +212,72 @@ local function v39(v93, v94)
 		local v641 = v30[v640];
 		if v641 then
 			if v640:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\130\204\94\231\232\207\190\224\119\225", "\171\215\133\25\149\137")) then
-				local v1203 = v641['Transparency'] or v640['Transparency'];
+				local v1208 = v641['Transparency'] or v640['Transparency'];
 				task.spawn(function()
-					local v1277 = os.clock();
-					while (os.clock() - v1277) < v94 do
-						local v1385 = os.clock() - v1277;
-						local v1386 = math.clamp(v1385 / v94, 0, 1);
-						local v1387 = 0.5 - (0.5 * math.cos(v1386 * math['pi']));
-						local v1388 = {};
-						if v1203 then
-							for v1517, v1518 in ipairs(v1203.Keypoints) do
-								local v1519 = 1 - ((1 - v1518['Value']) * v1387);
-								table.insert(v1388, NumberSequenceKeypoint.new(v1518.Time, v1519));
+					local v1285 = os.clock();
+					while (os.clock() - v1285) < v94 do
+						local v1396 = os.clock() - v1285;
+						local v1397 = math.clamp(v1396 / v94, 0, 1);
+						local v1398 = 0.5 - (0.5 * math.cos(v1397 * math['pi']));
+						local v1399 = {};
+						if v1208 then
+							for v1535, v1536 in ipairs(v1208.Keypoints) do
+								local v1537 = 1 - ((1 - v1536['Value']) * v1398);
+								table.insert(v1399, NumberSequenceKeypoint.new(v1536.Time, v1537));
 							end
 						end
-						if (#v1388 == 1) then
-							table.insert(v1388, NumberSequenceKeypoint.new(1, v1388[1].Value));
-						elseif (#v1388 == 0) then
-							v1388 = {NumberSequenceKeypoint.new(0, 1),NumberSequenceKeypoint.new(1, 1)};
+						if (#v1399 == 1) then
+							table.insert(v1399, NumberSequenceKeypoint.new(1, v1399[1].Value));
+						elseif (#v1399 == 0) then
+							v1399 = {NumberSequenceKeypoint.new(0, 1),NumberSequenceKeypoint.new(1, 1)};
 						end
-						v640['Transparency'] = NumberSequence.new(v1388);
+						v640['Transparency'] = NumberSequence.new(v1399);
 						task.wait();
 					end
-					v640['Transparency'] = v1203;
+					v640['Transparency'] = v1208;
 				end);
 			else
 				v4:Create(v640, v95, v641):Play();
 			end
 		else
-			local v1095 = {};
+			local v1100 = {};
 			if ((v640:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\199\218\51\247\234", "\34\129\168\82\154\143\80\156")) and (not v640['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\177\183\43\31", "\233\229\210\83\107\40\46"))) or v640:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\247\75\55\193\21\206\80\38\240\23\192\79\55", "\101\161\34\82\182"))) then
-				v1095[LUAOBFUSACTOR_DECRYPT_STR_0("\202\12\90\245\220\240\141\59\230\9\109\236\218\236\145\62\233\31\92\240\216\251", "\78\136\109\57\158\187\130\226")] = 0;
+				v1100[LUAOBFUSACTOR_DECRYPT_STR_0("\202\12\90\245\220\240\141\59\230\9\109\236\218\236\145\62\233\31\92\240\216\251", "\78\136\109\57\158\187\130\226")] = 0;
 			elseif v640:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\13\60\235\254\50\51\240\255\57\25\235\240\51\58", "\145\94\95\153")) then
-				v1095[LUAOBFUSACTOR_DECRYPT_STR_0("\223\204\23\222\73\165\242\216\26\209\122\165\252\195\7\197\79\165\248\195\23\204", "\215\157\173\116\181\46")] = 1;
+				v1100[LUAOBFUSACTOR_DECRYPT_STR_0("\223\204\23\222\73\165\242\216\26\209\122\165\252\195\7\197\79\165\248\195\23\204", "\215\157\173\116\181\46")] = 1;
 			elseif (v640:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\1\177\147\230\246\52\182\142\254", "\186\85\212\235\146")) or v640:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\246\132\14\234\27\225\64", "\56\162\225\118\158\89\142")) or (v640:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\104\0\216\187\0\205\72\17\207\161", "\184\60\101\160\207\66")) and (not v640['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\19\151\104\168\62\140", "\220\81\226\28")))) then
-				v1095[LUAOBFUSACTOR_DECRYPT_STR_0("\49\212\129\240\237\213\28\192\140\255\222\213\18\219\145\235\235\213\22\219\129\226", "\167\115\181\226\155\138")] = 1;
-				v1095[LUAOBFUSACTOR_DECRYPT_STR_0("\214\39\255\72\79\99\199\236\49\247\93\105\116\200\225\59", "\166\130\66\135\60\27\17")] = 0;
+				v1100[LUAOBFUSACTOR_DECRYPT_STR_0("\49\212\129\240\237\213\28\192\140\255\222\213\18\219\145\235\235\213\22\219\129\226", "\167\115\181\226\155\138")] = 1;
+				v1100[LUAOBFUSACTOR_DECRYPT_STR_0("\214\39\255\72\79\99\199\236\49\247\93\105\116\200\225\59", "\166\130\66\135\60\27\17")] = 0;
 			elseif (v640:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\109\71\207\114\53\104\75\204\112\60", "\80\36\42\174\21")) or v640:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\103\29\54\125\75\50\34\110\90\31\57", "\26\46\112\87"))) then
-				v1095[LUAOBFUSACTOR_DECRYPT_STR_0("\155\34\168\127\184\173\74\161\183\39\159\102\190\177\86\164\184\49\174\122\188\166", "\212\217\67\203\20\223\223\37")] = 1;
-				v1095[LUAOBFUSACTOR_DECRYPT_STR_0("\147\128\169\213\191\185\186\211\180\158\184\211\168\136\166\209\163", "\178\218\237\200")] = 0;
+				v1100[LUAOBFUSACTOR_DECRYPT_STR_0("\155\34\168\127\184\173\74\161\183\39\159\102\190\177\86\164\184\49\174\122\188\166", "\212\217\67\203\20\223\223\37")] = 1;
+				v1100[LUAOBFUSACTOR_DECRYPT_STR_0("\147\128\169\213\191\185\186\211\180\158\184\211\168\136\166\209\163", "\178\218\237\200")] = 0;
 			elseif v640:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\130\176\254\196\163\167\227", "\176\214\213\134")) then
-				v1095[LUAOBFUSACTOR_DECRYPT_STR_0("\192\191\183\218\187\70\88\230\168\184\215\177", "\57\148\205\214\180\200\54")] = 0;
+				v1100[LUAOBFUSACTOR_DECRYPT_STR_0("\192\191\183\218\187\70\88\230\168\184\215\177", "\57\148\205\214\180\200\54")] = 0;
 			elseif v640:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\39\212\6\32\100\29\246\48", "\22\114\157\85\84")) then
 				if (v641 and (v641['Transparency'] ~= nil)) then
 					v4:Create(v640, v95, {[LUAOBFUSACTOR_DECRYPT_STR_0("\240\217\18\202\78\230\169\214\206\29\199\68", "\200\164\171\115\164\61\150")]=v641['Transparency']}):Play();
 				end
 			elseif (v640:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\139\221\36\87\130\186\253\6\75\151", "\227\222\148\99\37")) and (v640['Parent']['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\23\91\68\255\253\54\64", "\153\83\50\50\150"))) then
-				local v1580 = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
+				local v1601 = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
 				task.spawn(function()
-					local v1581 = os.clock();
-					while (os.clock() - v1581) < v94 do
-						local v1583 = os.clock() - v1581;
-						local v1584 = math.clamp(v1583 / v94, 0, 1);
-						local v1585 = 0.5 - (0.5 * math.cos(v1584 * math['pi']));
-						local v1586 = {};
-						for v1588, v1589 in ipairs(v1580.Keypoints) do
-							local v1590 = 1 - ((1 - v1589['Value']) * v1585);
-							table.insert(v1586, NumberSequenceKeypoint.new(v1589.Time, v1590));
+					local v1602 = os.clock();
+					while (os.clock() - v1602) < v94 do
+						local v1604 = os.clock() - v1602;
+						local v1605 = math.clamp(v1604 / v94, 0, 1);
+						local v1606 = 0.5 - (0.5 * math.cos(v1605 * math['pi']));
+						local v1607 = {};
+						for v1609, v1610 in ipairs(v1601.Keypoints) do
+							local v1611 = 1 - ((1 - v1610['Value']) * v1606);
+							table.insert(v1607, NumberSequenceKeypoint.new(v1610.Time, v1611));
 						end
-						v640['Transparency'] = NumberSequence.new(v1586);
+						v640['Transparency'] = NumberSequence.new(v1607);
 						task.wait();
 					end
 					v640['Transparency'] = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
 				end);
 			end
-			if next(v1095) then
-				v4:Create(v640, v95, v1095):Play();
+			if next(v1100) then
+				v4:Create(v640, v95, v1100):Play();
 			end
 		end
 	end
@@ -334,8 +334,8 @@ local function v41(v100, v101, v102)
 end
 for v105, v106 in pairs(v3:GetChildren()) do
 	if (v106:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\48\197\101\73\6\200\80\89\10", "\44\99\166\23")) and (v106['Name'] == v20)) then
-		for v1096, v1097 in pairs(v106:GetDescendants()) do
-			v40(0.5, v1097);
+		for v1101, v1102 in pairs(v106:GetDescendants()) do
+			v40(0.5, v1102);
 		end
 		task.wait(0.5);
 		v106:Destroy();
@@ -656,21 +656,21 @@ local function v61(v317, v318, v319, v320, v321, v322, v323, v324)
 	v5['InputChanged']:Connect(function(v652)
 		if (v352 and ((v652['UserInputType'] == Enum['UserInputType']['MouseMovement']) or (v652['UserInputType'] == Enum['UserInputType']['Touch']))) then
 			v42[LUAOBFUSACTOR_DECRYPT_STR_0("\171\91\235\69\136\109\248\73\138\109\239\92\136\74\254\71\159", "\40\237\41\138")]['Enabled'] = false;
-			local v1099 = v652['Position']['X'] - v325['AbsolutePosition']['X'];
-			local v1100 = math.clamp(v1099 / v325['AbsoluteSize']['X'], 0, 1);
-			local v1101 = v322 + ((v323 - v322) * v1100);
-			v351(v1101);
+			local v1104 = v652['Position']['X'] - v325['AbsolutePosition']['X'];
+			local v1105 = math.clamp(v1104 / v325['AbsoluteSize']['X'], 0, 1);
+			local v1106 = v322 + ((v323 - v322) * v1105);
+			v351(v1106);
 			task.spawn(function()
 				while v18 do
-					if (v1101 == 0) then
+					if (v1106 == 0) then
 						break;
 					end
 					if (v324 == LUAOBFUSACTOR_DECRYPT_STR_0("\240\117\246\243\121\215\113\255\252", "\42\167\20\154\152")) then
-						v18['WalkSpeed'] = v1101;
+						v18['WalkSpeed'] = v1106;
 					elseif (v324 == LUAOBFUSACTOR_DECRYPT_STR_0("\96\235\175\82\65\46\93\251\176", "\65\42\158\194\34\17")) then
-						v18['JumpPower'] = v1101;
+						v18['JumpPower'] = v1106;
 					elseif (v324 == LUAOBFUSACTOR_DECRYPT_STR_0("\41\51\83\1\36\227\26", "\142\122\71\50\108\77\141\123")) then
-						v2:SetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\38\182\254\21\50\27\163", "\91\117\194\159\120"), v1101);
+						v2:SetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\38\182\254\21\50\27\163", "\91\117\194\159\120"), v1106);
 					end
 					task.wait(0.1);
 				end
@@ -809,17 +809,17 @@ local function v65(v415, v416, v417, v418, v419, v420, v421)
 		v425['Color'] = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),ColorSequenceKeypoint.new(0.221, Color3.fromRGB(21, 21, 21)),ColorSequenceKeypoint.new(0.588, Color3.fromRGB(52, 52, 52)),ColorSequenceKeypoint.new(1, Color3.fromRGB(90, 32, 36))});
 	end
 	if v417 then
-		local v1037 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\101\195\203\220\83\95\225\253", "\33\48\138\152\168"), v415);
-		v1037['Color'] = v420;
-		v1037['Thickness'] = 1.5;
-		v1037['Transparency'] = v421;
+		local v1041 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\101\195\203\220\83\95\225\253", "\33\48\138\152\168"), v415);
+		v1041['Color'] = v420;
+		v1041['Thickness'] = 1.5;
+		v1041['Transparency'] = v421;
 	end
 	if v418 then
-		local v1041 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\71\63\28\88\210\35\94\23\41\94\212\35", "\87\18\118\80\49\161"), v415);
-		v1041['Padding'] = UDim.new(0, 5);
-		v1041['HorizontalAlignment'] = LUAOBFUSACTOR_DECRYPT_STR_0("\111\27\212\180\181\94", "\208\44\126\186\192");
-		v1041['VerticalAlignment'] = LUAOBFUSACTOR_DECRYPT_STR_0("\195\21\180", "\46\151\122\196\166\116\156\169");
-		v1041['SortOrder'] = LUAOBFUSACTOR_DECRYPT_STR_0("\201\236\95\21\238\241\194\84\30\254\247", "\155\133\141\38\122");
+		local v1045 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\71\63\28\88\210\35\94\23\41\94\212\35", "\87\18\118\80\49\161"), v415);
+		v1045['Padding'] = UDim.new(0, 5);
+		v1045['HorizontalAlignment'] = LUAOBFUSACTOR_DECRYPT_STR_0("\111\27\212\180\181\94", "\208\44\126\186\192");
+		v1045['VerticalAlignment'] = LUAOBFUSACTOR_DECRYPT_STR_0("\195\21\180", "\46\151\122\196\166\116\156\169");
+		v1045['SortOrder'] = LUAOBFUSACTOR_DECRYPT_STR_0("\201\236\95\21\238\241\194\84\30\254\247", "\155\133\141\38\122");
 	end
 end
 local function v66(v427, v428, v429)
@@ -828,8 +828,8 @@ local function v66(v427, v428, v429)
 			if v655:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\155\213\219\114\29\17\206\59\183\212", "\89\210\184\186\21\120\93\175")) then
 				task.spawn(function()
 					v40(0.25, v655.ImageLabel);
-					for v1392, v1393 in pairs(v655['ImageLabel']:GetDescendants()) do
-						v40(0.25, v1393);
+					for v1403, v1404 in pairs(v655['ImageLabel']:GetDescendants()) do
+						v40(0.25, v1404);
 					end
 					task.wait(0.25);
 					v655:Destroy();
@@ -1281,15 +1281,15 @@ task.spawn(function()
 		v49 = v800;
 		local v805 = v42[v802];
 		if v805 then
-			local v1134 = TweenInfo.new(0.1, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut);
-			v4:Create(v805, v1134, {[LUAOBFUSACTOR_DECRYPT_STR_0("\152\203\126\186\45\147\178\181\180\206\73\163\43\143\174\176\187\216\120\191\41\152", "\192\218\170\29\209\74\225\221")]=0.8}):Play();
+			local v1139 = TweenInfo.new(0.1, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut);
+			v4:Create(v805, v1139, {[LUAOBFUSACTOR_DECRYPT_STR_0("\152\203\126\186\45\147\178\181\180\206\73\163\43\143\174\176\187\216\120\191\41\152", "\192\218\170\29\209\74\225\221")]=0.8}):Play();
 		end
-		for v1046, v1047 in pairs(v42["1"]['Frame']['TabHolder']:GetChildren()) do
-			if (v1047:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\183\217\67\20\237\88\61\233\140\210", "\157\227\188\59\96\175\45\73")) and (v1047['Name'] ~= v801)) then
-				for v1205, v1206 in pairs(v1047:GetChildren()) do
-					if (v1206:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\153\216\214\27\52", "\81\223\170\183\118")) and (v1206['Name'] ~= v802)) then
-						local v1394 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut);
-						v4:Create(v1206, v1394, {[LUAOBFUSACTOR_DECRYPT_STR_0("\4\64\175\176\254\32\30\51\79\168\143\235\51\31\53\81\173\169\252\60\18\63", "\113\70\33\204\219\153\82")]=1}):Play();
+		for v1050, v1051 in pairs(v42["1"]['Frame']['TabHolder']:GetChildren()) do
+			if (v1051:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\183\217\67\20\237\88\61\233\140\210", "\157\227\188\59\96\175\45\73")) and (v1051['Name'] ~= v801)) then
+				for v1210, v1211 in pairs(v1051:GetChildren()) do
+					if (v1211:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\153\216\214\27\52", "\81\223\170\183\118")) and (v1211['Name'] ~= v802)) then
+						local v1405 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut);
+						v4:Create(v1211, v1405, {[LUAOBFUSACTOR_DECRYPT_STR_0("\4\64\175\176\254\32\30\51\79\168\143\235\51\31\53\81\173\169\252\60\18\63", "\113\70\33\204\219\153\82")]=1}):Play();
 					end
 				end
 			end
@@ -1302,9 +1302,9 @@ task.spawn(function()
 	if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\220\131\54\50\217\177\252\135", "\208\145\226\95\92\158")) then
 		v42[LUAOBFUSACTOR_DECRYPT_STR_0("\156\244\201\88\224\251\254", "\120\222\129\189\44\143\149\207")]['MouseEnter']:Connect(function()
 			if (v49 ~= 1) then
-				local v1207 = TweenInfo.new(0.1, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
-				local v1208 = v4:Create(v42['Button1Cover'], v1207, {[LUAOBFUSACTOR_DECRYPT_STR_0("\166\16\30\186\205\89\118\173\138\21\41\163\203\69\106\168\133\3\24\191\201\82", "\216\228\113\125\209\170\43\25")]=0.8});
-				v1208:Play();
+				local v1212 = TweenInfo.new(0.1, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
+				local v1213 = v4:Create(v42['Button1Cover'], v1212, {[LUAOBFUSACTOR_DECRYPT_STR_0("\166\16\30\186\205\89\118\173\138\21\41\163\203\69\106\168\133\3\24\191\201\82", "\216\228\113\125\209\170\43\25")]=0.8});
+				v1213:Play();
 			end
 		end);
 		v42[LUAOBFUSACTOR_DECRYPT_STR_0("\219\239\76\81\125\112\168", "\30\153\154\56\37\18")]['Activated']:Connect(function()
@@ -1312,16 +1312,16 @@ task.spawn(function()
 		end);
 		v42[LUAOBFUSACTOR_DECRYPT_STR_0("\24\110\190\147\53\117\251", "\231\90\27\202")]['MouseLeave']:Connect(function()
 			if (v49 ~= 1) then
-				local v1209 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
-				local v1210 = v4:Create(v42['Button1Cover'], v1209, {[LUAOBFUSACTOR_DECRYPT_STR_0("\163\133\91\169\89\147\139\77\172\90\181\150\89\172\77\145\133\74\167\80\130\157", "\62\225\228\56\194")]=1});
-				v1210:Play();
+				local v1214 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
+				local v1215 = v4:Create(v42['Button1Cover'], v1214, {[LUAOBFUSACTOR_DECRYPT_STR_0("\163\133\91\169\89\147\139\77\172\90\181\150\89\172\77\145\133\74\167\80\130\157", "\62\225\228\56\194")]=1});
+				v1215:Play();
 			end
 		end);
 		v42[LUAOBFUSACTOR_DECRYPT_STR_0("\52\172\173\57\123\91\68", "\53\118\217\217\77\20")]['MouseEnter']:Connect(function()
 			if (v49 ~= 2) then
-				local v1211 = TweenInfo.new(0.1, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
-				local v1212 = v4:Create(v42['Button2Cover'], v1211, {[LUAOBFUSACTOR_DECRYPT_STR_0("\139\30\231\213\40\187\16\241\208\43\157\13\229\208\60\185\30\246\219\33\170\6", "\79\201\127\132\190")]=0.8});
-				v1212:Play();
+				local v1216 = TweenInfo.new(0.1, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
+				local v1217 = v4:Create(v42['Button2Cover'], v1216, {[LUAOBFUSACTOR_DECRYPT_STR_0("\139\30\231\213\40\187\16\241\208\43\157\13\229\208\60\185\30\246\219\33\170\6", "\79\201\127\132\190")]=0.8});
+				v1217:Play();
 			end
 		end);
 		v42[LUAOBFUSACTOR_DECRYPT_STR_0("\10\1\253\221\39\26\187", "\169\72\116\137")]['Activated']:Connect(function()
@@ -1329,16 +1329,16 @@ task.spawn(function()
 		end);
 		v42[LUAOBFUSACTOR_DECRYPT_STR_0("\149\198\69\242\184\221\3", "\134\215\179\49")]['MouseLeave']:Connect(function()
 			if (v49 ~= 2) then
-				local v1213 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
-				local v1214 = v4:Create(v42['Button2Cover'], v1213, {[LUAOBFUSACTOR_DECRYPT_STR_0("\195\245\85\237\82\1\238\225\88\226\97\1\224\250\69\246\84\1\228\250\85\255", "\115\129\148\54\134\53")]=1});
-				v1214:Play();
+				local v1218 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
+				local v1219 = v4:Create(v42['Button2Cover'], v1218, {[LUAOBFUSACTOR_DECRYPT_STR_0("\195\245\85\237\82\1\238\225\88\226\97\1\224\250\69\246\84\1\228\250\85\255", "\115\129\148\54\134\53")]=1});
+				v1219:Play();
 			end
 		end);
 		v42[LUAOBFUSACTOR_DECRYPT_STR_0("\203\146\68\95\215\6\64", "\115\137\231\48\43\184\104")]['MouseEnter']:Connect(function()
 			if (v49 ~= 3) then
-				local v1215 = TweenInfo.new(0.1, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
-				local v1216 = v4:Create(v42['Button3Cover'], v1215, {[LUAOBFUSACTOR_DECRYPT_STR_0("\251\232\25\232\174\178\48\204\231\30\215\187\161\49\202\249\27\241\172\174\60\192", "\95\185\137\122\131\201\192")]=0.8});
-				v1216:Play();
+				local v1220 = TweenInfo.new(0.1, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
+				local v1221 = v4:Create(v42['Button3Cover'], v1220, {[LUAOBFUSACTOR_DECRYPT_STR_0("\251\232\25\232\174\178\48\204\231\30\215\187\161\49\202\249\27\241\172\174\60\192", "\95\185\137\122\131\201\192")]=0.8});
+				v1221:Play();
 			end
 		end);
 		v42[LUAOBFUSACTOR_DECRYPT_STR_0("\84\35\211\7\42\120\101", "\69\22\86\167\115")]['Activated']:Connect(function()
@@ -1346,16 +1346,16 @@ task.spawn(function()
 		end);
 		v42[LUAOBFUSACTOR_DECRYPT_STR_0("\104\74\194\233\69\81\133", "\157\42\63\182")]['MouseLeave']:Connect(function()
 			if (v49 ~= 3) then
-				local v1217 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
-				local v1218 = v4:Create(v42['Button3Cover'], v1217, {[LUAOBFUSACTOR_DECRYPT_STR_0("\249\63\42\247\200\201\49\60\242\203\239\44\40\242\220\203\63\59\249\193\216\39", "\175\187\94\73\156")]=1});
-				v1218:Play();
+				local v1222 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
+				local v1223 = v4:Create(v42['Button3Cover'], v1222, {[LUAOBFUSACTOR_DECRYPT_STR_0("\249\63\42\247\200\201\49\60\242\203\239\44\40\242\220\203\63\59\249\193\216\39", "\175\187\94\73\156")]=1});
+				v1223:Play();
 			end
 		end);
 		v42[LUAOBFUSACTOR_DECRYPT_STR_0("\4\42\91\52\20\45\148", "\160\70\95\47\64\123\67")]['MouseEnter']:Connect(function()
 			if (v49 ~= 4) then
-				local v1219 = TweenInfo.new(0.1, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
-				local v1220 = v4:Create(v42['Button4Cover'], v1219, {[LUAOBFUSACTOR_DECRYPT_STR_0("\252\91\119\58\217\72\123\36\208\94\64\35\223\84\103\33\223\72\113\63\221\67", "\81\190\58\20")]=0.8});
-				v1220:Play();
+				local v1224 = TweenInfo.new(0.1, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
+				local v1225 = v4:Create(v42['Button4Cover'], v1224, {[LUAOBFUSACTOR_DECRYPT_STR_0("\252\91\119\58\217\72\123\36\208\94\64\35\223\84\103\33\223\72\113\63\221\67", "\81\190\58\20")]=0.8});
+				v1225:Play();
 			end
 		end);
 		v42[LUAOBFUSACTOR_DECRYPT_STR_0("\110\88\162\99\140\39\11", "\83\44\45\214\23\227\73\63")]['Activated']:Connect(function()
@@ -1363,17 +1363,17 @@ task.spawn(function()
 		end);
 		v42[LUAOBFUSACTOR_DECRYPT_STR_0("\48\30\164\196\62\37\70", "\75\114\107\208\176\81")]['MouseLeave']:Connect(function()
 			if (v49 ~= 4) then
-				local v1221 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
-				local v1222 = v4:Create(v42['Button4Cover'], v1221, {[LUAOBFUSACTOR_DECRYPT_STR_0("\219\42\42\126\254\57\38\96\247\47\29\103\248\37\58\101\248\57\44\123\250\50", "\21\153\75\73")]=1});
-				v1222:Play();
+				local v1226 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
+				local v1227 = v4:Create(v42['Button4Cover'], v1226, {[LUAOBFUSACTOR_DECRYPT_STR_0("\219\42\42\126\254\57\38\96\247\47\29\103\248\37\58\101\248\57\44\123\250\50", "\21\153\75\73")]=1});
+				v1227:Play();
 			end
 		end);
 	elseif (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\37\28\79\240\171", "\38\105\115\45\146\210")) then
 		v42[LUAOBFUSACTOR_DECRYPT_STR_0("\46\25\14\116\42\47\23\5\120", "\83\98\118\108\22")]['MouseEnter']:Connect(function()
 			if (v49 ~= 1) then
-				local v1395 = TweenInfo.new(0.1, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
-				local v1396 = v4:Create(v42['LobbyMainCover'], v1395, {[LUAOBFUSACTOR_DECRYPT_STR_0("\107\234\122\38\162\150\44\92\229\125\25\183\133\45\90\251\120\63\160\138\32\80", "\67\41\139\25\77\197\228")]=0.8});
-				v1396:Play();
+				local v1406 = TweenInfo.new(0.1, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
+				local v1407 = v4:Create(v42['LobbyMainCover'], v1406, {[LUAOBFUSACTOR_DECRYPT_STR_0("\107\234\122\38\162\150\44\92\229\125\25\183\133\45\90\251\120\63\160\138\32\80", "\67\41\139\25\77\197\228")]=0.8});
+				v1407:Play();
 			end
 		end);
 		v42[LUAOBFUSACTOR_DECRYPT_STR_0("\196\161\204\40\79\197\233\167\192", "\136\136\206\174\74\54")]['Activated']:Connect(function()
@@ -1381,9 +1381,9 @@ task.spawn(function()
 		end);
 		v42[LUAOBFUSACTOR_DECRYPT_STR_0("\41\70\31\85\2\164\58\124\11", "\21\101\41\125\55\123\233\91")]['MouseLeave']:Connect(function()
 			if (v49 ~= 1) then
-				local v1397 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
-				local v1398 = v4:Create(v42['LobbyMainCover'], v1397, {[LUAOBFUSACTOR_DECRYPT_STR_0("\160\234\173\248\11\32\141\254\160\247\56\32\131\229\189\227\13\32\135\229\173\234", "\82\226\139\206\147\108")]=1});
-				v1398:Play();
+				local v1408 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
+				local v1409 = v4:Create(v42['LobbyMainCover'], v1408, {[LUAOBFUSACTOR_DECRYPT_STR_0("\160\234\173\248\11\32\141\254\160\247\56\32\131\229\189\227\13\32\135\229\173\234", "\82\226\139\206\147\108")]=1});
+				v1409:Play();
 			end
 		end);
 	end
@@ -1456,74 +1456,37 @@ task.spawn(function()
 	v42[LUAOBFUSACTOR_DECRYPT_STR_0("\56\6\2\175\254\225\233\16", "\147\117\111\108\198\147\136")]['Activated']:Connect(function()
 		local v806 = TweenInfo.new(0.1, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
 		if (v42["2"]['Size'] == UDim2.new(0, 700, 0, 25)) then
-			local v1136 = (v31[v42["2"]] and v31[v42["2"]]['Size']) or UDim2.new(0, 700, 0, 400);
-			v4:Create(v42["2"], v806, {[LUAOBFUSACTOR_DECRYPT_STR_0("\57\191\216\81", "\52\106\214\162")]=v1136}):Play();
-			for v1165, v1166 in pairs(v42["2"]:GetDescendants()) do
-				local v1167 = v31[v1166];
-				if v1167 then
-					v4:Create(v1166, v806, v1167):Play();
+			local v1141 = (v31[v42["2"]] and v31[v42["2"]]['Size']) or UDim2.new(0, 700, 0, 400);
+			v4:Create(v42["2"], v806, {[LUAOBFUSACTOR_DECRYPT_STR_0("\57\191\216\81", "\52\106\214\162")]=v1141}):Play();
+			for v1170, v1171 in pairs(v42["2"]:GetDescendants()) do
+				local v1172 = v31[v1171];
+				if v1172 then
+					v4:Create(v1171, v806, v1172):Play();
 				end
 			end
 		else
 			v31[v42["2"]] = {[LUAOBFUSACTOR_DECRYPT_STR_0("\54\6\196\161", "\145\101\111\190\196")]=v42["2"]['Size']};
 			v4:Create(v42["2"], v806, {[LUAOBFUSACTOR_DECRYPT_STR_0("\99\196\155\233", "\47\48\173\225\140")]=UDim2.new(0, 700, 0, 25)}):Play();
-			for v1168, v1169 in pairs(v42["2"]:GetChildren()) do
-				local v1170 = v1169:FindFirstAncestor(LUAOBFUSACTOR_DECRYPT_STR_0("\115\193\128\193\46\190\119\204\131", "\204\35\173\225\184\75")) or v1169:FindFirstAncestor(LUAOBFUSACTOR_DECRYPT_STR_0("\201\76\236\158\242\146\15\236", "\110\142\36\131\237\134\198"));
-				if (v1170 and not v1170['Visible']) then
-					continue;
-				end
-				local v1171 = {};
-				local v1172 = {};
-				if v1169:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\93\82\178\253\61", "\88\27\32\211\144")) then
-					v1172['BackgroundTransparency'] = v1169['BackgroundTransparency'];
-					v1172['Size'] = v1169['Size'];
-					v1171['BackgroundTransparency'] = 1;
-					v1171['Size'] = UDim2.new(v1169['Size']['X'].Scale, v1169['Size']['X'].Offset, 0, 0);
-				end
-				if v1169:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\190\168\172\51\199\161\82\126\138\141\172\61\198\168", "\16\237\203\222\92\171\205\59")) then
-					v1172['BackgroundTransparency'] = v1169['BackgroundTransparency'];
-					v1172['Size'] = v1169['Size'];
-					v1171['BackgroundTransparency'] = 1;
-					v1171['Size'] = UDim2.new(v1169['Size']['X'].Scale, v1169['Size']['X'].Offset, 0, 0);
-				end
-				if ((v1169:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\213\180\165\156\51\178\227\180\177", "\211\129\209\221\232\127")) or v1169:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\61\74\94\48\222\18\168", "\38\105\47\38\68\156\125\208")) or v1169:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\184\133\189\80\222\61\152\148\170\74", "\72\236\224\197\36\156"))) and (v1169['Name'] ~= LUAOBFUSACTOR_DECRYPT_STR_0("\224\162\87\137\203\185\64", "\234\164\203\36"))) then
-					v1172['BackgroundTransparency'] = v1169['BackgroundTransparency'];
-					v1172['TextTransparency'] = v1169['TextTransparency'];
-					v1172['Size'] = v1169['Size'];
-					v1171['BackgroundTransparency'] = 1;
-					v1171['TextTransparency'] = 1;
-					v1171['Size'] = UDim2.new(v1169['Size']['X'].Scale, v1169['Size']['X'].Offset, 0, 0);
-				end
-				if v1169:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\61\228\133\53\156\81\99\102\45\255\129\47\137", "\18\107\141\224\66\236\62\17")) then
-					v1172['Visible'] = v1169['Visible'];
-					v1171['Visible'] = false;
-				end
-				if ((v1169:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\130\162\29\240\174\131\29\245\174\163", "\151\203\207\124")) or v1169:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\253\23\240\5\229\171\11\208\192\21\255", "\164\180\122\145\98\128\233\126"))) and (v1169['Name'] ~= LUAOBFUSACTOR_DECRYPT_STR_0("\150\13\21\196\182\13\1\200", "\173\219\100\123")) and (v1169['Name'] ~= LUAOBFUSACTOR_DECRYPT_STR_0("\151\36\67\24\22", "\115\212\72\44\107"))) then
-					v1172['BackgroundTransparency'] = v1169['BackgroundTransparency'];
-					v1172['ImageTransparency'] = v1169['ImageTransparency'];
-					v1171['BackgroundTransparency'] = 1;
-					v1171['ImageTransparency'] = 1;
-				end
-				if v1169:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\185\198\103\102\239\33\165\65", "\36\236\143\52\18\157\78\206")) then
-					v1172['Transparency'] = v1169['Transparency'];
-					v1171['Transparency'] = 1;
-				end
-				if next(v1171) then
-					v31[v1169] = v1172;
-					v4:Create(v1169, v806, v1171):Play();
-				elseif v1169:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\101\104\31\93\254\84\72\61\65\235", "\159\48\33\88\47")) then
-					v31[v1169] = {[LUAOBFUSACTOR_DECRYPT_STR_0("\48\68\31\225\182\245", "\87\127\34\121\146\211\129\87")]=v1169['Offset']};
-					v4:Create(v1169, v806, {[LUAOBFUSACTOR_DECRYPT_STR_0("\132\231\131\255\32\42", "\20\203\129\229\140\69\94\175")]=Vector2.new(1, 0)}):Play();
-				end
-			end
-			for v1173, v1174 in pairs(v42["2"]['TabHolder']:GetDescendants()) do
-				local v1175 = v1174:FindFirstAncestor(LUAOBFUSACTOR_DECRYPT_STR_0("\159\202\85\47\234\240\155\199\86", "\130\207\166\52\86\143")) or v1174:FindFirstAncestor(LUAOBFUSACTOR_DECRYPT_STR_0("\109\82\28\254\190\79\32\72", "\65\42\58\115\141\202\27"));
+			for v1173, v1174 in pairs(v42["2"]:GetChildren()) do
+				local v1175 = v1174:FindFirstAncestor(LUAOBFUSACTOR_DECRYPT_STR_0("\115\193\128\193\46\190\119\204\131", "\204\35\173\225\184\75")) or v1174:FindFirstAncestor(LUAOBFUSACTOR_DECRYPT_STR_0("\201\76\236\158\242\146\15\236", "\110\142\36\131\237\134\198"));
 				if (v1175 and not v1175['Visible']) then
 					continue;
 				end
 				local v1176 = {};
 				local v1177 = {};
-				if ((v1174:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\127\1\77\213\3\74\6\80\205", "\79\43\100\53\161")) or v1174:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\196\193\215\91\118\67\46", "\36\144\164\175\47\52\44\86")) or v1174:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\4\10\227\176\93\37\27\239\171\113", "\31\80\111\155\196"))) and (v1174['Name'] ~= LUAOBFUSACTOR_DECRYPT_STR_0("\119\80\242\215\32\65\93", "\79\51\57\129\180"))) then
+				if v1174:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\93\82\178\253\61", "\88\27\32\211\144")) then
+					v1177['BackgroundTransparency'] = v1174['BackgroundTransparency'];
+					v1177['Size'] = v1174['Size'];
+					v1176['BackgroundTransparency'] = 1;
+					v1176['Size'] = UDim2.new(v1174['Size']['X'].Scale, v1174['Size']['X'].Offset, 0, 0);
+				end
+				if v1174:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\190\168\172\51\199\161\82\126\138\141\172\61\198\168", "\16\237\203\222\92\171\205\59")) then
+					v1177['BackgroundTransparency'] = v1174['BackgroundTransparency'];
+					v1177['Size'] = v1174['Size'];
+					v1176['BackgroundTransparency'] = 1;
+					v1176['Size'] = UDim2.new(v1174['Size']['X'].Scale, v1174['Size']['X'].Offset, 0, 0);
+				end
+				if ((v1174:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\213\180\165\156\51\178\227\180\177", "\211\129\209\221\232\127")) or v1174:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\61\74\94\48\222\18\168", "\38\105\47\38\68\156\125\208")) or v1174:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\184\133\189\80\222\61\152\148\170\74", "\72\236\224\197\36\156"))) and (v1174['Name'] ~= LUAOBFUSACTOR_DECRYPT_STR_0("\224\162\87\137\203\185\64", "\234\164\203\36"))) then
 					v1177['BackgroundTransparency'] = v1174['BackgroundTransparency'];
 					v1177['TextTransparency'] = v1174['TextTransparency'];
 					v1177['Size'] = v1174['Size'];
@@ -1531,15 +1494,52 @@ task.spawn(function()
 					v1176['TextTransparency'] = 1;
 					v1176['Size'] = UDim2.new(v1174['Size']['X'].Scale, v1174['Size']['X'].Offset, 0, 0);
 				end
-				if v1174:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\17\160\49\85\220", "\185\87\210\80\56")) then
+				if v1174:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\61\228\133\53\156\81\99\102\45\255\129\47\137", "\18\107\141\224\66\236\62\17")) then
+					v1177['Visible'] = v1174['Visible'];
+					v1176['Visible'] = false;
+				end
+				if ((v1174:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\130\162\29\240\174\131\29\245\174\163", "\151\203\207\124")) or v1174:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\253\23\240\5\229\171\11\208\192\21\255", "\164\180\122\145\98\128\233\126"))) and (v1174['Name'] ~= LUAOBFUSACTOR_DECRYPT_STR_0("\150\13\21\196\182\13\1\200", "\173\219\100\123")) and (v1174['Name'] ~= LUAOBFUSACTOR_DECRYPT_STR_0("\151\36\67\24\22", "\115\212\72\44\107"))) then
 					v1177['BackgroundTransparency'] = v1174['BackgroundTransparency'];
-					v1177['Size'] = v1174['Size'];
+					v1177['ImageTransparency'] = v1174['ImageTransparency'];
 					v1176['BackgroundTransparency'] = 1;
-					v1176['Size'] = UDim2.new(v1174['Size']['X'].Scale, v1174['Size']['X'].Offset, 0, 0);
+					v1176['ImageTransparency'] = 1;
+				end
+				if v1174:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\185\198\103\102\239\33\165\65", "\36\236\143\52\18\157\78\206")) then
+					v1177['Transparency'] = v1174['Transparency'];
+					v1176['Transparency'] = 1;
 				end
 				if next(v1176) then
 					v31[v1174] = v1177;
 					v4:Create(v1174, v806, v1176):Play();
+				elseif v1174:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\101\104\31\93\254\84\72\61\65\235", "\159\48\33\88\47")) then
+					v31[v1174] = {[LUAOBFUSACTOR_DECRYPT_STR_0("\48\68\31\225\182\245", "\87\127\34\121\146\211\129\87")]=v1174['Offset']};
+					v4:Create(v1174, v806, {[LUAOBFUSACTOR_DECRYPT_STR_0("\132\231\131\255\32\42", "\20\203\129\229\140\69\94\175")]=Vector2.new(1, 0)}):Play();
+				end
+			end
+			for v1178, v1179 in pairs(v42["2"]['TabHolder']:GetDescendants()) do
+				local v1180 = v1179:FindFirstAncestor(LUAOBFUSACTOR_DECRYPT_STR_0("\159\202\85\47\234\240\155\199\86", "\130\207\166\52\86\143")) or v1179:FindFirstAncestor(LUAOBFUSACTOR_DECRYPT_STR_0("\109\82\28\254\190\79\32\72", "\65\42\58\115\141\202\27"));
+				if (v1180 and not v1180['Visible']) then
+					continue;
+				end
+				local v1181 = {};
+				local v1182 = {};
+				if ((v1179:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\127\1\77\213\3\74\6\80\205", "\79\43\100\53\161")) or v1179:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\196\193\215\91\118\67\46", "\36\144\164\175\47\52\44\86")) or v1179:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\4\10\227\176\93\37\27\239\171\113", "\31\80\111\155\196"))) and (v1179['Name'] ~= LUAOBFUSACTOR_DECRYPT_STR_0("\119\80\242\215\32\65\93", "\79\51\57\129\180"))) then
+					v1182['BackgroundTransparency'] = v1179['BackgroundTransparency'];
+					v1182['TextTransparency'] = v1179['TextTransparency'];
+					v1182['Size'] = v1179['Size'];
+					v1181['BackgroundTransparency'] = 1;
+					v1181['TextTransparency'] = 1;
+					v1181['Size'] = UDim2.new(v1179['Size']['X'].Scale, v1179['Size']['X'].Offset, 0, 0);
+				end
+				if v1179:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\17\160\49\85\220", "\185\87\210\80\56")) then
+					v1182['BackgroundTransparency'] = v1179['BackgroundTransparency'];
+					v1182['Size'] = v1179['Size'];
+					v1181['BackgroundTransparency'] = 1;
+					v1181['Size'] = UDim2.new(v1179['Size']['X'].Scale, v1179['Size']['X'].Offset, 0, 0);
+				end
+				if next(v1181) then
+					v31[v1179] = v1182;
+					v4:Create(v1179, v806, v1181):Play();
 				end
 			end
 			v31[v42['b']] = v31[v42['b']] or {[LUAOBFUSACTOR_DECRYPT_STR_0("\246\31\189\81\105\240\90\200", "\53\166\112\206\56\29\153")]=v42['b']['Position']};
@@ -1547,33 +1547,33 @@ task.spawn(function()
 		end
 	end);
 	v42[LUAOBFUSACTOR_DECRYPT_STR_0("\105\94\65\77\32", "\198\42\50\46\62\69\29\237")]['Activated']:Connect(function()
-		for v1048, v1049 in pairs(v3:GetChildren()) do
-			if (v1049:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\241\185\4\60\45\174\41\78\203", "\59\162\218\118\89\72\192\110")) and (v1049['Name'] == v20)) then
-				for v1223, v1224 in pairs(v1049:GetDescendants()) do
-					local v1225 = TweenInfo.new(0.5, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
-					local v1226 = {};
-					if (v1224:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\163\236\177\82\77", "\97\229\158\208\63\40\97\18")) or v1224:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\30\205\96\73\128\33\199\124\65\170\63\207\127\67", "\236\77\174\18\38")) or v1224:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\180\88\215\1\162\82\215", "\117\224\61\175"))) then
-						v1226[LUAOBFUSACTOR_DECRYPT_STR_0("\201\70\197\131\236\85\201\157\229\67\242\154\234\73\213\152\234\85\195\134\232\94", "\232\139\39\166")] = 1;
+		for v1052, v1053 in pairs(v3:GetChildren()) do
+			if (v1053:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\241\185\4\60\45\174\41\78\203", "\59\162\218\118\89\72\192\110")) and (v1053['Name'] == v20)) then
+				for v1228, v1229 in pairs(v1053:GetDescendants()) do
+					local v1230 = TweenInfo.new(0.5, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
+					local v1231 = {};
+					if (v1229:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\163\236\177\82\77", "\97\229\158\208\63\40\97\18")) or v1229:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\30\205\96\73\128\33\199\124\65\170\63\207\127\67", "\236\77\174\18\38")) or v1229:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\180\88\215\1\162\82\215", "\117\224\61\175"))) then
+						v1231[LUAOBFUSACTOR_DECRYPT_STR_0("\201\70\197\131\236\85\201\157\229\67\242\154\234\73\213\152\234\85\195\134\232\94", "\232\139\39\166")] = 1;
 					end
-					if (v1224:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\215\84\75\81\91\195\225\84\95", "\162\131\49\51\37\23")) or v1224:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\107\124\230\62\86\80\97", "\20\63\25\158\74")) or v1224:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\78\223\68\185\93\197\60\173\117\212", "\217\26\186\60\205\31\176\72"))) then
-						v1226[LUAOBFUSACTOR_DECRYPT_STR_0("\249\112\5\231\220\99\9\249\213\117\50\254\218\127\21\252\218\99\3\226\216\104", "\140\187\17\102")] = 1;
-						v1226[LUAOBFUSACTOR_DECRYPT_STR_0("\24\142\188\85\24\153\165\79\63\155\165\83\41\133\167\88", "\33\76\235\196")] = 1;
+					if (v1229:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\215\84\75\81\91\195\225\84\95", "\162\131\49\51\37\23")) or v1229:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\107\124\230\62\86\80\97", "\20\63\25\158\74")) or v1229:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\78\223\68\185\93\197\60\173\117\212", "\217\26\186\60\205\31\176\72"))) then
+						v1231[LUAOBFUSACTOR_DECRYPT_STR_0("\249\112\5\231\220\99\9\249\213\117\50\254\218\127\21\252\218\99\3\226\216\104", "\140\187\17\102")] = 1;
+						v1231[LUAOBFUSACTOR_DECRYPT_STR_0("\24\142\188\85\24\153\165\79\63\155\165\83\41\133\167\88", "\33\76\235\196")] = 1;
 					end
-					if (v1224:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\33\231\243\88\169\28\132\135\13\230", "\229\104\138\146\63\204\80\229")) or v1224:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\137\112\31\206\165\95\11\221\180\114\16", "\169\192\29\126"))) then
-						v1226[LUAOBFUSACTOR_DECRYPT_STR_0("\19\196\6\128\54\215\10\158\63\193\49\153\48\203\22\155\48\215\0\133\50\220", "\235\81\165\101")] = 1;
-						v1226[LUAOBFUSACTOR_DECRYPT_STR_0("\81\137\94\30\128\48\222\121\138\76\9\132\22\201\118\135\70", "\172\24\228\63\121\229\100")] = 1;
+					if (v1229:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\33\231\243\88\169\28\132\135\13\230", "\229\104\138\146\63\204\80\229")) or v1229:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\137\112\31\206\165\95\11\221\180\114\16", "\169\192\29\126"))) then
+						v1231[LUAOBFUSACTOR_DECRYPT_STR_0("\19\196\6\128\54\215\10\158\63\193\49\153\48\203\22\155\48\215\0\133\50\220", "\235\81\165\101")] = 1;
+						v1231[LUAOBFUSACTOR_DECRYPT_STR_0("\81\137\94\30\128\48\222\121\138\76\9\132\22\201\118\135\70", "\172\24\228\63\121\229\100")] = 1;
 					end
-					if v1224:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\191\103\230\217\152\65\222\200", "\173\234\46\181")) then
-						v1226[LUAOBFUSACTOR_DECRYPT_STR_0("\235\32\234\49\48\207\51\249\58\45\220\43", "\67\191\82\139\95")] = 1;
+					if v1229:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\191\103\230\217\152\65\222\200", "\173\234\46\181")) then
+						v1231[LUAOBFUSACTOR_DECRYPT_STR_0("\235\32\234\49\48\207\51\249\58\45\220\43", "\67\191\82\139\95")] = 1;
 					end
-					if next(v1226) then
-						v4:Create(v1224, v1225, v1226):Play();
-					elseif v1224:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\8\196\96\208\237\239\52\232\73\214", "\139\93\141\39\162\140")) then
-						v4:Create(v1224, v1225, {[LUAOBFUSACTOR_DECRYPT_STR_0("\3\165\15\196\27\56", "\126\76\195\105\183")]=Vector2.new(1, 0)}):Play();
+					if next(v1231) then
+						v4:Create(v1229, v1230, v1231):Play();
+					elseif v1229:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\8\196\96\208\237\239\52\232\73\214", "\139\93\141\39\162\140")) then
+						v4:Create(v1229, v1230, {[LUAOBFUSACTOR_DECRYPT_STR_0("\3\165\15\196\27\56", "\126\76\195\105\183")]=Vector2.new(1, 0)}):Play();
 					end
 				end
 				task.wait(0.5);
-				v1049:Destroy();
+				v1053:Destroy();
 				task.wait(1);
 			end
 		end
@@ -1794,9 +1794,9 @@ if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\212\114\231\4\57\139\244\118", "\234\15
 		v955 = v951:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\219\177\169\73\250", "\36\137\222\198"));
 	end
 	if (v22 and v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\199\245\244\45\218\171\22\76\211\251\237\47", "\41\129\148\130\66\168\194\98"))) then
-		for v1178, v1179 in pairs(v955:GetChildren()) do
-			if (v1179['Name'] == v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\55\43\151\31\81\33\100\169\35\37\142\29", "\204\113\74\225\112\35\72\16"))) then
-				v23 = v1179;
+		for v1183, v1184 in pairs(v955:GetChildren()) do
+			if (v1184['Name'] == v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\55\43\151\31\81\33\100\169\35\37\142\29", "\204\113\74\225\112\35\72\16"))) then
+				v23 = v1184;
 			end
 		end
 	end
@@ -1804,11 +1804,11 @@ if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\212\114\231\4\57\139\244\118", "\234\15
 	v64(v42[LUAOBFUSACTOR_DECRYPT_STR_0("\86\22\14\51\240\139\178\226\88\16\7\47\181", "\128\17\126\97\64\132\223\211")], 6, 185);
 	local v957 = false;
 	local v958;
-	for v1050, v1051 in pairs(v953:GetChildren()) do
-		if (v1051:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\147\146\56\5\148\135\48\13", "\104\218\230\93")) == LUAOBFUSACTOR_DECRYPT_STR_0("\86\17\244\54\65\57\211\114\118\46", "\22\19\92\178")) then
-			if v1051:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\253\30\81\60\184\191\202\57\70\47\185\184\208\12", "\209\190\107\35\78\221")) then
-				while v1051:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\163\59\196\243\211\142\58\228\228\215\132\39\216\230", "\182\224\78\182\129")) do
-					v958 = v1051:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\206\24\183\28\211\62\107\118\232\12\161\7\216\55", "\36\141\109\197\110\182\80\31"));
+	for v1054, v1055 in pairs(v953:GetChildren()) do
+		if (v1055:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\147\146\56\5\148\135\48\13", "\104\218\230\93")) == LUAOBFUSACTOR_DECRYPT_STR_0("\86\17\244\54\65\57\211\114\118\46", "\22\19\92\178")) then
+			if v1055:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\253\30\81\60\184\191\202\57\70\47\185\184\208\12", "\209\190\107\35\78\221")) then
+				while v1055:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\163\59\196\243\211\142\58\228\228\215\132\39\216\230", "\182\224\78\182\129")) do
+					v958 = v1055:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\206\24\183\28\211\62\107\118\232\12\161\7\216\55", "\36\141\109\197\110\182\80\31"));
 					task.wait(0.1);
 				end
 			end
@@ -1816,18 +1816,18 @@ if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\212\114\231\4\57\139\244\118", "\234\15
 	end
 	local v959;
 	local v960;
-	for v1052, v1053 in pairs(v953:GetChildren()) do
-		if (v1053:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\202\30\19\138\48\61\238\15", "\92\131\106\118\231\126")) == LUAOBFUSACTOR_DECRYPT_STR_0("\155\79\49\178\38\175\3\14\170\55", "\67\221\35\94\197")) then
-			v959 = v1053;
-		elseif (v1053:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\108\168\37\87\107\189\45\95", "\58\37\220\64")) == LUAOBFUSACTOR_DECRYPT_STR_0("\239\156\253\30\189\184\156\174\251\3\191", "\204\188\236\148\108\212")) then
-			v960 = v1053;
+	for v1056, v1057 in pairs(v953:GetChildren()) do
+		if (v1057:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\202\30\19\138\48\61\238\15", "\92\131\106\118\231\126")) == LUAOBFUSACTOR_DECRYPT_STR_0("\155\79\49\178\38\175\3\14\170\55", "\67\221\35\94\197")) then
+			v959 = v1057;
+		elseif (v1057:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\108\168\37\87\107\189\45\95", "\58\37\220\64")) == LUAOBFUSACTOR_DECRYPT_STR_0("\239\156\253\30\189\184\156\174\251\3\191", "\204\188\236\148\108\212")) then
+			v960 = v1057;
 		end
 	end
-	v953['ChildAdded']:Connect(function(v1054)
-		if (v1054:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\247\200\90\254\218\19\12\183", "\210\190\188\63\147\148\114\97")) == LUAOBFUSACTOR_DECRYPT_STR_0("\147\202\170\147\20\167\134\149\139\5", "\113\213\166\197\228")) then
-			v959 = v1054;
-		elseif (v1054:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\228\42\199\94\100\132\14\228", "\129\173\94\162\51\42\229\99")) == LUAOBFUSACTOR_DECRYPT_STR_0("\110\36\27\35\191\73\116\48\62\185\86", "\214\61\84\114\81")) then
-			v960 = v1054;
+	v953['ChildAdded']:Connect(function(v1058)
+		if (v1058:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\247\200\90\254\218\19\12\183", "\210\190\188\63\147\148\114\97")) == LUAOBFUSACTOR_DECRYPT_STR_0("\147\202\170\147\20\167\134\149\139\5", "\113\213\166\197\228")) then
+			v959 = v1058;
+		elseif (v1058:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\228\42\199\94\100\132\14\228", "\129\173\94\162\51\42\229\99")) == LUAOBFUSACTOR_DECRYPT_STR_0("\110\36\27\35\191\73\116\48\62\185\86", "\214\61\84\114\81")) then
+			v960 = v1058;
 		end
 	end);
 	v60(LUAOBFUSACTOR_DECRYPT_STR_0("\105\236\18\64", "\182\39\131\124\37\173"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\29\21\181\7\189\64\59\31\147\26\175\123\107", "\20\90\125\218\116\201")], 2, 185, false, LUAOBFUSACTOR_DECRYPT_STR_0("\11\6\21\130", "\61\69\105\123\231\74\78"), true, false);
@@ -1836,8 +1836,8 @@ if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\212\114\231\4\57\139\244\118", "\234\15
 			if (v0:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\249\172\180\15\199\195\164\180\31\196", "\183\177\205\218\107")) and v0['Handprints']:FindFirstChildWhichIsA(LUAOBFUSACTOR_DECRYPT_STR_0("\39\49\158\122\252\55\23\36", "\86\101\80\237\31\172"))) then
 				v956[LUAOBFUSACTOR_DECRYPT_STR_0("\123\57\160\80\106\219\212\93\44\189", "\189\51\88\206\52\26\169")] = true;
 			end
-			for v1180, v1181 in pairs(v955:GetChildren()) do
-				if (v1181:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\18\198\70\69\35\209\74\65\51\209\78", "\53\70\163\43")) < 0) then
+			for v1185, v1186 in pairs(v955:GetChildren()) do
+				if (v1186:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\18\198\70\69\35\209\74\65\51\209\78", "\53\70\163\43")) < 0) then
 					v956[LUAOBFUSACTOR_DECRYPT_STR_0("\231\176\162\29\108\58\68\198\226\147\29\123\35\79\211\163\179\13\100\54\89", "\42\161\194\199\120\22\83")] = true;
 				end
 			end
@@ -1856,8 +1856,8 @@ if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\212\114\231\4\57\139\244\118", "\234\15
 				end
 			end
 			if v960 then
-				for v1343, v1344 in pairs(v960:GetDescendants()) do
-					if (v1344:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\125\240\81\249\92", "\226\57\149\50\152\48\217\192")) and (v1344['Texture'] == LUAOBFUSACTOR_DECRYPT_STR_0("\81\174\50\175\232\80\169\62\167\255\25\227\101\255\171\27\251\127\248\173\23\248\115\255\170\21\254\122", "\155\35\204\74\206"))) then
+				for v1351, v1352 in pairs(v960:GetDescendants()) do
+					if (v1352:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\125\240\81\249\92", "\226\57\149\50\152\48\217\192")) and (v1352['Texture'] == LUAOBFUSACTOR_DECRYPT_STR_0("\81\174\50\175\232\80\169\62\167\255\25\227\101\255\171\27\251\127\248\173\23\248\115\255\170\21\254\122", "\155\35\204\74\206"))) then
 						v956[LUAOBFUSACTOR_DECRYPT_STR_0("\144\202\116\52\211\247\245\105\46\211\190\204\124", "\167\215\162\27\71")] = true;
 					end
 				end
@@ -1868,11 +1868,11 @@ if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\212\114\231\4\57\139\244\118", "\234\15
 				end
 			end
 			if (v3 and v3:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\126\71\86\243\253\36\68\72\65", "\40\45\50\52\135\148\80"))) then
-				local v1231 = v3['Subtitles']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\202\22\234\134\231\11", "\226\130\121\134")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\188\60\219\111\164\56\193\126\132", "\27\232\89\163"));
-				if v1231 then
-					local v1406 = {LUAOBFUSACTOR_DECRYPT_STR_0("\219\133\228", "\163\148\201\160"),"I'M BEHIND YOU",LUAOBFUSACTOR_DECRYPT_STR_0("\122\160\201\210\149", "\101\62\229\136\134\221"),LUAOBFUSACTOR_DECRYPT_STR_0("\89\102\218\195", "\126\18\47\150\143"),LUAOBFUSACTOR_DECRYPT_STR_0("\149\250\252\93\17\90", "\127\212\174\168\28\82\17"),LUAOBFUSACTOR_DECRYPT_STR_0("\34\139\104\242", "\183\106\202\60"),LUAOBFUSACTOR_DECRYPT_STR_0("\124\3\192\10\254\33\35\99", "\98\58\66\146\42\191\118"),LUAOBFUSACTOR_DECRYPT_STR_0("\166\213\69\247\98\234", "\186\228\144\28\184\44\174"),LUAOBFUSACTOR_DECRYPT_STR_0("\36\59\50\63\40\58", "\118\102\126\122"),LUAOBFUSACTOR_DECRYPT_STR_0("\244\62\186\211", "\200\188\107\232\135"),LUAOBFUSACTOR_DECRYPT_STR_0("\10\221\147", "\159\76\156\193\43\91"),"DON'T TURN AROUND"};
-					for v1459, v1460 in pairs(v1406) do
-						if (v1231['Text'] == v1460) then
+				local v1236 = v3['Subtitles']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\202\22\234\134\231\11", "\226\130\121\134")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\188\60\219\111\164\56\193\126\132", "\27\232\89\163"));
+				if v1236 then
+					local v1417 = {LUAOBFUSACTOR_DECRYPT_STR_0("\219\133\228", "\163\148\201\160"),"I'M BEHIND YOU",LUAOBFUSACTOR_DECRYPT_STR_0("\122\160\201\210\149", "\101\62\229\136\134\221"),LUAOBFUSACTOR_DECRYPT_STR_0("\89\102\218\195", "\126\18\47\150\143"),LUAOBFUSACTOR_DECRYPT_STR_0("\149\250\252\93\17\90", "\127\212\174\168\28\82\17"),LUAOBFUSACTOR_DECRYPT_STR_0("\34\139\104\242", "\183\106\202\60"),LUAOBFUSACTOR_DECRYPT_STR_0("\124\3\192\10\254\33\35\99", "\98\58\66\146\42\191\118"),LUAOBFUSACTOR_DECRYPT_STR_0("\166\213\69\247\98\234", "\186\228\144\28\184\44\174"),LUAOBFUSACTOR_DECRYPT_STR_0("\36\59\50\63\40\58", "\118\102\126\122"),LUAOBFUSACTOR_DECRYPT_STR_0("\244\62\186\211", "\200\188\107\232\135"),LUAOBFUSACTOR_DECRYPT_STR_0("\10\221\147", "\159\76\156\193\43\91"),"DON'T TURN AROUND"};
+					for v1470, v1471 in pairs(v1417) do
+						if (v1236['Text'] == v1471) then
 							v956[LUAOBFUSACTOR_DECRYPT_STR_0("\74\60\7\103\172\93\3\200\118\52", "\138\25\76\110\21\197\41\35")] = true;
 							break;
 						end
@@ -1889,14 +1889,14 @@ if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\212\114\231\4\57\139\244\118", "\234\15
 		v957 = not v957;
 		while v957 do
 			if (next(v956) ~= nil) then
-				for v1345, v1346 in pairs(v42[LUAOBFUSACTOR_DECRYPT_STR_0("\208\248\39\182\30\144\246\242\1\171\12\171\166", "\196\151\144\72\197\106")]:GetChildren()) do
-					if (v1346:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\50\220\129\95\17", "\50\116\174\224")) and (v1346['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\251\119\14\194", "\165\181\24\96\167\97"))) then
-						v41(0.25, v1346, 1);
-						v41(0.25, v1346.UIStroke, 1);
-						v41(0.25, v1346.TextLabel, 1);
-						v41(0.25, v1346.Noice, 1);
+				for v1353, v1354 in pairs(v42[LUAOBFUSACTOR_DECRYPT_STR_0("\208\248\39\182\30\144\246\242\1\171\12\171\166", "\196\151\144\72\197\106")]:GetChildren()) do
+					if (v1354:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\50\220\129\95\17", "\50\116\174\224")) and (v1354['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\251\119\14\194", "\165\181\24\96\167\97"))) then
+						v41(0.25, v1354, 1);
+						v41(0.25, v1354.UIStroke, 1);
+						v41(0.25, v1354.TextLabel, 1);
+						v41(0.25, v1354.Noice, 1);
 						task.wait(0.25);
-						v1346:Destroy();
+						v1354:Destroy();
 					end
 				end
 			end
@@ -1945,124 +1945,191 @@ if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\212\114\231\4\57\139\244\118", "\234\15
 	end);
 	local v963 = {[LUAOBFUSACTOR_DECRYPT_STR_0("\28\6\37\11\236\242", "\149\93\117\82\106\130")]={LUAOBFUSACTOR_DECRYPT_STR_0("\209\180\9\238\206\244", "\171\134\221\125\134"),LUAOBFUSACTOR_DECRYPT_STR_0("\149\9\223\54\220\181\50\252\122\176\229", "\144\208\68\153\22"),LUAOBFUSACTOR_DECRYPT_STR_0("\198\18\42\31\209\22\32\220\232\14\44\2\194", "\174\129\122\69\108\165\54\119")},[LUAOBFUSACTOR_DECRYPT_STR_0("\219\220\212\250\241\216\223", "\137\153\189\186")]={LUAOBFUSACTOR_DECRYPT_STR_0("\54\198\18\86\5\142\50\87\19", "\37\113\174\125"),LUAOBFUSACTOR_DECRYPT_STR_0("\121\69\74\173\65\86\77\167\69\87", "\201\49\36\36"),LUAOBFUSACTOR_DECRYPT_STR_0("\34\60\175\117\30\39\164\119\68\26\175\125\20\43\184\113\16\59\184\117\23", "\16\100\78\202")},[LUAOBFUSACTOR_DECRYPT_STR_0("\153\185\125\249\141", "\203\221\220\16\150\227\34\43")]={LUAOBFUSACTOR_DECRYPT_STR_0("\222\9\93\56\215\33\109\125\247\100\46", "\24\155\68\27"),LUAOBFUSACTOR_DECRYPT_STR_0("\146\81\222\86\170\66\217\92\174\67", "\50\218\48\176"),LUAOBFUSACTOR_DECRYPT_STR_0("\104\64\209\245\65\93\64\85\148\196\94\89\94\87\198\241\79\65\92\87\199", "\52\46\50\180\144\59")},[LUAOBFUSACTOR_DECRYPT_STR_0("\41\36\41\123\7\49\251\3", "\154\109\81\69\23\102\89")]={LUAOBFUSACTOR_DECRYPT_STR_0("\205\194\200\92\68\43", "\89\154\171\188\52\33"),LUAOBFUSACTOR_DECRYPT_STR_0("\218\21\31\51\228\84\60\36\249\30\9\53\226\27\30", "\86\150\116\108"),LUAOBFUSACTOR_DECRYPT_STR_0("\81\173\41\171\219\79\121\184\108\154\196\75\103\186\62\175\213\83\101\186\63", "\38\23\223\76\206\161")},[LUAOBFUSACTOR_DECRYPT_STR_0("\252\208\90\57\182\161", "\166\184\169\56\91\195\202")]={LUAOBFUSACTOR_DECRYPT_STR_0("\144\185\101\44\199\181", "\162\199\208\17\68"),LUAOBFUSACTOR_DECRYPT_STR_0("\249\231\81\5\252\28\89\21\197\245", "\123\177\134\63\97\140\110\48"),LUAOBFUSACTOR_DECRYPT_STR_0("\22\70\241\198\232\18\123\238\112\96\241\206\226\30\103\232\36\65\230\198\225", "\137\80\52\148\163\146\123\21")},[LUAOBFUSACTOR_DECRYPT_STR_0("\221\206\183\247\23\225", "\99\152\160\195\158")]={LUAOBFUSACTOR_DECRYPT_STR_0("\180\39\223\44\20\43\199\21\217\38", "\95\231\87\182\94\125"),LUAOBFUSACTOR_DECRYPT_STR_0("\112\200\246\48\25\110\26\86\221\235", "\115\56\169\152\84\105\28"),LUAOBFUSACTOR_DECRYPT_STR_0("\18\228\146\74\164\5\14\247\142\69\179\70\42\234\147", "\37\94\133\225\47\214")},[LUAOBFUSACTOR_DECRYPT_STR_0("\112\220\89\75\91", "\62\55\180\54")]={LUAOBFUSACTOR_DECRYPT_STR_0("\200\234\33\212\75\80\238\57\244\226", "\123\155\154\72\166\34\36\206"),LUAOBFUSACTOR_DECRYPT_STR_0("\224\205\61\166\63\207\209\63\227\17\195\210\40\166\55\199\203\45\177\32\213", "\69\166\191\88\195"),LUAOBFUSACTOR_DECRYPT_STR_0("\158\114\33\81\146\246\1\152\187", "\234\217\26\78\34\230\214\78")},[LUAOBFUSACTOR_DECRYPT_STR_0("\155\26\250\82\89", "\42\208\127\136\55")]={LUAOBFUSACTOR_DECRYPT_STR_0("\70\81\221\33\163\254", "\47\17\56\169\73\198\140"),LUAOBFUSACTOR_DECRYPT_STR_0("\10\52\82\71\189\146\43\59\72\80", "\224\66\85\60\35\205"),LUAOBFUSACTOR_DECRYPT_STR_0("\203\42\117\73\59\89\147\218\53\100", "\179\152\90\28\59\82\45")},[LUAOBFUSACTOR_DECRYPT_STR_0("\133\247\42\9\76\80\161\243\50", "\36\201\146\92\96\45")]={LUAOBFUSACTOR_DECRYPT_STR_0("\206\206\242\86\208\183\211\227\235", "\145\137\166\157\37\164\151\156"),LUAOBFUSACTOR_DECRYPT_STR_0("\41\17\72\111\207\52\57\11\78\104\210\122\9", "\20\110\121\39\28\187"),LUAOBFUSACTOR_DECRYPT_STR_0("\38\240\10\35\68\14\171\0\229\23", "\194\110\145\100\71\52\124")},[LUAOBFUSACTOR_DECRYPT_STR_0("\92\224\67\166\208\20\90\4\119", "\118\18\137\36\206\164\121\59")]={LUAOBFUSACTOR_DECRYPT_STR_0("\219\244\197\84\96\251\207\230\24\12\171", "\44\158\185\131\116"),LUAOBFUSACTOR_DECRYPT_STR_0("\127\154\212\101\210\179\49\110\133\197", "\17\44\234\189\23\187\199"),LUAOBFUSACTOR_DECRYPT_STR_0("\16\118\209\25\35\62\241\24\53", "\106\87\30\190")},[LUAOBFUSACTOR_DECRYPT_STR_0("\249\226\5", "\188\182\140\108\28\170\55\34")]={LUAOBFUSACTOR_DECRYPT_STR_0("\239\164\225\241\213\160\168\193\211\172", "\131\188\212\136"),LUAOBFUSACTOR_DECRYPT_STR_0("\175\25\116\35\76\128\5\118\102\98\140\6\97\35\68\136\31\100\52\83\154", "\54\233\107\17\70"),LUAOBFUSACTOR_DECRYPT_STR_0("\220\41\56\0\214\176\24\57\10\206\245\43\63\10\214", "\164\144\72\75\101")},[LUAOBFUSACTOR_DECRYPT_STR_0("\204\131\78\212\203\81\241", "\62\156\235\47\186\191")]={LUAOBFUSACTOR_DECRYPT_STR_0("\40\199\200\97\224\162\58\233\1\170\187", "\140\109\138\142\65\172\199\76"),LUAOBFUSACTOR_DECRYPT_STR_0("\223\95\185\25\249\211\189\249\74\164", "\212\151\62\215\125\137\161"),LUAOBFUSACTOR_DECRYPT_STR_0("\18\174\0\159\33\230\32\158\55", "\236\85\198\111")},[LUAOBFUSACTOR_DECRYPT_STR_0("\44\52\97\240\82\31\63\99", "\60\126\81\23\149")]={LUAOBFUSACTOR_DECRYPT_STR_0("\98\130\217\153\100\169\114\152\223\158\121\231\66", "\137\37\234\182\234\16"),LUAOBFUSACTOR_DECRYPT_STR_0("\220\38\127\115\32\71\155\166\245\75\12", "\195\153\107\57\83\108\34\237"),LUAOBFUSACTOR_DECRYPT_STR_0("\90\9\128\198\147\136\241\123\91\177\198\132\145\250\110\26\145\214\155\132\236", "\159\28\123\229\163\233\225")},[LUAOBFUSACTOR_DECRYPT_STR_0("\180\28\52\17\136\3", "\117\231\116\85")]={LUAOBFUSACTOR_DECRYPT_STR_0("\9\119\96\123\80\41\76\67\55\60\121", "\28\76\58\38\91"),LUAOBFUSACTOR_DECRYPT_STR_0("\159\166\46\164\245\147\216\170\167\53\190\239\212", "\143\216\206\65\215\129\179"),LUAOBFUSACTOR_DECRYPT_STR_0("\142\115\26\249\176\50\57\238\173\120\12\255\182\125\27", "\156\194\18\105")},[LUAOBFUSACTOR_DECRYPT_STR_0("\211\165\54\239\41", "\71\128\204\68\138")]={LUAOBFUSACTOR_DECRYPT_STR_0("\218\91\189\56\119\251", "\198\141\50\201\80\18\137"),LUAOBFUSACTOR_DECRYPT_STR_0("\222\94\132\78\72\43\178\207\65\149", "\146\141\46\237\60\33\95"),LUAOBFUSACTOR_DECRYPT_STR_0("\251\132\215\83\145\218\200\172\253\83\232", "\191\190\201\145\115\221")},[LUAOBFUSACTOR_DECRYPT_STR_0("\8\24\228\73\106\207\81\63\62\1", "\84\91\115\141\39\29\174\61")]={LUAOBFUSACTOR_DECRYPT_STR_0("\48\241\86\248\12\234\93\250\86\215\86\240\6\230\65\252\2\246\65\248\5", "\157\118\131\51"),LUAOBFUSACTOR_DECRYPT_STR_0("\201\86\50\184\69\62\217\76\52\191\88\112\233", "\30\142\62\93\203\49"),LUAOBFUSACTOR_DECRYPT_STR_0("\144\179\62\153\174\10\227\129\56\147", "\126\195\195\87\235\199")},[LUAOBFUSACTOR_DECRYPT_STR_0("\58\150\95\181\237\174\108", "\30\105\230\58\214\153\203")]={LUAOBFUSACTOR_DECRYPT_STR_0("\54\63\208\242\44\174\5\23\250\242\85", "\203\115\114\150\210\96"),LUAOBFUSACTOR_DECRYPT_STR_0("\245\254\89\58\201\229\82\56\147\216\89\50\195\233\78\62\199\249\78\58\192", "\95\179\140\60"),LUAOBFUSACTOR_DECRYPT_STR_0("\12\251\48\243\206\90\148\194\47\240\38\245\200\21\182", "\176\64\154\67\150\188\122\196")},[LUAOBFUSACTOR_DECRYPT_STR_0("\22\89\45\159\71\233", "\157\69\41\68\237\46")]={LUAOBFUSACTOR_DECRYPT_STR_0("\4\251\233\244\254\194\204\34\238\244", "\165\76\154\135\144\142\176"),LUAOBFUSACTOR_DECRYPT_STR_0("\3\37\72\20\7\0\142\54\36\83\14\29\71", "\217\68\77\39\103\115\32"),LUAOBFUSACTOR_DECRYPT_STR_0("\148\156\165\207\219\229\159\133\131\180", "\191\199\236\204\189\178\145")},[LUAOBFUSACTOR_DECRYPT_STR_0("\67\139\95\93\119", "\47\22\230\61")]={LUAOBFUSACTOR_DECRYPT_STR_0("\37\187\46\11\45\66\156\51\26", "\89\98\211\65\120"),LUAOBFUSACTOR_DECRYPT_STR_0("\147\195\30\87\15\238\39\173\205\7\87\30\186\24\173", "\119\223\162\109\50\125\206"),LUAOBFUSACTOR_DECRYPT_STR_0("\55\3\3\70\17\13\11\3\86\18", "\97\127\98\109\34")},[LUAOBFUSACTOR_DECRYPT_STR_0("\1\15\104", "\122\87\106\16\80\205")]={LUAOBFUSACTOR_DECRYPT_STR_0("\215\1\253\254\230\254", "\168\128\104\137\150\131\140\144"),LUAOBFUSACTOR_DECRYPT_STR_0("\148\180\215\228\188\13\37\21\177", "\103\211\220\184\151\200\45\106"),LUAOBFUSACTOR_DECRYPT_STR_0("\154\24\37\253\192\254\189\56\252\62\37\245\202\242\161\62\168\31\50\253\201", "\95\220\106\64\152\186\151\211")},[LUAOBFUSACTOR_DECRYPT_STR_0("\70\131\188\187\240\209\222", "\177\17\230\210\223\153\182")]={LUAOBFUSACTOR_DECRYPT_STR_0("\13\186\229\155\37\150\32\56\176", "\111\74\210\138\232\81\182"),LUAOBFUSACTOR_DECRYPT_STR_0("\58\22\56\144\212\7\42\12\62\151\201\73\26", "\39\125\126\87\227\160"),LUAOBFUSACTOR_DECRYPT_STR_0("\120\190\173\136\70\255\142\159\91\181\187\142\64\176\172", "\237\52\223\222")},[LUAOBFUSACTOR_DECRYPT_STR_0("\130\242\147\192", "\119\213\155\224\176\210")]={LUAOBFUSACTOR_DECRYPT_STR_0("\143\234\150\59\119\186", "\142\216\131\226\83\18\200\105"),LUAOBFUSACTOR_DECRYPT_STR_0("\3\5\232\199\221\161\29\244\32\14\254\193\219\238\63", "\134\79\100\155\162\175\129\77"),LUAOBFUSACTOR_DECRYPT_STR_0("\238\72\170\248\221\0\138\249\203", "\139\169\32\197")},[LUAOBFUSACTOR_DECRYPT_STR_0("\71\218\33\60\243\244", "\173\16\168\64\85\135\156\223")]={LUAOBFUSACTOR_DECRYPT_STR_0("\48\122\210\177\196\94\35\64\25\23\161", "\37\117\55\148\145\136\59\85"),LUAOBFUSACTOR_DECRYPT_STR_0("\27\22\160\35\37\87\131\52\56\29\182\37\35\24\161", "\70\87\119\211"),LUAOBFUSACTOR_DECRYPT_STR_0("\130\198\10\44\174\39\241\244\12\38", "\83\209\182\99\94\199")},[LUAOBFUSACTOR_DECRYPT_STR_0("\234\214\150\88\223\210\146", "\57\184\183\224")]={LUAOBFUSACTOR_DECRYPT_STR_0("\221\242\197\239\8\241\3\135\244\159\182", "\226\152\191\131\207\68\148\117"),LUAOBFUSACTOR_DECRYPT_STR_0("\41\91\180\192\92\14\11\159\221\77", "\53\122\43\221\178"),LUAOBFUSACTOR_DECRYPT_STR_0("\201\160\17\13\188\83\50\52\231\188\23\16\175", "\70\142\200\126\126\200\115\101")},[LUAOBFUSACTOR_DECRYPT_STR_0("\101\43\84\210\233\65", "\140\51\78\39\162")]={LUAOBFUSACTOR_DECRYPT_STR_0("\57\203\207\252\244\241", "\171\110\162\187\148\145\131\149"),LUAOBFUSACTOR_DECRYPT_STR_0("\150\5\36\93\86\241\58\57\71\86\184\3\44", "\34\209\109\75\46"),LUAOBFUSACTOR_DECRYPT_STR_0("\59\248\181\184\234\1\240\181\168\233", "\154\115\153\219\220")}};
 	local v964 = nil;
+	local v965;
+	local v966 = false;
+	local function v967(v1059)
+		if (v1059 and v1059:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\15\29\136\19\39", "\222\73\113\233\126\66\114"))) then
+			if ((v1059['Flame']['Attachment']['Fire']['Enabled'] == true) and not v1059['ItemPrompt']['Triggered']) then
+				v966 = true;
+			end
+		end
+		return v966;
+	end
 	task.spawn(function()
 		while task.wait(0.1) do
 			if v964 then
-				v68(LUAOBFUSACTOR_DECRYPT_STR_0("\14\25\134\13\54\82\170\48\1\140\68\98", "\222\73\113\233\126\66\114") .. v964, 2);
+				v68(LUAOBFUSACTOR_DECRYPT_STR_0("\163\20\174\17\3\60\2\213\148\25\251\66", "\172\228\124\193\98\119\28\118") .. v964, 2);
 				return;
 			end
 			if v22 then
-				if v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\167\29\175\22\51\117\5\205\134\16\164\39\27\121\21\216\150\19\175\11\20\111", "\172\228\124\193\98\119\28\118")) then
-					v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\30\216\137\91\53", "\46\89\176\230");
-				elseif v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\211\15\89\35\136\9\232\25", "\108\155\106\56\71\228")) then
-					v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\230\79\223\61\219\92\33\195", "\173\162\58\179\81\186\52\64");
-				elseif v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\23\78\232\206\88\13\71\50\69\209\201\103\45\97\31\114", "\37\94\32\158\167\43\100")) then
-					v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\242\63\75", "\214\164\90\51\81\123\145");
+				if v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\26\209\136\90\29\217\149\79\59\220\131\107\53\213\133\90\43\223\136\71\58\195", "\46\89\176\230")) then
+					v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\220\2\87\50\136", "\108\155\106\56\71\228");
+				elseif v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\234\95\210\53\214\81\51\222", "\173\162\58\179\81\186\52\64")) then
+					v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\26\85\242\203\74\12\68\48", "\37\94\32\158\167\43\100");
+				elseif v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\237\52\69\56\8\248\180\200\63\124\63\55\216\146\229\8", "\214\164\90\51\81\123\145")) then
+					v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\45\174\187", "\160\123\203\195");
 				end
 				if (v33() and v35) then
 					if (v22['Humanoid']['WalkSpeed'] > v35) then
-						if (v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\47\185\162\206\8\187\162\210\30\165\160\217", "\160\123\203\195")) ~= 1) then
-							v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\167\18\125", "\85\232\124\20\236\81");
+						if (v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\188\14\117\130\34\37\137\14\113\130\50\44", "\85\232\124\20\236\81")) ~= 1) then
+							v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\110\197\188", "\30\33\171\213\70");
 						else
-							v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\113\195\180\40\106\78\198", "\30\33\171\213\70");
+							v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\184\200\54\215\108\135\205", "\24\232\160\87\185");
 						end
 					end
 				end
-				if v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\174\193\33\214\106\129\212\50\235\119\135\205", "\24\232\160\87\185")) then
-					for v1461, v1462 in pairs(v955:GetChildren()) do
-						if (v1462['Name'] == v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\248\49\231\246\52\215\36\244\203\41\209\61", "\70\190\80\145\153"))) then
-							if ((v1462:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\99\243\234\238\43\37\13\67\227\245\251", "\108\55\150\135\158\78\87")) >= 10) and (v29 == 80)) then
-								v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\237\12\243\254\199\55", "\64\190\100\146\154\168");
+				if v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\248\49\231\246\52\215\36\244\203\41\209\61", "\70\190\80\145\153")) then
+					for v1472, v1473 in pairs(v955:GetChildren()) do
+						if (v1473['Name'] == v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\113\247\241\241\60\62\24\82\196\232\241\35", "\108\55\150\135\158\78\87"))) then
+							if ((v1473:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\234\1\255\234\205\50\223\16\231\232\205", "\64\190\100\146\154\168")) >= 10) and (v29 == 80)) then
+								v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\216\173\135\23\180\169", "\35\139\197\230\115\219\222\114");
 							end
 						end
 					end
 				end
-				if not v22['HumanoidRootPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\200\176\148\1\190\176\6\112\228\176\136\23", "\35\139\197\230\115\219\222\114")) then
-					v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\13\221\232\255\223", "\137\88\176\138\141\190\21");
-				end
-				if v0['Ragdolls']:FindFirstChildWhichIsA(LUAOBFUSACTOR_DECRYPT_STR_0("\11\255\78\205\189", "\209\70\144\42\168")) then
-					if (v22['Humanoid']['WalkSpeed'] > v36) then
-						v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\45\254\190\81\38\23", "\112\108\141\201\48\72");
+				if v33() then
+					for v1474, v1475 in pairs(v0['SaltPiles']:GetChildren()) do
+						if v1475:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\31\216\229\254\202\65\251\57\211\225\232\204", "\137\88\176\138\141\190\21")) then
+							v1475['GhostTracker']['Touched']:Connect(function(v1561)
+								if (v1561 == v22['HumanoidRootPart']) then
+									task.wait(0.5);
+									if not v1475:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\0\255\69\220\161\52\249\68\220", "\209\70\144\42\168")) then
+										v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\59\255\168\89\60\24", "\112\108\141\201\48\72");
+									end
+								end
+							end);
+						end
 					end
 				end
-				if v0['SaltPiles']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\239\72\4\71\54\108\201\68\19\96\34\114\223\109\30\93\38", "\30\171\33\119\51\67")) then
+				if not v22['HumanoidRootPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\232\84\5\65\38\112\223\114\24\70\45\122", "\30\171\33\119\51\67")) then
+					v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\99\163\25\192\140", "\152\54\206\123\178\237");
+				end
+				if v0['Ragdolls']:FindFirstChildWhichIsA(LUAOBFUSACTOR_DECRYPT_STR_0("\193\212\175\10\212", "\86\140\187\203\111\184\235\174")) then
+					if (v22['Humanoid']['WalkSpeed'] > v36) then
+						v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\236\27\97\5\73\202", "\39\173\104\22\100");
+					elseif (v22['Humanoid']['Walkspeed'] < v36) then
+						v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\105\219\72\118\8", "\211\34\190\58\19\123");
+					end
+				end
+				local v1245 = v820:GetPlayers();
+				local v1246;
+				local v1247 = math['huge'];
+				if (#v1245 >= 2) then
+					for v1476, v1477 in pairs(v1245) do
+						local v1478 = v1477:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\102\4\238\248\219\211", "\158\35\106\139\138\188\170"));
+						if (v1478 and (v1478 < v1247)) then
+							v1246 = v1477;
+						end
+					end
+				end
+				if (v1246 and v1246:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\46\204\230\78\113\20\200\228\65\64\2", "\37\102\169\135\42")) and (v1246:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\163\203\31\242\9\37\134\163\128\203\26", "\192\235\174\126\150\93\87\231")) == true)) then
+					v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\118\65\108\52\200", "\184\61\36\30\81\187\170");
+				end
+				if v0['SaltPiles']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\59\193\168\211\4\155\29\205\191\244\16\133\11\228\178\201\20", "\233\127\168\219\167\113")) then
 					if (v22['Humanoid']['WalkSpeed'] < v35) then
-						v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\119\189\12\211\131\255", "\152\54\206\123\178\237");
+						v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\127\103\156\115\57\202", "\61\62\20\235\18\87\173\124");
+					end
+				end
+				if v0:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\107\75\84\207\216\67\70\84\203\200\78\64\83", "\170\34\37\32\170")) then
+					for v1479, v1480 in pairs(v0['Interactables']:GetChildren()) do
+						if v1480:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\26\203\11\254\43\79\52\192\43\201\50\92\39\192\33", "\46\83\165\89\159\93")) then
+							v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\59\249\30\173\202\203\27", "\174\105\152\104\204\173");
+						end
+					end
+				end
+				if v0:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\141\72\237\11\176\69\230\28", "\111\223\41\138")) then
+					if v0['Ragdolls']:FindFirstChildWhichIsA(LUAOBFUSACTOR_DECRYPT_STR_0("\42\55\62\129\28", "\80\103\88\90\228\112\27\174")) then
+						task.wait(0.5);
+						for v1544, v1545 in pairs(v0['Ragdolls']:GetChildren()) do
+							v1545['HumanoidRootPart']['CFrame']['Changed']:Connect(function()
+								v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\122\223\248\168\251\11", "\97\62\166\154\202\142\96\101");
+							end);
+						end
+					end
+				end
+				v22['ChildAdded']:Connect(function(v1355)
+					if ((v1355['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\136\241\219\10", "\93\192\132\181\126")) and (v1355['PlaybackSpeed'] == 1.25)) then
+						v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\213\25\131\7\160\220\7", "\98\151\120\237\116\200\185");
+					end
+				end);
+				for v1356, v1357 in pairs(v951['Candles']:GetChildren()) do
+					if v1357:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\20\2\124\176\137\252\179\255\37\24\119\133\144\207\191\228\37\8\127\161", "\136\68\106\19\196\230\174\214")) then
+						v964 = LUAOBFUSACTOR_DECRYPT_STR_0("\204\52\72\144", "\157\155\93\59\224\188");
 					end
 				end
 			end
 		end
 	end);
-	local function v965(v1055, v1056)
-		local v1057 = {};
+	local function v968(v1060, v1061)
+		local v1062 = {};
 		if v964 then
-			v1057[v964] = true;
+			v1062[v964] = true;
 		else
-			for v1240, v1241 in pairs(v963) do
-				local v1242 = true;
-				for v1347, v1348 in pairs(v1056) do
-					if v1348 then
-						local v1463 = false;
-						for v1500, v1501 in ipairs(v1241) do
-							if (v1501 == v1347) then
-								v1463 = true;
+			for v1248, v1249 in pairs(v963) do
+				local v1250 = true;
+				for v1358, v1359 in pairs(v1061) do
+					if v1359 then
+						local v1481 = false;
+						for v1518, v1519 in ipairs(v1249) do
+							if (v1519 == v1358) then
+								v1481 = true;
 								break;
 							end
 						end
-						if not v1463 then
-							v1242 = false;
+						if not v1481 then
+							v1250 = false;
 							break;
 						end
 					end
 				end
-				if v1242 then
-					v1057[v1240] = true;
+				if v1250 then
+					v1062[v1248] = true;
 				end
 			end
 		end
-		for v1140, v1141 in ipairs(v1055:GetChildren()) do
-			if (v1141['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\220\212\184\28\209\137\194\51\203\211\164\28\204", "\86\140\187\203\111\184\235\174")) then
-				local v1243 = v1141['TextLabel']['Text'];
-				if not v1057[v1243] then
-					v1141:Destroy();
+		for v1145, v1146 in ipairs(v1060:GetChildren()) do
+			if (v1146['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\245\118\218\93\204\123\197\75\226\113\198\93\209", "\46\165\25\169")) then
+				local v1251 = v1146['TextLabel']['Text'];
+				if not v1062[v1251] then
+					v1146:Destroy();
 				end
 			end
 		end
-		local v1058 = 500;
-		for v1142 in pairs(v1057) do
-			local v1143 = false;
-			for v1183, v1184 in ipairs(v1055:GetChildren()) do
-				if ((v1184['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\253\7\101\23\78\207\4\115\35\79\194\27\98", "\39\173\104\22\100")) and (v1184['TextLabel']['Text'] == v1142)) then
-					v1143 = true;
-					v1184['LayoutOrder'] = v1058;
+		local v1063 = 500;
+		for v1147 in pairs(v1062) do
+			local v1148 = false;
+			for v1188, v1189 in ipairs(v1060:GetChildren()) do
+				if ((v1189['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\4\230\164\222\143\63\219\49\206\191\194\149\41", "\183\84\137\215\173\230\93")) and (v1189['TextLabel']['Text'] == v1147)) then
+					v1148 = true;
+					v1189['LayoutOrder'] = v1063;
 					break;
 				end
 			end
-			if not v1143 then
-				v60(v1142, v1055, v1058, 175, true, LUAOBFUSACTOR_DECRYPT_STR_0("\114\209\73\96\18\177\78\219\125\123\20\160\86", "\211\34\190\58\19\123"), false);
+			if not v1148 then
+				v60(v1147, v1060, v1063, 175, true, LUAOBFUSACTOR_DECRYPT_STR_0("\26\127\230\55\68\7\28\121\13\120\250\55\89", "\28\74\16\149\68\45\101\112"), false);
 			end
 		end
 	end
 	task.spawn(function()
 		while task.wait(0.1) do
-			v965(v870, v956);
+			v968(v870, v956);
 		end
 	end);
-	local v966 = v3:WaitForChild(LUAOBFUSACTOR_DECRYPT_STR_0("\105\5\254\248\210\203\242", "\158\35\106\139\138\188\170")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\46\198\235\78\64\20", "\37\102\169\135\42")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\187\207\25\243\46", "\192\235\174\126\150\93\87\231")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\109\69\121\52\143", "\184\61\36\30\81\187\170")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\51\205\189\211", "\233\127\168\219\167\113")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\110\117\140\119", "\61\62\20\235\18\87\173\124")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\103\83\73\206\207\76\70\69\254\211\82\64\83", "\170\34\37\32\170"));
-	local v967 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\18\208\45\240\125\67\50\215\50\191\56\88\58\193\60\241\62\75\32", "\46\83\165\89\159\93"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\46\240\7\191\217\250\8\250\33\162\203\193\88", "\174\105\152\104\204\173")], 8, 185, 85, _, 75, 100);
-	local v968 = false;
-	local v969 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\158\92\254\0\255\68\235\29\180\9\237\7\176\90\254\79\171\80\250\10\172", "\111\223\41\138"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\32\48\53\151\4\79\207\50\46\54\60\139\65", "\80\103\88\90\228\112\27\174")], 8, 185, 85, _, 75, 100);
+	local v969 = v3:WaitForChild(LUAOBFUSACTOR_DECRYPT_STR_0("\39\234\1\78\187\235\1", "\138\109\133\116\60\213")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\37\31\164\85\8\2", "\49\109\112\200")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\236\223\120\91\205", "\206\188\190\31\62\190")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\121\71\119\4\234", "\206\41\38\16\97\222\135\99")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\168\167\0\250", "\181\228\194\102\142\145\43")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\4\235\10\10", "\51\84\138\109\111\182\79")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\59\77\18\36\227\236\29\94\47\57\246\231\13", "\130\126\59\123\64\134"));
+	local v970 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\55\250\6\51\86\226\19\46\29\175\23\42\31\235\23\50\21\234\1", "\92\118\143\114"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\115\236\204\241\9\56\85\230\234\236\27\3\5", "\108\52\132\163\130\125")], 8, 185, 85, _, 75, 100);
+	local v971 = false;
+	local v972 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\218\7\162\34\129\26\250\0\189\109\198\31\244\1\162\109\213\14\235\23\165", "\119\155\114\214\77\161"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\144\43\239\170\163\23\225\187\158\45\230\182\230", "\217\215\67\128")], 8, 185, 85, _, 75, 100);
 	AG = false;
-	local v970;
-	v969['Activated']:Connect(function()
+	local v973;
+	v972['Activated']:Connect(function()
 		AG = not AG;
 		if AG then
 			task.spawn(function()
 				while AG do
-					for v1408, v1409 in pairs(v963) do
-						if (v956[v1409[1]] and v956[v1409[2]] and v956[v1409[3]]) then
-							v25 = v1408;
-							v32(v1408, true);
+					for v1419, v1420 in pairs(v963) do
+						if (v956[v1420[1]] and v956[v1420[2]] and v956[v1420[3]]) then
+							v25 = v1419;
+							v32(v1419, true);
 						end
 					end
 					v32(v964, true);
@@ -2071,159 +2138,159 @@ if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\212\114\231\4\57\139\244\118", "\234\15
 			end);
 		end
 	end);
-	local function v971()
+	local function v974()
 		if v22 then
-			for v1244, v1245 in pairs(v955:GetChildren()) do
-				if (v1245['Name'] == v34()) then
-					if v1245:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\124\201\239\164\234\9\11\6\124\201\226", "\97\62\166\154\202\142\96\101")) then
-						if v1245['BoundingBox']:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\130\229\198\27\13\161\246\193", "\93\192\132\181\126")) then
-							return v1245['BoundingBox']['Position'];
-						elseif v1245['BoundingBox']:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\209\23\129\16\173\203", "\98\151\120\237\116\200\185")) then
-							local v1560 = v1245['BoundingBox']:GetChildren();
-							local v1561 = Vector3.new(0, 0, 0);
-							for v1565, v1566 in pairs(v1560) do
-								v1561 = v1561 + v1566['Position'];
+			for v1252, v1253 in pairs(v955:GetChildren()) do
+				if (v1253['Name'] == v34()) then
+					if v1253:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\134\23\185\1\63\8\170\31\142\0\35", "\97\196\120\204\111\91")) then
+						if v1253['BoundingBox']:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\125\188\6\187\188\79\215\30", "\106\63\221\117\222\236\46\165")) then
+							return v1253['BoundingBox']['Position'];
+						elseif v1253['BoundingBox']:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\248\186\181\187\136\204", "\237\190\213\217\223")) then
+							local v1581 = v1253['BoundingBox']:GetChildren();
+							local v1582 = Vector3.new(0, 0, 0);
+							for v1586, v1587 in pairs(v1581) do
+								v1582 = v1582 + v1587['Position'];
 							end
-							return v1561;
+							return v1582;
 						end
 					end
 				end
 			end
 		end
 	end
-	local function v972(v1059, v1060)
-		if v1060 then
-			for v1246, v1247 in pairs(v1060:GetChildren()) do
-				if (v1247:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\13\30\118\169\168\207\187\237", "\136\68\106\19\196\230\174\214")) == v1059) then
-					return v1247;
+	local function v975(v1064, v1065)
+		if v1065 then
+			for v1254, v1255 in pairs(v1065:GetChildren()) do
+				if (v1255:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\145\84\243\177\136\185\77\243", "\198\216\32\150\220")) == v1064) then
+					return v1255;
 				end
 			end
 		end
 	end
-	local function v973()
-		v19['CFrame'] = v955:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\217\60\72\133\156\222\250\48\75", "\157\155\93\59\224\188"))['Pegboard']['Union']['CFrame'] + Vector3.new(0, 3, 0);
+	local function v976()
+		v19['CFrame'] = v955:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\216\77\91\129\16\99\252\113\234", "\28\154\44\40\228\48\32\157"))['Pegboard']['Union']['CFrame'] + Vector3.new(0, 3, 0);
 	end
-	local v974 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\245\117\200\77\192\57\192\90\192\116\218\14\204\119\137\90\205\124\137\73\205\118\218\90\133\107\198\65\200\55", "\46\165\25\169"), v880, 10, 185);
-	v974['Activated']:Connect(function()
+	local v977 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\116\52\251\65\95\167\95\33\65\53\233\2\83\233\22\33\76\61\186\69\82\232\69\33\4\42\245\77\87\169", "\85\36\88\154\34\58\135\54"), v880, 10, 185);
+	v977['Activated']:Connect(function()
 		if v33() then
-			v68(LUAOBFUSACTOR_DECRYPT_STR_0("\19\225\184\222\146\125\222\39\169\180\216\148\47\210\58\253\187\212\198\53\194\58\253\190\195\129\113\151\36\229\178\204\149\56\151\35\232\190\217\200", "\183\84\137\215\173\230\93"), 2);
+			v68(LUAOBFUSACTOR_DECRYPT_STR_0("\105\129\140\169\93\247\71\154\195\185\92\165\92\140\141\174\69\174\14\129\150\180\93\190\64\142\207\250\89\187\75\136\144\191\9\160\79\128\151\244", "\215\46\233\227\218\41"), 2);
 			return;
 		end
-		v19['Position'] = v971();
+		v19['Position'] = v974();
 		task.wait(0.1);
-		for v1144 = 1, 3 do
+		for v1149 = 1, 3 do
 			v12(1);
 			task.wait(0.1);
 			v14(1);
 			task.wait(0.2);
 		end
-		local v1063 = {};
-		for v1145, v1146 in pairs(v953:GetChildren()) do
-			if (v1146:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\3\100\240\41\99\4\29\121", "\28\74\16\149\68\45\101\112")) and v1146:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\32\234\16\89\185", "\138\109\133\116\60\213")) and v1146['PrimaryPart']) then
-				if not v972(v1146:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\36\4\173\92\35\17\165\84", "\49\109\112\200")), v2:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\232\209\112\82\205\134\211\210\123\91\204", "\206\188\190\31\62\190"))) then
-					table.insert(v1063, v1146);
+		local v1068 = {};
+		for v1150, v1151 in pairs(v953:GetChildren()) do
+			if (v1151:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\52\96\137\227\218\28\121\137", "\148\125\20\236\142")) and v1151:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\32\115\58\247\172", "\199\109\28\94\146\192\92")) and v1151['PrimaryPart']) then
+				if not v975(v1151:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\87\99\44\197\231\237\35\169", "\204\30\23\73\168\169\140\78")), v2:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\26\221\227\192\206\132\73\94\42\215\254", "\50\78\178\140\172\189\204\38"))) then
+					table.insert(v1068, v1151);
 				end
 			end
 		end
-		local v1064 = 0;
-		for v1147, v1148 in pairs(v1063) do
-			if (v1148 and v1148['PrimaryPart']) then
-				v19['Position'] = v1148['PrimaryPart']['Position'] + Vector3.new(0, 2, 0);
+		local v1069 = 0;
+		for v1152, v1153 in pairs(v1068) do
+			if (v1153 and v1153['PrimaryPart']) then
+				v19['Position'] = v1153['PrimaryPart']['Position'] + Vector3.new(0, 2, 0);
 				task.wait(0.2);
-				v10(v1148);
+				v10(v1153);
 				task.wait(0.2);
-				v1064 = v1064 + 1;
-				if (v1064 >= 3) then
-					v19['Position'] = v971();
+				v1069 = v1069 + 1;
+				if (v1069 >= 3) then
+					v19['Position'] = v974();
 					task.wait(0.3);
-					for v1464 = 1, 3 do
+					for v1482 = 1, 3 do
 						v12(1);
 						task.wait(0.1);
 						v14(1);
 						task.wait(0.2);
 					end
-					v1064 = 0;
+					v1069 = 0;
 				end
-				v19['Position'] = v971();
+				v19['Position'] = v974();
 				task.wait(0.1);
-				for v1350 = 1, 3 do
+				for v1361 = 1, 3 do
 					v12(1);
 					task.wait(0.1);
 					v14(1);
 					task.wait(0.2);
 				end
-				v973();
+				v976();
 				task.wait(0.2);
 			end
 		end
 	end);
-	local v975 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\104\83\100\14\254\244\19\167\91\79\100\65\188\232\27", "\206\41\38\16\97\222\135\99"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\163\170\9\253\229\127\212\134\139\8\232\254\26", "\181\228\194\102\142\145\43")], 9, 185, 85, _, 75, 100);
-	local v976 = false;
-	v975['Activated']:Connect(function()
-		v976 = not v976;
+	local v978 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\251\42\212\115\191\23\99\211\45\201\104\191\6\124\194", "\19\186\95\160\28\159\100"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\158\230\221\230\193\30\184\236\251\251\211\37\232", "\74\217\142\178\149\181")], 9, 185, 85, _, 75, 100);
+	local v979 = false;
+	v978['Activated']:Connect(function()
+		v979 = not v979;
 		if v33() then
-			v68(LUAOBFUSACTOR_DECRYPT_STR_0("\19\226\2\28\194\111\90\39\170\14\26\196\61\86\58\254\1\22\150\39\70\58\254\4\1\209\99\19\36\230\8\14\197\42\19\35\235\4\27\152", "\51\84\138\109\111\182\79"), 2);
+			v68(LUAOBFUSACTOR_DECRYPT_STR_0("\92\72\141\217\53\77\215\251\59\67\151\216\51\8\208\252\119\89\194\194\52\3\202\225\117\71\206\138\49\1\219\233\104\69\194\221\32\4\202\166", "\136\27\32\226\170\65\109\190"), 2);
 			return;
 		end
-		if v976 then
-			if (not v972(LUAOBFUSACTOR_DECRYPT_STR_0("\45\75\18\50\239\246\94\121\20\56", "\130\126\59\123\64\134"), v2:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\34\224\29\48\5\199\29\48\18\234\0", "\92\118\143\114"))) or not v972(LUAOBFUSACTOR_DECRYPT_STR_0("\103\244\202\240\20\24\20\198\204\250", "\108\52\132\163\130\125"), v17)) then
-				v19['CFrame'] = v972(LUAOBFUSACTOR_DECRYPT_STR_0("\200\2\191\63\200\3\187\48\185\53", "\119\155\114\214\77\161"), v953)['PrimaryPart']['CFrame'];
+		if v979 then
+			if (not v975(LUAOBFUSACTOR_DECRYPT_STR_0("\131\222\163\50\247\164\142\136\47\230", "\158\208\174\202\64"), v2:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\105\40\189\241\78\15\189\241\89\34\160", "\157\61\71\210"))) or not v975(LUAOBFUSACTOR_DECRYPT_STR_0("\203\76\120\23\186\69\176\218\83\105", "\144\152\60\17\101\211\49"), v17)) then
+				v19['CFrame'] = v975(LUAOBFUSACTOR_DECRYPT_STR_0("\253\90\227\245\177\213\142\104\229\255", "\161\174\42\138\135\216"), v953)['PrimaryPart']['CFrame'];
 			end
-			while v976 and ((v956[LUAOBFUSACTOR_DECRYPT_STR_0("\132\51\233\171\190\55\160\155\184\59", "\217\215\67\128")] == false) or not v956[LUAOBFUSACTOR_DECRYPT_STR_0("\151\8\165\29\50\21\228\58\163\23", "\97\196\120\204\111\91")]) do
+			while v979 and ((v956[LUAOBFUSACTOR_DECRYPT_STR_0("\254\168\3\210\196\172\74\226\194\160", "\160\173\216\106")] == false) or not v956[LUAOBFUSACTOR_DECRYPT_STR_0("\186\105\120\72\182\231\201\91\126\66", "\147\233\25\17\58\223")]) do
 				if v33() then
-					v973();
+					v976();
 				end
-				if not v972(LUAOBFUSACTOR_DECRYPT_STR_0("\108\173\28\172\133\90\133\40\80\165", "\106\63\221\117\222\236\46\165"), v2:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\234\186\182\179\158\246\186\181\187\136\204", "\237\190\213\217\223"))) then
-					v10(v972(LUAOBFUSACTOR_DECRYPT_STR_0("\139\80\255\174\175\172\0\212\179\190", "\198\216\32\150\220"), v953));
+				if not v975(LUAOBFUSACTOR_DECRYPT_STR_0("\125\60\9\9\217\34\14\14\15\3", "\86\46\76\96\123\176"), v2:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\137\163\113\224\182\104\131\42\185\169\108", "\70\221\204\30\140\197\32\236"))) then
+					v10(v975(LUAOBFUSACTOR_DECRYPT_STR_0("\208\37\94\231\234\33\23\215\236\45", "\149\131\85\55"), v953));
 				end
-				if v972(LUAOBFUSACTOR_DECRYPT_STR_0("\201\92\65\150\89\84\189\94\245\84", "\28\154\44\40\228\48\32\157"), v2:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\112\55\245\78\73\207\89\57\64\61\232", "\85\36\88\154\34\58\135\54"))) then
+				if v975(LUAOBFUSACTOR_DECRYPT_STR_0("\42\173\58\185\15\78\180\121\22\165", "\59\121\221\83\203\102\58\148"), v2:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\145\27\53\164\34\115\170\24\62\173\35", "\59\197\116\90\200\81"))) then
 					v17:PivotTo(v22:GetPivot() * CFrame.new(0, 0, 10));
-					local v1411 = v3:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\102\134\151\184\72\165", "\215\46\233\227\218\41")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\46\120\131\250\231", "\148\125\20\236\142"));
-					if v1411 then
-						for v1526, v1527 in pairs(v1411:GetChildren()) do
-							if (v1527:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\36\104\59\255\142\61\170\8", "\199\109\28\94\146\192\92")) and (v1527['ItemName']['Text'] == LUAOBFUSACTOR_DECRYPT_STR_0("\77\103\32\218\192\248\110\142\113\111", "\204\30\23\73\168\169\140\78"))) then
-								v12(tonumber(string.match(v1527.Name, LUAOBFUSACTOR_DECRYPT_STR_0("\107\214\167", "\50\78\178\140\172\189\204\38"))));
+					local v1422 = v3:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\213\167\251\192\63\239", "\94\157\200\143\162")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\205\55\252\182\237", "\194\158\91\147"));
+					if v1422 then
+						for v1546, v1547 in pairs(v1422:GetChildren()) do
+							if (v1547:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\133\6\30\191\246\244\161\23", "\149\204\114\123\210\184")) and (v1547['ItemName']['Text'] == LUAOBFUSACTOR_DECRYPT_STR_0("\240\44\116\236\51\206\10\225\51\101", "\42\163\92\29\158\90\186"))) then
+								v12(tonumber(string.match(v1547.Name, LUAOBFUSACTOR_DECRYPT_STR_0("\132\34\12", "\95\161\70\39\122\69\170"))));
 							end
 						end
 					end
-				elseif v972(LUAOBFUSACTOR_DECRYPT_STR_0("\233\47\201\110\246\16\51\248\48\216", "\19\186\95\160\28\159\100"), v17) then
+				elseif v975(LUAOBFUSACTOR_DECRYPT_STR_0("\128\10\252\63\78\208\103\145\21\237", "\71\211\122\149\77\39\164"), v17) then
 					v26();
 					task.wait(0.1);
 					v16();
 				end
 				task.wait(0.1);
 			end
-			for v1249, v1250 in pairs(v3:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\145\225\198\247\212\56", "\74\217\142\178\149\181")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\72\76\141\222\50", "\136\27\32\226\170\65\109\190")):GetChildren()) do
-				if (v1250:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\153\218\175\45\208\177\195\175", "\158\208\174\202\64")) and (v1250['ItemName']['Text'] == LUAOBFUSACTOR_DECRYPT_STR_0("\110\55\187\239\84\51\242\223\82\63", "\157\61\71\210"))) then
-					v14(tonumber(string.match(v1250.Name, LUAOBFUSACTOR_DECRYPT_STR_0("\189\88\58", "\144\152\60\17\101\211\49"))));
+			for v1257, v1258 in pairs(v3:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\15\136\231\212\132\53", "\229\71\231\147\182")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\179\198\222\217\147", "\173\224\170\177")):GetChildren()) do
+				if (v1258:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\81\37\136\16\141\115\246\125", "\155\24\81\237\125\195\18")) and (v1258['ItemName']['Text'] == LUAOBFUSACTOR_DECRYPT_STR_0("\59\51\65\68\177\82\16\42\44\80", "\48\104\67\40\54\216\38"))) then
+					v14(tonumber(string.match(v1258.Name, LUAOBFUSACTOR_DECRYPT_STR_0("\66\87\114", "\149\103\51\89"))));
 				end
 			end
-			v973();
+			v976();
 		else
-			v973();
+			v976();
 		end
 	end);
-	local v977 = false;
-	local v978 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\224\69\170\226\174\200\202\79\228\228\189\129\195\69\238\226", "\161\174\42\138\135\216"), v42.AutoFarmTabInfo1, 2, 175, 80, nil, 70, 100);
-	v978['Activated']:Connect(function()
-		v977 = not v977;
-	end);
-	local v979 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\236\173\30\207\203\185\24\205", "\160\173\216\106"), v42.AutoFarmTabInfo1, 1, 175, 80, nil, 70, 100);
 	local v980 = false;
-	v979['Activated']:Connect(function()
+	local v981 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\83\74\70\137\107\76\2\137\115\70\3\204\112\74\2\137", "\236\29\37\102"), v42.AutoFarmTabInfo1, 2, 175, 80, nil, 70, 100);
+	v981['Activated']:Connect(function()
 		v980 = not v980;
-		if v980 then
-			while v980 do
-				if v977 then
-					for v1465, v1466 in pairs(v963) do
-						if (v956[v1466[1]] and v956[v1466[2]] and v956[v1466[3]]) then
-							v32(v1465, true);
+	end);
+	local v982 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\150\54\150\60\81\182\49\143", "\55\215\67\226\83"), v42.AutoFarmTabInfo1, 1, 175, 80, nil, 70, 100);
+	local v983 = false;
+	v982['Activated']:Connect(function()
+		v983 = not v983;
+		if v983 then
+			while v983 do
+				if v980 then
+					for v1483, v1484 in pairs(v963) do
+						if (v956[v1484[1]] and v956[v1484[2]] and v956[v1484[3]]) then
+							v32(v1483, true);
 						end
 					end
 					if v22 then
-						for v1528, v1529 in ipairs(SpecialGhosts) do
-							if v22:GetAttribute(v1529.Attribute) then
-								v32(v1529.Name, true);
+						for v1548, v1549 in ipairs(SpecialGhosts) do
+							if v22:GetAttribute(v1549.Attribute) then
+								v32(v1549.Name, true);
 							end
 						end
 					end
@@ -2235,16 +2302,16 @@ if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\212\114\231\4\57\139\244\118", "\234\15
 			end
 		end
 	end);
-	local v981 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\168\108\101\85\255\246\154\122\112\74\186\179\142\113\126\73\171\179\129\108\127\78\172", "\147\233\25\17\58\223"), v880, 9, 175, 85, _, 75, 100);
-	local v982 = false;
-	v981['Activated']:Connect(function()
-		v982 = not v982;
-		if v982 then
-			while v982 do
+	local v984 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\196\106\217\139\244\211\246\124\204\148\177\150\226\119\194\151\160\150\237\106\195\144\167", "\182\133\31\173\228\212"), v880, 9, 175, 85, _, 75, 100);
+	local v985 = false;
+	v984['Activated']:Connect(function()
+		v985 = not v985;
+		if v985 then
+			while v985 do
 				if v955 then
-					v22['HumanoidRootPart']['ChildAdded']:Connect(function(v1467)
-						if (v1467:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\125\35\21\21\212", "\86\46\76\96\123\176")) and (v1467['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\149\185\112\248", "\70\221\204\30\140\197\32\236"))) then
-							v973();
+					v22['HumanoidRootPart']['ChildAdded']:Connect(function(v1485)
+						if (v1485:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\24\13\241\186\214", "\191\75\98\132\212\178\47\193")) and (v1485['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\151\82\230\243", "\159\223\39\136\135\104\170"))) then
+							v976();
 						end
 					end);
 				end
@@ -2252,52 +2319,53 @@ if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\212\114\231\4\57\139\244\118", "\234\15
 			end
 		end
 	end);
-	local v983 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\205\58\67\252\229\44\23\253\246\59\67\230", "\149\131\85\55"), v880, 11, 175, 85, _, 75, 100);
-	local v984 = false;
-	v983['Activated']:Connect(function()
-		v984 = not v984;
-		if v984 then
-			while v984 do
-				v22:GetAttributeChangedSignal(LUAOBFUSACTOR_DECRYPT_STR_0("\49\168\61\191\15\84\243", "\59\121\221\83\203\102\58\148")):Connect(function()
-					if (v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\141\1\52\188\56\85\162", "\59\197\116\90\200\81")) == true) then
-						v68(LUAOBFUSACTOR_DECRYPT_STR_0("\218\160\224\209\42\189\160\250\204\42\189\160\238\209\126\238\188\238\208\42\248\172\161", "\94\157\200\143\162"), 2);
-					else
-						v68(LUAOBFUSACTOR_DECRYPT_STR_0("\217\51\252\177\234\123\251\183\240\47\179\170\255\40\179\167\240\63\246\166\176", "\194\158\91\147"), 2);
-					end
-				end);
-				task.wait(0.1);
-			end
+	local v986 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\117\248\89\242\78\6\201\83\226\67\239\91", "\233\59\151\45\155\40\127"), v880, 11, 175, 85, _, 75, 100);
+	local v987 = false;
+	local v988;
+	v986['Activated']:Connect(function()
+		v987 = not v987;
+		if v987 then
+			v988 = v22:GetAttributeChangedSignal(LUAOBFUSACTOR_DECRYPT_STR_0("\142\21\240\80\175\14\249", "\36\198\96\158")):Connect(function()
+				if (v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\12\218\4\21\119\241\16", "\103\68\175\106\97\30\159\119")) == true) then
+					v68(LUAOBFUSACTOR_DECRYPT_STR_0("\0\229\19\18\51\173\20\20\41\249\92\9\38\254\92\18\51\236\14\21\34\233\82", "\97\71\141\124"), 2);
+				else
+					v68(LUAOBFUSACTOR_DECRYPT_STR_0("\140\209\189\45\37\235\209\167\48\37\235\209\179\45\113\174\215\182\59\53\229", "\81\203\185\210\94"), 2);
+				end
+			end);
+		elseif v988 then
+			v988:Disconnect();
+			v988 = nil;
 		end
 	end);
-	v967['Activated']:Connect(function()
-		v968 = not v968;
-		if v968 then
-			while v968 do
-				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\137\63\61\242\244\240\186\23\23\242\141", "\149\204\114\123\210\184")] then
-					v32(LUAOBFUSACTOR_DECRYPT_STR_0("\230\17\91\210\63\204\79\207\105", "\42\163\92\29\158\90\186"));
+	v970['Activated']:Connect(function()
+		v971 = not v971;
+		if v971 then
+			while v971 do
+				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\244\245\10\237\120\87\166\21\221\152\121", "\112\177\184\76\205\52\50\208")] then
+					v32(LUAOBFUSACTOR_DECRYPT_STR_0("\156\241\116\129\165\175\217\94\248", "\192\217\188\50\205"));
 				end
-				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\233\39\73\30\53\216\54\207\50\84", "\95\161\70\39\122\69\170")] then
-					v32(LUAOBFUSACTOR_DECRYPT_STR_0("\155\27\251\41\87\214\46\189\14\230", "\71\211\122\149\77\39\164"));
+				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\45\76\88\61\218\23\68\88\45\217", "\170\101\45\54\89")] then
+					v32(LUAOBFUSACTOR_DECRYPT_STR_0("\139\169\14\81\179\186\9\91\183\187", "\53\195\200\96"));
 				end
-				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\20\151\250\196\140\51\199\209\217\157", "\229\71\231\147\182")] then
-					v32(LUAOBFUSACTOR_DECRYPT_STR_0("\179\218\216\223\137\222\243\194\152", "\173\224\170\177"));
+				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\158\77\55\42\139\90\237\127\49\32", "\46\205\61\94\88\226")] then
+					v32(LUAOBFUSACTOR_DECRYPT_STR_0("\58\212\16\177\0\208\59\172\17", "\195\105\164\121"));
 				end
-				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\95\57\130\14\183\50\212\106\51", "\155\24\81\237\125\195\18")] then
-					v32(LUAOBFUSACTOR_DECRYPT_STR_0("\47\43\71\69\172\105\66\10", "\48\104\67\40\54\216\38"));
+				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\123\177\211\92\23\171\115\171\222", "\139\60\217\188\47\99")] then
+					v32(LUAOBFUSACTOR_DECRYPT_STR_0("\45\245\127\230\2\55\24\255", "\120\106\157\16\149\118"));
 				end
-				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\33\65\60\240\29\90\55\242\71\103\60\248\23\86\43\244\19\70\43\240\20", "\149\103\51\89")] then
-					v32(LUAOBFUSACTOR_DECRYPT_STR_0("\91\87\3\137\103\76\8\139\73\64\11\156\120\87\7\152\104\87\3\159", "\236\29\37\102"));
+				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\82\205\47\190\164\176\194\115\159\30\190\179\169\201\102\222\62\174\172\188\223", "\172\20\191\74\219\222\217")] then
+					v32(LUAOBFUSACTOR_DECRYPT_STR_0("\21\209\130\18\111\58\205\128\35\112\62\211\130\5\116\39\214\149\18\102", "\21\83\163\231\119"));
 				end
-				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\144\43\141\32\67\247\20\144\58\67\190\45\133", "\55\215\67\226\83")] then
-					v32(LUAOBFUSACTOR_DECRYPT_STR_0("\194\119\194\151\160\225\247\118\217\141\186\209", "\182\133\31\173\228\212"));
+				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\26\28\254\51\171\176\176\201\52\0\248\46\184", "\187\93\116\145\64\223\144\231")] then
+					v32(LUAOBFUSACTOR_DECRYPT_STR_0("\82\24\12\165\71\27\103\25\23\191\93\43", "\76\21\112\99\214\51"));
 				end
-				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\7\3\247\177\192\15\145\205\36\8\225\183\198\64\179", "\191\75\98\132\212\178\47\193")] then
-					v32(LUAOBFUSACTOR_DECRYPT_STR_0("\147\70\251\226\26\250\237\176\77\237\228\28\197\237", "\159\223\39\136\135\104\170"));
+				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\218\183\216\32\152\237\198\164\196\47\143\174\226\185\217", "\205\150\214\171\69\234")] then
+					v32(LUAOBFUSACTOR_DECRYPT_STR_0("\251\232\244\75\197\217\245\65\221\236\228\90\216\251", "\46\183\137\135"));
 				end
-				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\108\254\89\243\77\13", "\233\59\151\45\155\40\127")] then
-					v32(LUAOBFUSACTOR_DECRYPT_STR_0("\145\9\234\76\163\18", "\36\198\96\158"));
+				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\193\64\65\177\83\228", "\54\150\41\53\217")] then
+					v32(LUAOBFUSACTOR_DECRYPT_STR_0("\74\81\25\12\225\217", "\171\29\56\109\100\132"));
 				end
-				if not v968 then
+				if not v971 then
 					break;
 				end
 				task.wait(0.1);
@@ -2305,192 +2373,192 @@ if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\212\114\231\4\57\139\244\118", "\234\15
 		end
 	end);
 	if v955 then
-		v955:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\6\206\25\4\62\220\22\10\52", "\103\68\175\106\97\30\159\119")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\19\255\9\2\44", "\97\71\141\124"));
-		if v955:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\137\216\161\59\113\136\216\191\46", "\81\203\185\210\94"))['Truck'] then
-			local v1251 = v955:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\243\217\63\168\20\113\177\29\193", "\112\177\184\76\205\52\50\208"))['Truck']['Primary']['CFrame'];
-			if (v1251 == CFrame.new(28.9760437, 3.68303895, -67.749176, 0, -1, 0, 0, 0, -1, 1, 0, 0)) then
-				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\159\217\92\186\161\160\156\118\191\169\175\217", "\192\217\188\50\205");
-			elseif (v1251 == CFrame.new(23.4483738, -30.1618786, -64.6128387, 0, 1, 0, 0, 0, -1, -1, 0, 0)) then
-				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\47\88\88\48\218\0\95\22\11\197\4\73", "\170\101\45\54\89");
-			elseif (v1251 == CFrame.new(25.9909477, 3.73003864, -111.618744, 1, 0, 0, 0, 0, -1, 0, 1, 0)) then
-				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\143\161\14\86\172\164\14\21\144\188\18\80\166\188", "\53\195\200\96");
-			elseif (v1251 == CFrame.new(152.138535, -6.1329999, -44.4111786, -0.998979926, 0.0451572537, -4.936009645462036E-07, -4.936009645462036E-07, -2.181529998779297E-05, -1, -0.0451572537, -0.998979926, 2.181529998779297E-05)) then
-				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\143\82\58\61\133\79", "\46\205\61\94\88\226");
-			elseif (v1251 == CFrame.new(70.0683899, 13.7799997, 157.604065, 0.981209278, -0.192946643, -1.7136335372924805E-06, 1.7136335372924805E-06, 1.7583370208740234E-05, -0.99999994, 0.192946643, 0.981209219, 1.7583370208740234E-05)) then
-				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\37\205\21\170\4\132\53\162\7\193", "\195\105\164\121");
-			elseif (v1251 == CFrame.new(-33.8106422, 19.6800022, -15.1539326, -0.709856749, 0.704345942, -4.857778549194336E-06, -4.857778549194336E-06, -1.1801719665527344E-05, -0.99999994, -0.704345942, -0.709856808, 1.1861324310302734E-05)) then
-				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\127\184\218\74", "\139\60\217\188\47\99");
-			elseif (v1251 == CFrame.new(64.6408768, 89.4869995, -21.5065556, -0.923553705, 0.383469343, 3.6954879760742188E-06, 3.6954879760742188E-06, 1.8477439880371094E-05, -1, -0.383469343, -0.923553586, -1.8477439880371094E-05)) then
-				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\40\239\121\241\17\29\29\242\127\241", "\120\106\157\16\149\118");
-			elseif (v1251 == CFrame.new(23.5208073, -11.0691805, 196.567566, 0.846615791, 0.532204568, 8.344650268554688E-06, -8.344650268554688E-06, 2.8967857360839844E-05, -1, -0.532204568, 0.846615851, 2.8967857360839844E-05)) then
-				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\68\205\35\168\177\183", "\172\20\191\74\219\222\217");
-			elseif (v1251 == CFrame.new(-5.04826546, 4.31711769, -89.8415756, -1, 0, LUAOBFUSACTOR_DECRYPT_STR_0("\126\147", "\21\83\163\231\119"), 0, 0, -1, 0, -1, LUAOBFUSACTOR_DECRYPT_STR_0("\112\68", "\187\93\116\145\64\223\144\231"))) then
-				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\70\19\11\185\92\32", "\76\21\112\99\214\51");
-			elseif (v1251 == CFrame.new()) then
-				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\215\165\210\41\159\160", "\205\150\214\171\69\234");
-			elseif (v1251 == CFrame.new()) then
-				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\248\232\236\92\222\237\224\75", "\46\183\137\135");
+		v955:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\215\227\54\215\181\193\36\223\229", "\178\149\130\69")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\71\94\241\23\119", "\138\19\44\132\116\28"));
+		if v955:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\237\223\42\223\143\253\56\215\223", "\186\175\190\89"))['Truck'] then
+			local v1259 = v955:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\231\6\38\165\232\230\6\56\176", "\200\165\103\85\192"))['Truck']['Primary']['CFrame'];
+			if (v1259 == CFrame.new(28.9760437, 3.68303895, -67.749176, 0, -1, 0, 0, 0, -1, 1, 0, 0)) then
+				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\136\224\189\76\68\47\79\118\188\236\165\94", "\50\206\133\211\59\37\86\111");
+			elseif (v1259 == CFrame.new(23.4483738, -30.1618786, -64.6128387, 0, 1, 0, 0, 0, -1, -1, 0, 0)) then
+				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\235\244\11\22\18\196\243\69\45\13\192\229", "\98\161\129\101\127");
+			elseif (v1259 == CFrame.new(25.9909477, 3.73003864, -111.618744, 1, 0, 0, 0, 0, -1, 0, 1, 0)) then
+				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\161\237\65\195\93\113\74\108\190\240\93\197\87\105", "\76\237\132\47\160\50\29\36");
+			elseif (v1259 == CFrame.new(152.138535, -6.1329999, -44.4111786, -0.998979926, 0.0451572537, -4.936009645462036E-07, -4.936009645462036E-07, -2.181529998779297E-05, -1, -0.0451572537, -0.998979926, 2.181529998779297E-05)) then
+				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\153\221\180\222\188\211", "\187\219\178\208");
+			elseif (v1259 == CFrame.new(70.0683899, 13.7799997, 157.604065, 0.981209278, -0.192946643, -1.7136335372924805E-06, 1.7136335372924805E-06, 1.7583370208740234E-05, -0.99999994, 0.192946643, 0.981209219, 1.7583370208740234E-05)) then
+				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\96\218\140\215\13\141\96\210\142\219", "\173\44\179\224\190\96");
+			elseif (v1259 == CFrame.new(-33.8106422, 19.6800022, -15.1539326, -0.709856749, 0.704345942, -4.857778549194336E-06, -4.857778549194336E-06, -1.1801719665527344E-05, -0.99999994, -0.704345942, -0.709856808, 1.1861324310302734E-05)) then
+				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\230\164\112\88", "\227\165\197\22\61");
+			elseif (v1259 == CFrame.new(64.6408768, 89.4869995, -21.5065556, -0.923553705, 0.383469343, 3.6954879760742188E-06, 3.6954879760742188E-06, 1.8477439880371094E-05, -1, -0.383469343, -0.923553586, -1.8477439880371094E-05)) then
+				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\238\91\87\172\203\76\73\167\195\77", "\200\172\41\62");
+			elseif (v1259 == CFrame.new(23.5208073, -11.0691805, 196.567566, 0.846615791, 0.532204568, 8.344650268554688E-06, -8.344650268554688E-06, 2.8967857360839844E-05, -1, -0.532204568, 0.846615851, 2.8967857360839844E-05)) then
+				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\61\254\207\162\167\3", "\200\109\140\166\209");
+			elseif (v1259 == CFrame.new(-5.04826546, 4.31711769, -89.8415756, -1, 0, LUAOBFUSACTOR_DECRYPT_STR_0("\143\21", "\48\162\37\185"), 0, 0, -1, 0, -1, LUAOBFUSACTOR_DECRYPT_STR_0("\99\81", "\39\78\97\116\202"))) then
+				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\136\237\253\65\237\41", "\69\219\142\149\46\130");
+			elseif (v1259 == CFrame.new()) then
+				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\237\91\11\66\34\193", "\87\172\40\114\46");
+			elseif (v1259 == CFrame.new()) then
+				v24 = LUAOBFUSACTOR_DECRYPT_STR_0("\89\236\233\170\12\114\234\231", "\101\22\141\130\216");
 			end
 		end
 	end
-	local v985;
-	v63(LUAOBFUSACTOR_DECRYPT_STR_0("\215\77\81\176\66\255\70\91\170", "\54\150\41\53\217"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\78\123\43", "\171\29\56\109\100\132")], -5, 150);
-	local v986 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\216\227\53\146\211\247\41\222\247\240\44\213\253\246", "\178\149\130\69"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\64\111\194", "\138\19\44\132\116\28")], -4, 150, 75, 0, 75, 75);
-	local function v987(v1065, v1066, v1067, v1068, v1069)
+	local v989;
+	v63(LUAOBFUSACTOR_DECRYPT_STR_0("\87\45\233\169\95\126\121\39\254", "\23\22\73\141\192\43"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\222\206\193", "\153\141\141\135\162")], -5, 150);
+	local v990 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\25\22\75\189\134\220\91\56\21\73\244\167\193\67", "\55\84\119\59\157\192\169"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\13\119\91", "\69\94\52\29\171\132\208\99")], -4, 150, 75, 0, 75, 75);
+	local function v991(v1070, v1071, v1072, v1073, v1074)
 		if not evidence then
 			evidence = true;
 		end
-		if not v1068 then
-			v1068 = LUAOBFUSACTOR_DECRYPT_STR_0("\234\200\48\222\202\208\58\223", "\186\175\190\89");
+		if not v1073 then
+			v1073 = LUAOBFUSACTOR_DECRYPT_STR_0("\252\1\120\167\237\215\20\116", "\136\185\119\17\195");
 		end
-		if not v1069 then
-			v1069 = false;
+		if not v1074 then
+			v1074 = false;
 		end
-		local v1070;
-		local v1071;
-		local v1072;
-		local v1073;
-		if not v1066 then
-			if (v1065:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\224\20\37\242", "\200\165\103\85\192")) and not v1069) then
+		local v1075;
+		local v1076;
+		local v1077;
+		local v1078;
+		if not v1071 then
+			if (v1070:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\27\207\10\224", "\233\94\188\122\210\214")) and not v1074) then
 				return;
 			end
-			if not v1069 then
-				v1070 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\140\236\191\87\71\57\14\64\170\194\166\82", "\50\206\133\211\59\37\86\111"));
-				v1070['Parent'] = v1065;
-				v1070['AlwaysOnTop'] = true;
-				v1070['Name'] = LUAOBFUSACTOR_DECRYPT_STR_0("\228\242\21\77", "\98\161\129\101\127");
-				v1070['Size'] = UDim2.new(4, 0, 1, 0);
-				v1070['SizeOffset'] = Vector2.new(0, 2.5);
-				v1071 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\171\246\78\205\87", "\76\237\132\47\160\50\29\36"), v1070);
-				v1071['Size'] = UDim2.new(1, 0, 1, 0);
-				v1071['BackgroundTransparency'] = 1;
-				v65(v1071, LUAOBFUSACTOR_DECRYPT_STR_0("\159\211\162\208\137\215\180\137", "\187\219\178\208"));
-				v1072 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\120\214\152\202\44\204\78\214\140", "\173\44\179\224\190\96"), v1070);
-				v1072['TextColor3'] = Color3.fromRGB(255, 255, 255);
-				v1072['Size'] = UDim2.new(1, 0, 0.7, 0);
-				v1072['BackgroundTransparency'] = 1;
-				v1072['TextTransparency'] = 1;
-				v1072['TextScaled'] = true;
-				v1072['Text'] = v1067;
-				v41(0.25, v1071, 0);
-				v41(0.25, v1072, 0);
+			if not v1074 then
+				v1075 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\118\26\197\136\190\179\214\70\23\238\145\181", "\183\52\115\169\228\220\220"));
+				v1075['Parent'] = v1070;
+				v1075['AlwaysOnTop'] = true;
+				v1075['Name'] = LUAOBFUSACTOR_DECRYPT_STR_0("\245\77\247\141", "\221\176\62\135\191\166\37\127");
+				v1075['Size'] = UDim2.new(4, 0, 1, 0);
+				v1075['SizeOffset'] = Vector2.new(0, 2.5);
+				v1076 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\46\55\92\248\13", "\149\104\69\61"), v1075);
+				v1076['Size'] = UDim2.new(1, 0, 1, 0);
+				v1076['BackgroundTransparency'] = 1;
+				v65(v1076, LUAOBFUSACTOR_DECRYPT_STR_0("\127\212\16\215\105\208\6\142", "\188\59\181\98"));
+				v1077 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\158\171\46\176\94\29\246\30\166", "\123\202\206\86\196\18\124\148"), v1075);
+				v1077['TextColor3'] = Color3.fromRGB(255, 255, 255);
+				v1077['Size'] = UDim2.new(1, 0, 0.7, 0);
+				v1077['BackgroundTransparency'] = 1;
+				v1077['TextTransparency'] = 1;
+				v1077['TextScaled'] = true;
+				v1077['Text'] = v1072;
+				v41(0.25, v1076, 0);
+				v41(0.25, v1077, 0);
 				task.wait(0.25);
-				local v1366 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
-				local v1367 = v4:Create(v1071, v1366, {[LUAOBFUSACTOR_DECRYPT_STR_0("\246\172\108\88", "\227\165\197\22\61")]=UDim2.new(1, 0, 2, 0)});
-				v1367:Play();
-				v1367['Completed']:Connect(function()
-					v1073 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\248\76\70\188\224\72\92\173\192", "\200\172\41\62"), v1070);
-					v1073['Name'] = LUAOBFUSACTOR_DECRYPT_STR_0("\40\250\207\181\173\3\239\195", "\200\109\140\166\209");
-					v1073['TextColor3'] = Color3.fromRGB(255, 255, 255);
-					v1073['Size'] = UDim2.new(1, 0, 0.7, 0);
-					v1073['BackgroundTransparency'] = 1;
-					v1073['MaxVisibleGraphemes'] = 0;
-					v1073['Position'] = UDim2.new(0, 0, 0.99, 0);
-					v1073['TextScaled'] = true;
-					v1073['Text'] = v1068;
-					for v1468 = 1, 30 do
-						v1073['MaxVisibleGraphemes'] = v1468;
+				local v1377 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
+				local v1378 = v4:Create(v1076, v1377, {[LUAOBFUSACTOR_DECRYPT_STR_0("\65\228\152\16", "\151\18\141\226\117\133\152\25")]=UDim2.new(1, 0, 2, 0)});
+				v1378:Play();
+				v1378['Completed']:Connect(function()
+					v1078 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\71\166\172\184\59\114\161\177\160", "\119\19\195\212\204"), v1075);
+					v1078['Name'] = LUAOBFUSACTOR_DECRYPT_STR_0("\63\214\225\214\3\38\176\31", "\211\122\160\136\178\102\72");
+					v1078['TextColor3'] = Color3.fromRGB(255, 255, 255);
+					v1078['Size'] = UDim2.new(1, 0, 0.7, 0);
+					v1078['BackgroundTransparency'] = 1;
+					v1078['MaxVisibleGraphemes'] = 0;
+					v1078['Position'] = UDim2.new(0, 0, 0.99, 0);
+					v1078['TextScaled'] = true;
+					v1078['Text'] = v1073;
+					for v1486 = 1, 30 do
+						v1078['MaxVisibleGraphemes'] = v1486;
 						task.wait(0.025);
 					end
-					v41(0.25, v1073, 0);
+					v41(0.25, v1078, 0);
 				end);
 			end
-			if v1069 then
-				local v1368 = v1065:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\231\86\201\2", "\48\162\37\185"));
-				local v1369 = v1368 and v1368:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\11\23\29\174\66\32\2\17", "\39\78\97\116\202"));
-				local v1370 = v1368 and v1368:FindFirstChildOfClass(LUAOBFUSACTOR_DECRYPT_STR_0("\143\235\237\90\206\36\185\235\249", "\69\219\142\149\46\130"));
-				if (v1370 and v1369) then
-					for v1502 = string.len(v1369.Text), 0, -1 do
-						v1369['MaxVisibleGraphemes'] = v1502;
+			if v1074 then
+				local v1379 = v1070:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\96\3\155\44", "\146\37\112\235\30\105\104\133"));
+				local v1380 = v1379 and v1379:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\96\163\72\115\68\75\182\68", "\33\37\213\33\23"));
+				local v1381 = v1379 and v1379:FindFirstChildOfClass(LUAOBFUSACTOR_DECRYPT_STR_0("\242\14\202\148\1\223\196\14\222", "\190\166\107\178\224\77"));
+				if (v1381 and v1380) then
+					for v1520 = string.len(v1380.Text), 0, -1 do
+						v1380['MaxVisibleGraphemes'] = v1520;
 						task.wait(0.025);
 					end
-					v1370['Text'] = v1067;
-					v1369['Text'] = v1068;
-					for v1504 = 1, #v1068 do
-						v1369['MaxVisibleGraphemes'] = v1504;
+					v1381['Text'] = v1072;
+					v1380['Text'] = v1073;
+					for v1522 = 1, #v1073 do
+						v1380['MaxVisibleGraphemes'] = v1522;
 						task.wait(0.025);
 					end
 				end
 			end
 		else
-			local v1185 = v1065:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\233\91\2\28", "\87\172\40\114\46"));
-			if v1185 then
-				for v1420, v1421 in pairs(v1185:GetDescendants()) do
-					if (v1421:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\80\255\227\181\0", "\101\22\141\130\216")) or v1421:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\66\44\245\180\103\118\116\44\225", "\23\22\73\141\192\43"))) then
-						v41(0.25, v1421, 1);
+			local v1190 = v1070:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\209\159\70\66", "\18\148\236\54\112"));
+			if v1190 then
+				for v1431, v1432 in pairs(v1190:GetDescendants()) do
+					if (v1432:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\167\162\247\50\58", "\95\225\208\150\95")) or v1432:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\152\112\255\157\128\116\229\140\160", "\233\204\21\135"))) then
+						v41(0.25, v1432, 1);
 					end
 				end
 				task.wait(0.25);
-				v1185:Destroy();
+				v1190:Destroy();
 			end
 		end
-		return v1073;
+		return v1078;
 	end
-	local v988 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\196\249\226\207\185\200\222\215", "\153\141\141\135\162"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\2\30\72\232\161\197\68", "\55\84\119\59\157\192\169")], 1, 185, 85);
-	local v989 = false;
-	v988['Activated']:Connect(function()
-		v989 = not v989;
-		if v989 then
-			while v989 do
-				for v1371, v1372 in pairs(v953:GetChildren()) do
-					if (v1372:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\19\91\121\206\232", "\69\94\52\29\171\132\208\99")) and v1372['PrimaryPart']) then
-						if not v1372:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\241\30\118\171\228\208\16\121\183", "\136\185\119\17\195")) then
-							Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\22\213\29\186\186\128\57\212\14", "\233\94\188\122\210\214"), v1372);
-							v1372['Highlight']['FillTransparency'] = 1;
+	local v992 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\135\148\202\223\159\216\157\176", "\157\206\224\175\178\191"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\157\127\163\165\55\206\38", "\151\203\22\208\208\86\162\85")], 1, 185, 85);
+	local v993 = false;
+	v992['Activated']:Connect(function()
+		v993 = not v993;
+		if v993 then
+			while v993 do
+				for v1382, v1383 in pairs(v953:GetChildren()) do
+					if (v1383:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\110\166\137\179\139", "\68\35\201\237\214\231\29")) and v1383['PrimaryPart']) then
+						if not v1383:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\119\21\225\54\83\21\225\54\75", "\94\63\124\134")) then
+							Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\220\208\72\115\248\208\72\115\224", "\27\148\185\47"), v1383);
+							v1383['Highlight']['FillTransparency'] = 1;
 						end
-						if not v1372['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\113\0\217\214", "\183\52\115\169\228\220\220")) then
-							v987(v1372.PrimaryPart, false, v1372:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\249\74\226\210\232\68\18\184", "\221\176\62\135\191\166\37\127")), LUAOBFUSACTOR_DECRYPT_STR_0("\33\49\88\248", "\149\104\69\61"));
+						if not v1383['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\103\40\237\124", "\37\34\91\157\78\195\23\140")) then
+							v991(v1383.PrimaryPart, false, v1383:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\53\85\236\143\84\50\17\68", "\83\124\33\137\226\26")), LUAOBFUSACTOR_DECRYPT_STR_0("\240\77\226\205", "\181\185\57\135\160"));
 						end
 					end
 				end
 				task.wait(0.5);
 			end
 		else
-			for v1252, v1253 in pairs(v953:GetChildren()) do
-				if (v1253:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\118\218\6\217\87", "\188\59\181\98")) and v1253:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\130\175\56\160\126\25", "\123\202\206\86\196\18\124\148"))) then
-					if v1253['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\87\254\146\71", "\151\18\141\226\117\133\152\25")) then
-						v987(v1253.PrimaryPart, true, false, false);
+			for v1260, v1261 in pairs(v953:GetChildren()) do
+				if (v1261:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\244\15\230\55\2", "\192\185\96\130\82\110\148")) and v1261:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\111\208\26\232\47\60", "\111\39\177\116\140\67\89"))) then
+					if v1261['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\80\149\42\86", "\194\21\230\90\100\183")) then
+						v991(v1261.PrimaryPart, true, false, false);
 					end
-					for v1472, v1473 in pairs(v1253:GetDescendants()) do
-						if v1473:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\91\170\179\164\27\122\164\188\184", "\119\19\195\212\204")) then
-							v1473['OutlineTransparency'] = 1;
+					for v1490, v1491 in pairs(v1261:GetDescendants()) do
+						if v1491:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\235\238\27\240\56\160\42\203\243", "\77\163\135\124\152\84\201")) then
+							v1491['OutlineTransparency'] = 1;
 							task.wait(0.1);
-							v1473:Destroy();
+							v1491:Destroy();
 						end
 					end
 				end
 			end
 		end
 	end);
-	local v990 = false;
-	local v991 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\42\204\233\203\3\58\243\63\243\216", "\211\122\160\136\178\102\72"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\115\25\152\107\8\4\246", "\146\37\112\235\30\105\104\133")], 1, 185, 85);
-	v991['Activated']:Connect(function()
-		v990 = not v990;
+	local v994 = false;
+	local v995 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\111\2\46\246\41\231\31\43\28\223", "\149\63\110\79\143\76"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\192\143\179\164\4\50\242", "\129\150\230\192\209\101\94")], 1, 185, 85);
+	v995['Activated']:Connect(function()
+		v994 = not v994;
 		task.wait(0.1);
-		if v990 then
-			local v1186 = v0:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\119\180\70\115\78\73\185\82", "\33\37\213\33\23"));
-			for v1254, v1255 in pairs(v0:GetChildren()) do
-				if (v1255:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\238\30\223\129\35\209\207\15", "\190\166\107\178\224\77")) and (v1255['Name'] ~= LUAOBFUSACTOR_DECRYPT_STR_0("\211\132\89\3\102", "\18\148\236\54\112"))) then
-					if (v1255:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\169\181\247\59", "\95\225\208\150\95")) and not v1255['Head']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\137\102\247\219", "\233\204\21\135"))) then
-						v987(v1255.Head, false, v1255.Name, LUAOBFUSACTOR_DECRYPT_STR_0("\143\140\198\196\218", "\157\206\224\175\178\191"));
+		if v994 then
+			local v1191 = v0:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\150\126\72\2\171\115\67\21", "\102\196\31\47"));
+			for v1262, v1263 in pairs(v0:GetChildren()) do
+				if (v1263:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\199\35\61\121\76\77\164\87", "\51\143\86\80\24\34\34\205")) and (v1263['Name'] ~= LUAOBFUSACTOR_DECRYPT_STR_0("\174\19\251\246\95", "\224\233\123\148\133\43\69"))) then
+					if (v1263:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\255\61\120\133", "\225\183\88\25")) and not v1263['Head']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\36\226\163\96", "\96\97\145\211\82\221"))) then
+						v991(v1263.Head, false, v1263.Name, LUAOBFUSACTOR_DECRYPT_STR_0("\228\229\93\164\9", "\49\165\137\52\210\108"));
 					end
-					for v1474, v1475 in pairs(v1255:GetDescendants()) do
-						if v1475:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\137\119\163\181\6\195\39\227", "\151\203\22\208\208\86\162\85")) then
-							if not v1475:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\107\160\138\190\139\116\35\75\189", "\68\35\201\237\214\231\29")) then
-								Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\119\21\225\54\83\21\225\54\75", "\94\63\124\134"), v1475);
-								v1475['Transparency'] = 0;
-								if v1475:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\220\208\72\115\248\208\72\115\224", "\27\148\185\47")) then
-									v1475['Highlight']['FillTransparency'] = 1;
+					for v1492, v1493 in pairs(v1263:GetDescendants()) do
+						if v1493:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\108\39\14\179\126\39\15\162", "\214\46\70\125")) then
+							if not v1493:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\254\202\140\178\218\202\140\178\194", "\218\182\163\235")) then
+								Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\133\43\170\32\33\164\37\165\60", "\77\205\66\205\72"), v1493);
+								v1493['Transparency'] = 0;
+								if v1493:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\141\178\248\86\143\196\85\61\177", "\85\197\219\159\62\227\173\50")) then
+									v1493['Highlight']['FillTransparency'] = 1;
 								end
 							end
 						end
 					end
-					if (v1186 and v1186:FindFirstChild(v1255.Name)) then
-						if v1255:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\106\62\252\42", "\37\34\91\157\78\195\23\140")) then
-							if v1255['Head']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\57\82\249\208", "\83\124\33\137\226\26")) then
+					if (v1191 and v1191:FindFirstChild(v1263.Name)) then
+						if v1263:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\6\243\42\11", "\51\78\150\75\111\86\175")) then
+							if v1263['Head']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\25\158\219\23", "\37\92\237\171")) then
 								task.wait(0.26);
-								if v1255['Head']['Esp2']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\252\79\238\196\208\215\90\226", "\181\185\57\135\160")) then
-									v1255['Head']['Esp2']['Evidence']['Text'] = LUAOBFUSACTOR_DECRYPT_STR_0("\253\5\225\55\15\231\165\221", "\192\185\96\130\82\110\148");
+								if v1263['Head']['Esp2']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\104\207\195\7\75\67\218\207", "\46\45\185\170\99")) then
+									v1263['Head']['Esp2']['Evidence']['Text'] = LUAOBFUSACTOR_DECRYPT_STR_0("\55\206\204\178\247\0\206\203", "\150\115\171\175\215");
 								end
 							end
 						end
@@ -2498,19 +2566,19 @@ if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\212\114\231\4\57\139\244\118", "\234\15
 				end
 			end
 		else
-			local v1187 = v0:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\117\208\19\232\44\53\3\84", "\111\39\177\116\140\67\89"));
-			for v1256, v1257 in pairs(v0:GetChildren()) do
-				if v1257:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\93\147\55\5\217\173\124\130", "\194\21\230\90\100\183")) then
-					if (v1257:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\235\226\29\252", "\77\163\135\124\152\84\201")) and v1257['Head']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\122\29\63\189", "\149\63\110\79\143\76"))) then
-						v987(v1257.Head, true, v1257.Name, LUAOBFUSACTOR_DECRYPT_STR_0("\215\138\169\167\0", "\129\150\230\192\209\101\94"));
+			local v1192 = v0:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\15\132\221\161\142\3\79\55", "\68\93\229\186\197\225\111\35"));
+			for v1264, v1265 in pairs(v0:GetChildren()) do
+				if v1265:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\211\90\5\237\131\228\127\255", "\22\155\47\104\140\237\139")) then
+					if (v1265:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\200\45\84\127", "\44\128\72\53\27\167\189")) and v1265['Head']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\202\2\250\104", "\130\143\113\138\90\118\141\173"))) then
+						v991(v1265.Head, true, v1265.Name, LUAOBFUSACTOR_DECRYPT_STR_0("\167\219\53\59\13", "\59\230\183\92\77\104"));
 					end
-					for v1476, v1477 in pairs(v1257:GetDescendants()) do
-						if v1257:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\134\126\92\3\148\126\93\18", "\102\196\31\47")) then
-							v1257['Transparency'] = 1;
-							if v1257:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\199\63\55\112\78\75\170\91\251", "\51\143\86\80\24\34\34\205")) then
-								v1257['Highlight']['FillTransparency'] = 1;
-								v1257['Highlight']['OutlineTransparency'] = 1;
-								v1257['Highlight']:Destroy();
+					for v1494, v1495 in pairs(v1265:GetDescendants()) do
+						if v1265:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\203\70\243\252\1\246\251\83", "\151\137\39\128\153\81")) then
+							v1265['Transparency'] = 1;
+							if v1265:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\82\196\233\86\243\245\95\36\110", "\76\26\173\142\62\159\156\56")) then
+								v1265['Highlight']['FillTransparency'] = 1;
+								v1265['Highlight']['OutlineTransparency'] = 1;
+								v1265['Highlight']:Destroy();
 							end
 						end
 					end
@@ -2518,29 +2586,29 @@ if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\212\114\231\4\57\139\244\118", "\234\15
 			end
 		end
 	end);
-	local v992 = false;
-	local v993 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\174\19\251\246\95\101\165\186\43", "\224\233\123\148\133\43\69"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\225\49\106\148\214\52\106", "\225\183\88\25")], 3, 185, 85);
-	v993['Activated']:Connect(function()
-		v992 = not v992;
-		if v992 then
-			while v992 do
-				if (v22 and v22:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\41\244\178\54", "\96\97\145\211\82\221"))) then
-					v987(v22.Head, false, LUAOBFUSACTOR_DECRYPT_STR_0("\226\225\91\161\24", "\49\165\137\52\210\108"), v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\120\47\14\163\79\42\48\185\74\35\17", "\214\46\70\125")));
-					if v22:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\224\202\152\179\212\207\142\138\215\209\159\169", "\218\182\163\235")) then
-						for v1533, v1534 in pairs(v22['VisibleParts']:GetDescendants()) do
-							if v1534:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\143\35\190\45\29\172\48\185", "\77\205\66\205\72")) then
-								v1534['Transparency'] = 0;
+	local v996 = false;
+	local v997 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\146\58\13\152\243\67\114\134\2", "\55\213\82\98\235\135\99"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\38\182\18\99\160\113\3", "\29\112\223\97\22\193")], 3, 185, 85);
+	v997['Activated']:Connect(function()
+		v996 = not v996;
+		if v996 then
+			while v996 do
+				if (v22 and v22:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\111\205\237\27", "\205\39\168\140\127"))) then
+					v991(v22.Head, false, LUAOBFUSACTOR_DECRYPT_STR_0("\14\41\215\70\11", "\77\73\65\184\53\127"), v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\9\116\187\103\51\252\155\48\121\173\126", "\214\95\29\200\18\82\144")));
+					if v22:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\64\249\83\92\228\133\115\192\65\71\242\154", "\233\22\144\32\53\134")) then
+						for v1553, v1554 in pairs(v22['VisibleParts']:GetDescendants()) do
+							if v1554:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\29\21\54\34\7\89\45\0", "\56\95\116\69\71\87")) then
+								v1554['Transparency'] = 0;
 							end
-							if (v1534:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\135\186\236\91\179\204\64\33", "\85\197\219\159\62\227\173\50")) and not v1534:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\6\255\44\7\58\198\84\38\226", "\51\78\150\75\111\86\175"))) then
-								local v1549 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\20\132\204\77\48\132\204\77\40", "\37\92\237\171"));
-								v1549['FillTransparency'] = 1;
-								v1549['OutlineTransparency'] = 1;
-								v1549['Parent'] = v1534;
-								local v1553 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
-								local v1554 = v4:Create(v1549, v1553, {[LUAOBFUSACTOR_DECRYPT_STR_0("\98\204\222\15\71\67\220\254\17\79\67\202\218\2\92\72\215\201\26", "\46\45\185\170\99")]=0});
-								local v1555 = v4:Create(v1534, v1553, {[LUAOBFUSACTOR_DECRYPT_STR_0("\39\217\206\185\229\3\202\221\178\248\16\210", "\150\115\171\175\215")]=0});
-								v1554:Play();
-								v1555:Play();
+							if (v1554:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\167\126\213\70\136\253\84\145", "\38\229\31\166\35\216\156")) and not v1554:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\142\126\208\255\170\126\208\255\178", "\151\198\23\183"))) then
+								local v1570 = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\43\78\57\217\45\182\203\11\83", "\172\99\39\94\177\65\223"));
+								v1570['FillTransparency'] = 1;
+								v1570['OutlineTransparency'] = 1;
+								v1570['Parent'] = v1554;
+								local v1574 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
+								local v1575 = v4:Create(v1570, v1574, {[LUAOBFUSACTOR_DECRYPT_STR_0("\104\9\45\117\160\78\170\117\85\29\55\106\185\65\189\68\73\31\32", "\33\39\124\89\25\201\32\207")]=0});
+								local v1576 = v4:Create(v1554, v1574, {[LUAOBFUSACTOR_DECRYPT_STR_0("\28\32\86\38\173\56\51\69\45\176\43\43", "\222\72\82\55\72")]=0});
+								v1575:Play();
+								v1576:Play();
 							end
 						end
 					end
@@ -2548,148 +2616,148 @@ if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\212\114\231\4\57\139\244\118", "\234\15
 				task.wait(0.1);
 			end
 		else
-			if (v22 and v22:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\21\128\219\161", "\68\93\229\186\197\225\111\35")) and v22['Head']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\222\92\24\190", "\22\155\47\104\140\237\139"))) then
-				v987(v22.Head, true, LUAOBFUSACTOR_DECRYPT_STR_0("\199\32\90\104\211", "\44\128\72\53\27\167\189"), v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\217\24\249\47\23\225\224\237\235\20\230", "\130\143\113\138\90\118\141\173")));
+			if (v22 and v22:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\17\90\196\220", "\184\89\63\165")) and v22['Head']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\41\203\104\94", "\215\108\184\24\108\205\179\195"))) then
+				v991(v22.Head, true, LUAOBFUSACTOR_DECRYPT_STR_0("\198\125\9\185\81", "\37\129\21\102\202"), v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\199\53\106\184\240\48\84\162\245\57\117", "\205\145\92\25")));
 			end
-			if (v22 and v22:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\176\222\47\36\10\87\131\231\61\63\28\72", "\59\230\183\92\77\104"))) then
-				local v1373 = {};
-				for v1422, v1423 in pairs(v22['VisibleParts']:GetDescendants()) do
-					if (v1423:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\203\70\243\252\1\246\251\83", "\151\137\39\128\153\81")) and v1423:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\82\196\233\86\243\245\95\36\110", "\76\26\173\142\62\159\156\56"))) then
-						local v1506 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
-						local v1507 = v4:Create(v1423.Highlight, v1506, {[LUAOBFUSACTOR_DECRYPT_STR_0("\154\39\22\135\238\13\82\129\32\3\133\244\19\86\167\55\12\136\254", "\55\213\82\98\235\135\99")]=1});
-						local v1508 = v4:Create(v1423, v1506, {[LUAOBFUSACTOR_DECRYPT_STR_0("\36\173\0\120\178\109\17\173\4\120\162\100", "\29\112\223\97\22\193")]=1});
-						v1507:Play();
-						v1508:Play();
-						table.insert(v1373, v1423.Highlight);
+			if (v22 and v22:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\105\58\166\226\93\63\176\219\94\33\161\248", "\139\63\83\213"))) then
+				local v1384 = {};
+				for v1433, v1434 in pairs(v22['VisibleParts']:GetDescendants()) do
+					if (v1434:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\61\21\63\57\68\227\6\11", "\116\127\116\76\92\20\130")) and v1434:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\160\203\59\27\183\78\143\202\40", "\39\232\162\92\115\219"))) then
+						local v1524 = TweenInfo.new(0.25, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut, 0, false, 0);
+						local v1525 = v4:Create(v1434.Highlight, v1524, {[LUAOBFUSACTOR_DECRYPT_STR_0("\5\226\74\73\35\249\91\113\56\246\80\86\58\246\76\64\36\244\71", "\37\74\151\62")]=1});
+						local v1526 = v4:Create(v1434, v1524, {[LUAOBFUSACTOR_DECRYPT_STR_0("\142\40\34\40\69\50\187\40\38\40\85\59", "\66\218\90\67\70\54")]=1});
+						v1525:Play();
+						v1526:Play();
+						table.insert(v1384, v1434.Highlight);
 					end
 				end
 				task.wait(0.25);
-				for v1424, v1425 in pairs(v1373) do
-					v1425:Destroy();
+				for v1435, v1436 in pairs(v1384) do
+					v1436:Destroy();
 				end
 			end
 		end
 	end);
-	local v994 = false;
-	local v995 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\98\222\229\27\168\73\203\233\95\136\116\248", "\205\39\168\140\127"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\31\40\203\64\30\33\58", "\77\73\65\184\53\127")], 4, 185, 85);
-	local v996 = false;
-	v995['Activated']:Connect(function()
-		v996 = not v996;
-		if v996 then
-			while v996 do
-				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\24\117\167\97\38\176\153\45\127", "\214\95\29\200\18\82\144")] then
-					local v1426 = v0:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\81\248\79\70\242\166\100\242", "\233\22\144\32\53\134"));
-					if v1426 then
-						v1426['Transparency'] = 0;
-						if not v1426:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\26\7\53\117", "\56\95\116\69\71\87")) then
-							v987(v1426, false, LUAOBFUSACTOR_DECRYPT_STR_0("\162\119\201\80\172\188\105\151\125", "\38\229\31\166\35\216\156"), LUAOBFUSACTOR_DECRYPT_STR_0("\131\97\222\243\163\121\212\242", "\151\198\23\183"));
+	local v998 = false;
+	local v999 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\211\61\193\76\181\38\134\80\182\14\251\120", "\53\150\75\168\40\208\72\229"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\209\176\83\152\46\235\170", "\79\135\217\32\237")], 4, 185, 85);
+	local v1000 = false;
+	v999['Activated']:Connect(function()
+		v1000 = not v1000;
+		if v1000 then
+			while v1000 do
+				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\151\8\239\93\27\110\159\18\226", "\78\208\96\128\46\111")] then
+					local v1437 = v0:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\22\253\74\10\254\199\70\133", "\231\81\149\37\121\138\136\52"));
+					if v1437 then
+						v1437['Transparency'] = 0;
+						if not v1437:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\112\100\44\211", "\21\53\23\92\225")) then
+							v991(v1437, false, LUAOBFUSACTOR_DECRYPT_STR_0("\205\17\84\144\189\227\254\61\232", "\79\138\121\59\227\201\195\177"), LUAOBFUSACTOR_DECRYPT_STR_0("\40\193\245\19\181\221\78\8", "\45\109\183\156\119\208\179"));
 						end
 					end
 				end
-				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\43\70\48\213\49\173\197\13\83\45", "\172\99\39\94\177\65\223")] then
-					local v1427 = v0:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\111\29\55\125\185\82\166\79\83\15", "\33\39\124\89\25\201\32\207"));
-					if v1427 then
-						for v1535, v1536 in ipairs(v1427:GetChildren()) do
-							if not v1536:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\13\33\71\122", "\222\72\82\55\72")) then
-								v987(v1536, false, LUAOBFUSACTOR_DECRYPT_STR_0("\17\94\203\220\41\77\204\214\45", "\184\89\63\165"), LUAOBFUSACTOR_DECRYPT_STR_0("\41\206\113\8\168\221\160\178", "\215\108\184\24\108\205\179\195"));
+				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\29\252\134\232\37\239\129\226\33\238", "\140\85\157\232")] then
+					local v1438 = v0:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\47\202\3\119\23\217\4\125\19\216", "\19\103\171\109"));
+					if v1438 then
+						for v1555, v1556 in ipairs(v1438:GetChildren()) do
+							if not v1556:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\196\192\105\44", "\30\129\179\25")) then
+								v991(v1556, false, LUAOBFUSACTOR_DECRYPT_STR_0("\57\241\170\115\144\11\239\31\228", "\134\113\144\196\23\224\121"), LUAOBFUSACTOR_DECRYPT_STR_0("\200\174\140\87\232\182\134\86", "\51\141\216\229"));
 							end
 						end
 					end
 				end
-				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\198\125\9\185\81\161\66\20\163\81\232\123\1", "\37\129\21\102\202")] then
-					for v1478, v1479 in ipairs(v953:GetChildren()) do
-						local v1480 = v1479['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\212\47\105\255", "\205\145\92\25"));
-						local v1481 = v1480 and v1480:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\122\37\188\239\90\61\182\238", "\139\63\83\213"));
-						if (v1479:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\54\0\41\49\90\227\25\26", "\116\127\116\76\92\20\130")) == LUAOBFUSACTOR_DECRYPT_STR_0("\187\210\53\1\178\83\200\224\51\28\176", "\39\232\162\92\115\219")) then
-							if not v1480 then
-								v987(v1479.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\13\255\81\86\62\183\105\87\35\227\87\75\45", "\37\74\151\62"), LUAOBFUSACTOR_DECRYPT_STR_0("\159\44\42\34\83\44\185\63", "\66\218\90\67\70\54"));
-							elseif (v1481 and (v1481['Text'] ~= LUAOBFUSACTOR_DECRYPT_STR_0("\211\61\193\76\181\38\134\80", "\53\150\75\168\40\208\72\229"))) then
-								v987(v1479.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\192\177\79\158\59\167\142\82\132\59\238\183\71", "\79\135\217\32\237"), LUAOBFUSACTOR_DECRYPT_STR_0("\149\22\233\74\10\32\179\5", "\78\208\96\128\46\111"), true);
+				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\157\195\50\178\174\139\10\179\179\223\52\175\189", "\193\218\171\93")] then
+					for v1496, v1497 in ipairs(v953:GetChildren()) do
+						local v1498 = v1497['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\61\100\35\226", "\45\120\23\83\208"));
+						local v1499 = v1498 and v1498:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\103\11\236\251\227\76\30\224", "\134\34\125\133\159"));
+						if (v1497:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\172\80\222\45\116\181\82\128", "\63\229\36\187\64\58\212")) == LUAOBFUSACTOR_DECRYPT_STR_0("\118\82\56\222\76\86\113\238\74\77\58", "\172\37\34\81")) then
+							if not v1498 then
+								v991(v1497.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\127\115\52\171\245\74\111\105\50\172\232\4\95", "\106\56\27\91\216\129"), LUAOBFUSACTOR_DECRYPT_STR_0("\4\224\231\253\39\192\34\243", "\174\65\150\142\153\66"));
+							elseif (v1499 and (v1499['Text'] ~= LUAOBFUSACTOR_DECRYPT_STR_0("\8\148\26\133\6\13\46\135", "\99\77\226\115\225\99"))) then
+								v991(v1497.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\167\185\33\226\219\126\183\163\39\229\198\48\135", "\94\224\209\78\145\175"), LUAOBFUSACTOR_DECRYPT_STR_0("\212\97\12\215\173\24\119\53", "\80\145\23\101\179\200\118\20"), true);
 							end
 						end
 					end
 				end
-				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\6\252\81\17\239\250", "\231\81\149\37\121\138\136\52")] then
-					for v1482, v1483 in pairs(v953:GetChildren()) do
-						if (v1483:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\124\99\57\140\91\84\122\57", "\21\53\23\92\225")) == LUAOBFUSACTOR_DECRYPT_STR_0("\204\21\84\148\172\177\145\31\229\13", "\79\138\121\59\227\201\195\177")) then
-							if (v1483['PrimaryPart'] and not v1483['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\40\196\236\69", "\45\109\183\156\119\208\179"))) then
-								v987(v1483.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\2\244\156\228\48\239\141\232\117\219\132\227\34\248\154\255", "\140\85\157\232"), LUAOBFUSACTOR_DECRYPT_STR_0("\34\221\4\119\2\197\14\118", "\19\103\171\109"));
-							elseif ((v1483:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\200\199\124\115\207\210\116\123", "\30\129\179\25")) == LUAOBFUSACTOR_DECRYPT_STR_0("\55\252\171\96\133\11\166\33\255\176", "\134\113\144\196\23\224\121")) and v1483['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\200\171\149\1", "\51\141\216\229")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\159\221\52\165\191\197\62\164", "\193\218\171\93")) and (not v1483['PrimaryPart']['Esp2']['Evidence']['Text'] == LUAOBFUSACTOR_DECRYPT_STR_0("\61\97\58\180\72\22\116\54", "\45\120\23\83\208"))) then
-								v987(v1483.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\117\20\241\247\227\80\24\225\191\192\78\18\242\250\244\81", "\134\34\125\133\159"), LUAOBFUSACTOR_DECRYPT_STR_0("\160\82\210\36\95\186\92\128", "\63\229\36\187\64\58\212"), true);
+				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\197\125\70\126\137\198", "\180\146\20\50\22\236")] then
+					for v1500, v1501 in pairs(v953:GetChildren()) do
+						if (v1501:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\123\159\252\237\205\83\134\252", "\131\50\235\153\128")) == LUAOBFUSACTOR_DECRYPT_STR_0("\217\67\180\107\121\52\152\207\64\175", "\184\159\47\219\28\28\70")) then
+							if (v1501['PrimaryPart'] and not v1501['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\18\204\214\47", "\29\87\191\166"))) then
+								v991(v1501.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\216\81\167\0\77\236\234\92\243\46\68\241\248\93\161\27", "\158\143\56\211\104\40"), LUAOBFUSACTOR_DECRYPT_STR_0("\123\184\180\36\165\80\173\184", "\192\62\206\221\64"));
+							elseif ((v1501:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\216\42\73\254\17\240\51\73", "\95\145\94\44\147")) == LUAOBFUSACTOR_DECRYPT_STR_0("\199\170\10\36\228\180\69\3\238\178", "\83\129\198\101")) and v1501['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\254\25\204\96", "\198\187\106\188\82")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\7\12\255\57\216\52\40\39", "\75\66\122\150\93\189\90")) and (not v1501['PrimaryPart']['Esp2']['Evidence']['Text'] == LUAOBFUSACTOR_DECRYPT_STR_0("\197\68\130\237\246\238\81\142", "\147\128\50\235\137"))) then
+								v991(v1501.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\253\205\222\203\173\173\37\206\132\236\207\167\168\37\216\215", "\64\170\164\170\163\200\223"), LUAOBFUSACTOR_DECRYPT_STR_0("\39\172\172\94\133\114\202\7", "\169\98\218\197\58\224\28"), true);
 							end
 						end
 					end
 				end
-				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\105\67\34\201\87\2\1\222\74\72\52\207\81\77\35", "\172\37\34\81")] then
-					for v1484, v1485 in pairs(v953:GetChildren()) do
-						if (v1485:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\113\111\62\181\207\11\85\126", "\106\56\27\91\216\129")) == LUAOBFUSACTOR_DECRYPT_STR_0("\13\247\253\252\48\142\17\228\225\243\39\205\53\249\252", "\174\65\150\142\153\66")) then
-							if ((v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\1\131\0\132\17\53\36\145\26\131\15\6", "\99\77\226\115\225\99")) == true) or ((v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\169\191\2\240\220\59\146", "\94\224\209\78\145\175")) == true) and (v1485:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\216\99\0\222\134\23\121\53", "\80\145\23\101\179\200\118\20")) == LUAOBFUSACTOR_DECRYPT_STR_0("\222\117\65\115\158\148\194\102\93\124\137\215\230\123\64", "\180\146\20\50\22\236")) and not v1485['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\119\152\233\178", "\131\50\235\153\128")))) then
-								v987(v1485.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\211\78\168\121\110\102\232\237\64\177\121\127\50\215\237", "\184\159\47\219\28\28\70"), LUAOBFUSACTOR_DECRYPT_STR_0("\18\201\207\121\50\209\197\120", "\29\87\191\166"));
-							elseif ((v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\195\89\160\13\90\200\230\75\186\10\68\251", "\158\143\56\211\104\40")) == true) or ((v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\119\160\145\33\179\91\188", "\192\62\206\221\64")) == true) and (v1485:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\216\42\73\254\17\240\51\73", "\95\145\94\44\147")) == LUAOBFUSACTOR_DECRYPT_STR_0("\205\167\22\54\243\230\53\33\238\172\0\48\245\169\23", "\83\129\198\101")) and v1485['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\254\25\204\96", "\198\187\106\188\82")) and (not v1485['PrimaryPart']['Esp2']['Evidence']['Text'] == LUAOBFUSACTOR_DECRYPT_STR_0("\7\12\255\57\216\52\40\39", "\75\66\122\150\93\189\90")))) then
-								v987(v1485.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\204\83\152\236\225\160\98\153\230\249\229\81\159\230\225", "\147\128\50\235\137"), LUAOBFUSACTOR_DECRYPT_STR_0("\239\210\195\199\173\177\35\207", "\64\170\164\170\163\200\223"), true);
+				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\220\28\246\246\216\148\251\226\18\239\246\201\192\196\226", "\171\144\125\133\147\170\180")] then
+					for v1502, v1503 in pairs(v953:GetChildren()) do
+						if (v1503:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\136\103\168\125\221\80\124\164", "\17\193\19\205\16\147\49")) == LUAOBFUSACTOR_DECRYPT_STR_0("\216\116\88\67\220\108\196\103\68\76\203\47\224\122\89", "\76\148\21\43\38\174")) then
+							if ((v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\249\230\244\29\199\209\238\11\220\229\235\29", "\120\181\135\135")) == true) or ((v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\207\253\43\200\245\246\21", "\169\134\147\103")) == true) and (v1503:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\139\251\24\121\171\163\226\24", "\229\194\143\125\20")) == LUAOBFUSACTOR_DECRYPT_STR_0("\168\178\219\230\150\243\248\241\139\185\205\224\144\188\218", "\131\228\211\168")) and not v1503['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\103\194\85\115", "\196\34\177\37\65\102\136\148")))) then
+								v991(v1503.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\200\138\4\112\207\59\99\173\235\129\18\118\201\116\65", "\223\132\235\119\21\189\27\51"), LUAOBFUSACTOR_DECRYPT_STR_0("\60\72\240\248\125\209\71\28", "\36\121\62\153\156\24\191"));
+							elseif ((v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\4\9\243\80\51\65\33\27\233\87\45\114", "\23\72\104\128\53\65")) == true) or ((v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\232\205\136\38\210\198\182", "\71\161\163\196")) == true) and (v1503:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\26\159\137\22\1\181\62\142", "\212\83\235\236\123\79")) == LUAOBFUSACTOR_DECRYPT_STR_0("\100\22\54\85\45\228\120\5\42\90\58\167\92\24\55", "\196\40\119\69\48\95")) and v1503['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\123\210\75\65", "\190\62\161\59\115")) and (not v1503['PrimaryPart']['Esp2']['Evidence']['Text'] == LUAOBFUSACTOR_DECRYPT_STR_0("\218\40\57\95\15\215\55\250", "\84\159\94\80\59\106\185")))) then
+								v991(v1503.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\115\3\89\32\151\31\50\88\42\143\90\1\94\42\151", "\229\63\98\42\69"), LUAOBFUSACTOR_DECRYPT_STR_0("\250\13\86\74\56\248\213\218", "\182\191\123\63\46\93\150"), true);
 							end
 						end
 					end
 				end
-				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\36\168\160\95\154\117\199\5\250\145\95\141\108\204\16\187\177\79\146\121\218", "\169\98\218\197\58\224\28")] then
-					for v1486, v1487 in pairs(v953:GetDescendants()) do
-						if ((v1487:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\217\9\224\254\228\213\198\245", "\171\144\125\133\147\170\180")) == LUAOBFUSACTOR_DECRYPT_STR_0("\149\123\168\98\254\94\124\164\103\168\98", "\17\193\19\205\16\147\49")) and not v1487['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\209\102\91\20", "\76\148\21\43\38\174")) and (v23:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\225\226\234\8\208\245\230\12\192\245\226", "\120\181\135\135")) < 0)) then
-							v987(v1487.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\192\225\2\204\252\250\9\206\166\199\2\196\246\246\21\200\242\230\21\204\245", "\169\134\147\103"), LUAOBFUSACTOR_DECRYPT_STR_0("\135\249\20\112\128\172\236\24", "\229\194\143\125\20"));
-						elseif ((v1487:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\173\167\205\238\170\178\197\230", "\131\228\211\168")) == LUAOBFUSACTOR_DECRYPT_STR_0("\118\217\64\51\11\231\249\161\86\212\87", "\196\34\177\37\65\102\136\148")) and v1487['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\193\152\7\39", "\223\132\235\119\21\189\27\51")) and (v23:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\45\91\244\236\125\205\69\13\75\235\249", "\36\121\62\153\156\24\191")) < 0) and (not v1487['PrimaryPart']['Esp2']['Evidence']['Text'] == LUAOBFUSACTOR_DECRYPT_STR_0("\13\30\233\81\36\121\43\13", "\23\72\104\128\53\65"))) then
-							v987(v1487.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\231\209\161\34\219\202\170\32\129\247\161\42\209\198\182\38\213\214\182\34\210", "\71\161\163\196"), LUAOBFUSACTOR_DECRYPT_STR_0("\22\157\133\31\42\186\48\142", "\212\83\235\236\123\79"), true);
+				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\200\97\34\85\182\25\171\17\174\71\34\93\188\21\183\23\250\102\53\85\191", "\118\142\19\71\48\204\112\197")] then
+					for v1504, v1505 in pairs(v953:GetDescendants()) do
+						if ((v1505:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\118\95\72\41\172\23\82\78", "\118\63\43\45\68\226")) == LUAOBFUSACTOR_DECRYPT_STR_0("\117\235\73\190\186\75\173\68\247\73\190", "\192\33\131\44\204\215\36")) and not v1505['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\219\252\157\235", "\217\158\143\237")) and (v23:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\72\67\79\41\92\204\16\104\83\80\60", "\113\28\38\34\89\57\190")) < 0)) then
+							v991(v1505.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\15\169\180\85\152\32\181\182\16\182\44\182\161\85\144\40\175\164\66\135\58", "\226\73\219\209\48"), LUAOBFUSACTOR_DECRYPT_STR_0("\157\95\248\229\175\208\185\189", "\218\216\41\145\129\202\190"));
+						elseif ((v1505:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\129\13\78\225\55\124\165\28", "\29\200\121\43\140\121")) == LUAOBFUSACTOR_DECRYPT_STR_0("\212\37\21\86\95\6\68\57\244\40\2", "\92\128\77\112\36\50\105\41")) and v1505['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\94\71\30\240", "\194\27\52\110")) and (v23:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\193\45\193\62\93\77\222\177\224\58\201", "\197\149\72\172\78\56\63\191")) < 0) and (not v1505['PrimaryPart']['Esp2']['Evidence']['Text'] == LUAOBFUSACTOR_DECRYPT_STR_0("\119\150\125\121\87\142\119\120", "\29\50\224\20"))) then
+							v991(v1505.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\208\76\255\48\30\252\217\44\182\106\255\56\20\240\197\42\226\75\232\48\23", "\75\150\62\154\85\100\149\183"), LUAOBFUSACTOR_DECRYPT_STR_0("\89\0\233\219\69\211\19\121", "\112\28\118\128\191\32\189"), true);
 						end
 					end
 				end
-				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\109\58\3\16\19\161\94\18\41\16\106", "\196\40\119\69\48\95")] then
-					for v1488, v1489 in pairs(v953:GetDescendants()) do
-						if ((v1489:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\119\213\94\30\240\95\204\94", "\190\62\161\59\115")) == LUAOBFUSACTOR_DECRYPT_STR_0("\218\19\22\27\56\220\53\251\59\34", "\84\159\94\80\59\106\185")) and not v1489['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\122\17\90\119", "\229\63\98\42\69")) and v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\243\26\76\90\24\219\240\243\30\73\75\49\163\226\214\22\90", "\182\191\123\63\46\93\150"))) then
-							v987(v1489.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\203\94\1\16\128\21\179\19\226\51\114", "\118\142\19\71\48\204\112\197"), LUAOBFUSACTOR_DECRYPT_STR_0("\122\93\68\32\135\24\92\78", "\118\63\43\45\68\226"));
-						elseif ((v1489:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\104\247\73\161\153\69\173\68", "\192\33\131\44\204\215\36")) == LUAOBFUSACTOR_DECRYPT_STR_0("\219\194\171\249\204\234\140\189\251\253", "\217\158\143\237")) and v1489['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\89\85\82\107", "\113\28\38\34\89\57\190")) and v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\5\186\162\68\167\36\189\157\85\148\44\183\228\100\139\36\190", "\226\73\219\209\48")) and (not v1489['PrimaryPart']['Esp2']['Evidence']['Text'] == LUAOBFUSACTOR_DECRYPT_STR_0("\157\95\248\229\175\208\185\189", "\218\216\41\145\129\202\190"))) then
-							v987(v1489.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\141\52\109\172\53\120\190\28\71\172\76", "\29\200\121\43\140\121"), LUAOBFUSACTOR_DECRYPT_STR_0("\197\59\25\64\87\7\74\57", "\92\128\77\112\36\50\105\41"), true);
+				if v956[LUAOBFUSACTOR_DECRYPT_STR_0("\37\195\3\98\12\195\22\235\41\98\117", "\166\96\142\69\66\64")] then
+					for v1506, v1507 in pairs(v953:GetDescendants()) do
+						if ((v1507:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\25\210\239\30\113\47\61\195", "\78\80\166\138\115\63")) == LUAOBFUSACTOR_DECRYPT_STR_0("\107\36\141\80\99\75\8\175\21\67", "\49\46\105\203\112")) and not v1507['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\136\106\54\47", "\110\205\25\70\29\229")) and v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\137\196\29\219\9\216\60\211\160\211\11\195\121\193\19\242\160", "\159\197\165\110\175\76\149\122"))) then
+							v991(v1507.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\253\84\35\158\23\22\206\124\9\158\110", "\115\184\25\101\190\91"), LUAOBFUSACTOR_DECRYPT_STR_0("\94\37\7\200\126\61\13\201", "\172\27\83\110"));
+						elseif ((v1507:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\30\82\132\181\25\71\140\189", "\216\87\38\225")) == LUAOBFUSACTOR_DECRYPT_STR_0("\82\138\17\119\101\46\88\115\162\37", "\57\23\199\87\87\55\75")) and v1507['PrimaryPart']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\50\235\56\251", "\187\119\152\72\201")) and v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\141\241\219\236\132\253\206\212\164\230\205\244\244\196\193\245\164", "\152\193\144\168")) and (not v1507['PrimaryPart']['Esp2']['Evidence']['Text'] == LUAOBFUSACTOR_DECRYPT_STR_0("\95\181\74\172\63\85\161\127", "\194\26\195\35\200\90\59"))) then
+							v991(v1507.PrimaryPart, false, LUAOBFUSACTOR_DECRYPT_STR_0("\230\249\59\175\54\68\240\198\216\93\186", "\134\163\180\125\143\122\33"), LUAOBFUSACTOR_DECRYPT_STR_0("\228\62\66\233\196\38\72\232", "\141\161\72\43"), true);
 						end
 					end
 				end
 				task.wait(0.5);
 			end
 		else
-			local v1188 = v0:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\92\92\1\177\111\123\28\160", "\194\27\52\110"));
-			if v1188 then
-				v1188['Transparency'] = 1;
-				if v1188:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\208\59\220\124", "\197\149\72\172\78\56\63\191")) then
-					v987(v1188, true);
+			local v1193 = v0:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\172\123\189\26\7\244\153\113", "\187\235\19\210\105\115"));
+			if v1193 then
+				v1193['Transparency'] = 1;
+				if v1193:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\129\44\40\175", "\44\196\95\88\157")) then
+					v991(v1193, true);
 				end
 			end
-			local v1189 = v0:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\122\129\122\121\66\146\125\115\70\147", "\29\50\224\20"));
-			if v1189 then
-				for v1428, v1429 in ipairs(v1189:GetChildren()) do
-					if v1429:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\211\77\234\103", "\75\150\62\154\85\100\149\183")) then
-						v987(v1429, true);
+			local v1194 = v0:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\219\5\140\136\154\93\250\10\150\159", "\47\147\100\226\236\234"));
+			if v1194 then
+				for v1439, v1440 in ipairs(v1194:GetChildren()) do
+					if v1440:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\246\192\102\92", "\110\179\179\22")) then
+						v991(v1440, true);
 					end
 				end
 			end
-			for v1258, v1259 in ipairs(v953:GetChildren()) do
-				if (v1259:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\84\23\238\219\76\216", "\112\28\118\128\191\32\189")) and v1259['Handle']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\37\253\53\112", "\166\96\142\69\66\64"))) then
-					v987(v1259.Handle, true);
+			for v1266, v1267 in ipairs(v953:GetChildren()) do
+				if (v1267:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\243\214\77\126\92\50", "\25\187\183\35\26\48\87\140")) and v1267['Handle']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\88\204\78\36", "\22\29\191\62"))) then
+					v991(v1267.Handle, true);
 				end
 			end
 		end
 	end);
-	local v997 = false;
-	local v998 = v58("Ghost's Favorite room esp", v42[LUAOBFUSACTOR_DECRYPT_STR_0("\6\207\249\6\94\34\35", "\78\80\166\138\115\63")], 5, 185, 85);
-	v998['Activated']:Connect(function()
-		v997 = not v997;
-		if v997 then
-			while v997 do
-				local v1260 = v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\104\8\189\31\67\71\29\174\34\94\65\4", "\49\46\105\203\112"));
+	local v1001 = false;
+	local v1002 = v58("Ghost's Favorite room esp", v42[LUAOBFUSACTOR_DECRYPT_STR_0("\190\243\220\33\13\184\155", "\212\232\154\175\84\108")], 5, 185, 85);
+	v1002['Activated']:Connect(function()
+		v1001 = not v1001;
+		if v1001 then
+			while v1001 do
+				local v1268 = v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\28\29\218\246\209\37\152\79\8\19\195\244", "\42\90\124\172\153\163\76\236"));
 				if v955 then
-					for v1490, v1491 in pairs(v955:GetChildren()) do
-						if v1491:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\139\118\42\121\128\28", "\110\205\25\70\29\229")) then
-							if (v1491['Name'] == v1260) then
-								if v1491:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\135\202\27\193\40\252\20\248\135\202\22", "\159\197\165\110\175\76\149\122")) then
-									if v1491['BoundingBox']:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\250\120\22\219\11\18\202\109", "\115\184\25\101\190\91")) then
-										v987(v1491.BoundingBox, false, v1491.Name, "Ghost's favorite room.");
-									elseif v1491['BoundingBox']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\75\50\28\216", "\172\27\83\110")) then
-										v987(v1491['BoundingBox'].Part, false, v1491.Name, "Ghost's favorite room.");
+					for v1508, v1509 in pairs(v955:GetChildren()) do
+						if v1509:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\14\133\180\124\45\152", "\24\72\234\216")) then
+							if (v1509['Name'] == v1268) then
+								if v1509:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\52\118\204\80\193\31\119\222\124\202\14", "\165\118\25\185\62")) then
+									if v1509['BoundingBox']:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\39\72\246\69\53\72\247\84", "\32\101\41\133")) then
+										v991(v1509.BoundingBox, false, v1509.Name, "Ghost's favorite room.");
+									elseif v1509['BoundingBox']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\220\68\64\181", "\179\140\37\50\193\19")) then
+										v991(v1509['BoundingBox'].Part, false, v1509.Name, "Ghost's favorite room.");
 									end
 								end
 							end
@@ -2699,16 +2767,16 @@ if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\212\114\231\4\57\139\244\118", "\234\15
 				task.wait(0.1);
 			end
 		else
-			local v1190 = v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\17\71\151\183\37\79\149\189\5\73\142\181", "\216\87\38\225"));
+			local v1195 = v22:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\110\188\7\36\23\241\92\184\35\36\10\245", "\152\40\221\113\75\101"));
 			if v955 then
-				for v1430, v1431 in pairs(v955:GetChildren()) do
-					if v1431:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\81\168\59\51\82\57", "\57\23\199\87\87\55\75")) then
-						if (v1431['Name'] == v1190) then
-							if v1431:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\53\247\61\167\223\30\246\47\139\212\15", "\187\119\152\72\201")) then
-								if v1431['BoundingBox']:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\131\241\219\253\145\241\218\236", "\152\193\144\168")) then
-									v987(v1431.BoundingBox, true, v1431.Name, "Ghost's favorite room.");
-								elseif v1431['BoundingBox']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\74\162\81\188", "\194\26\195\35\200\90\59")) then
-									v987(v1431['BoundingBox'].Part, true, v1431.Name, "Ghost's favorite room.");
+				for v1441, v1442 in pairs(v955:GetChildren()) do
+					if v1442:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\93\226\183\136\166\9", "\123\27\141\219\236\195")) then
+						if (v1442['Name'] == v1195) then
+							if v1442:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\98\81\247\255\128\76\5\51\98\81\250", "\84\32\62\130\145\228\37\107")) then
+								if v1442['BoundingBox']:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\3\133\90\182\118\87\192\53", "\178\65\228\41\211\38\54")) then
+									v991(v1442.BoundingBox, true, v1442.Name, "Ghost's favorite room.");
+								elseif v1442['BoundingBox']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\68\166\19\203", "\94\20\199\97\191\111\68\58")) then
+									v991(v1442['BoundingBox'].Part, true, v1442.Name, "Ghost's favorite room.");
 								end
 							end
 						end
@@ -2717,248 +2785,248 @@ if (v21 == LUAOBFUSACTOR_DECRYPT_STR_0("\212\114\231\4\57\139\244\118", "\234\15
 			end
 		end
 	end);
-	v63(LUAOBFUSACTOR_DECRYPT_STR_0("\224\193\14\251\21\76\166\203\193\19\251\90\82\233\214\218\25", "\134\163\180\125\143\122\33"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\247\33\88\248\192\36\88", "\141\161\72\43")], 6, 185);
-	local v999 = v67(v42[LUAOBFUSACTOR_DECRYPT_STR_0("\189\122\161\28\18\215\152", "\187\235\19\210\105\115")], 7, 185, 28);
+	v63(LUAOBFUSACTOR_DECRYPT_STR_0("\242\150\243\3\69\221\121\217\150\238\3\10\195\54\196\141\228", "\89\177\227\128\119\42\176"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\42\189\237\74\124\53\28", "\111\124\212\158\63\29\89")], 6, 185);
+	local v1003 = v67(v42[LUAOBFUSACTOR_DECRYPT_STR_0("\109\86\38\62\57\87\76", "\88\59\63\85\75")], 7, 185, 28);
 	task.spawn(function()
 		while v22 and task.wait(0.1) do
-			local v1149 = v22:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\140\42\53\252\66\171\54\60\207\67\171\43\8\252\94\176", "\44\196\95\88\157"));
-			if not v1149 then
+			local v1154 = v22:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\154\196\224\134\135\11\187\213\223\136\134\16\130\208\255\147", "\100\210\177\141\231\233"));
+			if not v1154 then
 				continue;
 			end
-			local v1150 = v1149:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\219\17\140\152", "\47\147\100\226\236\234"));
-			if not v1150 then
+			local v1155 = v1154:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\214\157\57\170", "\130\158\232\87\222\154"));
+			if not v1155 then
 				continue;
 			end
-			local v1151 = v999['Text']:match(LUAOBFUSACTOR_DECRYPT_STR_0("\150\215\61", "\110\179\179\22"));
-			local v1152;
-			if v1151 then
-				v1152 = LUAOBFUSACTOR_DECRYPT_STR_0("\201\213\91\123\67\36\233\109\210\211\25\53\31", "\25\187\183\35\26\48\87\140") .. v1151;
+			local v1156 = v1003['Text']:match(LUAOBFUSACTOR_DECRYPT_STR_0("\107\47\13", "\117\78\75\38\67"));
+			local v1157;
+			if v1156 then
+				v1157 = LUAOBFUSACTOR_DECRYPT_STR_0("\234\50\68\79\7\235\53\72\71\16\162\127\19", "\116\152\80\60\46") .. v1156;
 			else
-				v1152 = v70;
+				v1157 = v70;
 			end
-			if (v1150['SoundId'] ~= v1152) then
-				v1150['SoundId'] = v1152;
+			if (v1155['SoundId'] ~= v1157) then
+				v1155['SoundId'] = v1157;
 			end
 		end
 	end);
-	v63(LUAOBFUSACTOR_DECRYPT_STR_0("\74\218\95\98\117\218\76", "\22\29\191\62"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\190\243\220\33\13\184\155", "\212\232\154\175\84\108")], 8, 189);
-	local v1000 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\8\29\197\247", "\42\90\124\172\153\163\76\236"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\30\131\171\109\41\134\171", "\24\72\234\216")], 9, 185);
-	local v1001 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\37\119\214\73", "\165\118\25\185\62"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\51\64\246\85\4\69\246", "\32\101\41\133")], 10, 185);
-	local v1002 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\207\73\87\160\97", "\179\140\37\50\193\19"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\126\180\2\62\4\244\91", "\152\40\221\113\75\101")], 11, 185);
-	v1000['Activated']:Connect(function()
+	v63(LUAOBFUSACTOR_DECRYPT_STR_0("\99\18\37\96\187\0\204", "\126\52\119\68\20\211\101\190"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\235\177\66\193\64\209\171", "\33\189\216\49\180")], 8, 189);
+	local v1004 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\158\187\62\33", "\219\204\218\87\79"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\227\115\174\92\64\137\198", "\229\181\26\221\41\33")], 9, 185);
+	local v1005 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\233\255\235\25", "\37\186\145\132\110\18\123\76"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\181\24\251\28\130\29\251", "\105\227\113\136")], 10, 185);
+	local v1006 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\32\18\4\130\14", "\20\99\126\97\227\124\237\135"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\133\164\247\242\12\0\23", "\100\211\205\132\135\109\108")], 11, 185);
+	v1004['Activated']:Connect(function()
 		if v951 then
-			for v1262, v1263 in pairs(v951['Weather']['Rain']:GetDescendants()) do
-				if v1263:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\75\236\169\152\170\24\119\232\158\129\170\15\111\232\169", "\123\27\141\219\236\195")) then
-					if (v1263['Enabled'] == false) then
-						v1263['Enabled'] = true;
+			for v1270, v1271 in pairs(v951['Weather']['Rain']:GetDescendants()) do
+				if v1271:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\145\21\219\228\176\162\24\204\213\180\168\0\221\245\171", "\217\193\116\169\144")) then
+					if (v1271['Enabled'] == false) then
+						v1271['Enabled'] = true;
 					end
 				end
 			end
-			for v1264, v1265 in pairs(v951['Weather']['Snow']:GetDescendants()) do
-				if v1265:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\116\91\250\229\145\87\14", "\84\32\62\130\145\228\37\107")) then
-					v40(1, v1265);
+			for v1272, v1273 in pairs(v951['Weather']['Snow']:GetDescendants()) do
+				if v1273:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\45\75\49\106\165\58\28", "\72\121\46\73\30\208")) then
+					v40(1, v1273);
 				end
-				if ((v1265:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\3\133\90\182\118\87\192\53", "\178\65\228\41\211\38\54")) and (v1265['Material'] == Enum['Material']['Ground'])) or v1265:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\89\162\18\215\63\37\72\42", "\94\20\199\97\191\111\68\58"))) then
-					v40(1, v1265);
+				if ((v1273:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\145\213\231\133\49\133\161\192", "\228\211\180\148\224\97")) and (v1273['Material'] == Enum['Material']['Ground'])) or v1273:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\126\247\172\227\64\237\65\230", "\140\51\146\223\139\16"))) then
+					v40(1, v1273);
 				end
-				if (v1265:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\225\130\242\3\67\211\53\212\166\237\30\94\196\60\195", "\89\177\227\128\119\42\176")) and (v1265['Enabled'] == true)) then
-					v1265['Enabled'] = false;
+				if (v1273:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\223\29\144\185\246\236\16\135\136\242\230\8\150\168\237", "\159\143\124\226\205")) and (v1273['Enabled'] == true)) then
+					v1273['Enabled'] = false;
 				end
 			end
 		end
 	end);
-	v1001['Activated']:Connect(function()
+	v1005['Activated']:Connect(function()
 		if v951 then
-			for v1266, v1267 in pairs(v951['Weather']['Snow']:GetDescendants()) do
-				if v1267:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\56\177\253\94\113", "\111\124\212\158\63\29\89")) then
-					v41(1, v1267);
+			for v1274, v1275 in pairs(v951['Weather']['Snow']:GetDescendants()) do
+				if v1275:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\94\248\71\80\29", "\37\26\157\36\49\113\211")) then
+					v41(1, v1275);
 				end
-				if ((v1267:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\121\94\38\46\8\90\77\33", "\88\59\63\85\75")) and (v1267['Material'] == Enum['Material']['Ground'])) or v1267:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\159\212\254\143\185\5\160\197", "\100\210\177\141\231\233"))) then
-					v41(1, v1267);
+				if ((v1275:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\134\34\172\192\133\165\49\171", "\213\196\67\223\165")) and (v1275['Material'] == Enum['Material']['Ground'])) or v1275:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\93\77\173\252\61\113\90\170", "\109\16\40\222\148"))) then
+					v41(1, v1275);
 				end
-				if (v1267:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\206\137\37\170\243\225\242\141\18\179\243\246\234\141\37", "\130\158\232\87\222\154")) and (v1267['Enabled'] == false)) then
-					v1267['Enabled'] = true;
-				end
-			end
-			for v1268, v1269 in pairs(v951['Weather']['Rain']:GetDescendants()) do
-				if v1269:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\30\42\84\55\28\45\39\67\6\24\39\63\82\38\7", "\117\78\75\38\67")) then
-					if (v1269['Enabled'] == true) then
-						v1269['Enabled'] = false;
-					end
+				if (v1275:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\229\212\77\165\220\214\83\180\240\216\86\165\193\208\77", "\209\181\181\63")) and (v1275['Enabled'] == false)) then
+					v1275['Enabled'] = true;
 				end
 			end
-		end
-	end);
-	v1002['Activated']:Connect(function()
-		if v951 then
-			for v1270, v1271 in pairs(v951['Weather']['Snow']:GetDescendants()) do
-				if v1271:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\220\53\95\79\24", "\116\152\80\60\46")) then
-					v40(1, v1271);
-				end
-				if ((v1271:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\118\22\55\113\131\4\204\10", "\126\52\119\68\20\211\101\190")) and (v1271['Material'] == Enum['Material']['Ground'])) or v1271:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\240\189\66\220\113\220\170\69", "\33\189\216\49\180"))) then
-					v40(1, v1271);
-				end
-				if (v1271:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\156\187\37\59\178\175\182\50\10\182\165\174\35\42\169", "\219\204\218\87\79")) and (v1271['Enabled'] == true)) then
-					v1271['Enabled'] = false;
-				end
-			end
-			for v1272, v1273 in pairs(v951['Weather']['Rain']:GetDescendants()) do
-				if v1273:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\229\123\175\93\72\134\217\127\152\68\72\145\193\127\175", "\229\181\26\221\41\33")) then
-					if (v1273['Enabled'] == true) then
-						v1273['Enabled'] = false;
-					end
-				end
-			end
-		end
-	end);
-	local v1003 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\252\228\232\2\112\9\37\66\210\229", "\37\186\145\132\110\18\123\76"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\181\24\251\28\130\29\251", "\105\227\113\136")], 2, 185, 85);
-	local v1004 = false;
-	local v1005 = false;
-	v1003['Activated']:Connect(function()
-		v1005 = not v1005;
-		local v1074 = game:GetService(LUAOBFUSACTOR_DECRYPT_STR_0("\47\23\6\139\8\132\233\115", "\20\99\126\97\227\124\237\135"));
-		if v1005 then
-			local v1191 = TweenInfo.new(1.5, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut);
-			v4:Create(v1074, v1191, {[LUAOBFUSACTOR_DECRYPT_STR_0("\146\160\230\238\8\2\16", "\100\211\205\132\135\109\108")]=Color3.fromRGB(255, 255, 255)}):Play();
-			task.spawn(function()
-				task.wait(1.5);
-				while v1005 do
-					if (v1074['Ambient'] ~= Color3.fromRGB(255, 255, 255)) then
-						v4:Create(v1074, v1191, {[LUAOBFUSACTOR_DECRYPT_STR_0("\128\25\203\249\188\175\0", "\217\193\116\169\144")]=Color3.fromRGB(255, 255, 255)}):Play();
-					end
-					task.wait(1.5);
-				end
-			end);
-		else
-			local v1192 = TweenInfo.new(1, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut);
-			v4:Create(v1074, v1192, {[LUAOBFUSACTOR_DECRYPT_STR_0("\56\67\43\119\181\38\13", "\72\121\46\73\30\208")]=Color3.fromRGB(0, 0, 0)}):Play();
-		end
-	end);
-	for v1075, v1076 in pairs(v955:GetChildren()) do
-		local v1077 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\135\209\248\133\17\139\161\192\180\180\14\196", "\228\211\180\148\224\97") .. v1076['Name'], v42[LUAOBFUSACTOR_DECRYPT_STR_0("\96\209\153", "\140\51\146\223\139\16")], 5, 150);
-		v1077['Activated']:Connect(function()
-			if (v1076:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\205\19\151\163\251\230\18\133\143\240\247", "\159\143\124\226\205")) and v1076['BoundingBox']:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\88\252\87\84\33\178\87\110", "\37\26\157\36\49\113\211"))) then
-				v19['Position'] = v1076['BoundingBox']['Position'];
-			elseif (v1076:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\134\44\170\203\177\173\45\184\231\186\188", "\213\196\67\223\165")) and v1076['BoundingBox']:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\86\71\178\240\8\98", "\109\16\40\222\148"))) then
-				local v1435 = v1076['BoundingBox']:GetChildren();
-				local v1436 = v1435[math.random(1, #v1435)];
-				v19['Position'] = v1436['Position'];
-			end
-		end);
-	end
-	v63(LUAOBFUSACTOR_DECRYPT_STR_0("\246\217\80\162\208\193\76", "\209\181\181\63"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\195\19\209", "\45\144\80\151\216\160")], 6, 150);
-	if (v951 and v951:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\13\51\172\44\77\45\63\182\32\121\44\50\169\49\105\37\49\182\54", "\62\68\93\218\69"))) then
-		v954 = v951['InvisibleGhostWalls'];
-	elseif (v952 and v952:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\54\21\37\204\47\54\16\19\30\20\205\51\44\6\40\26\63\201\47", "\114\127\123\83\165\92\95"))) then
-		v954 = v952['InvisibleGhostWalls'];
-	end
-	if v954 then
-		local v1154 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\242\216\242\182\214\210\236\167\134\201\241\243\210\213\251\243\197\209\241\160\195\206\234\243\197\209\241\160\195\201", "\211\166\189\158"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\14\130\254", "\140\93\193\184\93\82")], 7, 150);
-		v1154['Activated']:Connect(function()
-			local v1193 = nil;
-			local v1194 = math['huge'];
-			if (not v951:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\80\162\253\238\142\251\96", "\143\19\206\146\157\235")) or not v951:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\243\29\135\175\213\5\155", "\220\176\113\232")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\53\23\74\253\235\204", "\184\118\123\37\142\142"))) then
-				for v1439, v1440 in pairs(v954:GetChildren()) do
-					if (v1440:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\143\227\52\13\157\227\53\28", "\104\205\130\71")) and (v1440['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\161\26\75\150\31\58\124\238\149\23\80", "\129\230\114\36\229\107\121\16"))) then
-						local v1513 = (v19['Position'] - v1440['Position'])['Magnitude'];
-						if (v1513 < v1194) then
-							v1194 = v1513;
-							v1193 = v1440['Position'];
-						end
-					end
-				end
-			else
-				local v1375 = {};
-				for v1441, v1442 in pairs(v951:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\99\3\241\165\198\211\183", "\196\32\111\158\214\163\167")):GetChildren()) do
-					if (v1442:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\0\29\200\21\33", "\112\77\114\172")) and (v1442['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\174\76\39\49\177\153", "\212\237\32\72\66"))) then
-						local v1514 = v1442:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\149\238\111\41", "\76\215\143\28")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\98\208\235\69", "\229\33\165\137\32\228\85"));
-						table.insert(v1375, v1514.Position);
-					end
-				end
-				for v1443, v1444 in pairs(v1375) do
-					local v1445 = (v19['Position'] - v1444)['Magnitude'];
-					if (v1445 < v1194) then
-						v1194 = v1445;
-						v1193 = v1444;
-					end
-				end
-			end
-			if (v1193 and v19) then
-				v19['CFrame'] = CFrame.new(v1193) * v19['CFrame']['Rotation'];
-			end
-			if (v951 and (not v951:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\148\142\10\111\17\209\171", "\232\215\226\101\28\116\165\216")) or not v951:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\47\41\172\72\37\24\54", "\64\108\69\195\59")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\49\127\195\75\71\6", "\34\114\19\172\56"))) and v952) then
-				for v1446, v1447 in pairs(v952:GetDescendants()) do
-					if string.find(v1447.Name, LUAOBFUSACTOR_DECRYPT_STR_0("\237\41\124\209\212\218", "\177\174\69\19\162")) then
-						v19['Position'] = v1447:GetPivot()['Position'];
-					end
-				end
-			end
-		end);
-	end
-	v63(LUAOBFUSACTOR_DECRYPT_STR_0("\188\66\73\3\131\8\183", "\196\236\46\40\122\230\122"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\140\212\82", "\98\223\151\20\193\139\80")], 9, 150);
-	local v1006 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\102\160\136\223\186\253\84\211\18\177\139\154\190\250\67\135\81\169\139\201\175\225\82\135\66\169\133\195\175\224", "\167\50\197\228\186\202\146\38"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\127\235\0", "\71\44\168\70")], 10, 150);
-	local v1007 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\54\2\215\201\18\8\201\216\66\19\212\140\3\71\201\205\12\3\212\193\66\23\215\205\27\2\201", "\172\98\103\187"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\20\100\166", "\217\71\39\224\76\88\118\207")], 11, 150);
-	v63(LUAOBFUSACTOR_DECRYPT_STR_0("\170\177\244\186\153", "\201\237\217\155"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\68\96\125", "\203\23\35\59\172\218\232\105")], 12, 150);
-	local v1008 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\22\172\172\126\50\166\178\111\98\189\175\59\54\161\165\59\37\161\175\104\54", "\27\66\201\192"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\17\6\221", "\58\66\69\155\21\170")], 13, 150);
-	local v1009 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\219\90\229\254\236\224\77\253\187\232\224\31\253\243\249\175\88\225\244\239\251\31\251\244\243\226", "\156\143\63\137\155"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\33\8\91", "\232\114\75\29\92")], 14, 150);
-	v1008['Activated']:Connect(function()
-		if (v0 and v22) then
-			if v0['Ghost']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\33\68\244\87\199\197\0\85\203\89\198\222\57\80\235\66", "\170\105\49\153\54\169")) then
-				v19['CFrame'] = v0['Ghost']['HumanoidRootPart']['CFrame'];
-			end
-		end
-	end);
-	v1009['Activated']:Connect(function()
-		if (v0 and v22) then
-			local v1195 = v0['Ghost']:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\57\95\109\193\3\239\156\177\45\81\116\195", "\212\127\62\27\174\113\134\232"));
-			if v1195 then
-				if v955 then
-					local v1492 = v955:FindFirstChild(v0['Ghost']:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\213\0\165\177\228\87\175\246\51\188\177\251", "\219\147\97\211\222\150\62")));
-					if v1492 then
-						if (v1492:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\226\79\227\131\129\184\206\71\212\130\157", "\209\160\32\150\237\229")) and v1492['BoundingBox']:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\145\59\86\71\72\246\158\167", "\236\211\90\37\34\24\151"))) then
-							v19['CFrame'] = v1492['BoundingBox']['CFrame'];
-						elseif (v1492:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\118\171\166\142\80\173\189\135\118\171\171", "\224\52\196\211")) and v1492['BoundingBox']:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\57\72\73\61\54\241", "\131\127\39\37\89\83"))) then
-							v19['CFrame'] = v1492['BoundingBox']['Part']['CFrame'];
-						end
+			for v1276, v1277 in pairs(v951['Weather']['Rain']:GetDescendants()) do
+				if v1277:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\192\49\229\172\201\78\252\53\210\181\201\89\228\53\229", "\45\144\80\151\216\160")) then
+					if (v1277['Enabled'] == true) then
+						v1277['Enabled'] = false;
 					end
 				end
 			end
 		end
 	end);
 	v1006['Activated']:Connect(function()
+		if v951 then
+			for v1278, v1279 in pairs(v951['Weather']['Snow']:GetDescendants()) do
+				if v1279:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\0\56\185\36\82", "\62\68\93\218\69")) then
+					v40(1, v1279);
+				end
+				if ((v1279:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\61\26\32\192\12\62\0\11", "\114\127\123\83\165\92\95")) and (v1279['Material'] == Enum['Material']['Ground'])) or v1279:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\235\216\237\187\246\220\236\167", "\211\166\189\158"))) then
+					v40(1, v1279);
+				end
+				if (v1279:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\13\160\202\41\59\239\49\164\253\48\59\248\41\164\202", "\140\93\193\184\93\82")) and (v1279['Enabled'] == true)) then
+					v1279['Enabled'] = false;
+				end
+			end
+			for v1280, v1281 in pairs(v951['Weather']['Rain']:GetDescendants()) do
+				if v1281:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\67\175\224\233\130\236\127\171\215\240\130\251\103\171\224", "\143\19\206\146\157\235")) then
+					if (v1281['Enabled'] == true) then
+						v1281['Enabled'] = false;
+					end
+				end
+			end
+		end
+	end);
+	local v1007 = v58(LUAOBFUSACTOR_DECRYPT_STR_0("\246\4\132\176\210\3\129\187\216\5", "\220\176\113\232"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\32\18\86\251\239\212\5", "\184\118\123\37\142\142")], 2, 185, 85);
+	local v1008 = false;
+	local v1009 = false;
+	v1007['Activated']:Connect(function()
+		v1009 = not v1009;
+		local v1079 = game:GetService(LUAOBFUSACTOR_DECRYPT_STR_0("\129\235\32\0\185\235\41\15", "\104\205\130\71"));
+		if v1009 then
+			local v1196 = TweenInfo.new(1.5, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut);
+			v4:Create(v1079, v1196, {[LUAOBFUSACTOR_DECRYPT_STR_0("\167\31\70\140\14\23\100", "\129\230\114\36\229\107\121\16")]=Color3.fromRGB(255, 255, 255)}):Play();
+			task.spawn(function()
+				task.wait(1.5);
+				while v1009 do
+					if (v1079['Ambient'] ~= Color3.fromRGB(255, 255, 255)) then
+						v4:Create(v1079, v1196, {[LUAOBFUSACTOR_DECRYPT_STR_0("\97\2\252\191\198\201\176", "\196\32\111\158\214\163\167")]=Color3.fromRGB(255, 255, 255)}):Play();
+					end
+					task.wait(1.5);
+				end
+			end);
+		else
+			local v1197 = TweenInfo.new(1, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut);
+			v4:Create(v1079, v1197, {[LUAOBFUSACTOR_DECRYPT_STR_0("\12\31\206\25\40\28\216", "\112\77\114\172")]=Color3.fromRGB(0, 0, 0)}):Play();
+		end
+	end);
+	for v1080, v1081 in pairs(v955:GetChildren()) do
+		local v1082 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\185\69\36\39\164\130\82\60\98\128\130\0", "\212\237\32\72\66") .. v1081['Name'], v42[LUAOBFUSACTOR_DECRYPT_STR_0("\132\204\90", "\76\215\143\28")], 5, 150);
+		v1082['Activated']:Connect(function()
+			if (v1081:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\99\202\252\78\128\60\139\70\231\230\88", "\229\33\165\137\32\228\85")) and v1081['BoundingBox']:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\149\131\22\121\36\196\170\156", "\232\215\226\101\28\116\165\216"))) then
+				v19['Position'] = v1081['BoundingBox']['Position'];
+			elseif (v1081:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\46\42\182\85\36\5\43\164\121\47\20", "\64\108\69\195\59")) and v1081['BoundingBox']:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\52\124\192\92\71\0", "\34\114\19\172\56"))) then
+				local v1446 = v1081['BoundingBox']:GetChildren();
+				local v1447 = v1446[math.random(1, #v1446)];
+				v19['Position'] = v1447['Position'];
+			end
+		end);
+	end
+	v63(LUAOBFUSACTOR_DECRYPT_STR_0("\237\41\124\209\212\218\54", "\177\174\69\19\162"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\191\109\110", "\196\236\46\40\122\230\122")], 6, 150);
+	if (v951 and v951:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\150\249\98\168\248\57\0\179\242\83\169\228\35\22\136\246\120\173\248", "\98\223\151\20\193\139\80"))) then
+		v954 = v951['InvisibleGhostWalls'];
+	elseif (v952 and v952:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\123\171\146\211\185\251\68\203\87\130\140\213\185\230\113\198\94\169\151", "\167\50\197\228\186\202\146\38"))) then
+		v954 = v952['InvisibleGhostWalls'];
+	end
+	if v954 then
+		local v1159 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\120\205\42\34\92\199\52\51\12\220\41\103\88\192\35\103\79\196\41\52\73\219\50\103\79\196\41\52\73\220", "\71\44\168\70"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\49\36\253", "\172\98\103\187")], 7, 150);
+		v1159['Activated']:Connect(function()
+			local v1198 = nil;
+			local v1199 = math['huge'];
+			if (not v951:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\4\75\143\63\61\2\188", "\217\71\39\224\76\88\118\207")) or not v951:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\174\181\244\186\136\173\232", "\201\237\217\155")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\84\79\84\223\191\156", "\203\23\35\59\172\218\232\105"))) then
+				for v1450, v1451 in pairs(v954:GetChildren()) do
+					if (v1451:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\0\168\179\126\18\168\178\111", "\27\66\201\192")) and (v1451['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\5\45\244\102\222\121\46\42\232\112\222", "\58\66\69\155\21\170"))) then
+						local v1531 = (v19['Position'] - v1451['Position'])['Magnitude'];
+						if (v1531 < v1199) then
+							v1199 = v1531;
+							v1198 = v1451['Position'];
+						end
+					end
+				end
+			else
+				local v1386 = {};
+				for v1452, v1453 in pairs(v951:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\204\83\230\232\249\251\76", "\156\143\63\137\155")):GetChildren()) do
+					if (v1453:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\63\36\121\57\132", "\232\114\75\29\92")) and (v1453['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\42\93\246\69\204\222", "\170\105\49\153\54\169"))) then
+						local v1532 = v1453:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\61\95\104\203", "\212\127\62\27\174\113\134\232")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\208\20\177\187", "\219\147\97\211\222\150\62"));
+						table.insert(v1386, v1532.Position);
+					end
+				end
+				for v1454, v1455 in pairs(v1386) do
+					local v1456 = (v19['Position'] - v1455)['Magnitude'];
+					if (v1456 < v1199) then
+						v1199 = v1456;
+						v1198 = v1455;
+					end
+				end
+			end
+			if (v1198 and v19) then
+				v19['CFrame'] = CFrame.new(v1198) * v19['CFrame']['Rotation'];
+			end
+			if (v951 and (not v951:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\227\76\249\158\128\165\211", "\209\160\32\150\237\229")) or not v951:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\144\54\74\81\125\227\159", "\236\211\90\37\34\24\151")):FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\119\168\188\147\81\176", "\224\52\196\211"))) and v952) then
+				for v1457, v1458 in pairs(v952:GetDescendants()) do
+					if string.find(v1458.Name, LUAOBFUSACTOR_DECRYPT_STR_0("\60\75\74\42\54\247", "\131\127\39\37\89\83")) then
+						v19['Position'] = v1458:GetPivot()['Position'];
+					end
+				end
+			end
+		end);
+	end
+	v63(LUAOBFUSACTOR_DECRYPT_STR_0("\249\27\238\90\95\215\218", "\165\169\119\143\35\58"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\208\219\14", "\182\131\152\72\213\136\113")], 9, 150);
+	local v1010 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\114\21\185\173\86\31\167\188\6\4\186\232\82\24\176\232\69\28\186\187\67\3\161\232\86\28\180\177\67\2", "\200\38\112\213"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\215\44\233", "\84\132\111\175\42\177\191")], 10, 150);
+	local v1011 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\220\140\33\204\31\74\33\22\168\157\34\137\14\5\33\3\230\141\34\196\79\85\63\3\241\140\63", "\98\136\233\77\169\111\37\83"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\66\150\27", "\185\17\213\93\206\137")], 11, 150);
+	v63(LUAOBFUSACTOR_DECRYPT_STR_0("\155\50\133\6\174", "\218\220\90\234\117"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\241\50\226", "\17\162\113\164\64\49\74")], 12, 150);
+	local v1012 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\52\12\217\1\152\242\6\20\73\193\11\200\233\28\5\73\210\12\135\238\0", "\116\96\105\181\100\232\157"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\122\24\254", "\59\41\91\184\108\91\110\16")], 13, 150);
+	local v1013 = v59(LUAOBFUSACTOR_DECRYPT_STR_0("\188\66\174\94\3\135\85\182\27\7\135\7\182\83\22\200\64\170\84\0\156\7\176\84\28\133", "\115\232\39\194\59"), v42[LUAOBFUSACTOR_DECRYPT_STR_0("\40\232\193", "\194\123\171\135\86")], 14, 150);
+	v1012['Activated']:Connect(function()
+		if (v0 and v22) then
+			if v0['Ghost']:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\119\151\116\197\58\240\21\113\109\141\118\208\4\254\14\97", "\21\63\226\25\164\84\159\124")) then
+				v19['CFrame'] = v0['Ghost']['HumanoidRootPart']['CFrame'];
+			end
+		end
+	end);
+	v1013['Activated']:Connect(function()
+		if (v0 and v22) then
+			local v1200 = v0['Ghost']:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\200\201\169\222\51\247\14\235\250\176\222\44", "\122\142\168\223\177\65\158"));
+			if v1200 then
+				if v955 then
+					local v1510 = v955:FindFirstChild(v0['Ghost']:GetAttribute(LUAOBFUSACTOR_DECRYPT_STR_0("\229\34\7\10\200\95\60\198\17\30\10\215", "\72\163\67\113\101\186\54")));
+					if v1510 then
+						if (v1510:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\11\136\225\143\45\142\250\134\11\136\236", "\225\73\231\148")) and v1510['BoundingBox']:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\51\55\93\83\246\16\36\90", "\166\113\86\46\54"))) then
+							v19['CFrame'] = v1510['BoundingBox']['CFrame'];
+						elseif (v1510:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\237\218\98\211\229\207\137\0\237\218\111", "\103\175\181\23\189\129\166\231")) and v1510['BoundingBox']:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\151\23\89\80\216\31", "\109\209\120\53\52\189"))) then
+							v19['CFrame'] = v1510['BoundingBox']['Part']['CFrame'];
+						end
+					end
+				end
+			end
+		end
+	end);
+	v1010['Activated']:Connect(function()
 		if (#v820:GetPlayers() <= 1) then
-			v68(LUAOBFUSACTOR_DECRYPT_STR_0("\240\24\250\3\91\215\204\87\255\79\91\220\192\25\232\3\91\201\198\25\234\13", "\165\169\119\143\35\58"));
+			v68(LUAOBFUSACTOR_DECRYPT_STR_0("\122\7\232\82\218\160\70\72\237\30\218\171\74\6\250\82\218\190\76\6\248\92", "\210\35\104\157\114\187"));
 			return;
 		end
-		for v1155, v1156 in pairs(v0:GetChildren()) do
-			if (v1156:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\203\237\37\180\230\30\223\231", "\182\131\152\72\213\136\113")) and v1156:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\110\5\184\169\72\31\188\172\116\31\186\188\118\17\167\188", "\200\38\112\213"))) then
-				if ((v1156['Name'] ~= LUAOBFUSACTOR_DECRYPT_STR_0("\195\7\192\89\197", "\84\132\111\175\42\177\191")) and (v1156['Name'] ~= v2['Name'])) then
-					v19['CFrame'] = v1156['HumanoidRootPart']['CFrame'];
+		for v1160, v1161 in pairs(v0:GetChildren()) do
+			if (v1161:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\82\208\184\58\175\66\8\212", "\176\26\165\213\91\193\45\97")) and v1161:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\31\51\135\225\245\28\227\51\20\133\239\239\35\235\37\50", "\138\87\70\234\128\155\115"))) then
+				if ((v1161['Name'] ~= LUAOBFUSACTOR_DECRYPT_STR_0("\134\211\221\83\203", "\173\193\187\178\32\191\194\112")) and (v1161['Name'] ~= v2['Name'])) then
+					v19['CFrame'] = v1161['HumanoidRootPart']['CFrame'];
 					break;
 				end
 			end
 		end
 	end);
-	v1007['Activated']:Connect(function()
+	v1011['Activated']:Connect(function()
 		if (#v820:GetPlayers() <= 1) then
-			v68(LUAOBFUSACTOR_DECRYPT_STR_0("\209\134\56\137\14\87\54\66\248\133\44\208\6\75\52\66\233\133\34\199\10\11", "\98\136\233\77\169\111\37\83"));
+			v68(LUAOBFUSACTOR_DECRYPT_STR_0("\213\45\198\167\20\54\233\98\195\235\20\61\229\44\212\167\20\40\227\44\214\169", "\68\140\66\179\135\117"));
 			return;
 		end
-		local v1078 = {};
-		for v1157, v1158 in pairs(workspace:GetChildren()) do
-			if (v1158:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\89\160\48\175\231\214\120\177", "\185\17\213\93\206\137")) and v1158:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\148\47\135\20\180\179\51\142\39\181\179\46\186\20\168\168", "\218\220\90\234\117"))) then
-				if ((v1158['Name'] ~= LUAOBFUSACTOR_DECRYPT_STR_0("\229\25\203\51\69", "\17\162\113\164\64\49\74")) and (v1158['Name'] ~= v2['Name'])) then
-					table.insert(v1078, v1158);
+		local v1083 = {};
+		for v1162, v1163 in pairs(workspace:GetChildren()) do
+			if (v1163:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\92\159\69\251\53\90\161\112", "\200\20\234\40\154\91\53")) and v1163:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\104\174\166\186\117\79\178\175\137\116\79\175\155\186\105\84", "\27\32\219\203\219"))) then
+				if ((v1163['Name'] ~= LUAOBFUSACTOR_DECRYPT_STR_0("\1\245\22\173\234", "\223\70\157\121\222\158\16\50")) and (v1163['Name'] ~= v2['Name'])) then
+					table.insert(v1083, v1163);
 				end
 			end
 		end
-		local v1079 = v1078[math.random(1, #v1078)];
-		v19['CFrame'] = v1079['HumanoidRootPart']['CFrame'];
+		local v1084 = v1083[math.random(1, #v1083)];
+		v19['CFrame'] = v1084['HumanoidRootPart']['CFrame'];
 	end);
-	for v1082, v1083 in pairs(v42["2"]:GetDescendants()) do
-		if (v1083['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\36\0\195\13\140\248\6", "\116\96\105\181\100\232\157")) then
-			v1083['Size'] = UDim2.new(v1083['Size']['X'].Scale, v1083['Size']['X'].Offset, v1083['Size']['Y'].Scale, 1);
+	for v1087, v1088 in pairs(v42["2"]:GetDescendants()) do
+		if (v1088['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\148\28\184\228\235\75\59", "\73\208\117\206\141\143\46")) then
+			v1088['Size'] = UDim2.new(v1088['Size']['X'].Scale, v1088['Size']['X'].Offset, v1088['Size']['Y'].Scale, 1);
 		end
 	end
-	local v1010 = v42["2"]:FindFirstChildOfClass(LUAOBFUSACTOR_DECRYPT_STR_0("\124\18\252\30\58\9\84\94\93\62\219\24\52\28", "\59\41\91\184\108\91\110\16"));
+	local v1014 = v42["2"]:FindFirstChildOfClass(LUAOBFUSACTOR_DECRYPT_STR_0("\154\211\117\97\174\253\117\118\187\255\82\103\160\232", "\19\207\154\49"));
 end
