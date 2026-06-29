@@ -103,9 +103,6 @@ local v44;
 local v45 = {[LUAOBFUSACTOR_DECRYPT_STR_0("\112\205\57\215\55\87\201\48\216", "\100\39\172\85\188")]=10,[LUAOBFUSACTOR_DECRYPT_STR_0("\135\109\180\144\3\162\111\188\146", "\83\205\24\217\224")]=0};
 local function v46(v88, v89, v90)
 	local v91 = TweenInfo.new(v89, Enum['EasingStyle'].Sine, Enum['EasingDirection'].InOut);
-	if not ss then
-		ss = false;
-	end
 	for v643, v644 in pairs(v88:GetDescendants()) do
 		local v645 = {};
 		local v646 = {};
@@ -126,25 +123,23 @@ local function v46(v88, v89, v90)
 		elseif v644:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\76\130\54\3\109\149\43", "\119\24\231\78")) then
 			v645[LUAOBFUSACTOR_DECRYPT_STR_0("\182\63\164\68\207\80\16\144\40\171\73\197", "\113\226\77\197\42\188\32")] = v644['Transparency'];
 			v646[LUAOBFUSACTOR_DECRYPT_STR_0("\14\4\245\187\41\6\245\167\63\24\247\172", "\213\90\118\148")] = 1;
-		elseif v644:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\110\7\135\94\76\95\33\163", "\45\59\78\212\54")) then
-			fallbackProperties['Transparency'] = 1;
-		elseif v644:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\37\127\176\159\148\33\166\245", "\144\112\54\227\235\230\78\205")) then
+		elseif v644:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\110\7\135\66\95\84\37\177", "\45\59\78\212\54")) then
 			v41[v644]['Transparency'] = v644['Transparency'];
-		elseif v644:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\134\1\40\238\209\95\186\45\1\232", "\59\211\72\111\156\176")) then
+		elseif (v644:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\37\127\164\153\135\42\164\245\30\66", "\144\112\54\227\235\230\78\205")) and (v644['Parent']['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\151\33\25\245\212\94\161", "\59\211\72\111\156\176"))) then
 			v41[v644] = {[LUAOBFUSACTOR_DECRYPT_STR_0("\122\149\226\35\93\151\226\63\75\137\224\52", "\77\46\231\131")]=v644['Transparency']};
 			task.spawn(function()
-				local v1890 = os.clock();
-				while (os.clock() - v1890) < v89 do
-					local v1893 = os.clock() - v1890;
-					local v1894 = math.clamp(v1893 / v89, 0, 1);
-					local v1895 = 0.5 - (0.5 * math.cos(v1894 * math['pi']));
-					local v1896 = v41[v644]['Transparency'];
-					local v1897 = {};
-					for v1899, v1900 in ipairs(v1896.Keypoints) do
-						local v1901 = v1900['Value'] + ((1 - v1900['Value']) * v1895);
-						table.insert(v1897, NumberSequenceKeypoint.new(v1900.Time, v1901));
+				local v1881 = os.clock();
+				while (os.clock() - v1881) < v89 do
+					local v1891 = os.clock() - v1881;
+					local v1892 = math.clamp(v1891 / v89, 0, 1);
+					local v1893 = 0.5 - (0.5 * math.cos(v1892 * math['pi']));
+					local v1894 = v41[v644]['Transparency'];
+					local v1895 = {};
+					for v1898, v1899 in ipairs(v1894.Keypoints) do
+						local v1900 = v1899['Value'] + ((1 - v1899['Value']) * v1893);
+						table.insert(v1895, NumberSequenceKeypoint.new(v1899.Time, v1900));
 					end
-					v644['Transparency'] = NumberSequence.new(v1897);
+					v644['Transparency'] = NumberSequence.new(v1895);
 					task.wait();
 				end
 				v644['Color'] = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))});
@@ -211,19 +206,19 @@ local function v47(v92, v93)
 					v4:Create(v649, v94, {[LUAOBFUSACTOR_DECRYPT_STR_0("\220\31\88\240\200\242\131\60\237\3\90\231", "\78\136\109\57\158\187\130\226")]=v650['Transparency']}):Play();
 				end
 			elseif (v649:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\11\22\222\227\63\59\240\244\48\43", "\145\94\95\153")) and (v649['Parent']['Name'] == LUAOBFUSACTOR_DECRYPT_STR_0("\217\196\2\220\74\178\239", "\215\157\173\116\181\46"))) then
-				local v1902 = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
+				local v1901 = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
 				task.spawn(function()
-					local v1903 = os.clock();
-					while (os.clock() - v1903) < v93 do
-						local v1905 = os.clock() - v1903;
-						local v1906 = math.clamp(v1905 / v93, 0, 1);
-						local v1907 = 0.5 - (0.5 * math.cos(v1906 * math['pi']));
-						local v1908 = {};
-						for v1910, v1911 in ipairs(v1902.Keypoints) do
-							local v1912 = 1 - ((1 - v1911['Value']) * v1907);
-							table.insert(v1908, NumberSequenceKeypoint.new(v1911.Time, v1912));
+					local v1902 = os.clock();
+					while (os.clock() - v1902) < v93 do
+						local v1904 = os.clock() - v1902;
+						local v1905 = math.clamp(v1904 / v93, 0, 1);
+						local v1906 = 0.5 - (0.5 * math.cos(v1905 * math['pi']));
+						local v1907 = {};
+						for v1909, v1910 in ipairs(v1901.Keypoints) do
+							local v1911 = 1 - ((1 - v1910['Value']) * v1906);
+							table.insert(v1907, NumberSequenceKeypoint.new(v1910.Time, v1911));
 						end
-						v649['Transparency'] = NumberSequence.new(v1908);
+						v649['Transparency'] = NumberSequence.new(v1907);
 						task.wait();
 					end
 					v649['Transparency'] = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
@@ -2374,8 +2369,8 @@ if (v13 == LUAOBFUSACTOR_DECRYPT_STR_0("\166\64\139\181\155\207\244\142", "\153\
 				if v1080() then
 					for v1761, v1762 in pairs(v0['SaltPiles']:GetChildren()) do
 						if v1762:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\201\123\40\67\184\36\183\23\237\120\34\66", "\118\142\19\71\48\204\112\197")) then
-							v1762['GhostTracker']['Touched']:Connect(function(v1858)
-								if (v1858 == v14['HumanoidRootPart']) then
+							v1762['GhostTracker']['Touched']:Connect(function(v1859)
+								if (v1859 == v14['HumanoidRootPart']) then
 									task.wait(0.5);
 									if not v1762:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\121\68\66\48\146\4\86\69\89", "\118\63\43\45\68\226")) then
 										v1065 = LUAOBFUSACTOR_DECRYPT_STR_0("\118\241\77\165\163\76", "\192\33\131\44\204\215\36");
@@ -2543,12 +2538,12 @@ if (v13 == LUAOBFUSACTOR_DECRYPT_STR_0("\166\64\139\181\155\207\244\142", "\153\
 					if v1508:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\89\236\168\137\147\26\105\249", "\123\27\141\219\236\195")) then
 						v1706 = v1508['Position'];
 					elseif v1508:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\102\81\238\245\129\87", "\84\32\62\130\145\228\37\107")) then
-						local v1859 = Vector3.new(0, 0, 0);
-						local v1860 = v1508:GetChildren();
-						for v1869, v1870 in pairs(v1860) do
-							v1859 = v1859 + v1870['Position'];
+						local v1860 = Vector3.new(0, 0, 0);
+						local v1861 = v1508:GetChildren();
+						for v1870, v1871 in pairs(v1861) do
+							v1860 = v1860 + v1871['Position'];
 						end
-						v1706 = ((#v1860 > 0) and (v1859 / #v1860)) or Vector3.new(0, 0, 0);
+						v1706 = ((#v1861 > 0) and (v1860 / #v1861)) or Vector3.new(0, 0, 0);
 					end
 					if v1220 then
 						local v1797 = v0:FindFirstChild(v1221) or Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\17\133\91\167", "\178\65\228\41\211\38\54"), v0);
@@ -2936,9 +2931,9 @@ if (v13 == LUAOBFUSACTOR_DECRYPT_STR_0("\166\64\139\181\155\207\244\142", "\153\
 					end));
 				elseif (v1234 == LUAOBFUSACTOR_DECRYPT_STR_0("\108\24\92\216\26\187\166", "\211\40\125\47\172\104\212\223")) then
 					if v1518 then
-						local v1861 = v4:Create(v1518, TweenInfo.new(0.25), {[LUAOBFUSACTOR_DECRYPT_STR_0("\97\84\56\2\71\79\41\58\92\64\34\29\94\64\62\11\64\66\53", "\110\46\33\76")]=1});
-						v1861:Play();
-						v1861['Completed']:Connect(function()
+						local v1862 = v4:Create(v1518, TweenInfo.new(0.25), {[LUAOBFUSACTOR_DECRYPT_STR_0("\97\84\56\2\71\79\41\58\92\64\34\29\94\64\62\11\64\66\53", "\110\46\33\76")]=1});
+						v1862:Play();
+						v1862['Completed']:Connect(function()
 							v1518:Destroy();
 						end);
 					end
@@ -2981,12 +2976,12 @@ if (v13 == LUAOBFUSACTOR_DECRYPT_STR_0("\166\64\139\181\155\207\244\142", "\153\
 				elseif (v1235 == LUAOBFUSACTOR_DECRYPT_STR_0("\139\240\158\192\78\160\236", "\60\207\149\237\180")) then
 					for v1847, v1848 in pairs(v1325:GetDescendants()) do
 						if v1848:IsA(LUAOBFUSACTOR_DECRYPT_STR_0("\213\53\152\227\199\53\153\242", "\134\151\84\235")) then
-							local v1871 = v1848:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\99\6\181\5\123\66\8\186\25", "\23\43\111\210\109"));
-							if v1871 then
-								local v1885 = v4:Create(v1871, TweenInfo.new(0.25), {[LUAOBFUSACTOR_DECRYPT_STR_0("\90\13\228\241\21\68\236\65\10\241\243\15\90\232\103\29\254\254\5", "\137\21\120\144\157\124\42")]=1});
-								v1885:Play();
-								v1885['Completed']:Connect(function()
-									v1871:Destroy();
+							local v1872 = v1848:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\99\6\181\5\123\66\8\186\25", "\23\43\111\210\109"));
+							if v1872 then
+								local v1888 = v4:Create(v1872, TweenInfo.new(0.25), {[LUAOBFUSACTOR_DECRYPT_STR_0("\90\13\228\241\21\68\236\65\10\241\243\15\90\232\103\29\254\254\5", "\137\21\120\144\157\124\42")]=1});
+								v1888:Play();
+								v1888['Completed']:Connect(function()
+									v1872:Destroy();
 								end);
 							end
 						end
