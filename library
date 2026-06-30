@@ -11,7 +11,9 @@ local TypicalLibrary = {}
 
 local Presets = {}
 
-GetPlayer = function(character)
+local GuiName = "Beh"
+
+local function GetPlayer(character)
     Character = character
     Humanoid = Character:WaitForChild("Humanoid")
     HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
@@ -271,7 +273,7 @@ end
 for _, gui in pairs(PlayerGui:GetChildren()) do
     if gui:IsA("ScreenGui") and gui.Name == GuiName then
         for _, v in pairs(gui:GetDescendants()) do
-            FadeIn(0.5, v)
+            TypicalLibrary:FadeIn(0.5, v)
         end
 
         task.wait(0.5)
@@ -306,7 +308,7 @@ function TypicalLibrary:CreateLog(inner, Parent, Order, SizeX, TextScaled, name,
     MainStroke.Color = Color3.fromRGB(255, 255, 255)
     MainStroke.ApplyStrokeMode = "Border"
     MainStroke.Transparency = 1
-    FadeOut(0.25, MainStroke, 0)
+    TypicalLibrary:FadeOut(0.25, MainStroke, 0)
 
     Noice2 = Instance.new("ImageLabel", Log)
     Noice2.Size = UDim2.new(0, SizeX, 0, 28)
@@ -315,7 +317,7 @@ function TypicalLibrary:CreateLog(inner, Parent, Order, SizeX, TextScaled, name,
     Noice2.Name = "Noice"
     Noice2.BackgroundTransparency = 1
     local NoiceCorner = Instance.new("UICorner", Noice2)
-    FadeOut(0.25, Noice2, 0.5)
+    TypicalLibrary:FadeOut(0.25, Noice2, 0.5)
 
     savedTabStates[Noice2] = {BackgroundTransparency = 1, ImageTransparency = 0.5}
 
@@ -330,7 +332,7 @@ function TypicalLibrary:CreateLog(inner, Parent, Order, SizeX, TextScaled, name,
     TextLabelLog.TextColor3 = Color3.fromRGB(255, 255, 255)
     TextLabelLog.Text = inner
     TextLabelLog.Parent = Log
-    FadeOut(0.25, TextLabelLog, 0)
+    TypicalLibrary:FadeOut(0.25, TextLabelLog, 0)
 
     return TextLabelLog
 end
@@ -391,7 +393,7 @@ function TypicalLibrary:CreateSlider(inner, Parent, Order, SizeX, TextScaled, mi
         if callback then callback(displayValue) end
     end
 
-    update(Settings[type] or min)
+    TypicalLibrary:update(Settings[type] or min)
 
     local holding = false
     Log.InputBegan:Connect(function(input)
@@ -406,7 +408,7 @@ function TypicalLibrary:CreateSlider(inner, Parent, Order, SizeX, TextScaled, mi
             local relativeX = input.Position.X - Log.AbsolutePosition.X
             local pct = math.clamp(relativeX / Log.AbsoluteSize.X, 0, 1)
             local newValue = min + ((max - min) * pct)
-            update(newValue)
+            TypicalLibrary:update(newValue)
         end
     end)
 
@@ -593,9 +595,9 @@ function TypicalLibrary:CreateEsp(inner, Parent, destroy)
     local EspImg = Instance.new("Frame", Esp)
     EspImg.BackgroundTransparency = 1
     EspImg.Size = UDim2.new(1, 0, 1, 0)
-    FadeOut(0.25, EspImg)
+    TypicalLibrary:FadeOut(0.25, EspImg)
 
-    CreateItems(EspImg, "DarkRed2")
+    TypicalLibrary:CreateItems(EspImg, "DarkRed2")
 
     local Layout = Instance.new("UIListLayout", EspImg)
     Layout.Padding = UDim.new(0, 10)
@@ -633,7 +635,7 @@ function TypicalLibrary:CreateTextBox(Parent, Order, SizeX, SizeY, visible)
         TextBox.TextTransparency = 1
     end
     
-    CreateItems(TextBox, "DarkRed")
+    TypicalLibrary:CreateItems(TextBox, "DarkRed")
 
     local Frame = Instance.new("Frame", TextBox)
     Frame.Size = UDim2.new(0, SizeX, 0, SizeY)
@@ -641,7 +643,7 @@ function TypicalLibrary:CreateTextBox(Parent, Order, SizeX, SizeY, visible)
         Frame.BackgroundTransparency = 1
     end
 
-    CreateItems(Frame, "DarkRed", true, 0, _, Color3.fromRGB(255, 255, 255), 0.25)
+    TypicalLibrary:CreateItems(Frame, "DarkRed", true, 0, _, Color3.fromRGB(255, 255, 255), 0.25)
 
     if visible == false then
         Frame.UIStroke.Transparency = 1
@@ -685,7 +687,7 @@ function TypicalLibrary:CreateButton(inner, Parent, Order, SizeX, visible)
     MainStroke.ApplyStrokeMode = "Border"
     MainStroke.Transparency = 1
     if visible then
-        FadeOut(0.25, MainStroke, 0)
+        TypicalLibrary:FadeOut(0.25, MainStroke, 0)
     end
 
     Noice3 = Instance.new("ImageLabel", Log)
@@ -696,7 +698,7 @@ function TypicalLibrary:CreateButton(inner, Parent, Order, SizeX, visible)
     Noice3.BackgroundTransparency = 1
     local NoiceCorner = Instance.new("UICorner", Noice3)
     if visible then
-        FadeOut(0.25, Noice3, 0.5)
+        TypicalLibrary:FadeOut(0.25, Noice3, 0.5)
     end
 
     local UICornerLog = Instance.new("UICorner")
@@ -756,14 +758,14 @@ function TypicalLibrary:CreateInner(parent, destroy, textt, textt2)
 
         local corner = Instance.new("UICorner", shadow)
 
-        FadeOut(0.25, shadow, 0.4)
+        TypicalLibrary:FadeOut(0.25, shadow, 0.4)
 
         main = Instance.new("Frame", parent)
         main.Size = UDim2.new(0, 250, 0, 0)
         main.AnchorPoint = Vector2.new(0.5, 0.5)
         main.Position = UDim2.new(0.5, 0, 0.5, 0)
         main.Name = "Main"
-        CreateItems(main, "DarkRed2")
+        TypicalLibrary:CreateItems(main, "DarkRed2")
         tween = TweenService:Create(main, info, {Size = UDim2.new(0, 250, 0, 150)})
         tween:Play()
         Close = Instance.new("ImageButton", main);
@@ -782,20 +784,20 @@ function TypicalLibrary:CreateInner(parent, destroy, textt, textt2)
         local HolderLayout = Instance.new("UIListLayout", Holder)
         HolderLayout.Padding = UDim.new(0, 5)
         HolderLayout.SortOrder = "LayoutOrder"
-        text = CreateText(textt, Holder, 0, 175, 28, true)
-        box = CreateTextBox(Holder, 1, 175, 28, false)
-        btn2 = CreateButton(textt2, Holder, 2, 175, false)
+        text = TypicalLibrary:CreateText(textt, Holder, 0, 175, 28, true)
+        box = TypicalLibrary:CreateTextBox(Holder, 1, 175, 28, false)
+        btn2 = TypicalLibrary:CreateButton(textt2, Holder, 2, 175, false)
 
         box.Noice.ImageTransparency = 1
         text.TextTransparency = 1
-        FadeOut(0.25, box.Noice, 0.5)
-        FadeOut(0.25, box.Frame.UIStroke, 0)
-        FadeOut(0.25, box, 0)
-        FadeOut(0.25, text, 0)
-        FadeOut(0.25, text.Divider, 0)
-        FadeOut(0.25, btn2.UIStroke, 0)
-        FadeOut(0.25, btn2.Noice, 0.5)
-        FadeOut(0.25, btn2.TextLabel, 0)
+        TypicalLibrary:FadeOut(0.25, box.Noice, 0.5)
+        TypicalLibrary:FadeOut(0.25, box.Frame.UIStroke, 0)
+        TypicalLibrary:FadeOut(0.25, box, 0)
+        TypicalLibrary:FadeOut(0.25, text, 0)
+        TypicalLibrary:FadeOut(0.25, text.Divider, 0)
+        TypicalLibrary:FadeOut(0.25, btn2.UIStroke, 0)
+        TypicalLibrary:FadeOut(0.25, btn2.Noice, 0.5)
+        TypicalLibrary:FadeOut(0.25, btn2.TextLabel, 0)
     end
     function TypicalLibrary:Closef()
         if Close then
@@ -807,23 +809,23 @@ function TypicalLibrary:CreateInner(parent, destroy, textt, textt2)
             Close = main:FindFirstChild("Close")
             btn2 = main:FindFirstChild("Frame"):FindFirstChild("Button")
         end
-        FadeOut(0.25, shadow, 1)
+        TypicalLibrary:FadeOut(0.25, shadow, 1)
         local tween2 = TweenService:Create(main, info, {Size = UDim2.new(0, 250, 0, 0)})
         tween2:Play()
-        FadeOut(0.25, Close, 1)
+        TypicalLibrary:FadeOut(0.25, Close, 1)
         if game:GetService("Lighting"):FindFirstChild("Blur") then
             game.Lighting.Blur.Enabled = false
             game.Lighting.Blur.Size = 5
         end
 
-        FadeOut(0.25, box.Noice, 1)
-        FadeOut(0.25, box.Frame.UIStroke, 1)
-        FadeOut(0.25, box, 1)
-        FadeOut(0.25, text, 1)
-        FadeOut(0.25, text.Divider, 1)
-        FadeOut(0.25, btn2.UIStroke, 1)
-        FadeOut(0.25, btn2.Noice, 1)
-        FadeOut(0.25, btn2.TextLabel, 1)
+        TypicalLibrary:FadeOut(0.25, box.Noice, 1)
+        TypicalLibrary:FadeOut(0.25, box.Frame.UIStroke, 1)
+        TypicalLibrary:FadeOut(0.25, box, 1)
+        TypicalLibrary:FadeOut(0.25, text, 1)
+        TypicalLibrary:FadeOut(0.25, text.Divider, 1)
+        TypicalLibrary:FadeOut(0.25, btn2.UIStroke, 1)
+        TypicalLibrary:FadeOut(0.25, btn2.Noice, 1)
+        TypicalLibrary:FadeOut(0.25, btn2.TextLabel, 1)
 
         task.wait(0.5)
 
@@ -834,11 +836,11 @@ function TypicalLibrary:CreateInner(parent, destroy, textt, textt2)
     end
     if Close and not destroy then
         Close.Activated:Connect(function()
-            Closef()
+            TypicalLibrary:Closef()
         end)
     end
     if destroy then
-        Closef()
+        TypicalLibrary:Closef()
     end
     return box, btn2, Close
 end
@@ -876,9 +878,9 @@ function TypicalLibrary:CreateNotification(inner, duration)
         end
     end
 
-    CreateItems(Frame, "Red", false, true)
-    CreateText("NOTIFICATION", Frame, 0)
-    CreateText(inner, Frame, 1, 156, 60, false, false, true, true)
+    TypicalLibrary:CreateItems(Frame, "Red", false, true)
+    TypicalLibrary:CreateText("NOTIFICATION", Frame, 0)
+    TypicalLibrary:CreateText(inner, Frame, 1, 156, 60, false, false, true, true)
 
     local info = TweenInfo.new(0.35, Enum.EasingStyle.Back, Enum.EasingDirection.Out)
     local tween = TweenService:Create(Frame, info, {Position = UDim2.new(0, 25, 0.9, Frame.Position.Y.Offset)})
@@ -906,26 +908,26 @@ function TypicalLibrary:CreateNotification(inner, duration)
 end
 
 if GameType == "Unknown" then
-    CreateNotification("This game is not supported.", 2)
+    TypicalLibrary:CreateNotification("This game is not supported.", 2)
     return
 end
 
 if Guis["1"] then
-    local keybox, keybtn, thing = CreateInner(Guis["1"], false, "Key:", "Authenticate")
+    local keybox, keybtn, thing = TypicalLibrary:CreateInner(Guis["1"], false, "Key:", "Authenticate")
     if keybox and keybtn then
         local connection
         connection = keybtn.Activated:Connect(function()
             local input = keybox.Text
             
             if input == "" then
-                CreateNotification("Please enter the key.", 2)
+                TypicalLibrary:CreateNotification("Please enter the key.", 2)
             elseif input == key then
                 authenticated = true
-                CreateNotification("Authenticated!", 2)
-                CreateInner(Guis["1"], true)
+                TypicalLibrary:CreateNotification("Authenticated!", 2)
+                TypicalLibrary:CreateInner(Guis["1"], true)
                 connection:Disconnect()
             else
-                CreateNotification("Invalid key.", 2)
+                TypicalLibrary:CreateNotification("Invalid key.", 2)
             end
         end)
     end
@@ -933,176 +935,6 @@ if Guis["1"] then
     while not authenticated do
         task.wait(0.1)
     end
-end
-
-function TypicalLibrary:LoadPresetF(name)
-    local data = Presets[name]
-    if data then
-        AE = data.AE
-        AP = data.AP
-        AG = data.AG
-        AB = data.AB
-        Max = data.Max
-        AF = data.AF
-        AES = data.AES
-        NOH = data.NOH
-        IEsp = data.IEsp
-        Notify = data.Notify
-        GEs = data.GEs
-        ev = data.ev
-        PlEs = data.PlEs
-        RM = data.RM
-        Fb = data.Fb
-        isInf = data.isInf
-        val = data.val
-        val2 = data.val2
-    end
-
-    if Humanoid then
-        if data.WalkSpeed then Humanoid.WalkSpeed = data.WalkSpeed end
-        if data.JumpPower then Humanoid.JumpPower = data.JumpPower end
-    end
-
-    for key, value in pairs(data) do
-        Settings[key] = value
-        
-        if Sliders[key] then
-            Sliders[key].Update(value)
-        end
-        
-        if ToggleButtons[key] then
-            ToggleButtons[key].Update(value)
-        end
-    end
-
-    task.spawn(function()
-        if AE then
-            task.spawn(function()
-                while AE do
-                    AutoMarkEvidences()
-                    task.wait(0.1)
-                end
-            end)
-        end
-    end)
-    task.spawn(function()
-        if AG then
-            task.spawn(function()
-                while AG do
-                    AutoMarkGhost()
-                    task.wait(0.1)
-                end
-            end)
-        end
-    end)
-    task.spawn(function()
-        if AB then
-            task.spawn(function()
-                while AB do
-                    AutoSb()
-                    task.wait(0.1)
-                end
-            end)
-        end
-    end)
-    task.spawn(function()
-        if AES then
-            task.spawn(function()
-                while AES do
-                    if RoomsFolder then
-                        Ghost:GetAttributeChangedSignal("Hunting"):Connect(function()
-                            if AES and Ghost:GetAttribute("Hunting") == true then
-                                TPCamp()
-                            end
-                        end)
-                    end
-                    task.wait(0.1)
-                end
-            end)
-        end
-    end)
-    if NOH then
-        task.spawn(function()
-            conn = Ghost:GetAttributeChangedSignal("Hunting"):Connect(function()
-                local currentHuntingState = Ghost:GetAttribute("Hunting")
-                
-                if currentHuntingState == true then
-                    CreateNotification("Ghost hunt has started.", 2)
-                else
-                    CreateNotification("Ghost hunt has ended.", 2)
-                end
-            end)
-        end)
-    else
-        if conn then
-            conn:Disconnect()
-            conn = nil
-        end
-    end
-    if IEsp then
-        CItemEsp("Create")
-    else
-        CItemEsp("Destroy")
-    end
-    if Notify then
-        task.spawn(function()
-            while Notify do
-                NotifyEv()
-                task.wait(0.1)
-            end
-        end)
-    end
-    if GEs then
-        CGhostEsp("Create")
-    else
-        CGhostEsp("Destroy")
-    end
-    if ev then
-        CreateEvidenceEsp("Create")
-    else
-        CreateEvidenceEsp("Destroy")
-    end
-    task.spawn(function()
-        if RM then
-            CreateRoomEsp("Create")
-        else
-            CreateRoomEsp("Destroy")
-        end
-    end)
-    task.spawn(function()
-        if isInf then
-            task.spawn(function()
-                while isInf do
-                    if Player:GetAttribute("Sprinting") == true then
-                        Player:SetAttribute("Sprinting", false)
-                    end
-                    task.wait(0.1)
-                end
-            end)
-        end
-    end)
-    task.spawn(function()
-        if PlEs then
-            CPlayerEsp("Create")
-        else
-            CPlayerEsp("Destroy")
-        end
-    end)
-    task.spawn(function()
-        if Fb then
-            if not game:GetService("Lighting"):FindFirstChild("Atmosphere") then
-                Instance.new("Atmosphere", game.Lighting)
-            end
-            ChangeLight("Light")
-            task.wait(1)
-        else
-            if game:GetService("Lighting"):FindFirstChild("Atmosphere") then
-                game.Lighting.Atmosphere:Destroy()
-            end
-            ChangeLight("ha")
-            task.wait(1)
-        end
-    end)
 end
 
 local ToggleButtons = {}
@@ -1261,79 +1093,5 @@ function TypicalLibrary:CreateMobileButton(inner, Parent, Order, SizeX, name)
 
     return Log
 end
-
-CreatePreset.Activated:Connect(function()
-    local count = 0
-    for _ in pairs(Presets) do
-        count = count + 1
-    end
-    if count >= 5 then
-        CreateNotification("You've already reached the maximum of 5 presets", 2)
-        return
-    end
-
-    local box, btn2 = CreateInner(Guis["2"], false)
-    btn2.Activated:Connect(function()
-        if box.Text == "" then 
-            CreateNotification("Please, give a name to the preset.", 2)
-            return 
-        end
-        if Presets[box.Text] then 
-            CreateNotification("There is already a preset wtih that name.", 2)
-            return 
-        end
-
-        Presets[box.Text] = GetPresetsTable()
-        
-        local pres = CreateButton(box.Text, Script, 7, 165, true)
-        pres.Activated:Connect(function()
-            selectedpreset = pres
-            selectedpresetname = box.Text
-        end)
-        
-        SavePresets("Presets")
-        
-        CreateInner(Guis["2"], true)
-    end)
-end)
-
-DeletePreset.Activated:Connect(function()
-    if selectedpreset and typeof(selectedpreset) == "Instance" then
-        local presetName = selectedpreset.TextLabel.Text
-        
-        selectedpreset:Destroy()
-        
-        Presets[presetName] = nil
-        
-        SavePresets("Presets")
-        
-        selectedpreset = nil
-    end
-end)
-
-function TypicalLibrary:LoadPresetsFromFile()
-    if isfile(fpath) then
-        local decoded = HttpService:JSONDecode(readfile(fpath))
-        Presets = decoded
-        
-        for name, data in pairs(Presets) do
-            local pres = CreateButton(name, Script, 7, 165, true)
-            pres.Activated:Connect(function()
-                selectedpreset = pres
-                selectedpresetname = name
-            end)
-        end
-    end
-end
-
-LoadPresetsFromFile()
-
-LoadPreset.Activated:Connect(function()
-    if selectedpresetname ~= "None" then
-        LoadPresetF(selectedpresetname)
-    else
-        CreateNotification("Select a preset first.", 2)
-    end
-end)
 
 return library
