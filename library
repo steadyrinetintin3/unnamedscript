@@ -1,0 +1,1174 @@
+local TypicalLibrary = {}
+
+local Presets = {}
+
+GetPlayer = function(character)
+    Character = character
+    Humanoid = Character:WaitForChild("Humanoid")
+    HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+
+    Humanoid.Died:Connect(function()
+        Character, Humanoid, HumanoidRootPart = nil
+    end)
+
+    return Humanoid, HumanoidRootPart
+end
+
+if Player.Character then
+	GetPlayer(Player.Character)
+end
+
+Player.CharacterAdded:Connect(GetPlayer)
+
+local savedTabStates = {}
+local originalStates = {}
+local clock = os.clock()
+
+function TypicalLibrary:FadeOutWithSaves(container, duration, transparency)
+    local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
+    
+    for _, v in pairs(container:GetDescendants()) do
+        local currentProperties = {}
+        local targetProperties = {}
+        savedTabStates[v] = savedTabStates[v] or {}
+
+        if v:IsA("Frame") or (v:IsA("ScrollingFrame")) or v:IsA("ViewportFrame") then
+            currentProperties["BackgroundTransparency"] = v.BackgroundTransparency
+            targetProperties["BackgroundTransparency"] = 1
+        elseif v:IsA("TextLabel") or v:IsA("TextBox") or v:IsA("TextButton") then
+            currentProperties["BackgroundTransparency"] = v.BackgroundTransparency
+            currentProperties["TextTransparency"] = v.TextTransparency
+            targetProperties["BackgroundTransparency"] = 1
+            targetProperties["TextTransparency"] = transparency
+        elseif v:IsA("ImageLabel") or v:IsA("ImageButton") and v.Name ~= "Noice" then
+            currentProperties["BackgroundTransparency"] = v.BackgroundTransparency
+            currentProperties["ImageTransparency"] = v.ImageTransparency
+            targetProperties["BackgroundTransparency"] = 1
+            targetProperties["ImageTransparency"] = transparency
+        elseif v:IsA("Texture") then
+            currentProperties["Transparency"] = v.Transparency
+            targetProperties["Transparency"] = 1
+        elseif v:IsA("UIStroke") then
+            savedTabStates[v].Transparency = v.Transparency
+        elseif v:IsA("UIGradient") and v.Parent.Name == "Divider" then
+            savedTabStates[v] = { Transparency = v.Transparency }
+            
+            task.spawn(function()
+                local startTime = os.clock()
+                while os.clock() - startTime < duration do
+                    local elapsed = os.clock() - startTime
+                    local linearAlpha = math.clamp(elapsed / duration, 0, 1)
+                    local sineAlpha = 0.5 - 0.5 * math.cos(linearAlpha * math.pi)
+                    
+                    local iS = savedTabStates[v].Transparency
+                    local tPoints = {}
+                    for _, keypoint in ipairs(iS.Keypoints) do
+                        local currentVal = keypoint.Value + (1 - keypoint.Value) * sineAlpha
+                        table.insert(tPoints, NumberSequenceKeypoint.new(keypoint.Time, currentVal))
+                    end
+                    v.Transparency = NumberSequence.new(tPoints)
+                    task.wait()
+                end
+
+                v.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+                
+                v.Transparency = NumberSequence.new({
+                    NumberSequenceKeypoint.new(0.000, 0),
+                    NumberSequenceKeypoint.new(0.167, 0.375),
+                    NumberSequenceKeypoint.new(0.500, 0.106),
+                    NumberSequenceKeypoint.new(0.650, 0.419),
+                    NumberSequenceKeypoint.new(1.000, 0)
+                })
+            end)
+        end
+
+        if next(targetProperties) then
+            savedTabStates[v] = currentProperties
+            TweenService:Create(v, tweenInfo, targetProperties):Play()
+        end
+    end
+end
+
+function TypicalLibrary:FadeInWithSaves(container, duration)
+    local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
+    
+    for _, v in pairs(container:GetDescendants()) do
+        local savedProperties = savedTabStates[v]
+        
+        if savedProperties then
+            if v:IsA("UIGradient") then
+                local iS = savedProperties.Transparency or v.Transparency
+                
+                task.spawn(function()
+                    local startTime = os.clock()
+                    while os.clock() - startTime < duration do
+                        local elapsed = os.clock() - startTime
+                        local linearAlpha = math.clamp(elapsed / duration, 0, 1)
+                        local sineAlpha = 0.5 - 0.5 * math.cos(linearAlpha * math.pi)
+                        
+                        local tPoints = {}
+                        if iS then
+                            for _, keypoint in ipairs(iS.Keypoints) do
+                                local currentVal = 1 - ((1 - keypoint.Value) * sineAlpha)
+                                table.insert(tPoints, NumberSequenceKeypoint.new(keypoint.Time, currentVal))
+                            end
+                        end
+                        
+                        if #tPoints == 1 then
+                            table.insert(tPoints, NumberSequenceKeypoint.new(1, tPoints[1].Value))
+                        elseif #tPoints == 0 then
+                            tPoints = {NumberSequenceKeypoint.new(0, 1), NumberSequenceKeypoint.new(1, 1)}
+                        end
+                        
+                        v.Transparency = NumberSequence.new(tPoints)
+                        task.wait()
+                    end
+                    v.Transparency = iS
+                end)
+            else
+                TweenService:Create(v, tweenInfo, savedProperties):Play()
+            end
+        else
+            local fallbackProperties = {}
+            if (v:IsA("Frame") and not v.Name == "Text") or v:IsA("ViewportFrame") then
+                fallbackProperties["BackgroundTransparency"] = 0
+            elseif v:IsA("ScrollingFrame") then
+                fallbackProperties["BackgroundTransparency"] = 1
+            elseif v:IsA("TextLabel") or v:IsA("TextBox") or (v:IsA("TextButton") and not v.Name == "Button") then
+                fallbackProperties["BackgroundTransparency"] = 1
+                fallbackProperties["TextTransparency"] = 0
+            elseif v:IsA("ImageLabel") or v:IsA("ImageButton") and v.Name ~= "Noice" then
+                fallbackProperties["BackgroundTransparency"] = 1
+                fallbackProperties["ImageTransparency"] = 0
+            elseif v:IsA("UIShadow") then
+                fallbackProperties.Transparency = 0
+            elseif v:IsA("Texture") then
+                fallbackProperties["Transparency"] = 0
+            elseif v:IsA("UIStroke") then
+                if savedProperties and savedProperties.Transparency ~= nil then
+                    TweenService:Create(v, tweenInfo, {
+                        Transparency = savedProperties.Transparency
+                    }):Play()
+                end
+            elseif v:IsA("UIGradient") and v.Parent.Name == "Divider" then
+                local fallbackSequence = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0), NumberSequenceKeypoint.new(0.167, 0.375), NumberSequenceKeypoint.new(0.500, 0.106), NumberSequenceKeypoint.new(0.650, 0.419), NumberSequenceKeypoint.new(1.000, 0)}
+                
+                task.spawn(function()
+                    local startTime = os.clock()
+                    while os.clock() - startTime < duration do
+                        local elapsed = os.clock() - startTime
+                        local linearAlpha = math.clamp(elapsed / duration, 0, 1)
+                        local sineAlpha = 0.5 - 0.5 * math.cos(linearAlpha * math.pi)
+                        
+                        local tPoints = {}
+                        for _, keypoint in ipairs(fallbackSequence.Keypoints) do
+                            local currentVal = 1 - ((1 - keypoint.Value) * sineAlpha)
+                            table.insert(tPoints, NumberSequenceKeypoint.new(keypoint.Time, currentVal))
+                        end
+                        
+                        v.Transparency = NumberSequence.new(tPoints)
+                        task.wait()
+                    end
+                    v.Transparency = NumberSequence.new({
+                        NumberSequenceKeypoint.new(0.000, 0),
+                        NumberSequenceKeypoint.new(0.167, 0.375),
+                        NumberSequenceKeypoint.new(0.500, 0.106),
+                        NumberSequenceKeypoint.new(0.650, 0.419),
+                        NumberSequenceKeypoint.new(1.000, 0)
+                    })
+                end)
+            end
+
+            if next(fallbackProperties) then
+                TweenService:Create(v, tweenInfo, fallbackProperties):Play()
+            end
+        end
+    end
+end
+
+function TypicalLibrary:FadeIn(time, v)
+    local tweenInfo = TweenInfo.new(time, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0)
+    local targets = {}
+
+    if v:IsA("Frame") or (v:IsA("ScrollingFrame") and v.Name ~= "UserConsoleInfo") or v:IsA("TextBox") then
+        targets["BackgroundTransparency"] = 1
+    end
+
+    if v:IsA("TextLabel") or v:IsA("TextBox") or v:IsA("TextButton") then
+        targets["BackgroundTransparency"] = 1
+        targets["TextTransparency"] = 1
+    end
+
+    if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+        targets["ImageTransparency"] = 1
+    end
+
+    if v:IsA("UIStroke") or v:IsA("BasePart") or v:IsA("Decal") or v:IsA("Texture") then
+        targets["Transparency"] = 1
+    end
+    if v:IsA("UIShadow") then
+        targets["Transparency"] = 1
+    end
+
+    if next(targets) then
+        TweenService:Create(v, tweenInfo, targets):Play()
+    else
+        if v:IsA("UIGradient") then
+            TweenService:Create(v, tweenInfo, {Offset = Vector2.new(1, 0)}):Play()
+        end
+    end
+end
+
+function TypicalLibrary:FadeOut(time, instance, transparency)
+    local tweenInfo = TweenInfo.new(time, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0)
+    if not transparency then
+        transparency = 0
+    end
+    local targets = {}
+
+    if instance:IsA("Frame") or (instance:IsA("ScrollingFrame") and instance.Name ~= "UserConsoleInfo") then
+        targets["BackgroundTransparency"] = transparency
+    end
+
+    if instance:IsA("TextBox") or instance:IsA("TextButton") then
+        targets["TextTransparency"] = transparency
+    end
+
+    if instance:IsA("TextLabel") then
+        targets["TextTransparency"] = transparency
+    end
+
+    if instance:IsA("ImageLabel") or instance:IsA("ImageButton") then
+        targets["ImageTransparency"] = transparency
+    end
+
+    if instance:IsA("UIStroke") or instance:IsA("BasePart") or instance:IsA("Decal") or instance:IsA("Texture") then
+        targets["Transparency"] = transparency
+    end
+
+    if instance:IsA("UIShadow") then
+        targets["Transparency"] = transparency
+    end
+
+    if next(targets) then
+        TweenService:Create(instance, tweenInfo, targets):Play()
+    else
+        if instance:IsA("UIGradient") then
+            TweenService:Create(instance, tweenInfo, {Offset = Vector2.new(1, 0)}):Play()
+        end
+    end
+end
+
+for _, gui in pairs(PlayerGui:GetChildren()) do
+    if gui:IsA("ScreenGui") and gui.Name == GuiName then
+        for _, v in pairs(gui:GetDescendants()) do
+            FadeIn(0.5, v)
+        end
+
+        task.wait(0.5)
+
+        gui:Destroy()
+
+        task.wait(1)
+    end
+end
+
+local Guis = {}
+
+Guis["1"] = Instance.new("ScreenGui", PlayerGui);
+Guis["1"].ResetOnSpawn = false
+Guis["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+Guis["1"]["Name"] = GuiName;
+Guis["1"].DisplayOrder = 500
+
+function TypicalLibrary:CreateLog(inner, Parent, Order, SizeX, TextScaled, name, fade)
+    if not fade then fade = false end
+    Log = Instance.new("Frame")
+    Log.LayoutOrder = Order or 0
+    Log.Parent = Parent
+    Log.AutomaticSize = Enum.AutomaticSize.Y
+    Log.Size = UDim2.new(0, SizeX, 0, 28)
+    Log.Name = name or "Frame"
+    Log.BackgroundTransparency = 1
+
+    local MainCorner = Instance.new("UICorner", Log)
+    local MainStroke = Instance.new("UIStroke", Log)
+    MainStroke.Thickness = 1.5
+    MainStroke.Color = Color3.fromRGB(255, 255, 255)
+    MainStroke.ApplyStrokeMode = "Border"
+    MainStroke.Transparency = 1
+    FadeOut(0.25, MainStroke, 0)
+
+    Noice2 = Instance.new("ImageLabel", Log)
+    Noice2.Size = UDim2.new(0, SizeX, 0, 28)
+    Noice2.Image = "rbxassetid://73660298439922"
+    Noice2.ImageTransparency = 1
+    Noice2.Name = "Noice"
+    Noice2.BackgroundTransparency = 1
+    local NoiceCorner = Instance.new("UICorner", Noice2)
+    FadeOut(0.25, Noice2, 0.5)
+
+    savedTabStates[Noice2] = {BackgroundTransparency = 1, ImageTransparency = 0.5}
+
+    TextLabelLog = Instance.new("TextLabel")
+    TextLabelLog.TextWrapped = true
+    TextLabelLog.TextScaled = TextScaled
+    TextLabelLog.TextTransparency = 1
+    TextLabelLog.TextSize = 12
+    TextLabelLog.BackgroundTransparency = 1
+    TextLabelLog.Size = UDim2.new(1, 0, 0, 28)
+    TextLabelLog.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold)
+    TextLabelLog.TextColor3 = Color3.fromRGB(255, 255, 255)
+    TextLabelLog.Text = inner
+    TextLabelLog.Parent = Log
+    FadeOut(0.25, TextLabelLog, 0)
+
+    return TextLabelLog
+end
+
+function TypicalLibrary:CreateSlider(inner, Parent, Order, SizeX, TextScaled, min, max, type, callback)
+    min = min or 0
+    max = max or 100
+
+    local Log = Instance.new("Frame")
+    Log.LayoutOrder = Order or 0
+    Log.Parent = Parent
+    Log.AutomaticSize = Enum.AutomaticSize.Y
+    Log.Size = UDim2.new(0, SizeX, 0, 28)
+    Log.Name = type
+
+    local UICornerLog = Instance.new("UICorner")
+    UICornerLog.Parent = Log
+    UICornerLog.CornerRadius = UDim.new(0, 10)
+
+    local UIGradientLog = Instance.new("UIGradient")
+    UIGradientLog.Parent = Log
+    UIGradientLog.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 75, 91)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))
+    }
+
+    local TextLabelLog = Instance.new("TextLabel", Log)
+    TextLabelLog.TextWrapped = true
+    TextLabelLog.BorderSizePixel = 0
+    TextLabelLog.TextScaled = TextScaled
+    TextLabelLog.TextSize = 12
+    TextLabelLog.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    TextLabelLog.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+    TextLabelLog.TextColor3 = Color3.fromRGB(255, 255, 255)
+    TextLabelLog.BackgroundTransparency = 1
+    TextLabelLog.Size = UDim2.new(0, SizeX, 0, 28)
+
+    local SliderStroke = Instance.new("UIStroke", Log)
+    SliderStroke.Color = Color3.fromRGB(255, 255, 255)
+    SliderStroke.Thickness = 2
+
+    function TypicalLibrary:update(value)
+        local displayValue = math.floor(value)
+        Settings[type] = displayValue
+        
+        local pct = (value - min) / (max - min)
+        pct = math.clamp(pct, 0, 1)
+
+        UIGradientLog.Transparency = NumberSequence.new({
+            NumberSequenceKeypoint.new(0, 0),
+            NumberSequenceKeypoint.new(math.clamp(pct, 0, 0.999), 0),
+            NumberSequenceKeypoint.new(math.clamp(pct + 0.001, 0.001, 1), 1),
+            NumberSequenceKeypoint.new(1, 1)
+        })
+
+        TextLabelLog.Text = inner .. ": " .. displayValue
+        
+        if callback then callback(displayValue) end
+    end
+
+    update(Settings[type] or min)
+
+    local holding = false
+    Log.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            holding = true
+        end
+    end)
+
+    UIS.InputChanged:Connect(function(input)
+        if holding and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+            Guis["FrameDragDetector"].Enabled = false
+            local relativeX = input.Position.X - Log.AbsolutePosition.X
+            local pct = math.clamp(relativeX / Log.AbsoluteSize.X, 0, 1)
+            local newValue = min + ((max - min) * pct)
+            update(newValue)
+        end
+    end)
+
+    UIS.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            Guis["FrameDragDetector"].Enabled = true
+            holding = false
+        end
+    end)
+
+    return {
+        Gui = Log,
+        Update = update
+    }
+end
+
+function TypicalLibrary:CreateLoader(inner, Parent, Order, SizeX, TextScaled, type)
+    local Log = Instance.new("Frame")
+    Log.LayoutOrder = Order or 0
+    Log.Parent = Parent
+    Log.AutomaticSize = Enum.AutomaticSize.Y
+    Log.Size = UDim2.new(0, SizeX, 0, 28)
+
+    local UICornerLog = Instance.new("UICorner")
+    UICornerLog.Parent = Log
+    UICornerLog.CornerRadius = UDim.new(0, 10)
+
+    local UIGradientLog = Instance.new("UIGradient")
+    UIGradientLog.Parent = Log
+    UIGradientLog.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 75, 91)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))
+    }
+
+    local TextLabelLog = Instance.new("TextLabel", Log)
+    TextLabelLog.TextWrapped = true
+    TextLabelLog.BorderSizePixel = 0
+    TextLabelLog.TextScaled = TextScaled
+    TextLabelLog.TextSize = 12
+    SliderStroke.Color = Color3.fromRGB(255, 255, 255)
+    SliderStroke.Thickness = 2
+
+    return TextLabelLog
+end
+
+function TypicalLibrary:CreateText(inner, Parent, Order, SizeX, SizeY, divider, wrapped, scaled)
+    if not SizeX then SizeX = 156 end
+    if not SizeY then SizeY = 28 end
+    if divider == nil then divider = true end
+    if wrapped == nil then wrapped = true end
+    if scaled == nil then scaled = false end
+
+    local TextLabelLog = Instance.new("TextLabel", Parent)
+    TextLabelLog["TextWrapped"] = wrapped
+    TextLabelLog["BorderSizePixel"] = 0
+    TextLabelLog["TextScaled"] = scaled
+    TextLabelLog["TextSize"] = 18
+    TextLabelLog.LayoutOrder = Order
+    TextLabelLog["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
+    TextLabelLog["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+    TextLabelLog["TextColor3"] = Color3.fromRGB(255, 255, 255)
+    TextLabelLog["BackgroundTransparency"] = 1
+    TextLabelLog["Size"] = UDim2.new(0, SizeX, 0, SizeY)
+    TextLabelLog["BorderColor3"] = Color3.fromRGB(0, 0, 0)
+    TextLabelLog["Text"] = inner
+
+    if divider then
+        Divider = Instance.new("Frame", TextLabelLog);
+        Divider["BorderSizePixel"] = 0;
+        Divider["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+        if SizeX == 156 and SizeY == 50 then
+            Divider["Size"] = UDim2.new(1, -10, 0, 1);
+            Divider["Position"] = UDim2.new(0.036, 0, 0.756, 0);
+        elseif SizeX == 200 and SizeY == 50 then
+            Divider["Size"] = UDim2.new(1, -10, 0, 1)
+            Divider["Position"] = UDim2.new(0.0365, 0, 0.75624, 0)
+        else
+            Divider["Size"] = UDim2.new(0, SizeX, 0, 1);
+            Divider["Position"] = UDim2.new(0, 0, 0, 30);
+        end
+
+        Divider["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+        Divider.Rotation = 180
+        Divider["Name"] = [[Divider]];
+        Divider["BackgroundTransparency"] = 0.5;
+
+        DividerGradient = Instance.new("UIGradient", Divider);
+        DividerGradient["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+        DividerGradient["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+    end
+
+    return TextLabelLog
+end
+
+function TypicalLibrary:CreateDivider(Parent, Order, SizeX, position, rotation)
+    if not SizeX then SizeX = 156 end
+    if not position then position = UDim2.new(0, 0, 0, 0) end
+    if not rotation then rotation = 0 end
+
+    Divider = Instance.new("Frame", Parent);
+    Divider["BorderSizePixel"] = 0;
+    Divider["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Divider["Size"] = UDim2.new(0, SizeX, 0, 1);
+    Divider["Position"] = position
+    Divider["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Divider.Rotation = rotation
+    Divider["Name"] = [[Divider]];
+    Divider["BackgroundTransparency"] = 0.5;
+    Divider.LayoutOrder = Order
+
+    DividerGradient = Instance.new("UIGradient", Divider);
+    DividerGradient["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    DividerGradient["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+end
+
+function TypicalLibrary:CreateItems(Parent, Color, stroke, list, side, strokecolor, transparency)
+    local UICornerLog = Instance.new("UICorner")
+    UICornerLog.Parent = Parent
+    UICornerLog.CornerRadius = UDim.new(0, 10)
+    if not side then side = "Vertical" end
+    if not strokecolor then strokecolor = Color3.fromRGB(175, 165, 180) end
+    if not transparency then transparency = 0 end
+
+    local UIGradientLog = Instance.new("UIGradient")
+    UIGradientLog.Parent = Parent
+    if Color == "Red" then
+        UIGradientLog.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(1.0, 0)}
+        UIGradientLog.Color = ColorSequence.new({
+            ColorSequenceKeypoint.new(0, Color3.new(0, 0, 0)),
+            ColorSequenceKeypoint.new(0.221, Color3.new(0.0823529, 0.0823529, 0.0823529)),
+            ColorSequenceKeypoint.new(0.588, Color3.new(0.203922, 0.203922, 0.203922)),
+            ColorSequenceKeypoint.new(1, Color3.new(0.352941, 0.12549, 0.141176))
+        })
+    elseif Color == "DarkRed" then
+        UIGradientLog.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0.85),NumberSequenceKeypoint.new(1.000, 0.85)};
+        UIGradientLog.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 75, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
+    elseif Color == "DarkRed2" then
+        UIGradientLog.Rotation = 90
+        UIGradientLog.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(0, 0, 0)),ColorSequenceKeypoint.new(0.221, Color3.fromRGB(21, 21, 21)),ColorSequenceKeypoint.new(0.588, Color3.fromRGB(52, 52, 52)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(90, 32, 36))};
+    end
+
+    if stroke then
+        local Stroke = Instance.new("UIStroke", Parent)
+        Stroke.Color = strokecolor
+        Stroke.Thickness = 1.5
+        Stroke.Transparency = transparency
+    end
+    if list then
+        local List = Instance.new("UIListLayout", Parent)
+        List.Padding = UDim.new(0, 5)
+        List.HorizontalAlignment = "Center"
+        List.VerticalAlignment = "Top"
+        List.SortOrder = "LayoutOrder"
+    end
+end
+
+function TypicalLibrary:CreateEsp(inner, Parent, destroy)
+    for _, v in pairs(Parent:GetChildren()) do
+        if v.Name == "Esp" or v.Name == "BillboardGui" then
+            if v:FindFirstChild("ImageLabel") then
+                task.spawn(function()
+                    FadeIn(0.25, v.ImageLabel)
+                    for _, child in pairs(v.ImageLabel:GetDescendants()) do
+                        FadeIn(0.25, child)
+                    end
+                    task.wait(0.25)
+                    v:Destroy()
+                end)
+            end
+        end
+    end
+
+    if not inner then inner = "Label" end
+
+    task.wait(0.25)
+
+    local Esp = Instance.new("BillboardGui")
+    Esp.Parent = Parent
+    Esp.AlwaysOnTop = true
+    Esp.Name = "Esp"
+    Esp.Size = UDim2.new(4, 0, 1, 0)
+    Esp.SizeOffset = Vector2.new(0, 2.5)
+
+    local EspImg = Instance.new("Frame", Esp)
+    EspImg.BackgroundTransparency = 1
+    EspImg.Size = UDim2.new(1, 0, 1, 0)
+    FadeOut(0.25, EspImg)
+
+    CreateItems(EspImg, "DarkRed2")
+
+    local Layout = Instance.new("UIListLayout", EspImg)
+    Layout.Padding = UDim.new(0, 10)
+    Layout.HorizontalAlignment = "Center"
+    Layout.VerticalAlignment = "Bottom"
+    Layout.SortOrder = "LayoutOrder"
+
+    local Text = Instance.new("TextLabel", EspImg)
+    Text.BackgroundTransparency = 1
+    Text.Size = UDim2.new(0.7, 0, 1, 0)
+    Text.Text = inner
+    Text.TextScaled = true
+    Text.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Text.Position = UDim2.new(0.165, 0, 0, 0)
+
+    return EspImg, Text
+end
+
+function TypicalLibrary:CreateTextBox(Parent, Order, SizeX, SizeY, visible)
+    if not order then order = 0 end
+    if not SizeX then SizeX = 185 end
+    if not SizeY then SizeY = 28 end
+    if not visible then visible = true end
+
+    local TextBox = Instance.new("TextBox", Parent)
+    TextBox.Size = UDim2.new(0, SizeX, 0, SizeY)
+    TextBox.LayoutOrder = Order
+    TextBox.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+    TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+    TextBox.TextScaled = true
+    TextBox.PlaceholderText = "This textbar is used for applying custom sounds for hunts."
+    TextBox.Text = ""
+    TextBox.BackgroundTransparency = 1
+    if visible == false then
+        TextBox.TextTransparency = 1
+    end
+    
+    CreateItems(TextBox, "DarkRed")
+
+    local Frame = Instance.new("Frame", TextBox)
+    Frame.Size = UDim2.new(0, SizeX, 0, SizeY)
+    if visible == false then
+        Frame.BackgroundTransparency = 1
+    end
+
+    CreateItems(Frame, "DarkRed", true, 0, _, Color3.fromRGB(255, 255, 255), 0.25)
+
+    if visible == false then
+        Frame.UIStroke.Transparency = 1
+    end
+
+    if TextBox:FindFirstChild("UIGradient") then TextBox.UIGradient:Destroy() end
+
+    local Noice = Instance.new("ImageLabel", TextBox)
+    Noice.Size = UDim2.new(0, SizeX, 0, SizeY)
+    Noice.Image = "rbxassetid://73660298439922"
+    Noice.ImageTransparency = 0.5
+    Noice.BackgroundTransparency = 1
+    Noice.Name = "Noice"
+    if visible == false then
+        Noice.BackgroundTransparency = 1
+        Noice.ImageTransparency = 1
+    end
+    
+    local uicornere = Instance.new("UICorner", Noice)
+
+    return TextBox
+end
+
+function TypicalLibrary:CreateButton(inner, Parent, Order, SizeX, visible)
+    local Log = Instance.new("TextButton")
+    Log.LayoutOrder = Order
+    if Order == nil then Log.LayoutOrder = 0 end
+    Log.Parent = Parent
+    Log.AutomaticSize = "Y"
+    Log.Size = UDim2.new(0, SizeX, 0, 28)
+    Log.Text = ""
+    Log.Name = "Button"
+    Log.BackgroundTransparency = 1
+    if not Name then Log.Name = "Button" end
+    if not visible then visible = true end
+
+    local MainCorner = Instance.new("UICorner", Log)
+    local MainStroke = Instance.new("UIStroke", Log)
+    MainStroke.Thickness = 1.5
+    MainStroke.Color = Color3.fromRGB(255, 255, 255)
+    MainStroke.ApplyStrokeMode = "Border"
+    MainStroke.Transparency = 1
+    if visible then
+        FadeOut(0.25, MainStroke, 0)
+    end
+
+    Noice3 = Instance.new("ImageLabel", Log)
+    Noice3.Size = UDim2.new(0, SizeX, 0, 28)
+    Noice3.Image = "rbxassetid://73660298439922"
+    Noice3.ImageTransparency = 1
+    Noice3.Name = "Noice"
+    Noice3.BackgroundTransparency = 1
+    local NoiceCorner = Instance.new("UICorner", Noice3)
+    if visible then
+        FadeOut(0.25, Noice3, 0.5)
+    end
+
+    local UICornerLog = Instance.new("UICorner")
+    UICornerLog.Parent = Log
+    UICornerLog.CornerRadius = UDim.new(0, 10)
+
+    local UIGradientLog = Instance.new("UIGradient")
+    UIGradientLog.Parent = Log
+    UIGradientLog.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(1.0, 0)}
+    UIGradientLog.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
+
+    local TextLabelLog = Instance.new("TextLabel", Log)
+    TextLabelLog["TextWrapped"] = true
+    TextLabelLog["BorderSizePixel"] = 0
+    TextLabelLog["TextScaled"] = false
+    TextLabelLog["TextSize"] = 12
+    TextLabelLog["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
+    TextLabelLog["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+    TextLabelLog["TextColor3"] = Color3.fromRGB(255, 255, 255)
+    TextLabelLog["BackgroundTransparency"] = 1
+    TextLabelLog["Size"] = UDim2.new(0, SizeX, 0, 28)
+    TextLabelLog["BorderColor3"] = Color3.fromRGB(0, 0, 0)
+    TextLabelLog["Text"] = inner
+    if visible then
+    else
+        TextLabelLog.TextTransparency = 1
+    end
+
+    return Log
+end
+
+function TypicalLibrary:CreateInner(parent, destroy, textt, textt2)
+    if not parent then return end
+    if not destroy then destroy = false end
+    if not textt then textt = "Preset Name: " end
+    if not textt2 then textt2 = "Create Preset" end
+    local shadow
+    local main
+    local info = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0)
+    local tween
+    local Close
+    local box
+    local text
+    local btn2
+    if parent and not destroy then
+        if game:GetService("Lighting"):FindFirstChild("Blur") then
+            game.Lighting.Blur.Enabled = true
+            game.Lighting.Blur.Size = 50
+        end
+        shadow = Instance.new("Frame", parent)
+        shadow.Size = UDim2.new(1, 0, 1.25, 0)
+        shadow.AnchorPoint = Vector2.new(0.5, 0.5)
+        shadow.Position = UDim2.new(0.5, 0, 0.5, 0)
+        shadow.BackgroundTransparency = 1
+        shadow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        shadow.Name = "Shadow"
+
+        local corner = Instance.new("UICorner", shadow)
+
+        FadeOut(0.25, shadow, 0.4)
+
+        main = Instance.new("Frame", parent)
+        main.Size = UDim2.new(0, 250, 0, 0)
+        main.AnchorPoint = Vector2.new(0.5, 0.5)
+        main.Position = UDim2.new(0.5, 0, 0.5, 0)
+        main.Name = "Main"
+        CreateItems(main, "DarkRed2")
+        tween = TweenService:Create(main, info, {Size = UDim2.new(0, 250, 0, 150)})
+        tween:Play()
+        Close = Instance.new("ImageButton", main);
+        Close["Size"] = UDim2.new(0, 9, 0, 9);
+        Close["Position"] = UDim2.new(0, 235, 0, 5);
+        Close["BackgroundTransparency"] = 1;
+        Close["ImageTransparency"] = 0.2;
+        Close["Image"] = "rbxassetid://120671325651381";
+        Close.Name = "Close"
+        Holder = Instance.new("Frame", main)
+        Holder.Size = UDim2.new(0, 175, 0, 100)
+        Holder.AnchorPoint = Vector2.new(0.5, 0.5)
+        Holder.Position = UDim2.new(0.5, 0, 0.5, 0)
+        Holder.BackgroundTransparency = 1
+
+        local HolderLayout = Instance.new("UIListLayout", Holder)
+        HolderLayout.Padding = UDim.new(0, 5)
+        HolderLayout.SortOrder = "LayoutOrder"
+        text = CreateText(textt, Holder, 0, 175, 28, true)
+        box = CreateTextBox(Holder, 1, 175, 28, false)
+        btn2 = CreateButton(textt2, Holder, 2, 175, false)
+
+        box.Noice.ImageTransparency = 1
+        text.TextTransparency = 1
+        FadeOut(0.25, box.Noice, 0.5)
+        FadeOut(0.25, box.Frame.UIStroke, 0)
+        FadeOut(0.25, box, 0)
+        FadeOut(0.25, text, 0)
+        FadeOut(0.25, text.Divider, 0)
+        FadeOut(0.25, btn2.UIStroke, 0)
+        FadeOut(0.25, btn2.Noice, 0.5)
+        FadeOut(0.25, btn2.TextLabel, 0)
+    end
+    function TypicalLibrary:Closef()
+        if Close then
+        else
+            main = parent:FindFirstChild("Main")
+            box = main:FindFirstChild("Frame"):FindFirstChild("TextBox")
+            text = main:FindFirstChild("Frame"):FindFirstChild("TextLabel")
+            shadow = parent:FindFirstChild("Shadow")
+            Close = main:FindFirstChild("Close")
+            btn2 = main:FindFirstChild("Frame"):FindFirstChild("Button")
+        end
+        FadeOut(0.25, shadow, 1)
+        local tween2 = TweenService:Create(main, info, {Size = UDim2.new(0, 250, 0, 0)})
+        tween2:Play()
+        FadeOut(0.25, Close, 1)
+        if game:GetService("Lighting"):FindFirstChild("Blur") then
+            game.Lighting.Blur.Enabled = false
+            game.Lighting.Blur.Size = 5
+        end
+
+        FadeOut(0.25, box.Noice, 1)
+        FadeOut(0.25, box.Frame.UIStroke, 1)
+        FadeOut(0.25, box, 1)
+        FadeOut(0.25, text, 1)
+        FadeOut(0.25, text.Divider, 1)
+        FadeOut(0.25, btn2.UIStroke, 1)
+        FadeOut(0.25, btn2.Noice, 1)
+        FadeOut(0.25, btn2.TextLabel, 1)
+
+        task.wait(0.5)
+
+        shadow:Destroy()
+        Close:Destroy()
+        main:Destroy()
+        box:Destroy()
+    end
+    if Close and not destroy then
+        Close.Activated:Connect(function()
+            Closef()
+        end)
+    end
+    if destroy then
+        Closef()
+    end
+    return box, btn2, Close
+end
+
+local key = "Typicalscriptkeysystem67"
+local authenticated = false
+
+Guis["NotificationHolder"] = Instance.new("Frame", Guis["1"])
+Guis["NotificationHolder"].Size =  UDim2.new(0, 275, 0.95, 0)
+Guis["NotificationHolder"].Position = UDim2.new(0.85, 0, 0, 0)
+Guis["NotificationHolder"].BackgroundTransparency = 1
+Guis["NotificationHolder"].Name = "NotificationHolder"
+
+function TypicalLibrary:CreateNotification(inner, duration)
+    if not duration then duration = 1 end
+
+    for _, child in pairs(Guis["NotificationHolder"]:GetChildren()) do
+        if child:IsA("Frame") and child:FindFirstChild("TextLabel") and child.TextLabel.Text == inner then
+            child.Destroying:Wait()
+        end
+    end
+
+    while Guis["NotificationHolder"]:FindFirstChildWhichIsA("Frame") do
+        task.wait(0.1)
+    end
+
+    local Frame = Instance.new("Frame", Guis["NotificationHolder"])
+    Frame.Size = UDim2.new(0, 275, 0, 100)
+    Frame.BackgroundTransparency = 0
+
+    Frame.Position = UDim2.new(0, 300, 0.9, 0)
+    for _, child in pairs(Guis["NotificationHolder"]:GetChildren()) do
+        if child ~= Frame and child:IsA("Frame") then
+            Frame.Position = Frame.Position - UDim2.new(0, 0, 0, 110)
+        end
+    end
+
+    CreateItems(Frame, "Red", false, true)
+    CreateText("NOTIFICATION", Frame, 0)
+    CreateText(inner, Frame, 1, 156, 60, false, false, true, true)
+
+    local info = TweenInfo.new(0.35, Enum.EasingStyle.Back, Enum.EasingDirection.Out)
+    local tween = TweenService:Create(Frame, info, {Position = UDim2.new(0, 25, 0.9, Frame.Position.Y.Offset)})
+    tween:Play()
+    tween.Completed:Wait()
+
+    local info2 = TweenInfo.new(0.15, Enum.EasingStyle.Back, Enum.EasingDirection.Out)
+    local tween2 = TweenService:Create(Frame, info2, {Position = UDim2.new(0, 15, 0.9, Frame.Position.Y.Offset)})
+    tween2:Play()
+    tween2.Completed:Wait()
+
+    task.wait(duration)
+
+    local info3 = TweenInfo.new(0.35, Enum.EasingStyle.Back, Enum.EasingDirection.In)
+    local tween3 = TweenService:Create(Frame, info3, {Position = UDim2.new(0, 300, 0.9, Frame.Position.Y.Offset)})
+    tween3:Play()
+    tween3.Completed:Wait()
+    Frame:Destroy()
+
+    for _, child in pairs(Guis["NotificationHolder"]:GetChildren()) do
+        if child:IsA("Frame") and child.Position.Y.Offset < Frame.Position.Y.Offset then
+            TweenService:Create(child, TweenInfo.new(0.25), {Position = UDim2.new(child.Position.X.Scale, child.Position.X.Offset, 0.9, child.Position.Y.Offset + 110)}):Play()
+        end
+    end
+end
+
+if GameType == "Unknown" then
+    CreateNotification("This game is not supported.", 2)
+    return
+end
+
+if Guis["1"] then
+    local keybox, keybtn, thing = CreateInner(Guis["1"], false, "Key:", "Authenticate")
+    if keybox and keybtn then
+        local connection
+        connection = keybtn.Activated:Connect(function()
+            local input = keybox.Text
+            
+            if input == "" then
+                CreateNotification("Please enter the key.", 2)
+            elseif input == key then
+                authenticated = true
+                CreateNotification("Authenticated!", 2)
+                CreateInner(Guis["1"], true)
+                connection:Disconnect()
+            else
+                CreateNotification("Invalid key.", 2)
+            end
+        end)
+    end
+
+    while not authenticated do
+        task.wait(0.1)
+    end
+end
+
+function TypicalLibrary:LoadPresetF(name)
+    local data = Presets[name]
+    if data then
+        AE = data.AE
+        AP = data.AP
+        AG = data.AG
+        AB = data.AB
+        Max = data.Max
+        AF = data.AF
+        AES = data.AES
+        NOH = data.NOH
+        IEsp = data.IEsp
+        Notify = data.Notify
+        GEs = data.GEs
+        ev = data.ev
+        PlEs = data.PlEs
+        RM = data.RM
+        Fb = data.Fb
+        isInf = data.isInf
+        val = data.val
+        val2 = data.val2
+    end
+
+    if Humanoid then
+        if data.WalkSpeed then Humanoid.WalkSpeed = data.WalkSpeed end
+        if data.JumpPower then Humanoid.JumpPower = data.JumpPower end
+    end
+
+    for key, value in pairs(data) do
+        Settings[key] = value
+        
+        if Sliders[key] then
+            Sliders[key].Update(value)
+        end
+        
+        if ToggleButtons[key] then
+            ToggleButtons[key].Update(value)
+        end
+    end
+
+    task.spawn(function()
+        if AE then
+            task.spawn(function()
+                while AE do
+                    AutoMarkEvidences()
+                    task.wait(0.1)
+                end
+            end)
+        end
+    end)
+    task.spawn(function()
+        if AG then
+            task.spawn(function()
+                while AG do
+                    AutoMarkGhost()
+                    task.wait(0.1)
+                end
+            end)
+        end
+    end)
+    task.spawn(function()
+        if AB then
+            task.spawn(function()
+                while AB do
+                    AutoSb()
+                    task.wait(0.1)
+                end
+            end)
+        end
+    end)
+    task.spawn(function()
+        if AES then
+            task.spawn(function()
+                while AES do
+                    if RoomsFolder then
+                        Ghost:GetAttributeChangedSignal("Hunting"):Connect(function()
+                            if AES and Ghost:GetAttribute("Hunting") == true then
+                                TPCamp()
+                            end
+                        end)
+                    end
+                    task.wait(0.1)
+                end
+            end)
+        end
+    end)
+    if NOH then
+        task.spawn(function()
+            conn = Ghost:GetAttributeChangedSignal("Hunting"):Connect(function()
+                local currentHuntingState = Ghost:GetAttribute("Hunting")
+                
+                if currentHuntingState == true then
+                    CreateNotification("Ghost hunt has started.", 2)
+                else
+                    CreateNotification("Ghost hunt has ended.", 2)
+                end
+            end)
+        end)
+    else
+        if conn then
+            conn:Disconnect()
+            conn = nil
+        end
+    end
+    if IEsp then
+        CItemEsp("Create")
+    else
+        CItemEsp("Destroy")
+    end
+    if Notify then
+        task.spawn(function()
+            while Notify do
+                NotifyEv()
+                task.wait(0.1)
+            end
+        end)
+    end
+    if GEs then
+        CGhostEsp("Create")
+    else
+        CGhostEsp("Destroy")
+    end
+    if ev then
+        CreateEvidenceEsp("Create")
+    else
+        CreateEvidenceEsp("Destroy")
+    end
+    task.spawn(function()
+        if RM then
+            CreateRoomEsp("Create")
+        else
+            CreateRoomEsp("Destroy")
+        end
+    end)
+    task.spawn(function()
+        if isInf then
+            task.spawn(function()
+                while isInf do
+                    if Player:GetAttribute("Sprinting") == true then
+                        Player:SetAttribute("Sprinting", false)
+                    end
+                    task.wait(0.1)
+                end
+            end)
+        end
+    end)
+    task.spawn(function()
+        if PlEs then
+            CPlayerEsp("Create")
+        else
+            CPlayerEsp("Destroy")
+        end
+    end)
+    task.spawn(function()
+        if Fb then
+            if not game:GetService("Lighting"):FindFirstChild("Atmosphere") then
+                Instance.new("Atmosphere", game.Lighting)
+            end
+            ChangeLight("Light")
+            task.wait(1)
+        else
+            if game:GetService("Lighting"):FindFirstChild("Atmosphere") then
+                game.Lighting.Atmosphere:Destroy()
+            end
+            ChangeLight("ha")
+            task.wait(1)
+        end
+    end)
+end
+
+
+CreatePreset.Activated:Connect(function()
+    local count = 0
+    for _ in pairs(Presets) do
+        count = count + 1
+    end
+    if count >= 5 then
+        CreateNotification("You've already reached the maximum of 5 presets", 2)
+        return
+    end
+
+    local box, btn2 = CreateInner(Guis["2"], false)
+    btn2.Activated:Connect(function()
+        if box.Text == "" then 
+            CreateNotification("Please, give a name to the preset.", 2)
+            return 
+        end
+        if Presets[box.Text] then 
+            CreateNotification("There is already a preset wtih that name.", 2)
+            return 
+        end
+
+        Presets[box.Text] = GetPresetsTable()
+        
+        local pres = CreateButton(box.Text, Script, 7, 165, true)
+        pres.Activated:Connect(function()
+            selectedpreset = pres
+            selectedpresetname = box.Text
+        end)
+        
+        SavePresets("Presets")
+        
+        CreateInner(Guis["2"], true)
+    end)
+end)
+
+DeletePreset.Activated:Connect(function()
+    if selectedpreset and typeof(selectedpreset) == "Instance" then
+        local presetName = selectedpreset.TextLabel.Text
+        
+        selectedpreset:Destroy()
+        
+        Presets[presetName] = nil
+        
+        SavePresets("Presets")
+        
+        selectedpreset = nil
+    end
+end)
+
+function TypicalLibrary:LoadPresetsFromFile()
+    if isfile(fpath) then
+        local decoded = HttpService:JSONDecode(readfile(fpath))
+        Presets = decoded
+        
+        for name, data in pairs(Presets) do
+            local pres = CreateButton(name, Script, 7, 165, true)
+            pres.Activated:Connect(function()
+                selectedpreset = pres
+                selectedpresetname = name
+            end)
+        end
+    end
+end
+
+LoadPresetsFromFile()
+
+LoadPreset.Activated:Connect(function()
+    if selectedpresetname ~= "None" then
+        LoadPresetF(selectedpresetname)
+    else
+        CreateNotification("Select a preset first.", 2)
+    end
+end)
+
+return library
