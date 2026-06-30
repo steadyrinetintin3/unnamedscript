@@ -1,3 +1,12 @@
+local Workspace = game:GetService("Workspace")
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+local TweenService = game:GetService("TweenService")
+local UIS = game:GetService("UserInputService")
+local VIM = game:GetService("VirtualInputManager")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local HttpService = game:GetService("HttpService")
 local TypicalLibrary = {}
 
 local Presets = {}
@@ -1096,6 +1105,162 @@ function TypicalLibrary:LoadPresetF(name)
     end)
 end
 
+local ToggleButtons = {}
+
+function TypicalLibrary:CreateToggle(inner, Parent, Order, SizeX, TextSize, TextPos, Frame2Size, Frame2Pos, moveback, name, callback)
+    if not SizeX then SizeX = 185 end
+    if not TextSize then TextSize = 100 end
+    if not Frame2Size then Frame2Size = 75 end
+    if not Frame2Pos then Frame2Pos = 100 end
+    if not moveback then moveback = false end
+
+    local Frame = Instance.new("Frame", Parent)
+    Frame.Size = UDim2.new(0, SizeX, 0, 28)
+    Frame.LayoutOrder = Order
+    Frame.BackgroundTransparency = 1
+
+    local MainCorner = Instance.new("UICorner", Frame)
+    local MainStroke = Instance.new("UIStroke", Frame)
+    MainStroke.Thickness = 1.5
+    MainStroke.Color = Color3.fromRGB(255, 255, 255)
+    MainStroke.ApplyStrokeMode = "Border"
+
+    local Text = Instance.new("TextLabel", Frame)
+    Text.BackgroundTransparency = 1
+    Text.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Text.Text = inner
+    Text.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold)
+    Text.TextWrapped = true
+    Text.TextScaled = true
+    Text.ZIndex = 6
+    Text.Size = UDim2.new(0, TextSize, 0, 28)
+    Text.Position = UDim2.new(0, 5, 0, 0)
+
+    local Frame2 = Instance.new("Frame", Frame)
+    Frame2.Size = UDim2.new(0, Frame2Size, 0, 15)
+    Frame2.Position = UDim2.new(0, Frame2Pos, 0, 6)
+    Frame2.BackgroundTransparency = 1
+    Frame2.ZIndex = 6
+
+    local Noice = Instance.new("ImageLabel", Frame)
+    Noice.Size = UDim2.new(0, SizeX, 0, 28)
+    Noice.Image = "rbxassetid://73660298439922"
+    Noice.ImageTransparency = 0.5
+    Noice.Name = "Noice"
+    local NoiceCorner = Instance.new("UICorner", Noice)
+
+    local sizeX = Frame2Size
+    local Btn = Instance.new("TextButton", Frame2)
+    Btn.Size = UDim2.new(0, sizeX / 2, 0, 15)
+    Btn.Position = UDim2.new(0, 0, 0, 0)
+    Btn.BackgroundColor3 = Color3.fromRGB(81, 32, 37)
+    Btn.BorderSizePixel = 0
+    Btn.Text = ""
+
+    savedTabStates[Noice] = {BackgroundTransparency = 1, ImageTransparency = 0.5}
+
+    function TypicalLibrary:Tween(duration, properties, who)
+        local info22 = TweenInfo.new(duration, Enum.EasingStyle.Back, Enum.EasingDirection.Out)
+        local tween22 = TweenService:Create(who, info22, properties)
+        tween22:Play()
+    end
+
+    function TypicalLibrary:Update(state)
+        local isCurrentlyOn = (Btn.Position.X.Offset ~= 0)
+        if state ~= isCurrentlyOn then
+            if state then
+                Btn.BackgroundColor3 = Color3.fromRGB(46, 117, 89)
+                Tween(0.25, {Position = UDim2.new(0, sizeX / 2, 0, 0)}, Btn)
+            else
+                Btn.BackgroundColor3 = Color3.fromRGB(81, 32, 37)
+                Tween(0.25, {Position = UDim2.new(0, 0, 0, 0)}, Btn)
+            end
+        end
+        if callback then callback(state) end
+    end
+
+    Btn.Activated:Connect(function()
+        local newState = (Btn.Position.X.Offset == 0)
+        Update(newState)
+    end)
+
+    if name then
+        ToggleButtons[name] = {Update = Update}
+    end
+
+    local BtnCorner = Instance.new("UICorner", Btn)
+    local Frame2Corner = Instance.new("UICorner", Frame2)
+    local Frame2Stroke = Instance.new("UIStroke", Frame2)
+    Frame2Stroke.Thickness = 1.5
+    Frame2Stroke.Color = Color3.fromRGB(255, 255, 255)
+    Frame2Stroke.ApplyStrokeMode = "Border"
+
+    return Btn
+end
+
+function TypicalLibrary:CreateMobileButton(inner, Parent, Order, SizeX, name)
+    if not name then name = "Button" end
+    local Log = Instance.new("TextButton")
+    Log.LayoutOrder = Order
+    if Order == nil then Log.LayoutOrder = 0 end
+    Log.Parent = Parent
+    Log.AutomaticSize = "Y"
+    Log.Size = UDim2.new(0, SizeX, 0, 50)
+    Log.Text = ""
+    Log.Name = name
+    Log.BackgroundTransparency = 1
+    if not Name then Log.Name = "Button" end
+    if not visible then visible = true end
+
+    local MainCorner = Instance.new("UICorner", Log)
+    local MainStroke = Instance.new("UIStroke", Log)
+    MainStroke.Thickness = 1.5
+    MainStroke.Color = Color3.fromRGB(255, 255, 255)
+    MainStroke.ApplyStrokeMode = "Border"
+    MainStroke.Transparency = 1
+    if visible then
+        FadeOut(0.25, MainStroke, 0)
+    end
+
+    Noice3 = Instance.new("ImageLabel", Log)
+    Noice3.Size = UDim2.new(0, SizeX, 0, 50)
+    Noice3.Image = "rbxassetid://73660298439922"
+    Noice3.ImageTransparency = 1
+    Noice3.Name = "Noice"
+    Noice3.BackgroundTransparency = 1
+    local NoiceCorner = Instance.new("UICorner", Noice3)
+    if visible then
+        FadeOut(0.25, Noice3, 0.5)
+    end
+
+    local UICornerLog = Instance.new("UICorner")
+    UICornerLog.Parent = Log
+    UICornerLog.CornerRadius = UDim.new(0, 5)
+
+    local UIGradientLog = Instance.new("UIGradient")
+    UIGradientLog.Parent = Log
+    UIGradientLog.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(1.0, 0)}
+    UIGradientLog.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
+
+    local TextLabelLog = Instance.new("TextLabel", Log)
+    TextLabelLog["TextWrapped"] = true
+    TextLabelLog["BorderSizePixel"] = 0
+    TextLabelLog["TextScaled"] = false
+    TextLabelLog["TextSize"] = 12
+    TextLabelLog["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
+    TextLabelLog["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+    TextLabelLog["TextColor3"] = Color3.fromRGB(255, 255, 255)
+    TextLabelLog["BackgroundTransparency"] = 1
+    TextLabelLog["Size"] = UDim2.new(0, SizeX, 0, 50)
+    TextLabelLog["BorderColor3"] = Color3.fromRGB(0, 0, 0)
+    TextLabelLog["Text"] = inner
+    if visible then
+    else
+        TextLabelLog.TextTransparency = 1
+    end
+
+    return Log
+end
 
 CreatePreset.Activated:Connect(function()
     local count = 0
