@@ -874,41 +874,49 @@ function TypicalLibrary:CreateInner(parent, destroy, textt, textt2)
         TypicalLibrary:FadeOut(0.25, btn2.TextLabel, 0)
     end
     function TypicalLibrary:Closef()
-        if Close then
-        else
-            if parent then
-                main = parent:FindFirstChild("Main")
-                box = main:FindFirstChild("Frame"):FindFirstChild("TextBox")
-                text = main:FindFirstChild("Frame"):FindFirstChild("TextLabel")
-                shadow = parent:FindFirstChild("Shadow")
-                Close = main:FindFirstChild("Close")
-                btn2 = main:FindFirstChild("Frame"):FindFirstChild("Button")
+        if not parent then 
+            warn("Parent is missing, cannot close library.")
+            return 
+        end
+
+        if not Close then
+            main = parent:FindFirstChild("Main")
+            if not main then return end
+            
+            box = main:FindFirstChild("Frame") and main.Frame:FindFirstChild("TextBox")
+            text = main:FindFirstChild("Frame") and main.Frame:FindFirstChild("TextLabel")
+            shadow = parent:FindFirstChild("Shadow")
+            Close = main:FindFirstChild("Close")
+            btn2 = main:FindFirstChild("Frame") and main.Frame:FindFirstChild("Button")
+        end
+
+        if main and shadow and Close and box and text and btn2 then
+            TypicalLibrary:FadeOut(0.25, shadow, 1)
+            local tween2 = TweenService:Create(main, info, {Size = UDim2.new(0, 250, 0, 0)})
+            tween2:Play()
+            TypicalLibrary:FadeOut(0.25, Close, 1)
+            
+            if game:GetService("Lighting"):FindFirstChild("Blur") then
+                game.Lighting.Blur.Enabled = false
+                game.Lighting.Blur.Size = 5
             end
+
+            TypicalLibrary:FadeOut(0.25, box.Noice, 1)
+            TypicalLibrary:FadeOut(0.25, box.Frame.UIStroke, 1)
+            TypicalLibrary:FadeOut(0.25, box, 1)
+            TypicalLibrary:FadeOut(0.25, text, 1)
+            TypicalLibrary:FadeOut(0.25, text.Divider, 1)
+            TypicalLibrary:FadeOut(0.25, btn2.UIStroke, 1)
+            TypicalLibrary:FadeOut(0.25, btn2.Noice, 1)
+            TypicalLibrary:FadeOut(0.25, btn2.TextLabel, 1)
+
+            task.wait(0.5)
+
+            shadow:Destroy()
+            Close:Destroy()
+            main:Destroy()
+            box:Destroy()
         end
-        TypicalLibrary:FadeOut(0.25, shadow, 1)
-        local tween2 = TweenService:Create(main, info, {Size = UDim2.new(0, 250, 0, 0)})
-        tween2:Play()
-        TypicalLibrary:FadeOut(0.25, Close, 1)
-        if game:GetService("Lighting"):FindFirstChild("Blur") then
-            game.Lighting.Blur.Enabled = false
-            game.Lighting.Blur.Size = 5
-        end
-
-        TypicalLibrary:FadeOut(0.25, box.Noice, 1)
-        TypicalLibrary:FadeOut(0.25, box.Frame.UIStroke, 1)
-        TypicalLibrary:FadeOut(0.25, box, 1)
-        TypicalLibrary:FadeOut(0.25, text, 1)
-        TypicalLibrary:FadeOut(0.25, text.Divider, 1)
-        TypicalLibrary:FadeOut(0.25, btn2.UIStroke, 1)
-        TypicalLibrary:FadeOut(0.25, btn2.Noice, 1)
-        TypicalLibrary:FadeOut(0.25, btn2.TextLabel, 1)
-
-        task.wait(0.5)
-
-        shadow:Destroy()
-        Close:Destroy()
-        main:Destroy()
-        box:Destroy()
     end
     if Close and not destroy then
         Close.Activated:Connect(function()
