@@ -1186,7 +1186,7 @@ function TypicalLibrary:CreateMobileButton(inner, Parent, Order, SizeX, name)
     return Log
 end
 
-local function CreateMain()
+function TypicalLibrary:CreateMain()
     Guis["2"] = Instance.new("Frame", Guis["1"]);
     Guis["2"]["Visible"] = false
     Guis["2"]["BackgroundTransparency"] = 1
