@@ -1004,31 +1004,6 @@ if GameType == "Unknown" then
     return
 end
 
-if Guis["1"] then
-    local keybox, keybtn, thing = TypicalLibrary:CreateInner(Guis["1"], false, "Key:", "Authenticate")
-    if keybox and keybtn then
-        local connection
-        connection = keybtn.Activated:Connect(function()
-            local input = keybox.Text
-            
-            if input == "" then
-                TypicalLibrary:CreateNotification("Please enter the key.", 2)
-            elseif input == key then
-                authenticated = true
-                TypicalLibrary:CreateNotification("Authenticated!", 2)
-                TypicalLibrary:CreateInner(Guis["1"], true)
-                connection:Disconnect()
-            else
-                TypicalLibrary:CreateNotification("Invalid key.", 2)
-            end
-        end)
-    end
-
-    while not authenticated do
-        task.wait(0.1)
-    end
-end
-
 local ToggleButtons = {}
 
 function TypicalLibrary:CreateToggle(inner, Parent, Order, SizeX, TextSize, TextPos, Frame2Size, Frame2Pos, moveback, name, callback)
