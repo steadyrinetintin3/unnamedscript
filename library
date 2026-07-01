@@ -1516,9 +1516,9 @@ function TypicalLibrary:GuideButton(which, cover tab)
         end
     end)
 
-    which.Activated:Connect(function()
-        TypicalLibrary:SwitchTab(tab, Guis[which], Guis[cover])
-    end)
+    -- which.Activated:Connect(function()
+    --     TypicalLibrary:SwitchTab(tab, Guis[which], Guis[cover])
+    -- end)
 
     which.MouseLeave:Connect(function()
         if CurrentTab ~= tab then
