@@ -298,6 +298,317 @@ Guis["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
 Guis["1"]["Name"] = "Beh"
 Guis["1"].DisplayOrder = 500
 
+local authenticated = false
+
+if Guis["1"] then
+    local keybox, keybtn, thing = TypicalLibrary:CreateInner(Guis["1"], false, "Key:", "Authenticate")
+    if keybox and keybtn then
+        local connection
+        connection = keybtn.Activated:Connect(function()
+            local input = keybox.Text
+            
+            if input == "" then
+                TypicalLibrary:CreateNotification("Please enter the key.", 2)
+            elseif input == key then
+                authenticated = true
+                TypicalLibrary:CreateNotification("Authenticated!", 2)
+                TypicalLibrary:CreateInner(Guis["1"], true)
+                connection:Disconnect()
+            else
+                TypicalLibrary:CreateNotification("Invalid key.", 2)
+            end
+        end)
+    end
+
+    while not authenticated do
+        task.wait(0.1)
+    end
+end
+
+function TypicalLibrary:CreateMain()
+    Guis["2"] = Instance.new("Frame", Guis["1"]);
+    Guis["2"]["Visible"] = false
+    Guis["2"]["BackgroundTransparency"] = 1
+    Guis["2"]["BorderSizePixel"] = 0;
+    Guis["2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["2"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+    Guis["2"]["Size"] = UDim2.new(0, 700, 0, 400);
+    Guis["2"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
+    Guis["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+
+    Guis["sdw"] = Instance.new("UIShadow", Guis["2"])
+    Guis.sdw.BlurRadius = UDim.new(0, 10)
+    Guis.sdw.Color = Color3.fromRGB(67, 67, 67)
+    Guis.sdw.Spread = UDim2.new(0, 5, 0, 5)
+
+    Guis["FrameDragDetector"] = Instance.new("UIDragDetector", Guis["2"]);
+    Guis["FrameDragDetector"]["BoundingBehavior"] = "EntireObject"
+
+    Guis["TabHolder"] = Instance.new("Frame", Guis["2"]);
+    Guis["TabHolder"]["Size"] = UDim2.new(0, 100, 0.9);
+    Guis["TabHolder"].Position = UDim2.new(0, 0, 0.05, 0)
+    Guis["TabHolder"]["BackgroundTransparency"] = 1;
+    Guis["TabHolder"]["Name"] = "TabHolder";
+
+    Guis["TabHolderLayout"] = Instance.new("UIListLayout", Guis["TabHolder"])
+    Guis["TabHolderLayout"].Padding = UDim.new(0, 10)
+    Guis["TabHolderLayout"].HorizontalAlignment = "Center"
+    Guis.TabHolderLayout.SortOrder = "LayoutOrder"
+
+    if Guis["2"] then
+
+        Guis["2"].Visible = true
+        FadeOut(0.5, Guis["2"], 0)
+    else
+        warn("Guis2 not found. ")
+    end
+
+    Guis["3"] = Instance.new("UICorner", Guis["2"]);
+
+    Guis["4"] = Instance.new("UIGradient", Guis["2"]);
+    Guis["4"]["Rotation"] = 90;
+    Guis["4"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(0, 0, 0)),ColorSequenceKeypoint.new(0.221, Color3.fromRGB(21, 21, 21)),ColorSequenceKeypoint.new(0.588, Color3.fromRGB(52, 52, 52)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(90, 32, 36))};
+
+    Guis["b"] = Instance.new("TextLabel", Guis["2"]);
+    Guis["b"]["BorderSizePixel"] = 0;
+    Guis["b"]["TextSize"] = 15;
+    Guis["b"]["TextTransparency"] = 0.25;
+    Guis["b"]["TextStrokeColor3"] = Color3.fromRGB(101, 0, 0);
+    Guis["b"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["b"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+    Guis["b"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["b"]["TextTransparency"] = 0.2;
+    Guis["b"]["BackgroundTransparency"] = 1;
+    Guis["b"]["Size"] = UDim2.new(0, 102, 0, 18);
+    Guis["b"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["b"]["Text"] = [[DISCORD SERVER - DISCORD.GG/w74z9mTKkJ]];
+    Guis["b"]["Name"] = "Discord";
+    Guis["b"]["Position"] = UDim2.new(0.215000004, 0, -0.000850000011, 0);
+
+    Guis["Top"] = Instance.new("Frame", Guis["2"]);
+    Guis["Top"]["Name"] = "Top";
+    Guis["Top"]["Size"] = UDim2.new(0, 700, 0, 18);
+    Guis["Top"]["Position"] = UDim2.new(0, 0, 0, 0);
+    Guis["Top"]["BackgroundTransparency"] = 1;
+
+    Guis["Minimize"] = Instance.new("ImageButton", Guis["Top"]);
+    Guis["Minimize"]["Size"] = UDim2.new(0, 9, 0, 9);
+    Guis["Minimize"]["Position"] = UDim2.new(0, 0, 0, 350);
+    Guis["Minimize"]["BackgroundTransparency"] = 1;
+    Guis["Minimize"]["ImageTransparency"] = 0.2;
+    Guis["Minimize"]["Image"] = "rbxassetid://84561431868297";
+    Guis["Minimize"]["Position"] = UDim2.new(0, 650, 0, 10)
+    Guis["Minimize"].Name = "Minimize"
+
+    Guis["Close"] = Instance.new("ImageButton", Guis["Top"]);
+    Guis["Close"]["Size"] = UDim2.new(0, 9, 0, 9);
+    Guis["Close"]["Position"] = UDim2.new(0, 0, 0, 350);
+    Guis["Close"]["BackgroundTransparency"] = 1;
+    Guis["Close"]["ImageTransparency"] = 0.2;
+    Guis["Close"]["Image"] = "rbxassetid://120671325651381";
+    Guis["Close"]["Position"] = UDim2.new(0, 675, 0, 10)
+    Guis["Close"].Name = "Close"
+
+    Guis["4"] = Instance.new("ScrollingFrame", Guis["2"]);
+    Guis["4"]["Active"] = true;
+    Guis["4"]["BorderSizePixel"] = 0;
+    Guis["4"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+    Guis["4"]["ScrollBarImageTransparency"] = 0.5;
+    Guis["4"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["4"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+    Guis["4"]["Size"] = UDim2.new(0, 584, 0, 382);
+    Guis["4"]["Position"] = UDim2.new(0.16571, 0, 0.045, 0);
+    Guis["4"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["4"]["ScrollBarThickness"] = 2;
+    Guis["4"]["BackgroundTransparency"] = 1;
+    Guis["4"].ScrollingEnabled = false
+
+    Guis["MobileBtnHolder"] = Instance.new("Frame", Guis["1"])
+    Guis["MobileBtnHolder"].Size =  UDim2.new(1, -5, 0.0500000007, 0)
+    Guis["MobileBtnHolder"].Position = UDim2.new(0, 0, 0, -50)
+    Guis["MobileBtnHolder"].BackgroundTransparency = 1
+    Guis["MobileBtnHolder"].Name = "MobileBtnHolder"
+
+    local MobileLayout = Instance.new("UIListLayout", Guis.MobileBtnHolder)
+    MobileLayout.SortOrder = "LayoutOrder"
+    MobileLayout.FillDirection = "Horizontal"
+    MobileLayout.Padding = UDim.new(0, 5)
+    MobileLayout.HorizontalAlignment = "Center"
+
+    Guis["5"] = Instance.new("Frame", Guis["4"]);
+    Guis["5"]["BorderSizePixel"] = 0;
+    Guis["5"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["5"]["Size"] = UDim2.new(0, 584, 0, 382);
+    Guis["5"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["5"]["Name"] = [[Tab1]];
+    Guis["5"]["BackgroundTransparency"] = 1;
+
+    Guis["6"] = Instance.new("ScrollingFrame", Guis["5"]);
+    Guis["6"]["Active"] = true;
+    Guis["6"]["BorderSizePixel"] = 0;
+    Guis["6"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+    Guis["6"]["Name"] = [[UserConsoleInfo]];
+    Guis["6"]["ScrollBarImageTransparency"] = 0.5;
+    Guis["6"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["6"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+    Guis["6"]["Size"] = UDim2.new(0, 319, 0, 367);
+    Guis["6"]["Position"] = UDim2.new(0.4024, 0, 0, 0);
+    Guis["6"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["6"]["ScrollBarThickness"] = 2;
+
+    Guis["7"] = Instance.new("UIGradient", Guis["6"]);
+    Guis["7"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0.85),NumberSequenceKeypoint.new(1.000, 0.85)};
+    Guis["7"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 75, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
+
+
+    Guis["8"] = Instance.new("UICorner", Guis["6"]);
+
+    Guis["9"] = Instance.new("UIListLayout", Guis["6"]);
+    Guis["9"]["Padding"] = UDim.new(0, 10);
+    Guis["9"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
+    Guis["9"]["FillDirection"] = Enum.FillDirection.Horizontal;
+
+    Guis["a"] = Instance.new("Frame", Guis["6"]);
+    Guis["a"]["BorderSizePixel"] = 0;
+    Guis["a"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["a"]["Size"] = UDim2.new(0, 152, 0, 367);
+    Guis["a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["a"]["BackgroundTransparency"] = 1;
+
+    Guis["b2"] = CreateText("USER INFO:", Guis["a"], -236627862, 156, 50)
+
+    Guis["c"] = Instance.new("Frame", Guis["b2"]);
+    Guis["c"]["BorderSizePixel"] = 0;
+    Guis["c"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["c"]["Size"] = UDim2.new(1, -10, 0, 1);
+    Guis["c"]["Position"] = UDim2.new(0.0365, 0, 0.75624, 0);
+    Guis["c"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["c"]["Name"] = [[Divider]];
+    Guis["c"]["BackgroundTransparency"] = 0.5;
+
+    Guis["d"] = Instance.new("UIGradient", Guis["c"]);
+    Guis["d"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["d"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+
+    Guis["e"] = Instance.new("ScrollingFrame", Guis["a"]);
+    Guis["e"]["Active"] = true;
+    Guis["e"]["BorderSizePixel"] = 0;
+    Guis["e"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+    Guis["e"]["ScrollBarImageTransparency"] = 0.5;
+    Guis["e"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["e"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+    Guis["e"]["Size"] = UDim2.new(0, 152, 0, 317);
+    Guis["e"]["Position"] = UDim2.new(0.03289, 0, 0.13624, 0);
+    Guis["e"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["e"]["ScrollBarThickness"] = 2;
+    Guis["e"]["BackgroundTransparency"] = 1;
+
+    Guis["f"] = Instance.new("UIListLayout", Guis["e"]);
+    Guis["f"]["SortOrder"] = "LayoutOrder"
+    Guis["f"]["Padding"] = UDim.new(0, 10);
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame
+    Guis["10"] = Instance.new("Frame", Guis["6"]);
+    Guis["10"]["BorderSizePixel"] = 0;
+    Guis["10"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["10"]["Size"] = UDim2.new(0, 152, 0, 367);
+    Guis["10"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["10"]["BackgroundTransparency"] = 1;
+
+    Guis["11"] = CreateText("CONSOLE:", Guis["10"], -236627862, 156, 50)
+
+    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame.Log.Divider
+    Guis["12"] = Instance.new("Frame", Guis["11"]);
+    Guis["12"]["BorderSizePixel"] = 0;
+    Guis["12"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["12"]["Size"] = UDim2.new(1, -10, 0, 1);
+    Guis["12"]["Position"] = UDim2.new(0.0365, 0, 0.75624, 0);
+    Guis["12"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["12"]["Name"] = [[Divider]];
+    Guis["12"]["BackgroundTransparency"] = 0.5;
+
+    Guis["13"] = Instance.new("UIGradient", Guis["12"]);
+    Guis["13"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["13"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+
+    Guis["14"] = Instance.new("ScrollingFrame", Guis["10"]);
+    Guis["14"]["Active"] = true;
+    Guis["14"]["BorderSizePixel"] = 0;
+    Guis["14"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+    Guis["14"]["ScrollBarImageTransparency"] = 0.5;
+    Guis["14"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["14"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+    Guis["14"]["Size"] = UDim2.new(0, 152, 0, 317);
+    Guis["14"]["Position"] = UDim2.new(0.03289, 0, 0.13624, 0);
+    Guis["14"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["14"]["ScrollBarThickness"] = 2;
+    Guis["14"]["BackgroundTransparency"] = 1;
+
+    Guis["15"] = Instance.new("UIListLayout", Guis["14"]);
+    Guis["15"]["SortOrder"] = "LayoutOrder";
+    Guis["15"]["Padding"] = UDim.new(0, 10);
+
+    Guis["16"] = Instance.new("Frame", Guis["5"]);
+    Guis["16"]["BorderSizePixel"] = 0;
+    Guis["16"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["16"]["Size"] = UDim2.new(0.62, -10, 0, 1);
+    Guis["16"]["Position"] = UDim2.new(0.37274, 0, 0.47893, 0);
+    Guis["16"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["16"]["Name"] = [[Divider]];
+    Guis["16"].Rotation = 90;
+    Guis["16"]["BackgroundTransparency"] = 0.5;
+
+    Guis["17"] = Instance.new("UIGradient", Guis["16"]);
+    Guis["17"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["17"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+
+    Guis["18"] = Instance.new("Frame", Guis["5"]);
+    Guis["18"]["BorderSizePixel"] = 0;
+    Guis["18"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["18"]["Size"] = UDim2.new(0, 200, 0, 367);
+    Guis["18"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["18"]["Name"] = [[UpdateLog]];
+
+    Guis["19"] = Instance.new("UICorner", Guis["18"]);
+
+    Guis["1a"] = Instance.new("UIGradient", Guis["18"]);
+    Guis["1a"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0.85),NumberSequenceKeypoint.new(1.000, 0.85)};
+    Guis["1a"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 75, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
+
+    Guis["1c"] = CreateText("UPDATE LOG:", Guis["18"], -236627862, 200, 50)
+
+    Guis["1f"] = Instance.new("ScrollingFrame", Guis["18"]);
+    Guis["1f"]["Active"] = true;
+    Guis["1f"]["BorderSizePixel"] = 0;
+    Guis["1f"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+    Guis["1f"]["ScrollBarImageTransparency"] = 0.5;
+    Guis["1f"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["1f"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+    Guis["1f"]["Size"] = UDim2.new(0, 189, 0, 317);
+    Guis["1f"]["Position"] = UDim2.new(0.036, 0, 0.136, 0);
+    Guis["1f"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["1f"]["ScrollBarThickness"] = 2;
+    Guis["1f"]["BackgroundTransparency"] = 1;
+
+    Guis["20"] = Instance.new("UIListLayout", Guis["1f"]);
+    Guis["20"]["SortOrder"] = "LayoutOrder";
+    Guis["20"]["Padding"] = UDim.new(0, 10);
+
+    Guis["e2"] = Instance.new("Frame", Guis["2"]);
+    Guis["e2"]["BorderSizePixel"] = 0;
+    Guis["e2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    Guis["e2"]["Size"] = UDim2.new(0.525, -10, 0, 1);
+    Guis["e2"]["Position"] = UDim2.new(-0.100, 0, 0.50124, 0);
+    Guis["e2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    Guis["e2"]["Name"] = [[Divider]];
+    Guis["e2"].Rotation = 90;
+    Guis["e2"]["BackgroundTransparency"] = 0.5;
+
+    Guis["f"] = Instance.new("UIGradient", Guis["e2"]);
+    Guis["f"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
+    Guis["f"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+end
+
 local tweenInfo = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
 local isvisible = true
 local iscd = false
@@ -1159,290 +1470,6 @@ function TypicalLibrary:CreateMobileButton(inner, Parent, Order, SizeX, name)
     end
 
     return Log
-end
-
-function TypicalLibrary:CreateMain()
-    Guis["2"] = Instance.new("Frame", Guis["1"]);
-    Guis["2"]["Visible"] = false
-    Guis["2"]["BackgroundTransparency"] = 1
-    Guis["2"]["BorderSizePixel"] = 0;
-    Guis["2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["2"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-    Guis["2"]["Size"] = UDim2.new(0, 700, 0, 400);
-    Guis["2"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
-    Guis["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-
-    Guis["sdw"] = Instance.new("UIShadow", Guis["2"])
-    Guis.sdw.BlurRadius = UDim.new(0, 10)
-    Guis.sdw.Color = Color3.fromRGB(67, 67, 67)
-    Guis.sdw.Spread = UDim2.new(0, 5, 0, 5)
-
-    Guis["FrameDragDetector"] = Instance.new("UIDragDetector", Guis["2"]);
-    Guis["FrameDragDetector"]["BoundingBehavior"] = "EntireObject"
-
-    Guis["TabHolder"] = Instance.new("Frame", Guis["2"]);
-    Guis["TabHolder"]["Size"] = UDim2.new(0, 100, 0.9);
-    Guis["TabHolder"].Position = UDim2.new(0, 0, 0.05, 0)
-    Guis["TabHolder"]["BackgroundTransparency"] = 1;
-    Guis["TabHolder"]["Name"] = "TabHolder";
-
-    Guis["TabHolderLayout"] = Instance.new("UIListLayout", Guis["TabHolder"])
-    Guis["TabHolderLayout"].Padding = UDim.new(0, 10)
-    Guis["TabHolderLayout"].HorizontalAlignment = "Center"
-    Guis.TabHolderLayout.SortOrder = "LayoutOrder"
-
-    if Guis["2"] then
-
-        Guis["2"].Visible = true
-        FadeOut(0.5, Guis["2"], 0)
-    else
-        warn("Guis2 not found. ")
-    end
-
-    Guis["3"] = Instance.new("UICorner", Guis["2"]);
-
-    Guis["4"] = Instance.new("UIGradient", Guis["2"]);
-    Guis["4"]["Rotation"] = 90;
-    Guis["4"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(0, 0, 0)),ColorSequenceKeypoint.new(0.221, Color3.fromRGB(21, 21, 21)),ColorSequenceKeypoint.new(0.588, Color3.fromRGB(52, 52, 52)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(90, 32, 36))};
-
-    Guis["b"] = Instance.new("TextLabel", Guis["2"]);
-    Guis["b"]["BorderSizePixel"] = 0;
-    Guis["b"]["TextSize"] = 15;
-    Guis["b"]["TextTransparency"] = 0.25;
-    Guis["b"]["TextStrokeColor3"] = Color3.fromRGB(101, 0, 0);
-    Guis["b"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["b"]["FontFace"] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-    Guis["b"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["b"]["TextTransparency"] = 0.2;
-    Guis["b"]["BackgroundTransparency"] = 1;
-    Guis["b"]["Size"] = UDim2.new(0, 102, 0, 18);
-    Guis["b"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["b"]["Text"] = [[DISCORD SERVER - DISCORD.GG/w74z9mTKkJ]];
-    Guis["b"]["Name"] = "Discord";
-    Guis["b"]["Position"] = UDim2.new(0.215000004, 0, -0.000850000011, 0);
-
-    Guis["Top"] = Instance.new("Frame", Guis["2"]);
-    Guis["Top"]["Name"] = "Top";
-    Guis["Top"]["Size"] = UDim2.new(0, 700, 0, 18);
-    Guis["Top"]["Position"] = UDim2.new(0, 0, 0, 0);
-    Guis["Top"]["BackgroundTransparency"] = 1;
-
-    Guis["Minimize"] = Instance.new("ImageButton", Guis["Top"]);
-    Guis["Minimize"]["Size"] = UDim2.new(0, 9, 0, 9);
-    Guis["Minimize"]["Position"] = UDim2.new(0, 0, 0, 350);
-    Guis["Minimize"]["BackgroundTransparency"] = 1;
-    Guis["Minimize"]["ImageTransparency"] = 0.2;
-    Guis["Minimize"]["Image"] = "rbxassetid://84561431868297";
-    Guis["Minimize"]["Position"] = UDim2.new(0, 650, 0, 10)
-    Guis["Minimize"].Name = "Minimize"
-
-    Guis["Close"] = Instance.new("ImageButton", Guis["Top"]);
-    Guis["Close"]["Size"] = UDim2.new(0, 9, 0, 9);
-    Guis["Close"]["Position"] = UDim2.new(0, 0, 0, 350);
-    Guis["Close"]["BackgroundTransparency"] = 1;
-    Guis["Close"]["ImageTransparency"] = 0.2;
-    Guis["Close"]["Image"] = "rbxassetid://120671325651381";
-    Guis["Close"]["Position"] = UDim2.new(0, 675, 0, 10)
-    Guis["Close"].Name = "Close"
-
-    Guis["4"] = Instance.new("ScrollingFrame", Guis["2"]);
-    Guis["4"]["Active"] = true;
-    Guis["4"]["BorderSizePixel"] = 0;
-    Guis["4"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
-    Guis["4"]["ScrollBarImageTransparency"] = 0.5;
-    Guis["4"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["4"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
-    Guis["4"]["Size"] = UDim2.new(0, 584, 0, 382);
-    Guis["4"]["Position"] = UDim2.new(0.16571, 0, 0.045, 0);
-    Guis["4"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["4"]["ScrollBarThickness"] = 2;
-    Guis["4"]["BackgroundTransparency"] = 1;
-    Guis["4"].ScrollingEnabled = false
-
-    Guis["MobileBtnHolder"] = Instance.new("Frame", Guis["1"])
-    Guis["MobileBtnHolder"].Size =  UDim2.new(1, -5, 0.0500000007, 0)
-    Guis["MobileBtnHolder"].Position = UDim2.new(0, 0, 0, -50)
-    Guis["MobileBtnHolder"].BackgroundTransparency = 1
-    Guis["MobileBtnHolder"].Name = "MobileBtnHolder"
-
-    local MobileLayout = Instance.new("UIListLayout", Guis.MobileBtnHolder)
-    MobileLayout.SortOrder = "LayoutOrder"
-    MobileLayout.FillDirection = "Horizontal"
-    MobileLayout.Padding = UDim.new(0, 5)
-    MobileLayout.HorizontalAlignment = "Center"
-
-    Guis["5"] = Instance.new("Frame", Guis["4"]);
-    Guis["5"]["BorderSizePixel"] = 0;
-    Guis["5"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["5"]["Size"] = UDim2.new(0, 584, 0, 382);
-    Guis["5"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["5"]["Name"] = [[Tab1]];
-    Guis["5"]["BackgroundTransparency"] = 1;
-
-    Guis["6"] = Instance.new("ScrollingFrame", Guis["5"]);
-    Guis["6"]["Active"] = true;
-    Guis["6"]["BorderSizePixel"] = 0;
-    Guis["6"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
-    Guis["6"]["Name"] = [[UserConsoleInfo]];
-    Guis["6"]["ScrollBarImageTransparency"] = 0.5;
-    Guis["6"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["6"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
-    Guis["6"]["Size"] = UDim2.new(0, 319, 0, 367);
-    Guis["6"]["Position"] = UDim2.new(0.4024, 0, 0, 0);
-    Guis["6"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["6"]["ScrollBarThickness"] = 2;
-
-    Guis["7"] = Instance.new("UIGradient", Guis["6"]);
-    Guis["7"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0.85),NumberSequenceKeypoint.new(1.000, 0.85)};
-    Guis["7"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 75, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
-
-
-    Guis["8"] = Instance.new("UICorner", Guis["6"]);
-
-    Guis["9"] = Instance.new("UIListLayout", Guis["6"]);
-    Guis["9"]["Padding"] = UDim.new(0, 10);
-    Guis["9"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
-    Guis["9"]["FillDirection"] = Enum.FillDirection.Horizontal;
-
-    Guis["a"] = Instance.new("Frame", Guis["6"]);
-    Guis["a"]["BorderSizePixel"] = 0;
-    Guis["a"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["a"]["Size"] = UDim2.new(0, 152, 0, 367);
-    Guis["a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["a"]["BackgroundTransparency"] = 1;
-
-    Guis["b2"] = CreateText("USER INFO:", Guis["a"], -236627862, 156, 50)
-
-    Guis["c"] = Instance.new("Frame", Guis["b2"]);
-    Guis["c"]["BorderSizePixel"] = 0;
-    Guis["c"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["c"]["Size"] = UDim2.new(1, -10, 0, 1);
-    Guis["c"]["Position"] = UDim2.new(0.0365, 0, 0.75624, 0);
-    Guis["c"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["c"]["Name"] = [[Divider]];
-    Guis["c"]["BackgroundTransparency"] = 0.5;
-
-    Guis["d"] = Instance.new("UIGradient", Guis["c"]);
-    Guis["d"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
-    Guis["d"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
-
-    Guis["e"] = Instance.new("ScrollingFrame", Guis["a"]);
-    Guis["e"]["Active"] = true;
-    Guis["e"]["BorderSizePixel"] = 0;
-    Guis["e"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
-    Guis["e"]["ScrollBarImageTransparency"] = 0.5;
-    Guis["e"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["e"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
-    Guis["e"]["Size"] = UDim2.new(0, 152, 0, 317);
-    Guis["e"]["Position"] = UDim2.new(0.03289, 0, 0.13624, 0);
-    Guis["e"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["e"]["ScrollBarThickness"] = 2;
-    Guis["e"]["BackgroundTransparency"] = 1;
-
-    Guis["f"] = Instance.new("UIListLayout", Guis["e"]);
-    Guis["f"]["SortOrder"] = "LayoutOrder"
-    Guis["f"]["Padding"] = UDim.new(0, 10);
-
-    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame
-    Guis["10"] = Instance.new("Frame", Guis["6"]);
-    Guis["10"]["BorderSizePixel"] = 0;
-    Guis["10"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["10"]["Size"] = UDim2.new(0, 152, 0, 367);
-    Guis["10"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["10"]["BackgroundTransparency"] = 1;
-
-    Guis["11"] = CreateText("CONSOLE:", Guis["10"], -236627862, 156, 50)
-
-    -- StarterGui.ScreenGui.Frame.ScrollingFrame.Tab1.UserConsoleInfo.Frame.Log.Divider
-    Guis["12"] = Instance.new("Frame", Guis["11"]);
-    Guis["12"]["BorderSizePixel"] = 0;
-    Guis["12"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["12"]["Size"] = UDim2.new(1, -10, 0, 1);
-    Guis["12"]["Position"] = UDim2.new(0.0365, 0, 0.75624, 0);
-    Guis["12"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["12"]["Name"] = [[Divider]];
-    Guis["12"]["BackgroundTransparency"] = 0.5;
-
-    Guis["13"] = Instance.new("UIGradient", Guis["12"]);
-    Guis["13"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
-    Guis["13"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
-
-    Guis["14"] = Instance.new("ScrollingFrame", Guis["10"]);
-    Guis["14"]["Active"] = true;
-    Guis["14"]["BorderSizePixel"] = 0;
-    Guis["14"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
-    Guis["14"]["ScrollBarImageTransparency"] = 0.5;
-    Guis["14"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["14"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
-    Guis["14"]["Size"] = UDim2.new(0, 152, 0, 317);
-    Guis["14"]["Position"] = UDim2.new(0.03289, 0, 0.13624, 0);
-    Guis["14"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["14"]["ScrollBarThickness"] = 2;
-    Guis["14"]["BackgroundTransparency"] = 1;
-
-    Guis["15"] = Instance.new("UIListLayout", Guis["14"]);
-    Guis["15"]["SortOrder"] = "LayoutOrder";
-    Guis["15"]["Padding"] = UDim.new(0, 10);
-
-    Guis["16"] = Instance.new("Frame", Guis["5"]);
-    Guis["16"]["BorderSizePixel"] = 0;
-    Guis["16"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["16"]["Size"] = UDim2.new(0.62, -10, 0, 1);
-    Guis["16"]["Position"] = UDim2.new(0.37274, 0, 0.47893, 0);
-    Guis["16"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["16"]["Name"] = [[Divider]];
-    Guis["16"].Rotation = 90;
-    Guis["16"]["BackgroundTransparency"] = 0.5;
-
-    Guis["17"] = Instance.new("UIGradient", Guis["16"]);
-    Guis["17"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
-    Guis["17"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
-
-    Guis["18"] = Instance.new("Frame", Guis["5"]);
-    Guis["18"]["BorderSizePixel"] = 0;
-    Guis["18"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["18"]["Size"] = UDim2.new(0, 200, 0, 367);
-    Guis["18"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["18"]["Name"] = [[UpdateLog]];
-
-    Guis["19"] = Instance.new("UICorner", Guis["18"]);
-
-    Guis["1a"] = Instance.new("UIGradient", Guis["18"]);
-    Guis["1a"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0.85),NumberSequenceKeypoint.new(1.000, 0.85)};
-    Guis["1a"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(192, 75, 91)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(91, 33, 37))};
-
-    Guis["1c"] = CreateText("UPDATE LOG:", Guis["18"], -236627862, 200, 50)
-
-    Guis["1f"] = Instance.new("ScrollingFrame", Guis["18"]);
-    Guis["1f"]["Active"] = true;
-    Guis["1f"]["BorderSizePixel"] = 0;
-    Guis["1f"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
-    Guis["1f"]["ScrollBarImageTransparency"] = 0.5;
-    Guis["1f"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["1f"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
-    Guis["1f"]["Size"] = UDim2.new(0, 189, 0, 317);
-    Guis["1f"]["Position"] = UDim2.new(0.036, 0, 0.136, 0);
-    Guis["1f"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["1f"]["ScrollBarThickness"] = 2;
-    Guis["1f"]["BackgroundTransparency"] = 1;
-
-    Guis["20"] = Instance.new("UIListLayout", Guis["1f"]);
-    Guis["20"]["SortOrder"] = "LayoutOrder";
-    Guis["20"]["Padding"] = UDim.new(0, 10);
-
-    Guis["e2"] = Instance.new("Frame", Guis["2"]);
-    Guis["e2"]["BorderSizePixel"] = 0;
-    Guis["e2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    Guis["e2"]["Size"] = UDim2.new(0.525, -10, 0, 1);
-    Guis["e2"]["Position"] = UDim2.new(-0.100, 0, 0.50124, 0);
-    Guis["e2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    Guis["e2"]["Name"] = [[Divider]];
-    Guis["e2"].Rotation = 90;
-    Guis["e2"]["BackgroundTransparency"] = 0.5;
-
-    Guis["f"] = Instance.new("UIGradient", Guis["e2"]);
-    Guis["f"]["Transparency"] = NumberSequence.new{NumberSequenceKeypoint.new(0.000, 0),NumberSequenceKeypoint.new(0.000, 0.0125),NumberSequenceKeypoint.new(0.000, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.500, 0.106),NumberSequenceKeypoint.new(0.650, 0.419),NumberSequenceKeypoint.new(1.000, 0.556),NumberSequenceKeypoint.new(1.000, 0.725),NumberSequenceKeypoint.new(1.000, 0.0313),NumberSequenceKeypoint.new(1.000, 0)};
-    Guis["f"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
 end
 
 return TypicalLibrary
