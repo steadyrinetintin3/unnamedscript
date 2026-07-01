@@ -45,6 +45,9 @@ v9.FadeOutWithSaves = function(v60, v61, v62, v63)
 			v731['ImageTransparency'] = v730.ImageTransparency;
 			v732['BackgroundTransparency'] = 1;
 			v732['ImageTransparency'] = v63;
+		elseif (v730:IsA("ImageLabel") and (v730.Name == "Noice")) then
+			v731.BackgroundTransparency = v730.BackgroundTransparency;
+			v732.BackgroundTransparency = 1;
 		elseif v730:IsA("Texture") then
 			v731['Transparency'] = v730.Transparency;
 			v732['Transparency'] = 1;
@@ -53,18 +56,18 @@ v9.FadeOutWithSaves = function(v60, v61, v62, v63)
 		elseif (v730:IsA("UIGradient") and (v730.Parent.Name == "Divider")) then
 			v13[v730] = {Transparency=v730.Transparency};
 			task.spawn(function()
-				local v917 = os.clock();
-				while (os.clock() - v917) < v62 do
-					local v920 = os.clock() - v917;
-					local v921 = math.clamp(v920 / v62, 0, 1);
-					local v922 = 0.5 - (0.5 * math.cos(v921 * math.pi));
-					local v923 = v13[v730].Transparency;
-					local v924 = {};
-					for v927, v928 in ipairs(v923.Keypoints) do
-						local v929 = v928.Value + ((1 - v928.Value) * v922);
-						table.insert(v924, NumberSequenceKeypoint.new(v928.Time, v929));
+				local v924 = os.clock();
+				while (os.clock() - v924) < v62 do
+					local v927 = os.clock() - v924;
+					local v928 = math.clamp(v927 / v62, 0, 1);
+					local v929 = 0.5 - (0.5 * math.cos(v928 * math.pi));
+					local v930 = v13[v730].Transparency;
+					local v931 = {};
+					for v934, v935 in ipairs(v930.Keypoints) do
+						local v936 = v935.Value + ((1 - v935.Value) * v929);
+						table.insert(v931, NumberSequenceKeypoint.new(v935.Time, v936));
 					end
-					v730.Transparency = NumberSequence.new(v924);
+					v730.Transparency = NumberSequence.new(v931);
 					task.wait();
 				end
 				v730.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))});
@@ -83,74 +86,77 @@ v9.FadeInWithSaves = function(v65, v66, v67)
 		local v736 = v13[v735];
 		if v736 then
 			if v735:IsA("UIGradient") then
-				local v861 = v736.Transparency or v735.Transparency;
+				local v863 = v736.Transparency or v735.Transparency;
 				task.spawn(function()
-					local v867 = os.clock();
-					while (os.clock() - v867) < v67 do
-						local v881 = os.clock() - v867;
-						local v882 = math.clamp(v881 / v67, 0, 1);
-						local v883 = 0.5 - (0.5 * math.cos(v882 * math.pi));
-						local v884 = {};
-						if v861 then
-							for v904, v905 in ipairs(v861.Keypoints) do
-								local v906 = 1 - ((1 - v905.Value) * v883);
-								table.insert(v884, NumberSequenceKeypoint.new(v905.Time, v906));
+					local v869 = os.clock();
+					while (os.clock() - v869) < v67 do
+						local v883 = os.clock() - v869;
+						local v884 = math.clamp(v883 / v67, 0, 1);
+						local v885 = 0.5 - (0.5 * math.cos(v884 * math.pi));
+						local v886 = {};
+						if v863 then
+							for v906, v907 in ipairs(v863.Keypoints) do
+								local v908 = 1 - ((1 - v907.Value) * v885);
+								table.insert(v886, NumberSequenceKeypoint.new(v907.Time, v908));
 							end
 						end
-						if (#v884 == 1) then
-							table.insert(v884, NumberSequenceKeypoint.new(1, v884[1].Value));
-						elseif (#v884 == 0) then
-							v884 = {NumberSequenceKeypoint.new(0, 1),NumberSequenceKeypoint.new(1, 1)};
+						if (#v886 == 1) then
+							table.insert(v886, NumberSequenceKeypoint.new(1, v886[1].Value));
+						elseif (#v886 == 0) then
+							v886 = {NumberSequenceKeypoint.new(0, 1),NumberSequenceKeypoint.new(1, 1)};
 						end
-						v735.Transparency = NumberSequence.new(v884);
+						v735.Transparency = NumberSequence.new(v886);
 						task.wait();
 					end
-					v735.Transparency = v861;
+					v735.Transparency = v863;
 				end);
 			else
 				v4:Create(v735, v68, v736):Play();
 			end
 		else
-			local v831 = {};
+			local v833 = {};
 			if ((v735:IsA("Frame") and (not v735.Name == "Text")) or v735:IsA("ViewportFrame")) then
-				v831['BackgroundTransparency'] = 0;
+				v833['BackgroundTransparency'] = 0;
 			elseif v735:IsA("ScrollingFrame") then
-				v831['BackgroundTransparency'] = 1;
+				v833['BackgroundTransparency'] = 1;
 			elseif (v735:IsA("TextLabel") or v735:IsA("TextBox") or (v735:IsA("TextButton") and (not v735.Name == "Button"))) then
-				v831['BackgroundTransparency'] = 1;
-				v831['TextTransparency'] = 0;
+				v833['BackgroundTransparency'] = 1;
+				v833['TextTransparency'] = 0;
 			elseif (v735:IsA("ImageLabel") or (v735:IsA("ImageButton") and (v735.Name ~= "Noice"))) then
-				v831['BackgroundTransparency'] = 1;
-				v831['ImageTransparency'] = 0;
+				v833['BackgroundTransparency'] = 1;
+				v833['ImageTransparency'] = 0;
+			elseif (v735:IsA("ImageLabel") or (v735:IsA("ImageButton") and (v735.Name == "Noice"))) then
+				v833['BackgroundTransparency'] = 1;
+				v833['ImageTransparency'] = 0;
 			elseif v735:IsA("UIShadow") then
-				v831.Transparency = 0;
+				v833.Transparency = 0;
 			elseif v735:IsA("Texture") then
-				v831['Transparency'] = 0;
+				v833['Transparency'] = 0;
 			elseif v735:IsA("UIStroke") then
 				if (v736 and (v736.Transparency ~= nil)) then
 					v4:Create(v735, v68, {Transparency=v736.Transparency}):Play();
 				end
 			elseif (v735:IsA("UIGradient") and (v735.Parent.Name == "Divider")) then
-				local v930 = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
+				local v937 = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
 				task.spawn(function()
-					local v931 = os.clock();
-					while (os.clock() - v931) < v67 do
-						local v933 = os.clock() - v931;
-						local v934 = math.clamp(v933 / v67, 0, 1);
-						local v935 = 0.5 - (0.5 * math.cos(v934 * math.pi));
-						local v936 = {};
-						for v938, v939 in ipairs(v930.Keypoints) do
-							local v940 = 1 - ((1 - v939.Value) * v935);
-							table.insert(v936, NumberSequenceKeypoint.new(v939.Time, v940));
+					local v938 = os.clock();
+					while (os.clock() - v938) < v67 do
+						local v940 = os.clock() - v938;
+						local v941 = math.clamp(v940 / v67, 0, 1);
+						local v942 = 0.5 - (0.5 * math.cos(v941 * math.pi));
+						local v943 = {};
+						for v945, v946 in ipairs(v937.Keypoints) do
+							local v947 = 1 - ((1 - v946.Value) * v942);
+							table.insert(v943, NumberSequenceKeypoint.new(v946.Time, v947));
 						end
-						v735.Transparency = NumberSequence.new(v936);
+						v735.Transparency = NumberSequence.new(v943);
 						task.wait();
 					end
 					v735.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
 				end);
 			end
-			if next(v831) then
-				v4:Create(v735, v68, v831):Play();
+			if next(v833) then
+				v4:Create(v735, v68, v833):Play();
 			end
 		end
 	end
@@ -167,6 +173,7 @@ v9.FadeIn = function(v69, v70, v71)
 	end
 	if (v71:IsA("ImageLabel") or v71:IsA("ImageButton")) then
 		v73['ImageTransparency'] = 1;
+		v73['BackgroundTransparency'] = 1;
 	end
 	if (v71:IsA("UIStroke") or v71:IsA("BasePart") or v71:IsA("Decal") or v71:IsA("Texture")) then
 		v73['Transparency'] = 1;
@@ -201,6 +208,7 @@ v9.FadeOut = function(v74, v75, v76, v77)
 	end
 	if (v76:IsA("ImageLabel") or v76:IsA("ImageButton")) then
 		v79['ImageTransparency'] = v77;
+		v79['BackgroundTransparency'] = 1;
 	end
 	if (v76:IsA("UIStroke") or v76:IsA("BasePart") or v76:IsA("Decal") or v76:IsA("Texture")) then
 		v79['Transparency'] = v77;
@@ -216,8 +224,8 @@ v9.FadeOut = function(v74, v75, v76, v77)
 end;
 for v80, v81 in pairs(v3:GetChildren()) do
 	if (v81:IsA("ScreenGui") and (v81.Name == v10)) then
-		for v832, v833 in pairs(v81:GetDescendants()) do
-			v9:FadeIn(0.5, v833);
+		for v834, v835 in pairs(v81:GetDescendants()) do
+			v9:FadeIn(0.5, v835);
 		end
 		task.wait(0.5);
 		v81:Destroy();
@@ -243,47 +251,47 @@ v9.togglevis = function(v82)
 	v30 = true;
 	v29 = not v29;
 	if not v29 then
-		for v834, v835 in pairs(v20["2"]:GetDescendants()) do
-			local v836 = {};
-			if (v835:IsA("Frame") or v835:IsA("ScrollingFrame") or v835:IsA("ViewportFrame")) then
-				v32[v835] = {BackgroundTransparency=v835.BackgroundTransparency};
-				v836.BackgroundTransparency = 1;
-			elseif (v835:IsA("TextLabel") or v835:IsA("TextBox") or v835:IsA("TextButton")) then
-				v32[v835] = {BackgroundTransparency=v835.BackgroundTransparency,TextTransparency=v835.TextTransparency};
-				v836.BackgroundTransparency = 1;
-				v836.TextTransparency = 1;
-			elseif (v835:IsA("ImageLabel") or (v835:IsA("ImageButton") and (v835.Name ~= "Noice"))) then
-				v32[v835] = {BackgroundTransparency=v835.BackgroundTransparency,ImageTransparency=v835.ImageTransparency};
-				v836.BackgroundTransparency = 1;
-				v836.ImageTransparency = 1;
-			elseif (v835:IsA("Texture") or v835:IsA("UIStroke") or v835:IsA("UIShadow")) then
-				v32[v835] = {Transparency=v835.Transparency};
-				v836.Transparency = 1;
-			elseif (v835:IsA("UIGradient") and (v835.Parent.Name == "Divider")) then
-				v32[v835] = {Transparency=v835.Transparency,Color=v835.Color};
-				v835.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 1),NumberSequenceKeypoint.new(1, 1)});
+		for v836, v837 in pairs(v20["2"]:GetDescendants()) do
+			local v838 = {};
+			if (v837:IsA("Frame") or v837:IsA("ScrollingFrame") or v837:IsA("ViewportFrame")) then
+				v32[v837] = {BackgroundTransparency=v837.BackgroundTransparency};
+				v838.BackgroundTransparency = 1;
+			elseif (v837:IsA("TextLabel") or v837:IsA("TextBox") or v837:IsA("TextButton")) then
+				v32[v837] = {BackgroundTransparency=v837.BackgroundTransparency,TextTransparency=v837.TextTransparency};
+				v838.BackgroundTransparency = 1;
+				v838.TextTransparency = 1;
+			elseif (v837:IsA("ImageLabel") or (v837:IsA("ImageButton") and (v837.Name ~= "Noice"))) then
+				v32[v837] = {BackgroundTransparency=v837.BackgroundTransparency,ImageTransparency=v837.ImageTransparency};
+				v838.BackgroundTransparency = 1;
+				v838.ImageTransparency = 1;
+			elseif (v837:IsA("Texture") or v837:IsA("UIStroke") or v837:IsA("UIShadow")) then
+				v32[v837] = {Transparency=v837.Transparency};
+				v838.Transparency = 1;
+			elseif (v837:IsA("UIGradient") and (v837.Parent.Name == "Divider")) then
+				v32[v837] = {Transparency=v837.Transparency,Color=v837.Color};
+				v837.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 1),NumberSequenceKeypoint.new(1, 1)});
 			end
-			if next(v836) then
+			if next(v838) then
 				task.spawn(function()
 					v4:Create(v20["2"], v28, {BackgroundTransparency=1}):Play();
 				end);
-				v4:Create(v835, v28, v836):Play();
+				v4:Create(v837, v28, v838):Play();
 			end
 		end
 		task.wait(0.25);
 		v20["2"].Visible = false;
 	else
 		v20["2"].Visible = true;
-		for v837, v838 in pairs(v32) do
-			if (v837 and v837.Parent) then
-				if v837:IsA("UIGradient") then
-					v837.Transparency = v838.Transparency;
-					v837.Color = v838.Color;
+		for v839, v840 in pairs(v32) do
+			if (v839 and v839.Parent) then
+				if v839:IsA("UIGradient") then
+					v839.Transparency = v840.Transparency;
+					v839.Color = v840.Color;
 				else
 					task.spawn(function()
 						v4:Create(v20["2"], v28, {BackgroundTransparency=0}):Play();
 					end);
-					v4:Create(v837, v28, v838):Play();
+					v4:Create(v839, v28, v840):Play();
 				end
 			end
 		end
@@ -383,10 +391,10 @@ v9.CreateSlider = function(v121, v122, v123, v124, v125, v126, v127, v128, v129,
 	v5.InputChanged:Connect(function(v743)
 		if (v158 and ((v743.UserInputType == Enum.UserInputType.MouseMovement) or (v743.UserInputType == Enum.UserInputType.Touch))) then
 			v20['FrameDragDetector'].Enabled = false;
-			local v841 = v743.Position.X - v131.AbsolutePosition.X;
-			local v842 = math.clamp(v841 / v131.AbsoluteSize.X, 0, 1);
-			local v843 = v127 + ((v128 - v127) * v842);
-			v157(v843);
+			local v843 = v743.Position.X - v131.AbsolutePosition.X;
+			local v844 = math.clamp(v843 / v131.AbsoluteSize.X, 0, 1);
+			local v845 = v127 + ((v128 - v127) * v844);
+			v157(v845);
 		end
 	end);
 	v5.InputEnded:Connect(function(v744)
@@ -521,17 +529,17 @@ v9.CreateItems = function(v224, v225, v226, v227, v228, v229, v230, v231)
 		v235.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),ColorSequenceKeypoint.new(0.221, Color3.fromRGB(21, 21, 21)),ColorSequenceKeypoint.new(0.588, Color3.fromRGB(52, 52, 52)),ColorSequenceKeypoint.new(1, Color3.fromRGB(90, 32, 36))});
 	end
 	if v227 then
-		local v779 = Instance.new("UIStroke", v225);
-		v779.Color = v230;
-		v779.Thickness = 1.5;
-		v779.Transparency = v231;
+		local v781 = Instance.new("UIStroke", v225);
+		v781.Color = v230;
+		v781.Thickness = 1.5;
+		v781.Transparency = v231;
 	end
 	if v228 then
-		local v783 = Instance.new("UIListLayout", v225);
-		v783.Padding = UDim.new(0, 5);
-		v783.HorizontalAlignment = "Center";
-		v783.VerticalAlignment = "Top";
-		v783.SortOrder = "LayoutOrder";
+		local v785 = Instance.new("UIListLayout", v225);
+		v785.Padding = UDim.new(0, 5);
+		v785.HorizontalAlignment = "Center";
+		v785.VerticalAlignment = "Top";
+		v785.SortOrder = "LayoutOrder";
 	end
 end;
 v9.CreateEsp = function(v237, v238, v239, v240)
@@ -540,8 +548,8 @@ v9.CreateEsp = function(v237, v238, v239, v240)
 			if v746:FindFirstChild("ImageLabel") then
 				task.spawn(function()
 					FadeIn(0.25, v746.ImageLabel);
-					for v894, v895 in pairs(v746.ImageLabel:GetDescendants()) do
-						FadeIn(0.25, v895);
+					for v896, v897 in pairs(v746.ImageLabel:GetDescendants()) do
+						FadeIn(0.25, v897);
 					end
 					task.wait(0.25);
 					v746:Destroy();
@@ -773,7 +781,7 @@ v9.CreateInner = function(v344, v345, v346, v347, v348)
 		v349.BackgroundTransparency = 1;
 		v349.BackgroundColor3 = Color3.fromRGB(0, 0, 0);
 		v349.Name = "Shadow";
-		local v802 = Instance.new("UICorner", v349);
+		local v804 = Instance.new("UICorner", v349);
 		v9:FadeOut(0.25, v349, 0.4);
 		v350 = Instance.new("Frame", v345);
 		v350.Size = UDim2.new(0, 250, 0, 0);
@@ -795,9 +803,9 @@ v9.CreateInner = function(v344, v345, v346, v347, v348)
 		Holder.AnchorPoint = Vector2.new(0.5, 0.5);
 		Holder.Position = UDim2.new(0.5, 0, 0.5, 0);
 		Holder.BackgroundTransparency = 1;
-		local v817 = Instance.new("UIListLayout", Holder);
-		v817.Padding = UDim.new(0, 5);
-		v817.SortOrder = "LayoutOrder";
+		local v819 = Instance.new("UIListLayout", Holder);
+		v819.Padding = UDim.new(0, 5);
+		v819.SortOrder = "LayoutOrder";
 		v355 = v9:CreateText(v347, Holder, 0, 175, 28, true);
 		v354 = v9:CreateTextBox(Holder, 1, 175, 28, false);
 		v356 = v9:CreateButton(v348, Holder, 2, 175, false);
@@ -830,8 +838,8 @@ v9.CreateInner = function(v344, v345, v346, v347, v348)
 		end
 		if (v350 and v349 and v353 and v354 and v355 and v356) then
 			v9:FadeOut(0.25, v349, 1);
-			local v846 = v4:Create(v350, v351, {Size=UDim2.new(0, 250, 0, 0)});
-			v846:Play();
+			local v848 = v4:Create(v350, v351, {Size=UDim2.new(0, 250, 0, 0)});
+			v848:Play();
 			v9:FadeOut(0.25, v353, 1);
 			if game:GetService("Lighting"):FindFirstChild("Blur") then
 				game.Lighting.Blur.Enabled = false;
