@@ -892,14 +892,11 @@ function TypicalLibrary:CreateInner(parent, destroy, textt, textt2)
             game.Lighting.Blur.Size = 5
         end
 
-        TypicalLibrary:FadeOut(0.25, box.Noice, 1)
-        TypicalLibrary:FadeOut(0.25, box.Frame.UIStroke, 1)
-        TypicalLibrary:FadeOut(0.25, box, 1)
-        TypicalLibrary:FadeOut(0.25, text, 1)
-        TypicalLibrary:FadeOut(0.25, text.Divider, 1)
-        TypicalLibrary:FadeOut(0.25, btn2.UIStroke, 1)
-        TypicalLibrary:FadeOut(0.25, btn2.Noice, 1)
-        TypicalLibrary:FadeOut(0.25, btn2.TextLabel, 1)
+        for _, v in pairs(parent:GetDescendants()) do
+            if v:IsA("Frame") or v:IsA("TextButton") or v:IsA("ImageButton") or v:IsA("TexetBox") or v:IsA("TextLabel") then
+                TypicalLibrary:FadeOut(0.25, v, 1)
+            end
+        end
 
         task.wait(0.5)
 
