@@ -7,7 +7,7 @@ local v5 = game:GetService("UserInputService");
 local v6 = game:GetService("VirtualInputManager");
 local v7 = game:GetService("ReplicatedStorage");
 local v8 = game:GetService("HttpService");
-local v9, v10 = loadstring(game:HttpGet("https://raw.githubusercontent.com/steadyrinetintin3/unnamedscript/refs/heads/main/library?token=GHSAT0AAAAAAEBFYXWAOTJ53IXSVBZULEB62SFHEEQ"))();
+local v9, v10 = loadstring(game:HttpGet("https://raw.githubusercontent.com/steadyrinetintin3/unnamedscript/refs/heads/main/library"))();
 local v11 = {};
 local v12;
 if ((v5.TouchEnabled == true) and (v5.KeyboardEnabled == false)) then
