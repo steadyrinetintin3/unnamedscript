@@ -876,12 +876,14 @@ function TypicalLibrary:CreateInner(parent, destroy, textt, textt2)
     function TypicalLibrary:Closef()
         if Close then
         else
-            main = parent:FindFirstChild("Main")
-            box = main:FindFirstChild("Frame"):FindFirstChild("TextBox")
-            text = main:FindFirstChild("Frame"):FindFirstChild("TextLabel")
-            shadow = parent:FindFirstChild("Shadow")
-            Close = main:FindFirstChild("Close")
-            btn2 = main:FindFirstChild("Frame"):FindFirstChild("Button")
+            if parent then
+                main = parent:FindFirstChild("Main")
+                box = main:FindFirstChild("Frame"):FindFirstChild("TextBox")
+                text = main:FindFirstChild("Frame"):FindFirstChild("TextLabel")
+                shadow = parent:FindFirstChild("Shadow")
+                Close = main:FindFirstChild("Close")
+                btn2 = main:FindFirstChild("Frame"):FindFirstChild("Button")
+            end
         end
         TypicalLibrary:FadeOut(0.25, shadow, 1)
         local tween2 = TweenService:Create(main, info, {Size = UDim2.new(0, 250, 0, 0)})
@@ -892,11 +894,14 @@ function TypicalLibrary:CreateInner(parent, destroy, textt, textt2)
             game.Lighting.Blur.Size = 5
         end
 
-        for _, v in pairs(parent:GetDescendants()) do
-            if v:IsA("Frame") or v:IsA("TextButton") or v:IsA("ImageButton") or v:IsA("TexetBox") or v:IsA("TextLabel") then
-                TypicalLibrary:FadeOut(0.25, v, 1)
-            end
-        end
+        TypicalLibrary:FadeOut(0.25, box.Noice, 1)
+        TypicalLibrary:FadeOut(0.25, box.Frame.UIStroke, 1)
+        TypicalLibrary:FadeOut(0.25, box, 1)
+        TypicalLibrary:FadeOut(0.25, text, 1)
+        TypicalLibrary:FadeOut(0.25, text.Divider, 1)
+        TypicalLibrary:FadeOut(0.25, btn2.UIStroke, 1)
+        TypicalLibrary:FadeOut(0.25, btn2.Noice, 1)
+        TypicalLibrary:FadeOut(0.25, btn2.TextLabel, 1)
 
         task.wait(0.5)
 
