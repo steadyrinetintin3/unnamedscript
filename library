@@ -932,6 +932,14 @@ end
 local key = "Typicalscriptkeysystem67"
 local authenticated = false
 
+function TypicalLibrary:CheckAuth()
+    if authenticated == true then
+        return true
+    else
+        return false
+    end
+end
+
 Guis["NotificationHolder"] = Instance.new("Frame", Guis["1"])
 Guis["NotificationHolder"].Size =  UDim2.new(0, 275, 0.95, 0)
 Guis["NotificationHolder"].Position = UDim2.new(0.85, 0, 0, 0)
