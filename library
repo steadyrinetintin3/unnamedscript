@@ -1208,33 +1208,33 @@ v9.CreateToggle = function(v626, v627, v628, v629, v630, v631, v632, v633, v634,
 	v662.Size = UDim2.new(0, v630, 0, 28);
 	v662.Image = "rbxassetid://73660298439922";
 	v662.ImageTransparency = 0.5;
+	v662.BackgroundTransparency = 1;
 	v662.Name = "Noice";
-	local v667 = Instance.new("UICorner", v662);
-	local v668 = v633;
-	local v669 = Instance.new("TextButton", v657);
-	v669.Size = UDim2.new(0, v668 / 2, 0, 15);
-	v669.Position = UDim2.new(0, 0, 0, 0);
-	v669.BackgroundColor3 = Color3.fromRGB(81, 32, 37);
-	v669.BorderSizePixel = 0;
-	v669.Text = "";
-	v669.ZIndex = 7;
-	v669.AutoButtonColor = false;
-	v13[v662] = {BackgroundTransparency=1,ImageTransparency=0.5};
+	local v668 = Instance.new("UICorner", v662);
+	local v669 = v633;
+	local v670 = Instance.new("TextButton", v657);
+	v670.Size = UDim2.new(0, v669 / 2, 0, 15);
+	v670.Position = UDim2.new(0, 0, 0, 0);
+	v670.BackgroundColor3 = Color3.fromRGB(81, 32, 37);
+	v670.BorderSizePixel = 0;
+	v670.Text = "";
+	v670.ZIndex = 7;
+	v670.AutoButtonColor = false;
 	local v678 = false;
 	local function v679(v756)
 		v678 = v756;
 		if v678 then
-			v669.BackgroundColor3 = Color3.fromRGB(46, 117, 89);
-			v9:Tween(0.25, {Position=UDim2.new(0, v668 / 2, 0, 0)}, v669);
+			v670.BackgroundColor3 = Color3.fromRGB(46, 117, 89);
+			v9:Tween(0.25, {Position=UDim2.new(0, v669 / 2, 0, 0)}, v670);
 		else
-			v669.BackgroundColor3 = Color3.fromRGB(81, 32, 37);
-			v9:Tween(0.25, {Position=UDim2.new(0, 0, 0, 0)}, v669);
+			v670.BackgroundColor3 = Color3.fromRGB(81, 32, 37);
+			v9:Tween(0.25, {Position=UDim2.new(0, 0, 0, 0)}, v670);
 		end
 		if v637 then
 			v637(v678);
 		end
 	end
-	v669.Activated:Connect(function(v757)
+	v670.Activated:Connect(function(v757)
 		if (v757.UserInputType == Enum.UserInputType.MouseButton1) then
 			v679(not v678);
 		end
@@ -1247,13 +1247,13 @@ v9.CreateToggle = function(v626, v627, v628, v629, v630, v631, v632, v633, v634,
 			return v678;
 		end};
 	end
-	local v680 = Instance.new("UICorner", v669);
+	local v680 = Instance.new("UICorner", v670);
 	local v681 = Instance.new("UICorner", v657);
 	local v682 = Instance.new("UIStroke", v657);
 	v682.Thickness = 1.5;
 	v682.Color = Color3.fromRGB(255, 255, 255);
 	v682.ApplyStrokeMode = "Border";
-	return v669;
+	return v670;
 end;
 v9.CreateMobileButton = function(v686, v687, v688, v689, v690, v691)
 	if not v691 then
