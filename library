@@ -1240,7 +1240,7 @@ v9.CreateToggle = function(v626, v627, v628, v629, v630, v631, v632, v633, v634,
 			v637(v678);
 		end
 	end
-	v638.InputBegan:Connect(function(v757)
+	v669.Activated:Connect(function(v757)
 		if (v757.UserInputType == Enum.UserInputType.MouseButton1) then
 			v679(not v678);
 		end
