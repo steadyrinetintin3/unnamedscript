@@ -781,7 +781,6 @@ v9.CreateInner = function(v344, v345, v346, v347, v348)
 		v349.BackgroundTransparency = 1;
 		v349.BackgroundColor3 = Color3.fromRGB(0, 0, 0);
 		v349.Name = "Shadow";
-		print("hu2");
 		local v804 = Instance.new("UICorner", v349);
 		v9:FadeOut(0.25, v349, 0.4);
 		v350 = Instance.new("Frame", v345);
@@ -789,7 +788,6 @@ v9.CreateInner = function(v344, v345, v346, v347, v348)
 		v350.AnchorPoint = Vector2.new(0.5, 0.5);
 		v350.Position = UDim2.new(0.5, 0, 0.5, 0);
 		v350.Name = "Main";
-		print("ha2");
 		v9:CreateItems(v350, "DarkRed2");
 		v352 = v4:Create(v350, v351, {Size=UDim2.new(0, 250, 0, 150)});
 		v352:Play();
@@ -799,7 +797,6 @@ v9.CreateInner = function(v344, v345, v346, v347, v348)
 		v353['BackgroundTransparency'] = 1;
 		v353['ImageTransparency'] = 0.2;
 		v353['Image'] = "rbxassetid://120671325651381";
-		print("he2");
 		v353.Name = "Close";
 		Holder = Instance.new("Frame", v350);
 		Holder.Size = UDim2.new(0, 175, 0, 100);
