@@ -40,14 +40,11 @@ v9.FadeOutWithSaves = function(v60, v61, v62, v63)
 			v733['TextTransparency'] = v732.TextTransparency;
 			v734['BackgroundTransparency'] = 1;
 			v734['TextTransparency'] = v63;
-		elseif (v732:IsA("ImageLabel") or (v732:IsA("ImageButton") and (v732.Name ~= "Noice"))) then
+		elseif (v732:IsA("ImageLabel") or v732:IsA("ImageButton")) then
 			v733['BackgroundTransparency'] = v732.BackgroundTransparency;
 			v733['ImageTransparency'] = v732.ImageTransparency;
 			v734['BackgroundTransparency'] = 1;
 			v734['ImageTransparency'] = v63;
-		elseif (v732:IsA("ImageLabel") and (v732.Name == "Noice")) then
-			v733.BackgroundTransparency = v732.BackgroundTransparency;
-			v734.BackgroundTransparency = 1;
 		elseif v732:IsA("Texture") then
 			v733['Transparency'] = v732.Transparency;
 			v734['Transparency'] = 1;
@@ -56,18 +53,18 @@ v9.FadeOutWithSaves = function(v60, v61, v62, v63)
 		elseif (v732:IsA("UIGradient") and (v732.Parent.Name == "Divider")) then
 			v13[v732] = {Transparency=v732.Transparency};
 			task.spawn(function()
-				local v928 = os.clock();
-				while (os.clock() - v928) < v62 do
-					local v931 = os.clock() - v928;
-					local v932 = math.clamp(v931 / v62, 0, 1);
-					local v933 = 0.5 - (0.5 * math.cos(v932 * math.pi));
-					local v934 = v13[v732].Transparency;
-					local v935 = {};
-					for v938, v939 in ipairs(v934.Keypoints) do
-						local v940 = v939.Value + ((1 - v939.Value) * v933);
-						table.insert(v935, NumberSequenceKeypoint.new(v939.Time, v940));
+				local v923 = os.clock();
+				while (os.clock() - v923) < v62 do
+					local v926 = os.clock() - v923;
+					local v927 = math.clamp(v926 / v62, 0, 1);
+					local v928 = 0.5 - (0.5 * math.cos(v927 * math.pi));
+					local v929 = v13[v732].Transparency;
+					local v930 = {};
+					for v933, v934 in ipairs(v929.Keypoints) do
+						local v935 = v934.Value + ((1 - v934.Value) * v928);
+						table.insert(v930, NumberSequenceKeypoint.new(v934.Time, v935));
 					end
-					v732.Transparency = NumberSequence.new(v935);
+					v732.Transparency = NumberSequence.new(v930);
 					task.wait();
 				end
 				v732.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))});
@@ -122,10 +119,7 @@ v9.FadeInWithSaves = function(v65, v66, v67)
 			elseif (v737:IsA("TextLabel") or v737:IsA("TextBox") or (v737:IsA("TextButton") and (not v737.Name == "Button"))) then
 				v836['BackgroundTransparency'] = 1;
 				v836['TextTransparency'] = 0;
-			elseif (v737:IsA("ImageLabel") or (v737:IsA("ImageButton") and (v737.Name ~= "Noice"))) then
-				v836['BackgroundTransparency'] = 1;
-				v836['ImageTransparency'] = 0;
-			elseif (v737:IsA("ImageLabel") or (v737:IsA("ImageButton") and (v737.Name == "Noice"))) then
+			elseif (v737:IsA("ImageLabel") or v737:IsA("ImageButton")) then
 				v836['BackgroundTransparency'] = 1;
 				v836['ImageTransparency'] = 0;
 			elseif v737:IsA("UIShadow") then
@@ -137,19 +131,19 @@ v9.FadeInWithSaves = function(v65, v66, v67)
 					v4:Create(v737, v68, {Transparency=v738.Transparency}):Play();
 				end
 			elseif (v737:IsA("UIGradient") and (v737.Parent.Name == "Divider")) then
-				local v941 = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
+				local v936 = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
 				task.spawn(function()
-					local v942 = os.clock();
-					while (os.clock() - v942) < v67 do
-						local v944 = os.clock() - v942;
-						local v945 = math.clamp(v944 / v67, 0, 1);
-						local v946 = 0.5 - (0.5 * math.cos(v945 * math.pi));
-						local v947 = {};
-						for v949, v950 in ipairs(v941.Keypoints) do
-							local v951 = 1 - ((1 - v950.Value) * v946);
-							table.insert(v947, NumberSequenceKeypoint.new(v950.Time, v951));
+					local v937 = os.clock();
+					while (os.clock() - v937) < v67 do
+						local v939 = os.clock() - v937;
+						local v940 = math.clamp(v939 / v67, 0, 1);
+						local v941 = 0.5 - (0.5 * math.cos(v940 * math.pi));
+						local v942 = {};
+						for v944, v945 in ipairs(v936.Keypoints) do
+							local v946 = 1 - ((1 - v945.Value) * v941);
+							table.insert(v942, NumberSequenceKeypoint.new(v945.Time, v946));
 						end
-						v737.Transparency = NumberSequence.new(v947);
+						v737.Transparency = NumberSequence.new(v942);
 						task.wait();
 					end
 					v737.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
