@@ -1322,5 +1322,4 @@ v9.CreateMobileButton = function(v684, v685, v686, v687, v688, v689)
 	end
 	return v690;
 end;
-v9:CreateInner(v20["2"], false);
 return v9, v20;
