@@ -24,8 +24,8 @@ local v18 = v9.Settings;
 local v19 = v9.ToggleButtons or v9.v55;
 local v20 = 1;
 local v21, v22, v23;
-local function v24(v73)
-	v21 = v73;
+local function v24(v74)
+	v21 = v74;
 	v22 = v21:WaitForChild("Humanoid");
 	v23 = v21:WaitForChild("HumanoidRootPart");
 	v22.Died:Connect(function()
@@ -77,9 +77,9 @@ if v0:FindFirstChild("BrokenGlass") then
 	if v0.BrokenGlass:FindFirstChildWhichIsA("Model") then
 		task.spawn(function()
 			while true do
-				for v740, v741 in pairs(v0.BrokenGlass:GetDescendants()) do
-					if v741:IsA("TouchTransmitter") then
-						v741:Destroy();
+				for v741, v742 in pairs(v0.BrokenGlass:GetDescendants()) do
+					if v742:IsA("TouchTransmitter") then
+						v742:Destroy();
 					end
 				end
 				task.wait(0.5);
@@ -95,10 +95,10 @@ local v52;
 local v53;
 local v20 = 1;
 local v54 = os.clock();
-local function v55(v74)
-	local v75 = math.floor(v74 / 60);
-	local v76 = math.floor(v74 % 60);
-	return string.format("%02d:%02d", v75, v76);
+local function v55(v75)
+	local v76 = math.floor(v75 / 60);
+	local v77 = math.floor(v75 % 60);
+	return string.format("%02d:%02d", v76, v77);
 end
 local v56;
 local v57;
@@ -136,217 +136,220 @@ if (v26 == "MainGame") then
 	v56 = v9:CreateSwitchButton([[PLAYER]]);
 	v57 = v9:CreateSwitchButton([[GHOST]]);
 	v58 = v9:CreateSwitchButton([[OTHER]]);
+	v59 = v9:CreateSwitchButton([[AUTO]]);
 	if (v26 == "Lobby") then
-		local v493 = v9:CreateSwitchButton([[MAIN]]);
+		local v494 = v9:CreateSwitchButton([[MAIN]]);
 	end
 end
 v9.MainBtn.LayoutOrder = 0;
 v56.LayoutOrder = 1;
 v57.LayoutOrder = 2;
+v59.LayoutOrder = 3;
 v58.LayoutOrder = 4;
 if v10['LobbyMain'] then
 	v10['LobbyMain'].LayoutOrder = 0;
 end
-local v64 = v10["5"];
-local v65 = v9.MainBtn;
-local function v66(v77, v78)
-	if (v64 == v78) then
+local v65 = v10["5"];
+local v66 = v9.MainBtn;
+local function v67(v78, v79)
+	if (v65 == v79) then
 		return;
 	end
-	for v121, v122 in pairs(v10['TabHolder']:GetChildren()) do
-		if ((v122 ~= v77) and v122:FindFirstChildWhichIsA("Frame")) then
-			local v494 = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out);
-			v4:Create(v122:FindFirstChildWhichIsA("Frame"), v494, {BackgroundTransparency=1}):Play();
+	for v122, v123 in pairs(v10['TabHolder']:GetChildren()) do
+		if ((v123 ~= v78) and v123:FindFirstChildWhichIsA("Frame")) then
+			local v495 = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out);
+			v4:Create(v123:FindFirstChildWhichIsA("Frame"), v495, {BackgroundTransparency=1}):Play();
 		end
 	end
-	v77:FindFirstChildWhichIsA("Frame").BackgroundTransparency = 0;
-	local v80 = v77.LayoutOrder > v65.LayoutOrder;
-	local v81 = (v80 and UDim2.new(0, 0, 0, -400)) or UDim2.new(0, 0, 0, 400);
-	local v82 = (v80 and UDim2.new(0, 0, 0, 400)) or UDim2.new(0, 0, 0, -400);
-	v78.Position = v82;
-	v78.Visible = true;
-	local v85 = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut);
-	v4:Create(v64, v85, {Position=v81}):Play();
-	v4:Create(v78, v85, {Position=UDim2.new(0, 0, 0, 0)}):Play();
+	v78:FindFirstChildWhichIsA("Frame").BackgroundTransparency = 0;
+	local v81 = v78.LayoutOrder > v66.LayoutOrder;
+	local v82 = (v81 and UDim2.new(0, 0, 0, -400)) or UDim2.new(0, 0, 0, 400);
+	local v83 = (v81 and UDim2.new(0, 0, 0, 400)) or UDim2.new(0, 0, 0, -400);
+	v79.Position = v83;
+	v79.Visible = true;
+	local v86 = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut);
+	v4:Create(v65, v86, {Position=v82}):Play();
+	v4:Create(v79, v86, {Position=UDim2.new(0, 0, 0, 0)}):Play();
 	task.delay(0.25, function()
-		v64.Visible = false;
-		v64 = v78;
-		v65 = v77;
+		v65.Visible = false;
+		v65 = v79;
+		v66 = v78;
 	end);
 end
-for v86, v87 in pairs(v10["4"]:GetChildren()) do
-	if v87:IsA("GuiObject") then
-		if (v87 ~= v64) then
-			v87.Visible = false;
-			v87.Position = UDim2.new(0, 0, 0, 400);
+for v87, v88 in pairs(v10["4"]:GetChildren()) do
+	if v88:IsA("GuiObject") then
+		if (v88 ~= v65) then
+			v88.Visible = false;
+			v88.Position = UDim2.new(0, 0, 0, 400);
 		else
-			v87.Visible = true;
-			v87.Position = UDim2.new(0, 0, 0, 0);
+			v88.Visible = true;
+			v88.Position = UDim2.new(0, 0, 0, 0);
 		end
 	end
 end
-local function v67(v88, v89)
-	v88.MouseEnter:Connect(function()
-		if (v64 ~= v89) then
-			local v495 = TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
-			v4:Create(v88:FindFirstChildWhichIsA("Frame"), v495, {BackgroundTransparency=0}):Play();
+local function v68(v89, v90)
+	v89.MouseEnter:Connect(function()
+		if (v65 ~= v90) then
+			local v496 = TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
+			v4:Create(v89:FindFirstChildWhichIsA("Frame"), v496, {BackgroundTransparency=0}):Play();
 		end
 	end);
-	v88.Activated:Connect(function()
-		v66(v88, v89);
-		v88:FindFirstChildWhichIsA("Frame").BackgroundTransparency = 0;
+	v89.Activated:Connect(function()
+		v67(v89, v90);
+		v89:FindFirstChildWhichIsA("Frame").BackgroundTransparency = 0;
 	end);
-	v88.MouseLeave:Connect(function()
-		if (v64 ~= v89) then
-			local v496 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
-			v4:Create(v88:FindFirstChildWhichIsA("Frame"), v496, {BackgroundTransparency=1}):Play();
+	v89.MouseLeave:Connect(function()
+		if (v65 ~= v90) then
+			local v497 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
+			v4:Create(v89:FindFirstChildWhichIsA("Frame"), v497, {BackgroundTransparency=1}):Play();
 		end
 	end);
 end
-local v68 = "rbxassetid://89871052622148";
+local v69 = "rbxassetid://89871052622148";
 task.spawn(function()
 	if (v26 == "MainGame") then
-		v67(v9.MainBtn, v10["5"]);
-		v67(v56, v10['PlayerTab']);
-		v67(v57, v10['GhostTab']);
-		v67(v58, v10['OtherTab']);
+		v68(v9.MainBtn, v10["5"]);
+		v68(v56, v10['PlayerTab']);
+		v68(v57, v10['GhostTab']);
+		v68(v58, v10['OtherTab']);
+		v68(v59, v10['AutoFarmTab']);
 	elseif (v26 == "Lobby") then
-		v67(v10['LobbyMain'], v10["5"]);
+		v68(v10['LobbyMain'], v10["5"]);
 	end
 	v10['Minimize'].Activated:Connect(function()
-		local v125 = TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
+		local v126 = TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
 		if (v10["2"].Size == UDim2.new(0, 700, 0, 25)) then
-			local v497 = (originalStates[v10["2"]] and originalStates[v10["2"]].Size) or UDim2.new(0, 700, 0, 400);
-			v4:Create(v10["2"], v125, {Size=v497}):Play();
-			for v546, v547 in pairs(v10["2"]:GetDescendants()) do
-				local v548 = originalStates[v547];
-				if v548 then
-					v4:Create(v547, v125, v548):Play();
+			local v498 = (originalStates[v10["2"]] and originalStates[v10["2"]].Size) or UDim2.new(0, 700, 0, 400);
+			v4:Create(v10["2"], v126, {Size=v498}):Play();
+			for v547, v548 in pairs(v10["2"]:GetDescendants()) do
+				local v549 = originalStates[v548];
+				if v549 then
+					v4:Create(v548, v126, v549):Play();
 				end
 			end
 		else
 			originalStates[v10["2"]] = {Size=v10["2"].Size};
-			v4:Create(v10["2"], v125, {Size=UDim2.new(0, 700, 0, 25)}):Play();
-			for v549, v550 in pairs(v10["2"]:GetChildren()) do
-				local v551 = v550:FindFirstAncestor("PlayerTab") or v550:FindFirstAncestor("GhostTab");
-				if (v551 and not v551.Visible) then
+			v4:Create(v10["2"], v126, {Size=UDim2.new(0, 700, 0, 25)}):Play();
+			for v550, v551 in pairs(v10["2"]:GetChildren()) do
+				local v552 = v551:FindFirstAncestor("PlayerTab") or v551:FindFirstAncestor("GhostTab");
+				if (v552 and not v552.Visible) then
 					continue;
 				end
-				local v552 = {};
 				local v553 = {};
-				if v550:IsA("Frame") then
-					v553.BackgroundTransparency = v550.BackgroundTransparency;
-					v553.Size = v550.Size;
-					v552.BackgroundTransparency = 1;
-					v552.Size = UDim2.new(v550.Size.X.Scale, v550.Size.X.Offset, 0, 0);
+				local v554 = {};
+				if v551:IsA("Frame") then
+					v554.BackgroundTransparency = v551.BackgroundTransparency;
+					v554.Size = v551.Size;
+					v553.BackgroundTransparency = 1;
+					v553.Size = UDim2.new(v551.Size.X.Scale, v551.Size.X.Offset, 0, 0);
 				end
-				if v550:IsA("ScrollingFrame") then
-					v553.BackgroundTransparency = v550.BackgroundTransparency;
-					v553.Size = v550.Size;
-					v552.BackgroundTransparency = 1;
-					v552.Size = UDim2.new(v550.Size.X.Scale, v550.Size.X.Offset, 0, 0);
+				if v551:IsA("ScrollingFrame") then
+					v554.BackgroundTransparency = v551.BackgroundTransparency;
+					v554.Size = v551.Size;
+					v553.BackgroundTransparency = 1;
+					v553.Size = UDim2.new(v551.Size.X.Scale, v551.Size.X.Offset, 0, 0);
 				end
-				if ((v550:IsA("TextLabel") or v550:IsA("TextBox") or v550:IsA("TextButton")) and (v550.Name ~= "Discord")) then
-					v553.BackgroundTransparency = v550.BackgroundTransparency;
-					v553.TextTransparency = v550.TextTransparency;
-					v553.Size = v550.Size;
-					v552.BackgroundTransparency = 1;
-					v552.TextTransparency = 1;
-					v552.Size = UDim2.new(v550.Size.X.Scale, v550.Size.X.Offset, 0, 0);
+				if ((v551:IsA("TextLabel") or v551:IsA("TextBox") or v551:IsA("TextButton")) and (v551.Name ~= "Discord")) then
+					v554.BackgroundTransparency = v551.BackgroundTransparency;
+					v554.TextTransparency = v551.TextTransparency;
+					v554.Size = v551.Size;
+					v553.BackgroundTransparency = 1;
+					v553.TextTransparency = 1;
+					v553.Size = UDim2.new(v551.Size.X.Scale, v551.Size.X.Offset, 0, 0);
 				end
-				if v550:IsA("ViewportFrame") then
-					v553.Visible = v550.Visible;
-					v552.Visible = false;
+				if v551:IsA("ViewportFrame") then
+					v554.Visible = v551.Visible;
+					v553.Visible = false;
 				end
-				if ((v550:IsA("ImageLabel") or v550:IsA("ImageButton")) and (v550.Name ~= "Minimize") and (v550.Name ~= "Close")) then
-					v553.BackgroundTransparency = v550.BackgroundTransparency;
-					v553.ImageTransparency = v550.ImageTransparency;
-					v552.BackgroundTransparency = 1;
-					v552.ImageTransparency = 1;
+				if ((v551:IsA("ImageLabel") or v551:IsA("ImageButton")) and (v551.Name ~= "Minimize") and (v551.Name ~= "Close")) then
+					v554.BackgroundTransparency = v551.BackgroundTransparency;
+					v554.ImageTransparency = v551.ImageTransparency;
+					v553.BackgroundTransparency = 1;
+					v553.ImageTransparency = 1;
 				end
-				if v550:IsA("UIStroke") then
-					v553.Transparency = v550.Transparency;
-					v552.Transparency = 1;
+				if v551:IsA("UIStroke") then
+					v554.Transparency = v551.Transparency;
+					v553.Transparency = 1;
 				end
-				if next(v552) then
-					originalStates[v550] = v553;
-					v4:Create(v550, v125, v552):Play();
-				elseif v550:IsA("UIGradient") then
-					originalStates[v550] = {Offset=v550.Offset};
-					v4:Create(v550, v125, {Offset=Vector2.new(1, 0)}):Play();
+				if next(v553) then
+					originalStates[v551] = v554;
+					v4:Create(v551, v126, v553):Play();
+				elseif v551:IsA("UIGradient") then
+					originalStates[v551] = {Offset=v551.Offset};
+					v4:Create(v551, v126, {Offset=Vector2.new(1, 0)}):Play();
 				end
 			end
-			for v554, v555 in pairs(v10["2"].TabHolder:GetDescendants()) do
-				local v556 = v555:FindFirstAncestor("PlayerTab") or v555:FindFirstAncestor("GhostTab");
-				if (v556 and not v556.Visible) then
+			for v555, v556 in pairs(v10["2"].TabHolder:GetDescendants()) do
+				local v557 = v556:FindFirstAncestor("PlayerTab") or v556:FindFirstAncestor("GhostTab");
+				if (v557 and not v557.Visible) then
 					continue;
 				end
-				local v557 = {};
 				local v558 = {};
-				if ((v555:IsA("TextLabel") or v555:IsA("TextBox") or v555:IsA("TextButton")) and (v555.Name ~= "Discord")) then
-					v558.BackgroundTransparency = v555.BackgroundTransparency;
-					v558.TextTransparency = v555.TextTransparency;
-					v558.Size = v555.Size;
-					v557.BackgroundTransparency = 1;
-					v557.TextTransparency = 1;
-					v557.Size = UDim2.new(v555.Size.X.Scale, v555.Size.X.Offset, 0, 0);
+				local v559 = {};
+				if ((v556:IsA("TextLabel") or v556:IsA("TextBox") or v556:IsA("TextButton")) and (v556.Name ~= "Discord")) then
+					v559.BackgroundTransparency = v556.BackgroundTransparency;
+					v559.TextTransparency = v556.TextTransparency;
+					v559.Size = v556.Size;
+					v558.BackgroundTransparency = 1;
+					v558.TextTransparency = 1;
+					v558.Size = UDim2.new(v556.Size.X.Scale, v556.Size.X.Offset, 0, 0);
 				end
-				if v555:IsA("Frame") then
-					v558.BackgroundTransparency = v555.BackgroundTransparency;
-					v558.Size = v555.Size;
-					v557.BackgroundTransparency = 1;
-					v557.Size = UDim2.new(v555.Size.X.Scale, v555.Size.X.Offset, 0, 0);
+				if v556:IsA("Frame") then
+					v559.BackgroundTransparency = v556.BackgroundTransparency;
+					v559.Size = v556.Size;
+					v558.BackgroundTransparency = 1;
+					v558.Size = UDim2.new(v556.Size.X.Scale, v556.Size.X.Offset, 0, 0);
 				end
-				if next(v557) then
-					originalStates[v555] = v558;
-					v4:Create(v555, v125, v557):Play();
+				if next(v558) then
+					originalStates[v556] = v559;
+					v4:Create(v556, v126, v558):Play();
 				end
 			end
 			originalStates[v10['b']] = originalStates[v10['b']] or {Position=v10['b'].Position};
-			v4:Create(v10['b'], v125, {Position=UDim2.new(0, 150, 0, 1)}):Play();
+			v4:Create(v10['b'], v126, {Position=UDim2.new(0, 150, 0, 1)}):Play();
 		end
 	end);
 	v10['Close'].Activated:Connect(function()
-		for v421, v422 in pairs(v3:GetChildren()) do
-			if (v422:IsA("ScreenGui") and (v422.Name == v25)) then
-				for v650, v651 in pairs(v422:GetDescendants()) do
-					local v652 = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
-					local v653 = {};
-					if (v651:IsA("Frame") or v651:IsA("ScrollingFrame") or v651:IsA("TextBox")) then
-						v653['BackgroundTransparency'] = 1;
+		for v422, v423 in pairs(v3:GetChildren()) do
+			if (v423:IsA("ScreenGui") and (v423.Name == v25)) then
+				for v651, v652 in pairs(v423:GetDescendants()) do
+					local v653 = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
+					local v654 = {};
+					if (v652:IsA("Frame") or v652:IsA("ScrollingFrame") or v652:IsA("TextBox")) then
+						v654['BackgroundTransparency'] = 1;
 					end
-					if (v651:IsA("TextLabel") or v651:IsA("TextBox") or v651:IsA("TextButton")) then
-						v653['BackgroundTransparency'] = 1;
-						v653['TextTransparency'] = 1;
+					if (v652:IsA("TextLabel") or v652:IsA("TextBox") or v652:IsA("TextButton")) then
+						v654['BackgroundTransparency'] = 1;
+						v654['TextTransparency'] = 1;
 					end
-					if (v651:IsA("ImageLabel") or v651:IsA("ImageButton")) then
-						v653['BackgroundTransparency'] = 1;
-						v653['ImageTransparency'] = 1;
+					if (v652:IsA("ImageLabel") or v652:IsA("ImageButton")) then
+						v654['BackgroundTransparency'] = 1;
+						v654['ImageTransparency'] = 1;
 					end
-					if v651:IsA("UIStroke") then
-						v653['Transparency'] = 1;
+					if v652:IsA("UIStroke") then
+						v654['Transparency'] = 1;
 					end
-					if next(v653) then
-						v4:Create(v651, v652, v653):Play();
-					elseif v651:IsA("UIGradient") then
-						v4:Create(v651, v652, {Offset=Vector2.new(1, 0)}):Play();
+					if next(v654) then
+						v4:Create(v652, v653, v654):Play();
+					elseif v652:IsA("UIGradient") then
+						v4:Create(v652, v653, {Offset=Vector2.new(1, 0)}):Play();
 					end
 				end
 				task.wait(0.5);
-				v422:Destroy();
+				v423:Destroy();
 				task.wait(1);
 			end
 		end
 	end);
 end);
-local v69 = v9:CreateLog("Runtime: 00:00", v10['e'], nil, 152, false, nil, false, false);
-local v70 = v9:CreateLog("Wins: " .. tostring(game:GetService("Players").LocalPlayer:GetAttribute("Wins")), v10['e'], 1, 152, false, nil, false, false);
-local v71 = v9:CreateLog("Level: " .. tostring(game:GetService("Players").LocalPlayer:GetAttribute("Level")), v10['e'], 2, 152, false, nil, false, false);
-local v72 = v9:CreateLog("Money Made: " .. tostring(game:GetService("Players").LocalPlayer:GetAttribute("Money")), v10['e'], 3, 152, false, nil, false, false);
+local v70 = v9:CreateLog("Runtime: 00:00", v10['e'], nil, 152, false, nil, false, false);
+local v71 = v9:CreateLog("Wins: " .. tostring(game:GetService("Players").LocalPlayer:GetAttribute("Wins")), v10['e'], 1, 152, false, nil, false, false);
+local v72 = v9:CreateLog("Level: " .. tostring(game:GetService("Players").LocalPlayer:GetAttribute("Level")), v10['e'], 2, 152, false, nil, false, false);
+local v73 = v9:CreateLog("Money Made: " .. tostring(game:GetService("Players").LocalPlayer:GetAttribute("Money")), v10['e'], 3, 152, false, nil, false, false);
 task.spawn(function()
 	while true do
-		local v126 = os.clock() - v54;
-		v69.Text = "Runtime: " .. v55(v126);
+		local v127 = os.clock() - v54;
+		v70.Text = "Runtime: " .. v55(v127);
 		task.wait(1);
 	end
 end);
@@ -373,76 +376,81 @@ v9:CreateLog("-0.295: fixed ui gradient being white", v10["1f"], -19, 189, true,
 v9:CreateLog("-0.3: Added toggling menu(minimize still exists)", v10["1f"], -20, 189, true, nil, false, false);
 v9:CreateLog("-0.31: Added ghost aimbot", v10["1f"], -21, 189, true, nil, false, false);
 v9:CreateLog("-0.32: Added player aimbot, added mobile support for toggles", v10["1f"], -22, 189, true, nil, false, false);
+v9:CreateLog("-0.33: changed to ui library,made no evidence support mode(i mean its only usefull for skinwalker)", v10["1f"], -23, 189, true, nil, false, false);
+v9:CreateLog("-0.34: fixed gui not appearing when pressing create preset", v10["1f"], -24, 189, true, nil, false, false);
+v9:CreateLog("-0.35: added animations for switching tabs,fixed presets for mobile(maybe)", v10["1f"], -25, 189, true, nil, false, false);
+v9:CreateLog("-0.36: fixed images backgrounds being visible", v10["1f"], -26, 189, true, nil, false, false);
+v9:CreateLog("-0.37: Added autofarm tab and moved auto toggles there(without autofarm yet)", v10["1f"], -27, 189, true, nil, false, false);
 v9:CreateLog("Loaded.", v10["14"], -1, 152);
 if (v26 == "MainGame") then
 	v10['PlayerTabInfo'] = Instance.new("Frame", v10['PlayerTab']);
 	v10['PlayerTabInfo'].Size = UDim2.new(0, 579, 0, 360);
 	v10['PlayerTabInfo'].Position = UDim2.new(0, 0, 0, 5);
-	local v131 = Instance.new("UIListLayout", v10['PlayerTab']);
-	v131.Padding = UDim.new(0, 10);
-	v131.SortOrder = "LayoutOrder";
-	local v134 = Instance.new("Frame", v10['PlayerTab']);
-	v134.LayoutOrder = -1;
-	v134.Size = UDim2.new(0, 580, 0, 75);
-	v9:CreateItems(v134, "DarkRed");
-	if v134:FindFirstChild("UIGradient") then
-		v134.UIGradient:Destroy();
+	local v132 = Instance.new("UIListLayout", v10['PlayerTab']);
+	v132.Padding = UDim.new(0, 10);
+	v132.SortOrder = "LayoutOrder";
+	local v135 = Instance.new("Frame", v10['PlayerTab']);
+	v135.LayoutOrder = -1;
+	v135.Size = UDim2.new(0, 580, 0, 75);
+	v9:CreateItems(v135, "DarkRed");
+	if v135:FindFirstChild("UIGradient") then
+		v135.UIGradient:Destroy();
 	end
-	Grad = Instance.new("UIGradient", v134);
+	Grad = Instance.new("UIGradient", v135);
 	Grad['Rotation'] = 90;
 	Grad['Color'] = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),ColorSequenceKeypoint.new(0.221, Color3.fromRGB(21, 21, 21)),ColorSequenceKeypoint.new(0.588, Color3.fromRGB(52, 52, 52)),ColorSequenceKeypoint.new(1, Color3.fromRGB(90, 32, 36))});
-	local v139 = game:GetService("Players");
-	local v140 = v139.LocalPlayer;
-	local v141 = Instance.new("ImageLabel", v134);
-	v141.Size = UDim2.new(0, 65, 0, 65);
-	v141.Position = UDim2.new(0, 15, 0, 5);
-	v141.BackgroundTransparency = 1;
-	local v144 = Instance.new("Frame", v134);
-	v144.Size = UDim2.new(0.4, -10, 0, 1);
-	v144.Position = UDim2.new(0, 90, 0, 37);
-	PlayerDivGr = Instance.new("UIGradient", v144);
+	local v140 = game:GetService("Players");
+	local v141 = v140.LocalPlayer;
+	local v142 = Instance.new("ImageLabel", v135);
+	v142.Size = UDim2.new(0, 65, 0, 65);
+	v142.Position = UDim2.new(0, 15, 0, 5);
+	v142.BackgroundTransparency = 1;
+	local v146 = Instance.new("Frame", v135);
+	v146.Size = UDim2.new(0.4, -10, 0, 1);
+	v146.Position = UDim2.new(0, 90, 0, 37);
+	PlayerDivGr = Instance.new("UIGradient", v146);
 	PlayerDivGr['Transparency'] = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0, 0.0125),NumberSequenceKeypoint.new(0, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0.556),NumberSequenceKeypoint.new(1, 0.725),NumberSequenceKeypoint.new(1, 0.0313),NumberSequenceKeypoint.new(1, 0)});
 	PlayerDivGr['Color'] = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))});
-	v141.Image = "rbxthumb://type=AvatarBust&id=" .. v140.UserId .. "&w=150&h=150";
-	v9:CreateItems(v141, nil, true);
-	local v150 = Instance.new("TextLabel", v144);
-	v150.Size = UDim2.new(1, 0, 0, 25);
-	v150.Position = UDim2.new(0, 0, 0, -25);
-	v150.BackgroundTransparency = 1;
-	v150.TextColor3 = Color3.fromRGB(255, 255, 255);
-	v150.Text = v2.DisplayName;
-	v150.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-	v150.TextSize = 18;
-	local v159 = Instance.new("TextLabel", v144);
-	v159.Size = UDim2.new(1, 0, 0, 25);
-	v159.Position = UDim2.new(0, 0, 0, 5);
-	v159.BackgroundTransparency = 1;
-	v159.TextColor3 = Color3.fromRGB(128, 128, 128);
-	v159.Text = v2.Name;
-	v159.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-	v159.TextSize = 18;
-	local v168 = Instance.new("Frame", v134);
-	v168.Size = UDim2.new(0.4, -10, 0, 1);
-	v168.Position = UDim2.new(0, 350, 0, 37);
-	ExDivGr = Instance.new("UIGradient", v168);
+	v142.Image = "rbxthumb://type=AvatarBust&id=" .. v141.UserId .. "&w=150&h=150";
+	v9:CreateItems(v142, nil, true);
+	local v152 = Instance.new("TextLabel", v146);
+	v152.Size = UDim2.new(1, 0, 0, 25);
+	v152.Position = UDim2.new(0, 0, 0, -25);
+	v152.BackgroundTransparency = 1;
+	v152.TextColor3 = Color3.fromRGB(255, 255, 255);
+	v152.Text = v2.DisplayName;
+	v152.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+	v152.TextSize = 18;
+	local v161 = Instance.new("TextLabel", v146);
+	v161.Size = UDim2.new(1, 0, 0, 25);
+	v161.Position = UDim2.new(0, 0, 0, 5);
+	v161.BackgroundTransparency = 1;
+	v161.TextColor3 = Color3.fromRGB(128, 128, 128);
+	v161.Text = v2.Name;
+	v161.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+	v161.TextSize = 18;
+	local v170 = Instance.new("Frame", v135);
+	v170.Size = UDim2.new(0.4, -10, 0, 1);
+	v170.Position = UDim2.new(0, 350, 0, 37);
+	ExDivGr = Instance.new("UIGradient", v170);
 	ExDivGr['Transparency'] = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0, 0.0125),NumberSequenceKeypoint.new(0, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0.556),NumberSequenceKeypoint.new(1, 0.725),NumberSequenceKeypoint.new(1, 0.0313),NumberSequenceKeypoint.new(1, 0)});
 	ExDivGr['Color'] = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))});
-	local v173 = Instance.new("TextLabel", v168);
-	v173.Size = UDim2.new(1, 0, 0, 25);
-	v173.Position = UDim2.new(0, 0, 0, -25);
-	v173.BackgroundTransparency = 1;
-	v173.Text = "Current Executor:";
-	v173.TextColor3 = Color3.fromRGB(255, 255, 255);
-	v173.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-	v173.TextSize = 18;
-	local v181 = Instance.new("TextLabel", v168);
-	v181.Size = UDim2.new(1, 0, 0, 25);
-	v181.Position = UDim2.new(0, 0, 0, 5);
-	v181.BackgroundTransparency = 1;
-	v181.Text = identifyexecutor();
-	v181.TextColor3 = Color3.fromRGB(128, 128, 128);
-	v181.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-	v181.TextSize = 18;
+	local v175 = Instance.new("TextLabel", v170);
+	v175.Size = UDim2.new(1, 0, 0, 25);
+	v175.Position = UDim2.new(0, 0, 0, -25);
+	v175.BackgroundTransparency = 1;
+	v175.Text = "Current Executor:";
+	v175.TextColor3 = Color3.fromRGB(255, 255, 255);
+	v175.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+	v175.TextSize = 18;
+	local v183 = Instance.new("TextLabel", v170);
+	v183.Size = UDim2.new(1, 0, 0, 25);
+	v183.Position = UDim2.new(0, 0, 0, 5);
+	v183.BackgroundTransparency = 1;
+	v183.Text = identifyexecutor();
+	v183.TextColor3 = Color3.fromRGB(128, 128, 128);
+	v183.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+	v183.TextSize = 18;
 	v10['GhostTabInfo'] = Instance.new("Frame", v10['GhostTab']);
 	v10['GhostTabInfo'].Size = UDim2.new(0, 579, 0, 360);
 	v10['GhostTabInfo'].Position = UDim2.new(0, 0, 0, 5);
@@ -468,21 +476,21 @@ if (v26 == "MainGame") then
 	v10.OtherTabInfo2 = Instance.new("Frame", v10.OtherTab);
 	v10.OtherTabInfo2.Size = UDim2.new(0, 365, 0, 360);
 	v10.OtherTabInfo2.LayoutOrder = 2;
-	local v211 = Instance.new("UIListLayout", v10['OtherTabInfo2']);
-	v211.Padding = UDim.new(0, 10);
-	v211.FillDirection = "Horizontal";
-	v211.SortOrder = "LayoutOrder";
+	local v213 = Instance.new("UIListLayout", v10['OtherTabInfo2']);
+	v213.Padding = UDim.new(0, 10);
+	v213.FillDirection = "Horizontal";
+	v213.SortOrder = "LayoutOrder";
 	v9:CreateItems(v10.OtherTabInfo1, "DarkRed", false, true);
 	v9:CreateItems(v10.OtherTabInfo2, "DarkRed", false, false);
 	v9:CreateText("JOB SITE", v10.OtherTabInfo1, 0, 165, 28, true, true, true);
 	v9:CreateDivider(v10.OtherTabInfo1, 2, 165, nil, nil);
-	local v215 = v9:CreateToggle("No evidence mode", v10.OtherTabInfo1, 3, 165, 75, nil, 75, 85, false, "NoEvidence");
-	v215.Activated:Connect(function()
+	local v217 = v9:CreateToggle("No evidence mode", v10.OtherTabInfo1, 3, 165, 75, nil, 75, 85, false, "NoEvidence");
+	v217.Activated:Connect(function()
 		v50 = not v50;
 	end);
-	local v216 = Instance.new("Frame", v10['OtherTabInfo2']);
-	v216.Size = UDim2.new(0, 175, 0, 360);
-	v9:CreateItems(v216, "DarkRed", false, true);
+	local v218 = Instance.new("Frame", v10['OtherTabInfo2']);
+	v218.Size = UDim2.new(0, 175, 0, 360);
+	v9:CreateItems(v218, "DarkRed", false, true);
 	v10['OtherTabDivider2'] = Instance.new("Frame", v10['OtherTabInfo2']);
 	v10['OtherTabDivider2']['BorderSizePixel'] = 0;
 	v10['OtherTabDivider2']['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
@@ -491,26 +499,26 @@ if (v26 == "MainGame") then
 	v10['OtherTabDivider2']['Name'] = [[Divider]];
 	v10['OtherTabDivider2']['BackgroundTransparency'] = 0.5;
 	v10['OtherTabDivider2'].LayoutOrder = 1;
-	local v226 = Instance.new("Frame", v10['OtherTabInfo2']);
-	v226.LayoutOrder = 2;
-	v226.Size = UDim2.new(0, 175, 0, 360);
-	v9:CreateItems(v226, "DarkRed", false, true);
-	v9:CreateText("SCRIPT", v216, 0, 165, 28, true, true, true);
-	v9:CreateText("CONTROLS", v216, 8, 165, 28, true, true, false);
-	v9:CreateText("SERVER", v226, 0, 165, 28, true, true, true);
+	local v228 = Instance.new("Frame", v10['OtherTabInfo2']);
+	v228.LayoutOrder = 2;
+	v228.Size = UDim2.new(0, 175, 0, 360);
+	v9:CreateItems(v228, "DarkRed", false, true);
+	v9:CreateText("SCRIPT", v218, 0, 165, 28, true, true, true);
+	v9:CreateText("CONTROLS", v218, 8, 165, 28, true, true, false);
+	v9:CreateText("SERVER", v228, 0, 165, 28, true, true, true);
 	v9:CreateText("AUTOFARM", v10.AutoFarmTabInfo1, 0, 175, 28, true, true, true);
-	local v229 = Instance.new("UIListLayout", v10['AutoFarmTab']);
-	v229.Padding = UDim.new(0, 10);
-	v229.FillDirection = "Horizontal";
-	v229.SortOrder = "LayoutOrder";
-	local v233 = Instance.new("UIListLayout", v10['OtherTab']);
-	v233.Padding = UDim.new(0, 10);
-	v233.FillDirection = "Horizontal";
-	v233.SortOrder = "LayoutOrder";
-	local v237 = Instance.new("Frame", v10['GhostTabInfo2']);
-	v237.Size = UDim2.new(0, 175, 0, 360);
-	v9:CreateItems(v237, "DarkRed", false, true);
-	v9:CreateText("POSSIBLE GHOST TYPES:", v237, 0, 165, 28, true, true, true);
+	local v231 = Instance.new("UIListLayout", v10['AutoFarmTab']);
+	v231.Padding = UDim.new(0, 10);
+	v231.FillDirection = "Horizontal";
+	v231.SortOrder = "LayoutOrder";
+	local v235 = Instance.new("UIListLayout", v10['OtherTab']);
+	v235.Padding = UDim.new(0, 10);
+	v235.FillDirection = "Horizontal";
+	v235.SortOrder = "LayoutOrder";
+	local v239 = Instance.new("Frame", v10['GhostTabInfo2']);
+	v239.Size = UDim2.new(0, 175, 0, 360);
+	v9:CreateItems(v239, "DarkRed", false, true);
+	v9:CreateText("POSSIBLE GHOST TYPES:", v239, 0, 165, 28, true, true, true);
 	v10['GhostTabDivider2'] = Instance.new("Frame", v10['GhostTabInfo2']);
 	v10['GhostTabDivider2']['BorderSizePixel'] = 0;
 	v10['GhostTabDivider2']['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
@@ -519,15 +527,15 @@ if (v26 == "MainGame") then
 	v10['GhostTabDivider2']['Name'] = [[Divider]];
 	v10['GhostTabDivider2']['BackgroundTransparency'] = 0.5;
 	v10['GhostTabDivider2'].LayoutOrder = 1;
-	local v247 = Instance.new("Frame", v10['GhostTabInfo2']);
-	v247.LayoutOrder = 2;
-	v247.Size = UDim2.new(0, 175, 0, 360);
-	v9:CreateItems(v247, "DarkRed", false, true);
-	v9:CreateText("OTHER:", v247, 0, 175, 28, true, true, true);
-	local v250 = Instance.new("UIListLayout", v10['GhostTabInfo2']);
-	v250.Padding = UDim.new(0, 7);
-	v250.FillDirection = "Horizontal";
-	v250.SortOrder = "LayoutOrder";
+	local v249 = Instance.new("Frame", v10['GhostTabInfo2']);
+	v249.LayoutOrder = 2;
+	v249.Size = UDim2.new(0, 175, 0, 360);
+	v9:CreateItems(v249, "DarkRed", false, true);
+	v9:CreateText("OTHER:", v249, 0, 175, 28, true, true, true);
+	local v252 = Instance.new("UIListLayout", v10['GhostTabInfo2']);
+	v252.Padding = UDim.new(0, 7);
+	v252.FillDirection = "Horizontal";
+	v252.SortOrder = "LayoutOrder";
 	v10['GhostTabDivider'] = Instance.new("Frame", v10['GhostTabInfo']);
 	v10['GhostTabDivider']['BorderSizePixel'] = 0;
 	v10['GhostTabDivider']['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
@@ -594,11 +602,11 @@ if (v26 == "MainGame") then
 	v10['SCFLayout'].HorizontalAlignment = "Center";
 	v9:CreateText("VISUALS", v10['Visuals'], 0, 185);
 	v9:CreateText("Adjustables", v10['PlayerSettings'], 4, 185);
-	v9:CreateLog("idk what to add here", v226, 0, 165, false, "idk", false);
-	local v316 = {};
-	v316['WalkSpeed'] = v9:CreateSlider("Walk Speed", v10['PlayerSettings'], 5, 185, false, 10, 100, "WalkSpeed", function(v423)
+	v9:CreateLog("idk what to add here", v228, 0, 165, false, "idk", false);
+	local v318 = {};
+	v318['WalkSpeed'] = v9:CreateSlider("Walk Speed", v10['PlayerSettings'], 5, 185, false, 10, 100, "WalkSpeed", function(v424)
 		if v22 then
-			v22.WalkSpeed = v423;
+			v22.WalkSpeed = v424;
 		end
 	end);
 	game:GetService("RunService").Heartbeat:Connect(function()
@@ -606,9 +614,9 @@ if (v26 == "MainGame") then
 			v22.WalkSpeed = v18['WalkSpeed'];
 		end
 	end);
-	v316['JumpPower'] = v9:CreateSlider("Jump Power", v10['PlayerSettings'], 5, 185, false, 10, 100, "JumpPower", function(v424)
+	v318['JumpPower'] = v9:CreateSlider("Jump Power", v10['PlayerSettings'], 5, 185, false, 10, 100, "JumpPower", function(v425)
 		if v22 then
-			v22.JumpPower = v424;
+			v22.JumpPower = v425;
 		end
 	end);
 	game:GetService("RunService").Heartbeat:Connect(function()
@@ -616,11 +624,11 @@ if (v26 == "MainGame") then
 			v22.JumpPower = v18['JumpPower'];
 		end
 	end);
-	v9:CreateText("PRESETS", v216, 6, 165);
+	v9:CreateText("PRESETS", v218, 6, 165);
 	v9:CreateDivider(v10['PlayerSettings'], 8, 185);
 	v9:CreateText("AIMBOT", v10['PlayerSettings'], 10, 185);
-	local v319 = v9:CreateToggle("Infinite Stamina", v10['PlayerSettings'], 9, 185, 85, nil, nil, nil, false, "isInf");
-	v319.Activated:Connect(function()
+	local v321 = v9:CreateToggle("Infinite Stamina", v10['PlayerSettings'], 9, 185, 85, nil, nil, nil, false, "isInf");
+	v321.Activated:Connect(function()
 		v49 = not v49;
 		task.spawn(function()
 			if v49 then
@@ -634,104 +642,107 @@ if (v26 == "MainGame") then
 		end);
 	end);
 	v9:CreateText("Rooms", v10['SCF'], 4, 150);
-	local v320 = v0:WaitForChild("Map");
-	local v321 = nil;
-	local v322 = v0:FindFirstChild("Items");
+	local v322 = v0:WaitForChild("Map");
 	local v323 = nil;
-	if v320:FindFirstChild("Map") then
-		v321 = v320.Map;
+	local v324 = v0:FindFirstChild("Items");
+	local v325 = nil;
+	if v322:FindFirstChild("Map") then
+		v323 = v322.Map;
 	end
-	local v324 = nil;
-	if v321 then
-		v324 = v321:FindFirstChild("Rooms");
+	local v326 = nil;
+	if v323 then
+		v326 = v323:FindFirstChild("Rooms");
 	end
-	if not v324 then
-		v324 = v320:FindFirstChild("Rooms");
+	if not v326 then
+		v326 = v322:FindFirstChild("Rooms");
 	end
 	task.spawn(function()
 		while task.wait(0.1) do
 			if (v27 and v27:GetAttribute("FavoriteRoom")) then
-				for v792, v793 in pairs(v324:GetChildren()) do
-					if (v793.Name == v27:GetAttribute("FavoriteRoom")) then
-						v28 = v793;
+				for v793, v794 in pairs(v326:GetChildren()) do
+					if (v794.Name == v27:GetAttribute("FavoriteRoom")) then
+						v28 = v794;
 					end
 				end
 			end
 		end
 	end);
-	local v325 = {};
+	local v327 = {};
 	v9:CreateDivider(v10['GhostTabInfo1'], 6, 185);
-	local v326;
-	for v425, v426 in pairs(v322:GetChildren()) do
-		if (v426:GetAttribute("ItemName") == "EMF Reader") then
-			if v426:GetAttribute("CurrentReading") then
-				while v426:GetAttribute("CurrentReading") do
-					v326 = v426:GetAttribute("CurrentReading");
+	local v328;
+	for v426, v427 in pairs(v324:GetChildren()) do
+		if (v427:GetAttribute("ItemName") == "EMF Reader") then
+			if v427:GetAttribute("CurrentReading") then
+				while v427:GetAttribute("CurrentReading") do
+					v328 = v427:GetAttribute("CurrentReading");
 					task.wait(0.1);
 				end
 			end
 		end
 	end
-	local v327;
-	local v328;
-	for v427, v428 in pairs(v322:GetChildren()) do
-		if (v428:GetAttribute("ItemName") == "Flower Pot") then
-			v327 = v428;
-		elseif (v428:GetAttribute("ItemName") == "Spirit Book") then
-			v328 = v428;
+	local v329;
+	local v330;
+	for v428, v429 in pairs(v324:GetChildren()) do
+		if (v429:GetAttribute("ItemName") == "Flower Pot") then
+			v329 = v429;
+		elseif (v429:GetAttribute("ItemName") == "Spirit Book") then
+			v330 = v429;
 		end
 	end
-	v322.ChildAdded:Connect(function(v429)
-		if (v429:GetAttribute("ItemName") == "Flower Pot") then
-			v327 = v429;
-		elseif (v429:GetAttribute("ItemName") == "Spirit Book") then
-			v328 = v429;
+	v324.ChildAdded:Connect(function(v430)
+		if (v430:GetAttribute("ItemName") == "Flower Pot") then
+			v329 = v430;
+		elseif (v430:GetAttribute("ItemName") == "Spirit Book") then
+			v330 = v430;
 		end
 	end);
 	v9:CreateLog("None", v10['GhostTabInfo1'], 2, 185, false, "None", true, false);
 	task.spawn(function()
 		while true do
 			if (v0:FindFirstChild("Handprints") and v0.Handprints:FindFirstChildWhichIsA("BasePart")) then
-				v325['Handprints'] = true;
+				v327['Handprints'] = true;
 			end
-			for v565, v566 in pairs(v324:GetChildren()) do
-				if (v566:GetAttribute("Temperature") < 0) then
-					v325["Freezing Temperatures"] = true;
+			for v566, v567 in pairs(v326:GetChildren()) do
+				if (v567:GetAttribute("Temperature") < 0) then
+					v327["Freezing Temperatures"] = true;
 				end
 			end
 			if (v0 and v0:FindFirstChild("GhostOrb")) then
-				v325["Ghost Orb"] = true;
+				v327["Ghost Orb"] = true;
 			end
-			if ((v27 and v27:GetAttribute("LastEMFLevel5Time")) or (v326 == 5)) then
-				v325["EMF Level 5"] = true;
+			if ((v27 and v27:GetAttribute("LastEMFLevel5Time")) or (v328 == 5)) then
+				v327["EMF Level 5"] = true;
 			end
 			if (v27 and ((v27:GetAttribute("LaserVisible") == true) or (v27:GetAttribute("InLaser") == true))) then
-				v325["Laser Projector"] = true;
+				v327["Laser Projector"] = true;
 			end
-			if v327 then
-				if (v327:GetAttribute("PhotoRewardType") == "WitheredFlowers") then
-					v325['Wither'] = true;
+			if v329 then
+				if (v329:GetAttribute("PhotoRewardType") == "WitheredFlowers") then
+					v327['Wither'] = true;
 				end
 			end
-			if v328 then
-				for v795, v796 in pairs(v328:GetDescendants()) do
-					if (v796:IsA("Decal") and (v796.Texture == "rbxassetid://108756644911620")) then
-						v325["Ghost Writing"] = true;
+			if v330 then
+				for v796, v797 in pairs(v330:GetDescendants()) do
+					if (v797:IsA("Decal") and (v797.Texture ~= "")) then
+						v327["Ghost Writing"] = true;
 					end
 				end
-				if (v328 and v328:FindFirstChild("Canvas")) then
-					if (v328.Canvas.SurfaceGui.Frame.ImageLabel.Image ~= "") then
-						v325["Ghost Writing"] = true;
+				if (v330:GetAttribute("PhotoRewardType") == "Inscription") then
+					v327["Ghost Writing"] = true;
+				end
+				if (v330 and v330:FindFirstChild("Canvas")) then
+					if (v330.Canvas.SurfaceGui.Frame.ImageLabel.Image ~= "") then
+						v327["Ghost Writing"] = true;
 					end
 				end
 			end
 			if (v3 and v3:FindFirstChild("Subtitles")) then
-				local v658 = v3.Subtitles:FindFirstChild("Holder"):FindFirstChild("TextLabel");
-				if v658 then
-					local v854 = {"OLD","I'M BEHIND YOU","DEATH","KILL","ATTACK","HATE","FAR AWAY","BEYOND","BEHIND","HURT","FAR","DON'T TURN AROUND","CLOSE","AWAY"};
-					for v912, v913 in pairs(v854) do
-						if (v658.Text == v913) then
-							v325["Spirit Box"] = true;
+				local v659 = v3.Subtitles:FindFirstChild("Holder"):FindFirstChild("TextLabel");
+				if v659 then
+					local v856 = {"OLD","I'M BEHIND YOU","DEATH","KILL","ATTACK","HATE","FAR AWAY","BEYOND","BEHIND","HURT","FAR","DON'T TURN AROUND","CLOSE","AWAY"};
+					for v910, v911 in pairs(v856) do
+						if (v659.Text == v911) then
+							v327["Spirit Box"] = true;
 							break;
 						end
 					end
@@ -740,244 +751,244 @@ if (v26 == "MainGame") then
 			task.wait(0.5);
 		end
 	end);
-	local v329 = v9:CreateToggle("Notify new evidences", v10['GhostTabInfo1'], 7, 185, 85, _, 75, 100, false, "Notify");
+	local v331 = v9:CreateToggle("Notify new evidences", v10['GhostTabInfo1'], 7, 185, 85, _, 75, 100, false, "Notify");
 	v9:CreateDivider(v10.AutoFarmTabInfo1, 2, 175);
-	local v330 = {};
-	local function v331()
-		if (next(v325) ~= nil) then
-			for v659, v660 in pairs(v10['GhostTabInfo1']:GetChildren()) do
-				if (v660:IsA("Frame") and (v660.Name == "None")) then
-					v9:FadeOut(0.25, v660, 1);
-					v9:FadeOut(0.25, v660.UIStroke, 1);
-					v9:FadeOut(0.25, v660.TextLabel, 1);
-					v9:FadeOut(0.25, v660.Noice, 1);
+	local v332 = {};
+	local function v333()
+		if (next(v327) ~= nil) then
+			for v660, v661 in pairs(v10['GhostTabInfo1']:GetChildren()) do
+				if (v661:IsA("Frame") and (v661.Name == "None")) then
+					v9:FadeOut(0.25, v661, 1);
+					v9:FadeOut(0.25, v661.UIStroke, 1);
+					v9:FadeOut(0.25, v661.TextLabel, 1);
+					v9:FadeOut(0.25, v661.Noice, 1);
 					task.wait(0.25);
-					v660:Destroy();
+					v661:Destroy();
 				end
 			end
 		end
-		if (v325['Handprints'] and not v330['Handprints']) then
-			v330['Handprints'] = true;
+		if (v327['Handprints'] and not v332['Handprints']) then
+			v332['Handprints'] = true;
 			v9:CreateLog("Handprints", v10['GhostTabInfo1'], 2, 185, false, _, true);
 			v9:CreateNotification("New Evidence: Handprints", 2);
 		end
-		if (v325["Freezing Temperatures"] and not v330["Freezing Temperatures"]) then
-			v330["Freezing Temperatures"] = true;
+		if (v327["Freezing Temperatures"] and not v332["Freezing Temperatures"]) then
+			v332["Freezing Temperatures"] = true;
 			v9:CreateLog("Freezing Temperatures", v10['GhostTabInfo1'], 2, 185, false, _, true);
 			v9:CreateNotification("New Evidence: Freezing Temperatures", 2);
 		end
-		if (v325["Ghost Orb"] and not v330["Ghost Orb"]) then
-			v330["Ghost Orb"] = true;
+		if (v327["Ghost Orb"] and not v332["Ghost Orb"]) then
+			v332["Ghost Orb"] = true;
 			v9:CreateLog("Ghost Orb", v10['GhostTabInfo1'], 2, 185, false, _, true);
 			v9:CreateNotification("New Evidence: Ghost Orb", 2);
 		end
-		if (v325["EMF Level 5"] and not v330["EMF Level 5"]) then
-			v330["EMF Level 5"] = true;
+		if (v327["EMF Level 5"] and not v332["EMF Level 5"]) then
+			v332["EMF Level 5"] = true;
 			v9:CreateLog("EMF Level 5", v10['GhostTabInfo1'], 2, 185, false, _, true);
 			v9:CreateNotification("New Evidence: EMF Level 5", 2);
 		end
-		if (v325["Laser Projector"] and not v330["Laser Projector"]) then
-			v330["Laser Projector"] = true;
+		if (v327["Laser Projector"] and not v332["Laser Projector"]) then
+			v332["Laser Projector"] = true;
 			v9:CreateLog("Laser Projector", v10['GhostTabInfo1'], 2, 185, false, _, true);
 			v9:CreateNotification("New Evidence: Laser Projector", 2);
 		end
-		if (v325['Wither'] and not v330['Wither']) then
-			v330['Wither'] = true;
+		if (v327['Wither'] and not v332['Wither']) then
+			v332['Wither'] = true;
 			v9:CreateLog("Wither", v10['GhostTabInfo1'], 2, 185, false, _, true);
 			v9:CreateNotification("New Evidence: Withered Flowers", 2);
 		end
-		if (v325["Ghost Writing"] and not v330["Ghost Writing"]) then
-			v330["Ghost Writing"] = true;
+		if (v327["Ghost Writing"] and not v332["Ghost Writing"]) then
+			v332["Ghost Writing"] = true;
 			v9:CreateLog("Ghost Writing", v10['GhostTabInfo1'], 2, 185, false, _, true);
 			v9:CreateNotification("New Evidence: Ghost Writing", 2);
 		end
-		if (v325["Spirit Box"] and not v330["Spirit Box"]) then
-			v330["Spirit Box"] = true;
+		if (v327["Spirit Box"] and not v332["Spirit Box"]) then
+			v332["Spirit Box"] = true;
 			v9:CreateLog("Spirit Box", v10['GhostTabInfo1'], 2, 185, false, _, true);
 			v9:CreateNotification("New Evidence: Spirit Box", 2);
 		end
 	end
-	v329.Activated:Connect(function()
+	v331.Activated:Connect(function()
 		v44 = not v44;
 		task.spawn(function()
 			while v44 do
-				v331();
+				v333();
 				task.wait(0.1);
 			end
 		end);
 	end);
-	local v332 = {Aswang={"Wither","EMF Level 5","Ghost Writing"},Banshee={"Ghost Orb","Handprints","Freezing Temperatures"},Demon={"EMF Level 5","Handprints","Freezing Temperatures"},Dullahan={"Wither","Laser Projector","Freezing Temperatures"},Dybbuk={"Wither","Handprints","Freezing Temperatures"},Entity={"Spirit Box","Handprints","Laser Projector"},Ghoul={"Spirit Box","Freezing Temperatures","Ghost Orb"},Keres={"Wither","Handprints","Spirit Box"},Leviathan={"Ghost Orb","Ghost Writing","Handprints"},Nightmare={"EMF Level 5","Spirit Box","Ghost Orb"},Oni={"Spirit Box","Freezing Temperatures","Laser Projector"},Phantom={"EMF Level 5","Handprints","Ghost Orb"},Revenant={"Ghost Writing","EMF Level 5","Freezing Temperatures"},Shadow={"EMF Level 5","Ghost Writing","Laser Projector"},Siren={"Wither","Spirit Box","EMF Level 5"},Skinwalker={"Freezing Temperatures","Ghost Writing","Spirit Box"},Specter={"EMF Level 5","Freezing Temperatures","Laser Projector"},Spirit={"Handprints","Ghost Writing","Spirit Box"},Umbra={"Ghost Orb","Laser Projector","Handprints"},Vex={"Wither","Ghost Orb","Freezing Temperatures"},Wendigo={"Ghost Orb","Ghost Writing","Laser Projector"},Wisp={"Wither","Laser Projector","Ghost Orb"},Wraith={"EMF Level 5","Laser Projector","Spirit Box"},Ravager={"EMF Level 5","Spirit Box","Ghost Writing"},Vesper={"Wither","Ghost Writing","Handprints"}};
-	local v333 = nil;
-	local v334;
-	local v335 = false;
-	local function v336(v430)
-		if (v430 and v430:FindFirstChild("Flame")) then
-			if ((v430.Flame.Attachment.Fire.Enabled == true) and not v430.ItemPrompt.Triggered) then
-				v335 = true;
+	local v334 = {Aswang={"Wither","EMF Level 5","Ghost Writing"},Banshee={"Ghost Orb","Handprints","Freezing Temperatures"},Demon={"EMF Level 5","Handprints","Freezing Temperatures"},Dullahan={"Wither","Laser Projector","Freezing Temperatures"},Dybbuk={"Wither","Handprints","Freezing Temperatures"},Entity={"Spirit Box","Handprints","Laser Projector"},Ghoul={"Spirit Box","Freezing Temperatures","Ghost Orb"},Keres={"Wither","Handprints","Spirit Box"},Leviathan={"Ghost Orb","Ghost Writing","Handprints"},Nightmare={"EMF Level 5","Spirit Box","Ghost Orb"},Oni={"Spirit Box","Freezing Temperatures","Laser Projector"},Phantom={"EMF Level 5","Handprints","Ghost Orb"},Revenant={"Ghost Writing","EMF Level 5","Freezing Temperatures"},Shadow={"EMF Level 5","Ghost Writing","Laser Projector"},Siren={"Wither","Spirit Box","EMF Level 5"},Skinwalker={"Freezing Temperatures","Ghost Writing","Spirit Box"},Specter={"EMF Level 5","Freezing Temperatures","Laser Projector"},Spirit={"Handprints","Ghost Writing","Spirit Box"},Umbra={"Ghost Orb","Laser Projector","Handprints"},Vex={"Wither","Ghost Orb","Freezing Temperatures"},Wendigo={"Ghost Orb","Ghost Writing","Laser Projector"},Wisp={"Wither","Laser Projector","Ghost Orb"},Wraith={"EMF Level 5","Laser Projector","Spirit Box"},Ravager={"EMF Level 5","Spirit Box","Ghost Writing"},Vesper={"Wither","Ghost Writing","Handprints"}};
+	local v335 = nil;
+	local v336;
+	local v337 = false;
+	local function v338(v431)
+		if (v431 and v431:FindFirstChild("Flame")) then
+			if ((v431.Flame.Attachment.Fire.Enabled == true) and not v431.ItemPrompt.Triggered) then
+				v337 = true;
 			end
 		end
-		return v335;
+		return v337;
 	end
-	local function v337(v431, v432)
-		if not v431 then
+	local function v339(v432, v433)
+		if not v432 then
 			return;
 		end
-		local v433 = nil;
-		if not v432 then
-			local v575 = EvidencePage:FindFirstChild(v431);
-			if v575 then
-				v433 = v575:FindFirstChild("Container"):FindFirstChild("Detection");
+		local v434 = nil;
+		if not v433 then
+			local v576 = EvidencePage:FindFirstChild(v432);
+			if v576 then
+				v434 = v576:FindFirstChild("Container"):FindFirstChild("Detection");
 			end
 		else
-			local v576 = v3:FindFirstChild("Journal"):FindFirstChild("Holder"):FindFirstChild("Pages"):FindFirstChild("Page4"):FindFirstChild("Right"):FindFirstChild("Page"):FindFirstChild("GhostTypes");
-			if (v576 and v576:FindFirstChild(v431)) then
-				v433 = v576:FindFirstChild(v431):FindFirstChild("Detection");
+			local v577 = v3:FindFirstChild("Journal"):FindFirstChild("Holder"):FindFirstChild("Pages"):FindFirstChild("Page4"):FindFirstChild("Right"):FindFirstChild("Page"):FindFirstChild("GhostTypes");
+			if (v577 and v577:FindFirstChild(v432)) then
+				v434 = v577:FindFirstChild(v432):FindFirstChild("Detection");
 			end
 		end
-		if not v433 then
+		if not v434 then
 			return;
 		end
-		local v434 = v433.Parent:FindFirstChild("Highlight");
-		if (v434 and not v434.Visible) then
-			for v661, v662 in pairs(getconnections(v433.MouseButton1Click)) do
-				v662:Disable();
-				v662:Fire();
+		local v435 = v434.Parent:FindFirstChild("Highlight");
+		if (v435 and not v435.Visible) then
+			for v662, v663 in pairs(getconnections(v434.MouseButton1Click)) do
+				v663:Disable();
+				v663:Fire();
 			end
 		end
 	end
 	v27 = v0:FindFirstChild("Ghost");
-	local v338 = v7.Events;
-	local v339 = {Pickup=v338.RequestItemPickup,Equip=v338.RequestItemEquip,Drop=v338.RequestItemDrop,Unequip=v338.RequestItemUnequip,SpiritBox=v338.AskSpiritBoxFromUI,Activate=v338.ToggleItemState,Photo=v338.TakePhotoWithCamera,Leave=v338.RequestReturnToLobby,ToggleFb=v338.ToggleFuseBox};
-	local function v340()
+	local v340 = v7.Events;
+	local v341 = {Pickup=v340.RequestItemPickup,Equip=v340.RequestItemEquip,Drop=v340.RequestItemDrop,Unequip=v340.RequestItemUnequip,SpiritBox=v340.AskSpiritBoxFromUI,Activate=v340.ToggleItemState,Photo=v340.TakePhotoWithCamera,Leave=v340.RequestReturnToLobby,ToggleFb=v340.ToggleFuseBox};
+	local function v342()
 		if v21 then
-			for v663, v664 in pairs(v21:GetChildren()) do
-				if ((v664:IsA("Model") and (v664:GetAttribute("Enabled") == false)) or not v664:GetAttribute("Enabled")) then
-					v339.Activate:FireServer(v664);
+			for v664, v665 in pairs(v21:GetChildren()) do
+				if ((v665:IsA("Model") and (v665:GetAttribute("Enabled") == false)) or not v665:GetAttribute("Enabled")) then
+					v341.Activate:FireServer(v665);
 				end
 			end
 		end
-	end
-	local function v341(v435)
-		v339.Pickup:FireServer(v435);
-	end
-	local function v342()
-		v339.Leave:FireServer();
 	end
 	local function v343(v436)
-		v339.Equip:FireServer("InvSlot" .. tostring(v436));
+		v341.Pickup:FireServer(v436);
 	end
-	local function v344(v437)
-		local v438 = v3:FindFirstChild("Hotbar"):FindFirstChild("Slots");
-		if v438 then
-			for v665, v666 in pairs(v438:GetChildren()) do
-				if (v666:FindFirstChild("ItemName") and (v666.ItemName.Text == v437)) then
-					v343(tonumber(string.match(v666.Name, "%d+")));
+	local function v344()
+		v341.Leave:FireServer();
+	end
+	local function v345(v437)
+		v341.Equip:FireServer("InvSlot" .. tostring(v437));
+	end
+	local function v346(v438)
+		local v439 = v3:FindFirstChild("Hotbar"):FindFirstChild("Slots");
+		if v439 then
+			for v666, v667 in pairs(v439:GetChildren()) do
+				if (v667:FindFirstChild("ItemName") and (v667.ItemName.Text == v438)) then
+					v345(tonumber(string.match(v667.Name, "%d+")));
 				end
 			end
 		end
 	end
-	local function v345(v439)
-		v339.Drop:FireServer("InvSlot" .. tostring(v439));
+	local function v347(v440)
+		v341.Drop:FireServer("InvSlot" .. tostring(v440));
 	end
-	local function v346(v440)
-		v339.Unequip:FireServer("InvSlot" .. tostring(v440));
+	local function v348(v441)
+		v341.Unequip:FireServer("InvSlot" .. tostring(v441));
 	end
-	local function v347()
-		local v441 = {"Are you far away?","Are you near?","Where are you?","What do you want?","When did you cross over?","Are you in the room with me?","Do you want us to leave?","When did you pass away?","What is your goal?","Why are you here?","How long ago did you die?","Is there a ghost here?"};
-		v339.SpiritBox:FireServer(v441[math.random(1, #v441)]);
+	local function v349()
+		local v442 = {"Are you far away?","Are you near?","Where are you?","What do you want?","When did you cross over?","Are you in the room with me?","Do you want us to leave?","When did you pass away?","What is your goal?","Why are you here?","How long ago did you die?","Is there a ghost here?"};
+		v341.SpiritBox:FireServer(v442[math.random(1, #v442)]);
 	end
-	local function v348()
+	local function v350()
 		return v27:GetAttribute("Hunting");
 	end
 	task.spawn(function()
-		if not v348() then
+		if not v350() then
 			v53 = v27.Humanoid.WalkSpeed;
 		else
 			return;
 		end
 	end);
-	local function v349()
+	local function v351()
 		return v27:GetAttribute("FavoriteRoom");
 	end
-	local function v350()
-		for v501, v502 in pairs(v324:GetChildren()) do
-			if (v502.Name == v349()) then
-				return v502;
+	local function v352()
+		for v502, v503 in pairs(v326:GetChildren()) do
+			if (v503.Name == v351()) then
+				return v503;
 			end
 		end
 	end
 	task.spawn(function()
 		while task.wait(0.1) do
-			if (v27 and not v348()) then
+			if (v27 and not v350()) then
 				v52 = v27.Humanoid.WalkSpeed;
 			end
 		end
 	end);
 	task.spawn(function()
 		while task.wait(0.1) do
-			if v333 then
-				v9:CreateNotification("Ghost type: " .. v333, 2);
+			if v335 then
+				v9:CreateNotification("Ghost type: " .. v335, 2);
 				return;
 			end
 			if v27 then
 				if v27:GetAttribute("CantDisableElectronics") then
-					v333 = "Ghoul";
+					v335 = "Ghoul";
 				elseif v27:GetAttribute("Headless") then
-					v333 = "Dullahan";
+					v335 = "Dullahan";
 				elseif v27:GetAttribute("InvisibleOnLIDAR") then
-					v333 = "Vex";
+					v335 = "Vex";
 				end
 				if v53 then
 					if v0.Ragdolls:FindFirstChildWhichIsA("Model") then
 						if (v27.Humanoid.WalkSpeed > v53) then
-							v333 = "Aswang";
+							v335 = "Aswang";
 						elseif (v27.Humanoid.WalkSpeed < v53) then
-							v333 = "Keres";
+							v335 = "Keres";
 						end
 					end
 				end
 				if v52 then
 					if v0.SaltPiles:FindFirstChild("DisturbedSaltLine") then
 						if (v27.Humanoid.WalkSpeed < v52) then
-							v333 = "Aswang";
+							v335 = "Aswang";
 						end
 					end
 				end
 				task.spawn(function()
-					if v348() then
+					if v350() then
 						if v53 then
-							local v988 = v27.Humanoid.WalkSpeed;
-							local v989 = v27:GetAttribute("Transparency");
+							local v979 = v27.Humanoid.WalkSpeed;
+							local v980 = v27:GetAttribute("Transparency");
 							task.wait(0.5);
-							local v990 = v27.Humanoid.WalkSpeed;
-							local v991 = v27:GetAttribute("Transparency");
-							if ((v988 > v53) and (v990 > v53)) then
-								if (v989 ~= v991) then
-									v333 = "Oni";
-								elseif ((v989 == v991) and (v989 == 1)) then
-									v333 = "Phantom";
+							local v981 = v27.Humanoid.WalkSpeed;
+							local v982 = v27:GetAttribute("Transparency");
+							if ((v979 > v53) and (v981 > v53)) then
+								if (v980 ~= v982) then
+									v335 = "Oni";
+								elseif ((v980 == v982) and (v980 == 1)) then
+									v335 = "Phantom";
 								end
 							end
 						end
 					end
 				end);
 				if v27:GetAttribute("FavoriteRoom") then
-					for v914, v915 in pairs(v324:GetChildren()) do
-						if (v915.Name == v27:GetAttribute("FavoriteRoom")) then
-							if ((v915:GetAttribute("Temperature") >= 10) and (clock == 80)) then
-								v333 = "Shadow";
+					for v912, v913 in pairs(v326:GetChildren()) do
+						if (v913.Name == v27:GetAttribute("FavoriteRoom")) then
+							if ((v913:GetAttribute("Temperature") >= 10) and (clock == 80)) then
+								v335 = "Shadow";
 							end
 						end
 					end
 				end
-				if v348() then
-					for v916, v917 in pairs(v0.SaltPiles:GetChildren()) do
-						if v917:FindFirstChild("GhostTracker") then
-							v917.GhostTracker.Touched:Connect(function(v1011)
-								if (v1011 == v27.HumanoidRootPart) then
+				if v350() then
+					for v914, v915 in pairs(v0.SaltPiles:GetChildren()) do
+						if v915:FindFirstChild("GhostTracker") then
+							v915.GhostTracker.Touched:Connect(function(v1000)
+								if (v1000 == v27.HumanoidRootPart) then
 									task.wait(0.5);
-									if not v917:FindFirstChild("Footprint") then
-										v333 = "Wraith";
+									if not v915:FindFirstChild("Footprint") then
+										v335 = "Wraith";
 									end
 								end
 							end);
@@ -985,443 +996,345 @@ if (v26 == "MainGame") then
 					end
 				end
 				if not v27.HumanoidRootPart:FindFirstChild("CurrentSound") then
-					v333 = "Umbra";
+					v335 = "Umbra";
 				end
-				local v668 = v139:GetPlayers();
-				local v669;
-				local v670 = math.huge;
-				if (#v668 >= 2) then
-					for v918, v919 in pairs(v668) do
-						local v920 = v919:GetAttribute("Energy");
-						if (v920 and (v920 < v670)) then
-							v669 = v919;
+				local v669 = v140:GetPlayers();
+				local v670;
+				local v671 = math.huge;
+				if (#v669 >= 2) then
+					for v916, v917 in pairs(v669) do
+						local v918 = v917:GetAttribute("Energy");
+						if (v918 and (v918 < v671)) then
+							v670 = v917;
 						end
 					end
 				end
-				if (v669 and v669:GetAttribute("HeadTracked") and (v669:GetAttribute("HeadTracked") == true)) then
-					v333 = "Keres";
+				if (v670 and v670:GetAttribute("HeadTracked") and (v670:GetAttribute("HeadTracked") == true)) then
+					v335 = "Keres";
 				end
 				if v7 then
-					local v855 = v7.Events.ConsumeEnergyDrink;
-					if v855 then
+					local v857 = v7.Events.ConsumeEnergyDrink;
+					if v857 then
 						task.spawn(function()
-							local v992 = v27.Humanoid.WalkSpeed;
-							v855.OnClientEvent:Wait();
+							local v983 = v27.Humanoid.WalkSpeed;
+							v857.OnClientEvent:Wait();
 							task.wait(0.1);
-							if (v27.Humanoid.WalkSpeed < v992) then
-								v333 = "Wendigo";
+							if (v27.Humanoid.WalkSpeed < v983) then
+								v335 = "Wendigo";
 							end
 						end);
 					end
 				end
 				if v0:FindFirstChild("Interactables") then
-					for v921, v922 in pairs(v0.Interactables:GetChildren()) do
-						if v922:GetAttribute("InRavagerVortex") then
-							v333 = "Ravager";
+					for v919, v920 in pairs(v0.Interactables:GetChildren()) do
+						if v920:GetAttribute("InRavagerVortex") then
+							v335 = "Ravager";
 						end
 					end
 				end
 				if v0:FindFirstChild("Ragdolls") then
 					if v0.Ragdolls:FindFirstChildWhichIsA("Model") then
 						task.wait(0.5);
-						for v993, v994 in pairs(v0.Ragdolls:GetChildren()) do
-							if v994:FindFirstChild("Medium") then
-								v333 = "Dybbuk";
+						for v984, v985 in pairs(v0.Ragdolls:GetChildren()) do
+							if v985:FindFirstChild("Medium") then
+								v335 = "Dybbuk";
 							end
 						end
 					end
 				end
 				if ((v50 == true) and v0:FindFirstChild("GhostOrb")) then
-					v333 = "Skinwalker";
+					v335 = "Skinwalker";
 				end
-				v27.ChildAdded:Connect(function(v797)
-					if ((v797.Name == "Hunt") and (v797.PlaybackSpeed == 1.25)) then
-						v333 = "Banshee";
+				v27.ChildAdded:Connect(function(v798)
+					if ((v798.Name == "Hunt") and (v798.PlaybackSpeed == 1.25)) then
+						v335 = "Banshee";
 					end
 				end);
-				if v320:FindFirstChild("Candles") then
-					for v923, v924 in pairs(v320.Candles:GetChildren()) do
-						if v924:GetAttribute("PhotoRewardAvailable") then
-							v333 = "Wisp";
+				if v322:FindFirstChild("Candles") then
+					for v921, v922 in pairs(v322.Candles:GetChildren()) do
+						if v922:GetAttribute("PhotoRewardAvailable") then
+							v335 = "Wisp";
 						end
 					end
 				end
 			end
 		end
 	end);
-	local function v351(v442, v443)
-		local v444 = {};
-		if v333 then
-			v444[v333] = true;
+	local function v353(v443, v444)
+		local v445 = {};
+		if v335 then
+			v445[v335] = true;
 		else
-			for v671, v672 in pairs(v332) do
-				local v673 = true;
-				for v798, v799 in pairs(v443) do
-					if v799 then
-						local v925 = false;
-						for v951, v952 in ipairs(v672) do
-							if (v952 == v798) then
-								v925 = true;
+			for v672, v673 in pairs(v334) do
+				local v674 = true;
+				for v799, v800 in pairs(v444) do
+					if v800 then
+						local v923 = false;
+						for v944, v945 in ipairs(v673) do
+							if (v945 == v799) then
+								v923 = true;
 								break;
 							end
 						end
-						if not v925 then
-							v673 = false;
+						if not v923 then
+							v674 = false;
 							break;
 						end
 					end
 				end
-				if v673 then
-					v444[v671] = true;
+				if v674 then
+					v445[v672] = true;
 				end
 			end
 		end
-		for v503, v504 in ipairs(v442:GetChildren()) do
-			if (v504.Name == "PossibleGhost") then
-				local v674 = v504.TextLabel.Text;
-				if not v444[v674] then
-					v504:Destroy();
+		for v504, v505 in ipairs(v443:GetChildren()) do
+			if (v505.Name == "PossibleGhost") then
+				local v675 = v505.TextLabel.Text;
+				if not v445[v675] then
+					v505:Destroy();
 				end
 			end
 		end
-		local v445 = 500;
-		for v505 in pairs(v444) do
-			local v506 = false;
-			for v579, v580 in ipairs(v442:GetChildren()) do
-				if ((v580.Name == "PossibleGhost") and (v580.TextLabel.Text == v505)) then
-					v506 = true;
-					v580.LayoutOrder = v445;
+		local v446 = 500;
+		for v506 in pairs(v445) do
+			local v507 = false;
+			for v580, v581 in ipairs(v443:GetChildren()) do
+				if ((v581.Name == "PossibleGhost") and (v581.TextLabel.Text == v506)) then
+					v507 = true;
+					v581.LayoutOrder = v446;
 					break;
 				end
 			end
-			if not v506 then
-				v9:CreateLog(v505, v442, v445, 165, true, "PossibleGhost", false);
+			if not v507 then
+				v9:CreateLog(v506, v443, v446, 165, true, "PossibleGhost", false);
 			end
 		end
 	end
-	local v352 = v9:CreateButton("Turn on the fuse box", v10.OtherTabInfo1, 1, 165);
-	v352.Activated:Connect(function()
-		local v446 = v23.Position;
-		if v446 then
-			local v581 = v320:FindFirstChild("FuseBox");
-			if v581 then
-				v23.Position = v581:FindFirstChild("PromptAnchor").Position;
+	local v354 = v9:CreateButton("Turn on the fuse box", v10.OtherTabInfo1, 1, 165);
+	v354.Activated:Connect(function()
+		local v447 = v23.Position;
+		if v447 then
+			local v582 = v322:FindFirstChild("FuseBox");
+			if v582 then
+				v23.Position = v582:FindFirstChild("PromptAnchor").Position;
 				task.wait(0.1);
-				v339.ToggleFb:FireServer();
+				v341.ToggleFb:FireServer();
 				task.wait(0.1);
-				v23.Position = v446;
+				v23.Position = v447;
 			end
 		end
 	end);
 	task.spawn(function()
 		while task.wait(0.1) do
-			v351(v237, v325);
+			v353(v239, v327);
 		end
 	end);
-	local v353 = v3:WaitForChild("Journal"):FindFirstChild("Holder"):FindFirstChild("Pages"):FindFirstChild("Page4"):FindFirstChild("Left"):FindFirstChild("Page"):FindFirstChild("EvidenceTypes");
-	local v354 = v9:CreateToggle("Auto mark evidences", v10['GhostTabInfo1'], 8, 185, 85, _, 75, 100, false, "AE");
-	local v355 = v9:CreateToggle("Auto mark ghost types", v10['GhostTabInfo1'], 8, 185, 85, _, 75, 100, false, "AG");
-	local v356;
-	local function v357()
-		for v507, v508 in pairs(v332) do
-			if (v325[v508[1]] and v325[v508[2]] and v325[v508[3]]) then
-				v30 = v507;
-				v337(v507, true);
+	local v355 = v3:WaitForChild("Journal"):FindFirstChild("Holder"):FindFirstChild("Pages"):FindFirstChild("Page4"):FindFirstChild("Left"):FindFirstChild("Page"):FindFirstChild("EvidenceTypes");
+	local v356 = v9:CreateToggle("Auto mark evidences", v10['AutoFarmTabInfo1'], 3, 175, 80, nil, 70, 100, false, "AE");
+	local v357 = v9:CreateToggle("Auto mark ghost types", v10['AutoFarmTabInfo1'], 4, 175, 80, nil, 70, 100, false, "AG");
+	local v358;
+	local function v359()
+		for v508, v509 in pairs(v334) do
+			if (v327[v509[1]] and v327[v509[2]] and v327[v509[3]]) then
+				v30 = v508;
+				v339(v508, true);
 			end
 		end
-		v337(v333, true);
+		v339(v335, true);
 	end
-	local v358 = false;
-	v355.Activated:Connect(function()
+	local v360 = false;
+	v357.Activated:Connect(function()
 		v36 = not v36;
 		if not v36 then
 			return;
 		end
 		task.spawn(function()
 			while v36 do
-				local v582 = {};
-				for v675, v676 in pairs(v332) do
-					if (v325[v676[1]] and v325[v676[2]] and v325[v676[3]]) then
-						v358 = true;
-						table.insert(v582, v675);
+				local v583 = {};
+				for v676, v677 in pairs(v334) do
+					if (v327[v677[1]] and v327[v677[2]] and v327[v677[3]]) then
+						v360 = true;
+						table.insert(v583, v676);
 					end
 				end
-				if (v333 or v358 or (#v582 == 1)) then
-					v357();
+				if (v335 or v360 or (#v583 == 1)) then
+					v359();
 					break;
 				end
 				task.wait(0.1);
 			end
 		end);
 	end);
-	local function v359(v447, v448)
+	local function v361(v448, v449)
 		if not v27 then
 			return nil;
 		end
-		if not v448 then
-			v448 = "GhostPart";
+		if not v449 then
+			v449 = "GhostPart";
 		end
-		for v509, v510 in pairs(v324:GetChildren()) do
-			if (v510.Name == v349()) then
-				local v677 = v510:FindFirstChild("BoundingBox");
-				if v677 then
-					local v857;
-					if v677:IsA("BasePart") then
-						v857 = v677.Position;
-					elseif v677:IsA("Folder") then
-						local v1012 = Vector3.new(0, 0, 0);
-						local v1013 = v677:GetChildren();
-						for v1019, v1020 in pairs(v1013) do
-							v1012 = v1012 + v1020.Position;
+		for v510, v511 in pairs(v326:GetChildren()) do
+			if (v511.Name == v351()) then
+				local v678 = v511:FindFirstChild("BoundingBox");
+				if v678 then
+					local v859;
+					if v678:IsA("BasePart") then
+						v859 = v678.Position;
+					elseif v678:IsA("Folder") then
+						local v1001 = Vector3.new(0, 0, 0);
+						local v1002 = v678:GetChildren();
+						for v1006, v1007 in pairs(v1002) do
+							v1001 = v1001 + v1007.Position;
 						end
-						v857 = ((#v1013 > 0) and (v1012 / #v1013)) or Vector3.new(0, 0, 0);
+						v859 = ((#v1002 > 0) and (v1001 / #v1002)) or Vector3.new(0, 0, 0);
 					end
-					if v447 then
-						local v954 = v0:FindFirstChild(v448) or Instance.new("Part", v0);
-						v954.Name = v448;
-						v954.Anchored = true;
-						v954.Transparency = 1;
-						v954.CanCollide = false;
-						v954.Position = v857;
-						return v954;
+					if v448 then
+						local v947 = v0:FindFirstChild(v449) or Instance.new("Part", v0);
+						v947.Name = v449;
+						v947.Anchored = true;
+						v947.Transparency = 1;
+						v947.CanCollide = false;
+						v947.Position = v859;
+						return v947;
 					else
-						return v857;
+						return v859;
 					end
 				end
 			end
 		end
 	end
-	local function v360(v449, v450)
-		if v450 then
-			for v678, v679 in pairs(v450:GetChildren()) do
-				if (v679:GetAttribute("ItemName") == v449) then
-					return v679;
+	local function v362(v450, v451)
+		if v451 then
+			for v679, v680 in pairs(v451:GetChildren()) do
+				if (v680:GetAttribute("ItemName") == v450) then
+					return v680;
 				end
 			end
 		end
 	end
-	local function v361()
-		v23.CFrame = v324:FindFirstChild("Base Camp").Pegboard.Union.CFrame + Vector3.new(0, 3, 0);
+	local function v363()
+		v23.CFrame = v326:FindFirstChild("Base Camp").Pegboard.Union.CFrame + Vector3.new(0, 3, 0);
 	end
-	local v362 = v9:CreateButton("Place items in the ghost room.", v247, 10, 175);
-	v362.Activated:Connect(function()
-		if v348() then
+	local v364 = v9:CreateButton("Place items in the ghost room.", v249, 10, 175);
+	v364.Activated:Connect(function()
+		if v350() then
 			v9:CreateNotification("Ghost is currently hunting, please wait.", 2);
 			return;
 		end
-		v23.Position = v359();
+		v23.Position = v361();
 		task.wait(0.1);
-		for v511 = 1, 3 do
-			v343(1);
-			task.wait(0.1);
+		for v512 = 1, 3 do
 			v345(1);
+			task.wait(0.1);
+			v347(1);
 			task.wait(0.2);
 		end
-		local v453 = {};
-		for v512, v513 in pairs(v322:GetChildren()) do
-			if (v513:GetAttribute("ItemName") and v513:IsA("Model") and v513.PrimaryPart) then
-				if not v360(v513:GetAttribute("ItemName"), v2:FindFirstChild("ToolsHolder")) then
-					table.insert(v453, v513);
+		local v454 = {};
+		for v513, v514 in pairs(v324:GetChildren()) do
+			if (v514:GetAttribute("ItemName") and v514:IsA("Model") and v514.PrimaryPart) then
+				if not v362(v514:GetAttribute("ItemName"), v2:FindFirstChild("ToolsHolder")) then
+					table.insert(v454, v514);
 				end
 			end
 		end
-		local v454 = 0;
-		for v514, v515 in pairs(v453) do
-			if (v515 and v515.PrimaryPart) then
-				v23.Position = v515.PrimaryPart.Position + Vector3.new(0, 2, 0);
+		local v455 = 0;
+		for v515, v516 in pairs(v454) do
+			if (v516 and v516.PrimaryPart) then
+				v23.Position = v516.PrimaryPart.Position + Vector3.new(0, 2, 0);
 				task.wait(0.2);
-				v341(v515);
+				v343(v516);
 				task.wait(0.2);
-				v454 = v454 + 1;
-				if (v454 >= 3) then
-					v23.Position = v359();
+				v455 = v455 + 1;
+				if (v455 >= 3) then
+					v23.Position = v361();
 					task.wait(0.3);
-					for v926 = 1, 3 do
-						v343(1);
-						task.wait(0.1);
+					for v924 = 1, 3 do
 						v345(1);
+						task.wait(0.1);
+						v342();
+						task.wait(0.1);
+						v347(1);
 						task.wait(0.2);
 					end
-					v454 = 0;
+					v455 = 0;
 				end
-				v23.Position = v359();
+				v23.Position = v361();
 				task.wait(0.1);
-				for v803 = 1, 3 do
-					v343(1);
-					task.wait(0.1);
+				for v804 = 1, 3 do
 					v345(1);
+					task.wait(0.1);
+					v342();
+					task.wait(0.1);
+					v347(1);
 					task.wait(0.2);
 				end
-				v361();
+				v363();
 				task.wait(0.2);
 			end
 		end
 	end);
-	local function v363()
-		if v348() then
+	local function v365()
+		if v350() then
 			v9:CreateNotification("Ghost is currently hunting, please wait.", 2);
 			return;
 		end
 		if v37 then
-			if (not v360("Spirit Box", v2:FindFirstChild("ToolsHolder")) or not v360("Spirit Box", v21)) then
-				local v804 = v360("Spirit Box", v322);
-				if v804 then
-					v23.CFrame = v804.PrimaryPart.CFrame;
+			if (not v362("Spirit Box", v2:FindFirstChild("ToolsHolder")) or not v362("Spirit Box", v21)) then
+				local v805 = v362("Spirit Box", v324);
+				if v805 then
+					v23.CFrame = v805.PrimaryPart.CFrame;
 				end
 			end
-			while v37 and ((v325["Spirit Box"] == false) or not v325["Spirit Box"]) do
-				if v348() then
-					v361();
+			while v37 and ((v327["Spirit Box"] == false) or not v327["Spirit Box"]) do
+				if v350() then
+					v363();
 				end
-				if not v360("Spirit Box", v2:FindFirstChild("ToolsHolder")) then
-					v341(v360("Spirit Box", v322));
+				if not v362("Spirit Box", v2:FindFirstChild("ToolsHolder")) then
+					v343(v362("Spirit Box", v324));
 				end
-				if v360("Spirit Box", v2:FindFirstChild("ToolsHolder")) then
+				if v362("Spirit Box", v2:FindFirstChild("ToolsHolder")) then
 					v21:PivotTo(v27:GetPivot() * CFrame.new(0, 0, 10));
-					local v859 = v3:FindFirstChild("Hotbar"):FindFirstChild("Slots");
-					if v859 then
-						for v995, v996 in pairs(v859:GetChildren()) do
-							if (v996:FindFirstChild("ItemName") and (v996.ItemName.Text == "Spirit Box")) then
-								v343(tonumber(string.match(v996.Name, "%d+")));
+					local v861 = v3:FindFirstChild("Hotbar"):FindFirstChild("Slots");
+					if v861 then
+						for v986, v987 in pairs(v861:GetChildren()) do
+							if (v987:FindFirstChild("ItemName") and (v987.ItemName.Text == "Spirit Box")) then
+								v345(tonumber(string.match(v987.Name, "%d+")));
 							end
 						end
 					end
-				elseif v360("Spirit Box", v21) then
-					v340();
+				elseif v362("Spirit Box", v21) then
+					v342();
 					task.wait(0.1);
-					v347();
+					v349();
 				end
 				task.wait(0.1);
 			end
-			for v681, v682 in pairs(v3:FindFirstChild("Hotbar"):FindFirstChild("Slots"):GetChildren()) do
-				if (v682:FindFirstChild("ItemName") and (v682.ItemName.Text == "Spirit Box")) then
-					v345(tonumber(string.match(v682.Name, "%d+")));
+			for v682, v683 in pairs(v3:FindFirstChild("Hotbar"):FindFirstChild("Slots"):GetChildren()) do
+				if (v683:FindFirstChild("ItemName") and (v683.ItemName.Text == "Spirit Box")) then
+					v347(tonumber(string.match(v683.Name, "%d+")));
 				end
 			end
-			v361();
+			v363();
 		end
 	end
-	local v364 = v9:CreateToggle("Auto spirit box", v10['GhostTabInfo1'], 9, 185, 85, _, 75, 100, false, "AB");
-	v364.Activated:Connect(function()
+	local v366 = v9:CreateToggle("Auto spirit box", v10['AutoFarmTabInfo1'], 5, 175, 80, nil, 70, 100, false, "AB");
+	v366.Activated:Connect(function()
 		v37 = not v37;
 		task.spawn(function()
 			while v37 do
-				v363();
+				v365();
 				task.wait(0.1);
 			end
 		end);
 	end);
-	local v365 = v9:CreateToggle("Autofarm", v10.AutoFarmTabInfo1, 1, 175, 80, nil, 70, 100, false, "AF");
-	v365.Activated:Connect(function()
-		v39 = not v39;
-		task.spawn(function()
-			if v39 then
-				if not v50 then
-					if v348() then
-						return;
-					end
-					v23.Position = v359();
-					task.wait(0.1);
-					for v929 = 1, 3 do
-						v343(1);
-						task.wait(0.1);
-						v345(1);
-						task.wait(0.2);
-					end
-					local v861 = {};
-					for v930, v931 in pairs(v322:GetChildren()) do
-						if (v931:GetAttribute("ItemName") and v931:IsA("Model") and v931.PrimaryPart) then
-							if not v360(v931:GetAttribute("ItemName"), v2:FindFirstChild("ToolsHolder")) then
-								table.insert(v861, v931);
-							end
-						end
-					end
-					local v862 = 0;
-					for v932, v933 in pairs(v861) do
-						if (v933 and v933.PrimaryPart) then
-							v23.Position = v933.PrimaryPart.Position + Vector3.new(0, 2, 0);
-							task.wait(0.2);
-							v341(v933);
-							task.wait(0.2);
-							v862 = v862 + 1;
-							if (v862 >= 3) then
-								v23.Position = v359();
-								task.wait(0.3);
-								for v1031 = 1, 3 do
-									v343(1);
-									task.wait(0.1);
-									v345(1);
-									task.wait(0.2);
-								end
-								v862 = 0;
-							end
-							v23.Position = v359();
-							task.wait(0.1);
-							for v1014 = 1, 3 do
-								v343(1);
-								task.wait(0.1);
-								v345(1);
-								task.wait(0.2);
-							end
-							v361();
-							task.wait(0.2);
-						end
-					end
-					local v863 = tick();
-					while task.wait(0.1) and ((v863 - tick()) <= 20) and not v325["Spirit Box"] do
-						if v348() then
-							return;
-						end
-						if (not v360("Spirit Box", v2:FindFirstChild("ToolsHolder")) or not v360("Spirit Box", v21)) then
-							local v998 = v360("Spirit Box", v322);
-							if v998 then
-								v23.CFrame = v998.PrimaryPart.CFrame;
-							end
-						end
-						while (v325["Spirit Box"] == false) or not v325["Spirit Box"] do
-							if v348() then
-								v361();
-							end
-							if not v360("Spirit Box", v2:FindFirstChild("ToolsHolder")) then
-								v341(v360("Spirit Box", v322));
-							end
-							if v360("Spirit Box", v2:FindFirstChild("ToolsHolder")) then
-								v21:PivotTo(v27:GetPivot() * CFrame.new(0, 0, 10));
-								local v1015 = v3:FindFirstChild("Hotbar"):FindFirstChild("Slots");
-								if v1015 then
-									for v1032, v1033 in pairs(v1015:GetChildren()) do
-										if (v1033:FindFirstChild("ItemName") and (v1033.ItemName.Text == "Spirit Box")) then
-											v343(tonumber(string.match(v1033.Name, "%d+")));
-										end
-									end
-								end
-							elseif v360("Spirit Box", v21) then
-								v340();
-								task.wait(0.1);
-								v347();
-							end
-							task.wait(0.1);
-						end
-						for v960, v961 in pairs(v3:FindFirstChild("Hotbar"):FindFirstChild("Slots"):GetChildren()) do
-							if (v961:FindFirstChild("ItemName") and (v961.ItemName.Text == "Spirit Box")) then
-								v345(tonumber(string.match(v961.Name, "%d+")));
-							end
-						end
-						v361();
-					end
-				end
-			end
-		end);
-	end);
-	local v366 = v9:CreateToggle("Auto escape ghost hunts", v247, 9, 175, 85, _, 75, 100, false, "AES");
-	v366.Activated:Connect(function()
+	local v367 = v9:CreateToggle("Auto escape ghost hunts", v10['AutoFarmTabInfo1'], 6, 175, 80, nil, 70, 100, false, "AES");
+	v367.Activated:Connect(function()
 		v40 = not v40;
 		task.spawn(function()
 			while v40 do
-				if v324 then
+				if v326 then
 					v27:GetAttributeChangedSignal("Hunting"):Connect(function()
 						if (v40 and (v27:GetAttribute("Hunting") == true)) then
-							v361();
+							v363();
 						end
 					end);
 				end
@@ -1429,324 +1342,324 @@ if (v26 == "MainGame") then
 			end
 		end);
 	end);
-	local v367 = v9:CreateToggle("Notify hunts", v247, 11, 175, 85, _, 75, 100, false, "NOH");
-	local v368;
-	local v369 = v27:GetAttribute("Hunting");
-	v367.Activated:Connect(function()
+	local v368 = v9:CreateToggle("Notify hunts", v249, 11, 175, 85, _, 75, 100, false, "NOH");
+	local v369;
+	local v370 = v27:GetAttribute("Hunting");
+	v368.Activated:Connect(function()
 		v42 = not v42;
 		if v42 then
-			v368 = v27:GetAttributeChangedSignal("Hunting"):Connect(function()
-				local v683 = v27:GetAttribute("Hunting");
-				if (v683 == true) then
+			v369 = v27:GetAttributeChangedSignal("Hunting"):Connect(function()
+				local v684 = v27:GetAttribute("Hunting");
+				if (v684 == true) then
 					v9:CreateNotification("Ghost hunt has started.", 2);
 				else
 					v9:CreateNotification("Ghost hunt has ended.", 2);
 				end
 			end);
-		elseif v368 then
-			v368:Disconnect();
-			v368 = nil;
+		elseif v369 then
+			v369:Disconnect();
+			v369 = nil;
 		end
 	end);
-	local function v370()
+	local function v371()
 		if v34 then
-			if v325["EMF Level 5"] then
-				v337("EMFLevel5");
+			if v327["EMF Level 5"] then
+				v339("EMFLevel5");
 			end
-			if v325['Handprints'] then
-				v337("Handprints");
+			if v327['Handprints'] then
+				v339("Handprints");
 			end
-			if v325["Spirit Box"] then
-				v337("SpiritBox");
+			if v327["Spirit Box"] then
+				v339("SpiritBox");
 			end
-			if v325["Ghost Orb"] then
-				v337("GhostOrb");
+			if v327["Ghost Orb"] then
+				v339("GhostOrb");
 			end
-			if v325["Freezing Temperatures"] then
-				v337("FreezingTemperatures");
+			if v327["Freezing Temperatures"] then
+				v339("FreezingTemperatures");
 			end
-			if v325["Ghost Writing"] then
-				v337("GhostWriting");
+			if v327["Ghost Writing"] then
+				v339("GhostWriting");
 			end
-			if v325["Laser Projector"] then
-				v337("LaserProjector");
+			if v327["Laser Projector"] then
+				v339("LaserProjector");
 			end
-			if v325['Wither'] then
-				v337("Wither");
+			if v327['Wither'] then
+				v339("Wither");
 			end
 		end
 	end
-	v354.Activated:Connect(function()
+	v356.Activated:Connect(function()
 		v34 = not v34;
 		task.spawn(function()
 			while v34 do
-				v370();
+				v371();
 				task.wait(0.1);
 			end
 		end);
 	end);
-	if v324 then
-		v324:FindFirstChild("Base Camp"):FindFirstChild("Truck");
-		if v324:FindFirstChild("Base Camp").Truck then
-			local v684 = v324:FindFirstChild("Base Camp").Truck.Primary.CFrame;
-			if (v684 == CFrame.new(28.9760437, 3.68303895, -67.749176, 0, -1, 0, 0, 0, -1, 1, 0, 0)) then
+	if v326 then
+		v326:FindFirstChild("Base Camp"):FindFirstChild("Truck");
+		if v326:FindFirstChild("Base Camp").Truck then
+			local v685 = v326:FindFirstChild("Base Camp").Truck.Primary.CFrame;
+			if (v685 == CFrame.new(28.9760437, 3.68303895, -67.749176, 0, -1, 0, 0, 0, -1, 1, 0, 0)) then
 				v29 = "Fenway Drive";
-			elseif (v684 == CFrame.new(23.4483738, -30.1618786, -64.6128387, 0, 1, 0, 0, 0, -1, -1, 0, 0)) then
+			elseif (v685 == CFrame.new(23.4483738, -30.1618786, -64.6128387, 0, 1, 0, 0, 0, -1, -1, 0, 0)) then
 				v29 = "Juniper Road";
-			elseif (v684 == CFrame.new(25.9909477, 3.73003864, -111.618744, 1, 0, 0, 0, 0, -1, 0, 1, 0)) then
+			elseif (v685 == CFrame.new(25.9909477, 3.73003864, -111.618744, 1, 0, 0, 0, 0, -1, 0, 1, 0)) then
 				v29 = "Lincoln Street";
-			elseif (v684 == CFrame.new(152.138535, -6.1329999, -44.4111786, -0.998979926, 0.0451572537, -4.936009645462036E-07, -4.936009645462036E-07, -2.181529998779297E-05, -1, -0.0451572537, -0.998979926, 2.181529998779297E-05)) then
+			elseif (v685 == CFrame.new(152.138535, -6.1329999, -44.4111786, -0.998979926, 0.0451572537, -4.936009645462036E-07, -4.936009645462036E-07, -2.181529998779297E-05, -1, -0.0451572537, -0.998979926, 2.181529998779297E-05)) then
 				v29 = "Bodega";
-			elseif (v684 == CFrame.new(70.0683899, 13.7799997, 157.604065, 0.981209278, -0.192946643, -1.7136335372924805E-06, 1.7136335372924805E-06, 1.7583370208740234E-05, -0.99999994, 0.192946643, 0.981209219, 1.7583370208740234E-05)) then
+			elseif (v685 == CFrame.new(70.0683899, 13.7799997, 157.604065, 0.981209278, -0.192946643, -1.7136335372924805E-06, 1.7136335372924805E-06, 1.7583370208740234E-05, -0.99999994, 0.192946643, 0.981209219, 1.7583370208740234E-05)) then
 				v29 = "Lilim Lane";
-			elseif (v684 == CFrame.new(-33.8106422, 19.6800022, -15.1539326, -0.709856749, 0.704345942, -4.857778549194336E-06, -4.857778549194336E-06, -1.1801719665527344E-05, -0.99999994, -0.704345942, -0.709856808, 1.1861324310302734E-05)) then
+			elseif (v685 == CFrame.new(-33.8106422, 19.6800022, -15.1539326, -0.709856749, 0.704345942, -4.857778549194336E-06, -4.857778549194336E-06, -1.1801719665527344E-05, -0.99999994, -0.704345942, -0.709856808, 1.1861324310302734E-05)) then
 				v29 = "Cafe";
-			elseif (v684 == CFrame.new(64.6408768, 89.4869995, -21.5065556, -0.923553705, 0.383469343, 3.6954879760742188E-06, 3.6954879760742188E-06, 1.8477439880371094E-05, -1, -0.383469343, -0.923553586, -1.8477439880371094E-05)) then
+			elseif (v685 == CFrame.new(64.6408768, 89.4869995, -21.5065556, -0.923553705, 0.383469343, 3.6954879760742188E-06, 3.6954879760742188E-06, 1.8477439880371094E-05, -1, -0.383469343, -0.923553586, -1.8477439880371094E-05)) then
 				v29 = "Bridgewood";
-			elseif (v684 == CFrame.new(23.5208073, -11.0691805, 196.567566, 0.846615791, 0.532204568, 8.344650268554688E-06, -8.344650268554688E-06, 2.8967857360839844E-05, -1, -0.532204568, 0.846615851, 2.8967857360839844E-05)) then
+			elseif (v685 == CFrame.new(23.5208073, -11.0691805, 196.567566, 0.846615791, 0.532204568, 8.344650268554688E-06, -8.344650268554688E-06, 2.8967857360839844E-05, -1, -0.532204568, 0.846615851, 2.8967857360839844E-05)) then
 				v29 = "Prison";
-			elseif (v684 == CFrame.new(-5.04826546, 4.31711769, -89.8415756, -1, 0, "-0", 0, 0, -1, 0, -1, "-0")) then
+			elseif (v685 == CFrame.new(-5.04826546, 4.31711769, -89.8415756, -1, 0, "-0", 0, 0, -1, 0, -1, "-0")) then
 				v29 = "School";
-			elseif (v684 == CFrame.new()) then
+			elseif (v685 == CFrame.new()) then
 				v29 = "Asylum";
-			elseif (v684 == CFrame.new()) then
+			elseif (v685 == CFrame.new()) then
 				v29 = "Oakridge";
 			end
 		end
 	end
-	local function v371(v455, v456, v457, v458, v459, v460)
+	local function v372(v456, v457, v458, v459, v460, v461)
 		if not evidence then
 			evidence = true;
 		end
-		if not v458 then
-			v458 = "Evidence";
-		end
 		if not v459 then
-			v459 = false;
+			v459 = "Evidence";
 		end
 		if not v460 then
-			v460 = 2.5;
+			v460 = false;
 		end
-		if not v456 then
-			if (v455:FindFirstChild("Esp2") and not v459) then
+		if not v461 then
+			v461 = 2.5;
+		end
+		if not v457 then
+			if (v456:FindFirstChild("Esp2") and not v460) then
 				return;
 			end
-			if not v459 then
-				local v805 = Instance.new("BillboardGui");
-				v805.Parent = v455;
-				v805.AlwaysOnTop = true;
-				v805.Name = "Esp2";
-				v805.Size = UDim2.new(4, 0, 1, 0);
-				v805.SizeOffset = Vector2.new(0, v460);
-				local v811 = Instance.new("Frame", v805);
-				v811.Size = UDim2.new(1, 0, 1, 0);
-				v811.BackgroundTransparency = 1;
-				v9:CreateItems(v811, "DarkRed2");
-				local v814 = Instance.new("TextLabel", v805);
-				v814.TextColor3 = Color3.fromRGB(255, 255, 255);
-				v814.Size = UDim2.new(1, 0, 0.7, 0);
-				v814.BackgroundTransparency = 1;
-				v814.TextTransparency = 1;
-				v814.TextScaled = true;
-				v814.Text = v457;
-				v9:FadeOut(0.25, v811, 0);
-				v9:FadeOut(0.25, v814, 0);
+			if not v460 then
+				local v806 = Instance.new("BillboardGui");
+				v806.Parent = v456;
+				v806.AlwaysOnTop = true;
+				v806.Name = "Esp2";
+				v806.Size = UDim2.new(4, 0, 1, 0);
+				v806.SizeOffset = Vector2.new(0, v461);
+				local v812 = Instance.new("Frame", v806);
+				v812.Size = UDim2.new(1, 0, 1, 0);
+				v812.BackgroundTransparency = 1;
+				v9:CreateItems(v812, "DarkRed2");
+				local v815 = Instance.new("TextLabel", v806);
+				v815.TextColor3 = Color3.fromRGB(255, 255, 255);
+				v815.Size = UDim2.new(1, 0, 0.7, 0);
+				v815.BackgroundTransparency = 1;
+				v815.TextTransparency = 1;
+				v815.TextScaled = true;
+				v815.Text = v458;
+				v9:FadeOut(0.25, v812, 0);
+				v9:FadeOut(0.25, v815, 0);
 				task.wait(0.25);
-				local v821 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
-				local v822 = v4:Create(v811, v821, {Size=UDim2.new(1, 0, 2, 0)});
-				v822:Play();
-				v822.Completed:Connect(function()
-					local v864 = Instance.new("TextLabel", v805);
-					v864.Name = "Evidence";
-					v864.TextColor3 = Color3.fromRGB(255, 255, 255);
-					v864.Size = UDim2.new(1, 0, 0.7, 0);
-					v864.BackgroundTransparency = 1;
-					v864.MaxVisibleGraphemes = 0;
-					v864.Position = UDim2.new(0, 0, 0.99, 0);
-					v864.TextScaled = true;
-					v864.Text = v458;
-					for v934 = 1, 30 do
-						v864.MaxVisibleGraphemes = v934;
+				local v822 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
+				local v823 = v4:Create(v812, v822, {Size=UDim2.new(1, 0, 2, 0)});
+				v823:Play();
+				v823.Completed:Connect(function()
+					local v862 = Instance.new("TextLabel", v806);
+					v862.Name = "Evidence";
+					v862.TextColor3 = Color3.fromRGB(255, 255, 255);
+					v862.Size = UDim2.new(1, 0, 0.7, 0);
+					v862.BackgroundTransparency = 1;
+					v862.MaxVisibleGraphemes = 0;
+					v862.Position = UDim2.new(0, 0, 0.99, 0);
+					v862.TextScaled = true;
+					v862.Text = v459;
+					for v927 = 1, 30 do
+						v862.MaxVisibleGraphemes = v927;
 						task.wait(0.025);
 					end
-					v9:FadeOut(0.25, v864, 0);
+					v9:FadeOut(0.25, v862, 0);
 				end);
 			else
-				local v823 = v455:FindFirstChild("Esp2");
-				local v824 = v823 and v823:FindFirstChild("Evidence");
-				local v825 = v823 and v823:FindFirstChildOfClass("TextLabel");
-				if (v825 and v824) then
-					for v962 = string.len(v824.Text), 0, -1 do
-						v824.MaxVisibleGraphemes = v962;
+				local v824 = v456:FindFirstChild("Esp2");
+				local v825 = v824 and v824:FindFirstChild("Evidence");
+				local v826 = v824 and v824:FindFirstChildOfClass("TextLabel");
+				if (v826 and v825) then
+					for v953 = string.len(v825.Text), 0, -1 do
+						v825.MaxVisibleGraphemes = v953;
 						task.wait(0.025);
 					end
-					v825.Text = v457;
-					v824.Text = v458;
-					for v964 = 1, #v458 do
-						v824.MaxVisibleGraphemes = v964;
+					v826.Text = v458;
+					v825.Text = v459;
+					for v955 = 1, #v459 do
+						v825.MaxVisibleGraphemes = v955;
 						task.wait(0.025);
 					end
 				end
 			end
 		else
-			local v583 = v455:FindFirstChild("Esp2");
-			if v583 then
-				for v873, v874 in pairs(v583:GetDescendants()) do
-					if (v874:IsA("Frame") or v874:IsA("TextLabel")) then
-						v9:FadeOut(0.25, v874, 1);
+			local v584 = v456:FindFirstChild("Esp2");
+			if v584 then
+				for v871, v872 in pairs(v584:GetDescendants()) do
+					if (v872:IsA("Frame") or v872:IsA("TextLabel")) then
+						v9:FadeOut(0.25, v872, 1);
 					end
 				end
 				task.wait(0.25);
-				v583:Destroy();
+				v584:Destroy();
 			end
 		end
 	end
-	local v372 = v9:CreateToggle("Item ESP", v10['Visuals'], 1, 185, 85, nil, nil, nil, false, "IEsp");
-	local v373 = {};
-	local function v374(v461)
-		if (v461 == "Destroy") then
-			for v685, v686 in pairs(v373) do
-				v686:Disconnect();
+	local v373 = v9:CreateToggle("Item ESP", v10['Visuals'], 1, 185, 85, nil, nil, nil, false, "IEsp");
+	local v374 = {};
+	local function v375(v462)
+		if (v462 == "Destroy") then
+			for v686, v687 in pairs(v374) do
+				v687:Disconnect();
 			end
-			table.clear(v373);
+			table.clear(v374);
 		end
-		for v516, v517 in pairs(v322:GetChildren()) do
-			if (v517:IsA("Model") and v517.PrimaryPart) then
-				local v687 = v517:FindFirstChild("Highlight");
-				if (v461 == "Create") then
-					if not v687 then
-						v687 = Instance.new("Highlight", v517);
-						v687.FillTransparency = 1;
-						v687.OutlineTransparency = 1;
+		for v517, v518 in pairs(v324:GetChildren()) do
+			if (v518:IsA("Model") and v518.PrimaryPart) then
+				local v688 = v518:FindFirstChild("Highlight");
+				if (v462 == "Create") then
+					if not v688 then
+						v688 = Instance.new("Highlight", v518);
+						v688.FillTransparency = 1;
+						v688.OutlineTransparency = 1;
 					end
-					v687.Enabled = true;
-					v4:Create(v687, TweenInfo.new(0.25), {OutlineTransparency=0}):Play();
-					if not v517.PrimaryPart:FindFirstChild("Esp2") then
-						v371(v517.PrimaryPart, false, v517:GetAttribute("ItemName"), "Item");
+					v688.Enabled = true;
+					v4:Create(v688, TweenInfo.new(0.25), {OutlineTransparency=0}):Play();
+					if not v518.PrimaryPart:FindFirstChild("Esp2") then
+						v372(v518.PrimaryPart, false, v518:GetAttribute("ItemName"), "Item");
 					end
-					table.insert(v373, v517.PrimaryPart.ChildRemoved:Connect(function()
+					table.insert(v374, v518.PrimaryPart.ChildRemoved:Connect(function()
 						if v43 then
-							v371(v517.PrimaryPart, false, v517:GetAttribute("ItemName"), "Item");
+							v372(v518.PrimaryPart, false, v518:GetAttribute("ItemName"), "Item");
 						end
 					end));
-				elseif (v461 == "Destroy") then
-					if v687 then
-						local v1016 = v4:Create(v687, TweenInfo.new(0.25), {OutlineTransparency=1});
-						v1016:Play();
-						v1016.Completed:Connect(function()
-							v687:Destroy();
+				elseif (v462 == "Destroy") then
+					if v688 then
+						local v1003 = v4:Create(v688, TweenInfo.new(0.25), {OutlineTransparency=1});
+						v1003:Play();
+						v1003.Completed:Connect(function()
+							v688:Destroy();
 						end);
 					end
-					local v968 = v517.PrimaryPart:FindFirstChild("Esp2");
-					if v968 then
-						v371(v517.PrimaryPart, true, v517:GetAttribute("ItemName"), "Item");
+					local v959 = v518.PrimaryPart:FindFirstChild("Esp2");
+					if v959 then
+						v372(v518.PrimaryPart, true, v518:GetAttribute("ItemName"), "Item");
 					end
 				end
 			end
 		end
 	end
-	local function v375(v462)
-		if (v462 == "Destroy") then
-			for v688, v689 in pairs(v373) do
-				v689:Disconnect();
+	local function v376(v463)
+		if (v463 == "Destroy") then
+			for v689, v690 in pairs(v374) do
+				v690:Disconnect();
 			end
-			table.clear(v373);
+			table.clear(v374);
 		end
-		local v463 = v0:FindFirstChild("Ragdolls");
-		for v518, v519 in pairs(v0:GetChildren()) do
-			if (v519:FindFirstChild("Humanoid") and (v519.Name ~= "Ghost")) then
-				local v690 = v519:FindFirstChild("Head");
-				if (v462 == "Create") then
-					for v938, v939 in pairs(v519:GetDescendants()) do
-						if (v939:IsA("BasePart") and (v939.Name ~= "HumanoidRootPart")) then
-							local v999 = v939:FindFirstChild("Highlight") or Instance.new("Highlight", v939);
-							v999.FillTransparency = 1;
-							v999.OutlineTransparency = 1;
-							v4:Create(v999, TweenInfo.new(0.25), {OutlineTransparency=0}):Play();
+		local v464 = v0:FindFirstChild("Ragdolls");
+		for v519, v520 in pairs(v0:GetChildren()) do
+			if (v520:FindFirstChild("Humanoid") and (v520.Name ~= "Ghost")) then
+				local v691 = v520:FindFirstChild("Head");
+				if (v463 == "Create") then
+					for v931, v932 in pairs(v520:GetDescendants()) do
+						if (v932:IsA("BasePart") and (v932.Name ~= "HumanoidRootPart")) then
+							local v988 = v932:FindFirstChild("Highlight") or Instance.new("Highlight", v932);
+							v988.FillTransparency = 1;
+							v988.OutlineTransparency = 1;
+							v4:Create(v988, TweenInfo.new(0.25), {OutlineTransparency=0}):Play();
 						end
 					end
-					if (v690 and not v690:FindFirstChild("Esp2")) then
-						v371(v690, false, v519.Name, "Alive");
+					if (v691 and not v691:FindFirstChild("Esp2")) then
+						v372(v691, false, v520.Name, "Alive");
 					end
-					table.insert(v373, v519.ChildAdded:Connect(function()
+					table.insert(v374, v520.ChildAdded:Connect(function()
 						if PEsp then
-							v371(v690, false, v519.Name, "Alive");
+							v372(v691, false, v520.Name, "Alive");
 						end
 					end));
-				elseif (v462 == "Destroy") then
-					for v1002, v1003 in pairs(v519:GetDescendants()) do
-						if v1003:IsA("BasePart") then
-							local v1024 = v1003:FindFirstChild("Highlight");
-							if v1024 then
-								local v1034 = v4:Create(v1024, TweenInfo.new(0.25), {OutlineTransparency=1});
-								v1034:Play();
-								v1034.Completed:Connect(function()
-									v1024:Destroy();
+				elseif (v463 == "Destroy") then
+					for v991, v992 in pairs(v520:GetDescendants()) do
+						if v992:IsA("BasePart") then
+							local v1008 = v992:FindFirstChild("Highlight");
+							if v1008 then
+								local v1015 = v4:Create(v1008, TweenInfo.new(0.25), {OutlineTransparency=1});
+								v1015:Play();
+								v1015.Completed:Connect(function()
+									v1008:Destroy();
 								end);
 							end
 						end
 					end
-					if (v690 and v690:FindFirstChild("Esp2")) then
-						v371(v690, true, v519.Name, "Alive");
+					if (v691 and v691:FindFirstChild("Esp2")) then
+						v372(v691, true, v520.Name, "Alive");
 					end
 				end
 			end
 		end
 	end
-	v372.Activated:Connect(function()
+	v373.Activated:Connect(function()
 		v43 = not v43;
 		if v43 then
-			v374("Create");
-		else
-			v374("Destroy");
-		end
-	end);
-	local v376 = v9:CreateToggle("Player ESP", v10['Visuals'], 1, 185, 85, nil, nil, nil, false, "PlEs");
-	v376.Activated:Connect(function()
-		v41 = not v41;
-		if v41 then
 			v375("Create");
 		else
 			v375("Destroy");
 		end
 	end);
+	local v377 = v9:CreateToggle("Player ESP", v10['Visuals'], 1, 185, 85, nil, nil, nil, false, "PlEs");
+	v377.Activated:Connect(function()
+		v41 = not v41;
+		if v41 then
+			v376("Create");
+		else
+			v376("Destroy");
+		end
+	end);
 	task.spawn(function()
 		while true do
 			if v41 then
-				local v691 = v0:GetChildren();
-				for v826 = 1, #v691 do
-					local v827 = v691[v826];
-					if (v827:FindFirstChild("Humanoid") and (v827.Name ~= "Ghost")) then
-						local v940 = v827:FindFirstChildOfClass("Highlight");
-						if not v940 then
-							v940 = Instance.new("Highlight");
-							v940.Parent = v827;
-							v940.Adornee = v827;
-							v940.FillTransparency = 1;
-							v940.Enabled = true;
+				local v692 = v0:GetChildren();
+				for v827 = 1, #v692 do
+					local v828 = v692[v827];
+					if (v828:FindFirstChild("Humanoid") and (v828.Name ~= "Ghost")) then
+						local v933 = v828:FindFirstChildOfClass("Highlight");
+						if not v933 then
+							v933 = Instance.new("Highlight");
+							v933.Parent = v828;
+							v933.Adornee = v828;
+							v933.FillTransparency = 1;
+							v933.Enabled = true;
 						end
-						local v941 = v827:GetChildren();
-						for v969 = 1, #v941 do
-							local v970 = v941[v969];
-							if v970:IsA("BasePart") then
-								v970.Transparency = 0;
+						local v934 = v828:GetChildren();
+						for v960 = 1, #v934 do
+							local v961 = v934[v960];
+							if v961:IsA("BasePart") then
+								v961.Transparency = 0;
 							end
 						end
 					end
 				end
-				local v692 = v0:FindFirstChild("Ragdolls");
-				if v692 then
-					local v876 = v692:GetChildren();
-					for v942 = 1, #v876 do
-						local v943 = v876[v942];
-						if v943:FindFirstChild("Humanoid") then
-							local v1008 = v943:FindFirstChildOfClass("Highlight");
-							if not v1008 then
-								v1008 = Instance.new("Highlight");
-								v1008.Parent = v943;
-								v1008.Adornee = v943;
-								v1008.FillTransparency = 1;
-								v1008.Enabled = true;
+				local v693 = v0:FindFirstChild("Ragdolls");
+				if v693 then
+					local v874 = v693:GetChildren();
+					for v935 = 1, #v874 do
+						local v936 = v874[v935];
+						if v936:FindFirstChild("Humanoid") then
+							local v997 = v936:FindFirstChildOfClass("Highlight");
+							if not v997 then
+								v997 = Instance.new("Highlight");
+								v997.Parent = v936;
+								v997.Adornee = v936;
+								v997.FillTransparency = 1;
+								v997.Enabled = true;
 							end
 						end
 					end
@@ -1755,18 +1668,18 @@ if (v26 == "MainGame") then
 			task.wait(0.1);
 		end
 	end);
-	local v377 = v0:FindFirstChild("Ragdolls");
+	local v378 = v0:FindFirstChild("Ragdolls");
 	task.spawn(function()
 		while v2 do
-			for v584, v585 in pairs(v0:GetChildren()) do
-				if (v585:FindFirstChild("Humanoid") and (v585.Name ~= "Ghost")) then
-					local v828 = v585:FindFirstChild("Head");
-					if (v377 and v377:FindFirstChild(v585.Name)) then
+			for v585, v586 in pairs(v0:GetChildren()) do
+				if (v586:FindFirstChild("Humanoid") and (v586.Name ~= "Ghost")) then
+					local v829 = v586:FindFirstChild("Head");
+					if (v378 and v378:FindFirstChild(v586.Name)) then
 						task.wait(0.26);
-						if (v828 and v828:FindFirstChild("Esp2")) then
-							local v1009 = v828.Esp2:FindFirstChild("Evidence");
-							if (v1009 and (v1009.Text ~= "Deceased")) then
-								v371(v828, false, v585.Name, "Deceased", true);
+						if (v829 and v829:FindFirstChild("Esp2")) then
+							local v998 = v829.Esp2:FindFirstChild("Evidence");
+							if (v998 and (v998.Text ~= "Deceased")) then
+								v372(v829, false, v586.Name, "Deceased", true);
 							end
 						end
 					end
@@ -1775,44 +1688,44 @@ if (v26 == "MainGame") then
 			task.wait(0.5);
 		end
 	end);
-	local function v378(v464)
-		if (v464 == "Destroy") then
-			for v693, v694 in pairs(v373) do
-				v694:Disconnect();
+	local function v379(v465)
+		if (v465 == "Destroy") then
+			for v694, v695 in pairs(v374) do
+				v695:Disconnect();
 			end
-			table.clear(v373);
+			table.clear(v374);
 		end
-		if (v464 == "Create") then
+		if (v465 == "Create") then
 			if v27:FindFirstChild("VisibleParts") then
-				for v877, v878 in pairs(v27.VisibleParts:GetDescendants()) do
-					if v878:IsA("BasePart") then
-						local v971 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
-						v4:Create(v878, v971, {Transparency=0}):Play();
+				for v875, v876 in pairs(v27.VisibleParts:GetDescendants()) do
+					if v876:IsA("BasePart") then
+						local v962 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
+						v4:Create(v876, v962, {Transparency=0}):Play();
 					end
 				end
 			end
-			local v586 = v27:FindFirstChild("Highlight") or Instance.new("Highlight", v27);
-			v586.FillTransparency = 1;
-			v586.OutlineTransparency = 1;
-			local v589 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
-			v4:Create(v586, v589, {OutlineTransparency=0}):Play();
-			v371(v27.Head, false, "Ghost", v27:GetAttribute("VisualModel"));
-			v371(v27.HumanoidRootPart, false, v27.Humanoid.WalkSpeed, v27:GetAttribute("Gender"), false, -3.5);
-			table.insert(v373, v27.AncestryChanged:Connect(function()
+			local v587 = v27:FindFirstChild("Highlight") or Instance.new("Highlight", v27);
+			v587.FillTransparency = 1;
+			v587.OutlineTransparency = 1;
+			local v590 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
+			v4:Create(v587, v590, {OutlineTransparency=0}):Play();
+			v372(v27.Head, false, "Ghost", v27:GetAttribute("VisualModel"));
+			v372(v27.HumanoidRootPart, false, v27.Humanoid.WalkSpeed, v27:GetAttribute("Gender"), false, -3.5);
+			table.insert(v374, v27.AncestryChanged:Connect(function()
 				if not v27:IsDescendantOf(v0) then
-					v378("Destroy");
+					v379("Destroy");
 				end
 			end));
 		else
-			v371(v27.Head, true, "Ghost", v27:GetAttribute("VisualModel"));
-			v371(v27.HumanoidRootPart, true, v27.Humanoid.WalkSpeed, v27:GetAttribute("Gender"), false, -3.5);
-			local v590 = v27:FindFirstChild("Highlight");
-			if v590 then
-				local v829 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
-				local v830 = v4:Create(v590, v829, {OutlineTransparency=1});
-				v830:Play();
-				v830.Completed:Connect(function()
-					v590:Destroy();
+			v372(v27.Head, true, "Ghost", v27:GetAttribute("VisualModel"));
+			v372(v27.HumanoidRootPart, true, v27.Humanoid.WalkSpeed, v27:GetAttribute("Gender"), false, -3.5);
+			local v591 = v27:FindFirstChild("Highlight");
+			if v591 then
+				local v830 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
+				local v831 = v4:Create(v591, v830, {OutlineTransparency=1});
+				v831:Play();
+				v831.Completed:Connect(function()
+					v591:Destroy();
 				end);
 			end
 		end
@@ -1825,290 +1738,290 @@ if (v26 == "MainGame") then
 			task.wait(0.1);
 		end
 	end);
-	local v379 = v9:CreateToggle("Ghost ESP", v10['Visuals'], 3, 185, 85, nil, nil, nil, false, "GEs");
-	v379.Activated:Connect(function()
+	local v380 = v9:CreateToggle("Ghost ESP", v10['Visuals'], 3, 185, 85, nil, nil, nil, false, "GEs");
+	v380.Activated:Connect(function()
 		v45 = not v45;
 		if v45 then
-			v378("Create");
+			v379("Create");
 		else
-			v378("Destroy");
+			v379("Destroy");
 		end
 	end);
-	local v380 = v9:CreateToggle("Evidence ESP", v10['Visuals'], 4, 185, 85, nil, nil, nil, false, "ev");
-	local function v381(v465)
-		if (v465 == "Destroy") then
-			for v697, v698 in pairs(v373) do
-				v698:Disconnect();
+	local v381 = v9:CreateToggle("Evidence ESP", v10['Visuals'], 4, 185, 85, nil, nil, nil, false, "ev");
+	local function v382(v466)
+		if (v466 == "Destroy") then
+			for v698, v699 in pairs(v374) do
+				v699:Disconnect();
 			end
-			table.clear(v373);
+			table.clear(v374);
 		end
-		if (v465 == "Create") then
-			if v325["Ghost Orb"] then
-				local v831 = v0:FindFirstChild("GhostOrb");
-				if v831 then
-					v831.Transparency = 0;
-					if not v831:FindFirstChild("Esp2") then
-						v371(v831, false, "Ghost Orb", "Evidence");
-						table.insert(v373, v831.AncestryChanged:Connect(function()
-							if not v831:IsDescendantOf(v0) then
-								v381("Create");
+		if (v466 == "Create") then
+			if v327["Ghost Orb"] then
+				local v832 = v0:FindFirstChild("GhostOrb");
+				if v832 then
+					v832.Transparency = 0;
+					if not v832:FindFirstChild("Esp2") then
+						v372(v832, false, "Ghost Orb", "Evidence");
+						table.insert(v374, v832.AncestryChanged:Connect(function()
+							if not v832:IsDescendantOf(v0) then
+								v382("Create");
 							end
 						end));
 					end
 				end
 			end
-			if v325['Handprints'] then
-				local v832 = v0:FindFirstChild("Handprints");
-				if v832 then
-					for v972, v973 in ipairs(v832:GetChildren()) do
-						if not v973:FindFirstChild("Esp2") then
-							v371(v973, false, "Handprint", "Evidence");
+			if v327['Handprints'] then
+				local v833 = v0:FindFirstChild("Handprints");
+				if v833 then
+					for v963, v964 in ipairs(v833:GetChildren()) do
+						if not v964:FindFirstChild("Esp2") then
+							v372(v964, false, "Handprint", "Evidence");
 						end
 					end
-					table.insert(v373, v832.ChildAdded:Connect(function()
-						v381("Create");
+					table.insert(v374, v833.ChildAdded:Connect(function()
+						v382("Create");
 					end));
 				end
 			end
-			for v699, v700 in ipairs(v322:GetChildren()) do
-				if (not v700:IsA("Model") or not v700.PrimaryPart) then
+			for v700, v701 in ipairs(v324:GetChildren()) do
+				if (not v701:IsA("Model") or not v701.PrimaryPart) then
 					continue;
 				end
-				local v701 = v700.PrimaryPart:FindFirstChild("Esp2");
-				local v702 = v701 and v701:FindFirstChild("Evidence");
-				local v703 = v700:GetAttribute("ItemName");
-				if (v325["Ghost Writing"] and (v703 == "Spirit Book")) then
-					if not v701 then
-						v371(v700.PrimaryPart, false, "Ghost Writing", "Evidence");
-					elseif (v702 and (v702.Text ~= "Evidence")) then
-						v371(v700.PrimaryPart, false, "Ghost Writing", "Evidence", true);
+				local v702 = v701.PrimaryPart:FindFirstChild("Esp2");
+				local v703 = v702 and v702:FindFirstChild("Evidence");
+				local v704 = v701:GetAttribute("ItemName");
+				if (v327["Ghost Writing"] and (v704 == "Spirit Book")) then
+					if not v702 then
+						v372(v701.PrimaryPart, false, "Ghost Writing", "Evidence");
+					elseif (v703 and (v703.Text ~= "Evidence")) then
+						v372(v701.PrimaryPart, false, "Ghost Writing", "Evidence", true);
 					end
 				end
-				if (v325['Wither'] and (v703 == "Flower Pot")) then
-					if not v701 then
-						v371(v700.PrimaryPart, false, "Withered Flowers", "Evidence");
-					elseif (v702 and (v702.Text ~= "Evidence")) then
-						v371(v700.PrimaryPart, false, "Withered Flowers", "Evidence", true);
+				if (v327['Wither'] and (v704 == "Flower Pot")) then
+					if not v702 then
+						v372(v701.PrimaryPart, false, "Withered Flowers", "Evidence");
+					elseif (v703 and (v703.Text ~= "Evidence")) then
+						v372(v701.PrimaryPart, false, "Withered Flowers", "Evidence", true);
 					end
 				end
-				if (v325["Laser Projector"] and (v703 == "Laser Projector")) then
+				if (v327["Laser Projector"] and (v704 == "Laser Projector")) then
 					if (v27:GetAttribute("LaserVisible") or v27:GetAttribute("InLaser")) then
-						if not v701 then
-							v371(v700.PrimaryPart, false, "Laser Projector", "Evidence");
-						elseif (v702 and (v702.Text ~= "Evidence")) then
-							v371(v700.PrimaryPart, false, "Laser Projector", "Evidence", true);
+						if not v702 then
+							v372(v701.PrimaryPart, false, "Laser Projector", "Evidence");
+						elseif (v703 and (v703.Text ~= "Evidence")) then
+							v372(v701.PrimaryPart, false, "Laser Projector", "Evidence", true);
 						end
 					end
 				end
-				if (v325["Freezing Temperatures"] and (v703 == "Thermometer") and (v28:GetAttribute("Temperature") < 0)) then
-					if not v701 then
-						v371(v700.PrimaryPart, false, "Freezing Temperatures", "Evidence");
-					elseif (v702 and (v702.Text ~= "Evidence")) then
-						v371(v700.PrimaryPart, false, "Freezing Temperatures", "Evidence", true);
+				if (v327["Freezing Temperatures"] and (v704 == "Thermometer") and (v28:GetAttribute("Temperature") < 0)) then
+					if not v702 then
+						v372(v701.PrimaryPart, false, "Freezing Temperatures", "Evidence");
+					elseif (v703 and (v703.Text ~= "Evidence")) then
+						v372(v701.PrimaryPart, false, "Freezing Temperatures", "Evidence", true);
 					end
 				end
-				if (v325["EMF Level 5"] and (v703 == "EMF Reader") and v27:GetAttribute("LastEMFLevel5Time")) then
-					if not v701 then
-						v371(v700.PrimaryPart, false, "EMF Level 5", "Evidence");
-					elseif (v702 and (v702.Text ~= "Evidence")) then
-						v371(v700.PrimaryPart, false, "EMF Level 5", "Evidence", true);
+				if (v327["EMF Level 5"] and (v704 == "EMF Reader") and v27:GetAttribute("LastEMFLevel5Time")) then
+					if not v702 then
+						v372(v701.PrimaryPart, false, "EMF Level 5", "Evidence");
+					elseif (v703 and (v703.Text ~= "Evidence")) then
+						v372(v701.PrimaryPart, false, "EMF Level 5", "Evidence", true);
 					end
 				end
 			end
 		else
-			local v591 = v0:FindFirstChild("GhostOrb");
-			if v591 then
-				v591.Transparency = 1;
-				if v591:FindFirstChild("Esp2") then
-					v371(v591, true);
+			local v592 = v0:FindFirstChild("GhostOrb");
+			if v592 then
+				v592.Transparency = 1;
+				if v592:FindFirstChild("Esp2") then
+					v372(v592, true);
 				end
 			end
-			local v592 = v0:FindFirstChild("Handprints");
-			if v592 then
-				for v879, v880 in ipairs(v592:GetChildren()) do
-					if v880:FindFirstChild("Esp2") then
-						v371(v880, true);
+			local v593 = v0:FindFirstChild("Handprints");
+			if v593 then
+				for v877, v878 in ipairs(v593:GetChildren()) do
+					if v878:FindFirstChild("Esp2") then
+						v372(v878, true);
 					end
 				end
 			end
-			for v704, v705 in ipairs(v322:GetChildren()) do
-				if (v705:IsA("Model") and v705.PrimaryPart and v705.PrimaryPart:FindFirstChild("Esp2")) then
-					local v881 = v705.PrimaryPart.Esp2;
-					if (v881:FindFirstChild("Evidence") and (v881.Evidence.Text == "Evidence")) then
-						v371(v705.PrimaryPart, true);
+			for v705, v706 in ipairs(v324:GetChildren()) do
+				if (v706:IsA("Model") and v706.PrimaryPart and v706.PrimaryPart:FindFirstChild("Esp2")) then
+					local v879 = v706.PrimaryPart.Esp2;
+					if (v879:FindFirstChild("Evidence") and (v879.Evidence.Text == "Evidence")) then
+						v372(v706.PrimaryPart, true);
 					end
 				end
 			end
 		end
 	end
-	v380.Activated:Connect(function()
+	v381.Activated:Connect(function()
 		v46 = not v46;
 		if v46 then
-			v381("Create");
+			v382("Create");
 		else
-			v381("Destroy");
+			v382("Destroy");
 		end
 	end);
-	local v382 = v359(true);
-	local v383 = v359(true, "GhostPart2");
-	v383.Position = v383.Position - Vector3.new(0, 5, 0);
-	local function v385(v466)
-		if (v466 == "Destroy") then
-			for v706, v707 in pairs(v373) do
-				v707:Disconnect();
+	local v383 = v361(true);
+	local v384 = v361(true, "GhostPart2");
+	v384.Position = v384.Position - Vector3.new(0, 5, 0);
+	local function v386(v467)
+		if (v467 == "Destroy") then
+			for v707, v708 in pairs(v374) do
+				v708:Disconnect();
 			end
-			table.clear(v373);
+			table.clear(v374);
 		end
-		if (v466 == "Create") then
-			v371(v382, false, "Ghost's favorite room", v27:GetAttribute("FavoriteRoom"));
-			v371(v383, false, "Holder1", "Holder2", false, 0);
-			table.insert(v373, v27:GetAttributeChangedSignal("FavoriteRoom"):Connect(function()
-				v371(v382, false, "Ghost's favorite room", v27:GetAttribute("FavoriteRoom"));
+		if (v467 == "Create") then
+			v372(v383, false, "Ghost's favorite room", v27:GetAttribute("FavoriteRoom"));
+			v372(v384, false, "Holder1", "Holder2", false, 0);
+			table.insert(v374, v27:GetAttributeChangedSignal("FavoriteRoom"):Connect(function()
+				v372(v383, false, "Ghost's favorite room", v27:GetAttribute("FavoriteRoom"));
 			end));
 		else
-			v371(v383, true, "Holder1", "Holder2", false, 0);
-			v371(v382, true, "Ghost's favorite room", v27:GetAttribute("FavoriteRoom"));
+			v372(v384, true, "Holder1", "Holder2", false, 0);
+			v372(v383, true, "Ghost's favorite room", v27:GetAttribute("FavoriteRoom"));
 		end
 	end
 	task.spawn(function()
-		while v383 do
-			if v383:FindFirstChild("Esp2") then
-				if v383.Esp2:FindFirstChild("TextLabel") then
-					if (v325["Freezing Temperatures"] and (v325["Freezing Temperatures"] == true)) then
-						v383.Esp2.TextLabel.Text = "Freezing Temperature: true";
+		while v384 do
+			if v384:FindFirstChild("Esp2") then
+				if v384.Esp2:FindFirstChild("TextLabel") then
+					if (v327["Freezing Temperatures"] and (v327["Freezing Temperatures"] == true)) then
+						v384.Esp2.TextLabel.Text = "Freezing Temperature: true";
 					else
-						v383.Esp2.TextLabel.Text = "Freezing Temperature: false";
+						v384.Esp2.TextLabel.Text = "Freezing Temperature: false";
 					end
 				end
-				if v383.Esp2:FindFirstChild("Evidence") then
-					local v882 = v350():GetAttribute("Temperature");
-					local v883 = string.format("%.1f", v882);
-					if (#v883 > 3) then
-						v883 = string.sub(v883, 1, 3);
+				if v384.Esp2:FindFirstChild("Evidence") then
+					local v880 = v352():GetAttribute("Temperature");
+					local v881 = string.format("%.1f", v880);
+					if (#v881 > 3) then
+						v881 = string.sub(v881, 1, 3);
 					end
-					v383.Esp2.Evidence.Text = "Temperature: " .. v883;
+					v384.Esp2.Evidence.Text = "Temperature: " .. v881;
 				end
 			end
 			task.wait(0.1);
 		end
 	end);
-	local v386 = v9:CreateToggle("Ghost's Favorite room esp", v10['Visuals'], 5, 185, 85, nil, nil, nil, false, "RM");
-	v386.Activated:Connect(function()
+	local v387 = v9:CreateToggle("Ghost's Favorite room esp", v10['Visuals'], 5, 185, 85, nil, nil, nil, false, "RM");
+	v387.Activated:Connect(function()
 		v47 = not v47;
 		if v47 then
-			v385("Create");
+			v386("Create");
 		else
-			v385("Destroy");
+			v386("Destroy");
 		end
 	end);
 	v9:CreateText("Custom hunt sound", v10['Visuals'], 6, 185);
-	local v387 = v9:CreateTextBox(v10['Visuals'], 7, 185, 28);
+	local v388 = v9:CreateTextBox(v10['Visuals'], 7, 185, 28);
 	task.spawn(function()
 		while v27 and task.wait(0.1) do
-			local v520 = v27:FindFirstChild("HumanoidRootPart");
-			if not v520 then
-				continue;
-			end
-			local v521 = v520:FindFirstChild("Hunt");
+			local v521 = v27:FindFirstChild("HumanoidRootPart");
 			if not v521 then
 				continue;
 			end
-			local v522 = v387.Text:match("%d+");
-			local v523;
-			if v522 then
-				v523 = "rbxassetid://" .. v522;
-			else
-				v523 = v68;
+			local v522 = v521:FindFirstChild("Hunt");
+			if not v522 then
+				continue;
 			end
-			if (v521.SoundId ~= v523) then
-				v521.SoundId = v523;
+			local v523 = v388.Text:match("%d+");
+			local v524;
+			if v523 then
+				v524 = "rbxassetid://" .. v523;
+			else
+				v524 = v69;
+			end
+			if (v522.SoundId ~= v524) then
+				v522.SoundId = v524;
 			end
 		end
 	end);
 	v9:CreateText("Weather", v10['Visuals'], 8, 189);
-	local v388 = v9:CreateButton("Rain", v10['Visuals'], 9, 185);
-	local v389 = v9:CreateButton("Snow", v10['Visuals'], 10, 185);
-	local v390 = v9:CreateButton("Clear", v10['Visuals'], 11, 185);
-	v388.Activated:Connect(function()
-		if v320 then
-			for v709, v710 in pairs(v320.Weather.Rain:GetDescendants()) do
-				if v710:IsA("ParticleEmitter") then
-					if (v710.Enabled == false) then
-						v710.Enabled = true;
-					end
-				end
-			end
-			for v711, v712 in pairs(v320.Weather.Snow:GetDescendants()) do
-				if v712:IsA("Texture") then
-					FadeIn(1, v712);
-				end
-				if ((v712:IsA("BasePart") and (v712.Material == Enum.Material.Ground)) or v712:IsA("MeshPart")) then
-					FadeIn(1, v712);
-				end
-				if (v712:IsA("ParticleEmitter") and (v712.Enabled == true)) then
-					v712.Enabled = false;
-				end
-			end
-		end
-	end);
+	local v389 = v9:CreateButton("Rain", v10['Visuals'], 9, 185);
+	local v390 = v9:CreateButton("Snow", v10['Visuals'], 10, 185);
+	local v391 = v9:CreateButton("Clear", v10['Visuals'], 11, 185);
 	v389.Activated:Connect(function()
-		if v320 then
-			for v713, v714 in pairs(v320.Weather.Snow:GetDescendants()) do
-				if v714:IsA("Decal") then
-					FadeOut(1, v714);
-				end
-				if ((v714:IsA("BasePart") and (v714.Material == Enum.Material.Ground)) or v714:IsA("MeshPart")) then
-					FadeOut(1, v714);
-				end
-				if (v714:IsA("ParticleEmitter") and (v714.Enabled == false)) then
-					v714.Enabled = true;
+		if v322 then
+			for v710, v711 in pairs(v322.Weather.Rain:GetDescendants()) do
+				if v711:IsA("ParticleEmitter") then
+					if (v711.Enabled == false) then
+						v711.Enabled = true;
+					end
 				end
 			end
-			for v715, v716 in pairs(v320.Weather.Rain:GetDescendants()) do
-				if v716:IsA("ParticleEmitter") then
-					if (v716.Enabled == true) then
-						v716.Enabled = false;
-					end
+			for v712, v713 in pairs(v322.Weather.Snow:GetDescendants()) do
+				if v713:IsA("Texture") then
+					FadeIn(1, v713);
+				end
+				if ((v713:IsA("BasePart") and (v713.Material == Enum.Material.Ground)) or v713:IsA("MeshPart")) then
+					FadeIn(1, v713);
+				end
+				if (v713:IsA("ParticleEmitter") and (v713.Enabled == true)) then
+					v713.Enabled = false;
 				end
 			end
 		end
 	end);
 	v390.Activated:Connect(function()
-		if v320 then
-			for v717, v718 in pairs(v320.Weather.Snow:GetDescendants()) do
-				if v718:IsA("Decal") then
-					FadeIn(1, v718);
+		if v322 then
+			for v714, v715 in pairs(v322.Weather.Snow:GetDescendants()) do
+				if v715:IsA("Decal") then
+					FadeOut(1, v715);
 				end
-				if ((v718:IsA("BasePart") and (v718.Material == Enum.Material.Ground)) or v718:IsA("MeshPart")) then
-					FadeIn(1, v718);
+				if ((v715:IsA("BasePart") and (v715.Material == Enum.Material.Ground)) or v715:IsA("MeshPart")) then
+					FadeOut(1, v715);
 				end
-				if (v718:IsA("ParticleEmitter") and (v718.Enabled == true)) then
-					v718.Enabled = false;
+				if (v715:IsA("ParticleEmitter") and (v715.Enabled == false)) then
+					v715.Enabled = true;
 				end
 			end
-			for v719, v720 in pairs(v320.Weather.Rain:GetDescendants()) do
-				if v720:IsA("ParticleEmitter") then
-					if (v720.Enabled == true) then
-						v720.Enabled = false;
+			for v716, v717 in pairs(v322.Weather.Rain:GetDescendants()) do
+				if v717:IsA("ParticleEmitter") then
+					if (v717.Enabled == true) then
+						v717.Enabled = false;
 					end
 				end
 			end
 		end
 	end);
-	local v391 = v9:CreateToggle("Fullbright", v10['Visuals'], 2, 185, 85, nil, nil, nil, false, "Fb");
-	local v392 = false;
-	local function v393(v467)
-		if (v467 == "Light") then
-			local v593 = game:GetService("Lighting");
-			local v594 = TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
-			v4:Create(v593, v594, {Ambient=Color3.fromRGB(255, 255, 255)}):Play();
+	v391.Activated:Connect(function()
+		if v322 then
+			for v718, v719 in pairs(v322.Weather.Snow:GetDescendants()) do
+				if v719:IsA("Decal") then
+					FadeIn(1, v719);
+				end
+				if ((v719:IsA("BasePart") and (v719.Material == Enum.Material.Ground)) or v719:IsA("MeshPart")) then
+					FadeIn(1, v719);
+				end
+				if (v719:IsA("ParticleEmitter") and (v719.Enabled == true)) then
+					v719.Enabled = false;
+				end
+			end
+			for v720, v721 in pairs(v322.Weather.Rain:GetDescendants()) do
+				if v721:IsA("ParticleEmitter") then
+					if (v721.Enabled == true) then
+						v721.Enabled = false;
+					end
+				end
+			end
+		end
+	end);
+	local v392 = v9:CreateToggle("Fullbright", v10['Visuals'], 2, 185, 85, nil, nil, nil, false, "Fb");
+	local v393 = false;
+	local function v394(v468)
+		if (v468 == "Light") then
+			local v594 = game:GetService("Lighting");
+			local v595 = TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
+			v4:Create(v594, v595, {Ambient=Color3.fromRGB(255, 255, 255)}):Play();
 		else
-			local v595 = game:GetService("Lighting");
-			local v596 = TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
-			v4:Create(v595, v596, {Ambient=Color3.fromRGB(0, 0, 0)}):Play();
+			local v596 = game:GetService("Lighting");
+			local v597 = TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
+			v4:Create(v596, v597, {Ambient=Color3.fromRGB(0, 0, 0)}):Play();
 		end
 	end
-	v391.Activated:Connect(function()
+	v392.Activated:Connect(function()
 		v48 = not v48;
 		task.spawn(function()
 			while true do
@@ -2116,261 +2029,261 @@ if (v26 == "MainGame") then
 					if not game:GetService("Lighting"):FindFirstChild("Atmosphere") then
 						Instance.new("Atmosphere", game.Lighting);
 					end
-					v393("Light");
+					v394("Light");
 					task.wait(1);
 				else
 					if game:GetService("Lighting"):FindFirstChild("Atmosphere") then
 						game.Lighting.Atmosphere:Destroy();
 					end
-					v393("ha");
+					v394("ha");
 					task.wait(1);
 				end
 				task.wait(0.1);
 			end
 		end);
 	end);
-	for v468, v469 in pairs(v324:GetChildren()) do
-		local v470 = v9:CreateButton("Teleport To " .. v469.Name, v10['SCF'], 5, 150);
-		v470.Activated:Connect(function()
-			if (v469:FindFirstChild("BoundingBox") and v469.BoundingBox:IsA("BasePart")) then
-				v23.Position = v469.BoundingBox.Position;
-			elseif (v469:FindFirstChild("BoundingBox") and v469.BoundingBox:IsA("Folder")) then
-				local v888 = v469.BoundingBox:GetChildren();
-				local v889 = v888[math.random(1, #v888)];
-				v23.Position = v889.Position;
+	for v469, v470 in pairs(v326:GetChildren()) do
+		local v471 = v9:CreateButton("Teleport To " .. v470.Name, v10['SCF'], 5, 150);
+		v471.Activated:Connect(function()
+			if (v470:FindFirstChild("BoundingBox") and v470.BoundingBox:IsA("BasePart")) then
+				v23.Position = v470.BoundingBox.Position;
+			elseif (v470:FindFirstChild("BoundingBox") and v470.BoundingBox:IsA("Folder")) then
+				local v886 = v470.BoundingBox:GetChildren();
+				local v887 = v886[math.random(1, #v886)];
+				v23.Position = v887.Position;
 			end
 		end);
 	end
 	v9:CreateText("Closets", v10['SCF'], 6, 150);
-	if (v320 and v320:FindFirstChild("InvisibleGhostWalls")) then
-		v323 = v320.InvisibleGhostWalls;
-	elseif (v321 and v321:FindFirstChild("InvisibleGhostWalls")) then
-		v323 = v321.InvisibleGhostWalls;
+	if (v322 and v322:FindFirstChild("InvisibleGhostWalls")) then
+		v325 = v322.InvisibleGhostWalls;
+	elseif (v323 and v323:FindFirstChild("InvisibleGhostWalls")) then
+		v325 = v323.InvisibleGhostWalls;
 	end
-	if v323 then
-		local v525 = v9:CreateButton("Teleport to the closest closet", v10['SCF'], 7, 150);
-		v525.Activated:Connect(function()
-			local v597 = nil;
-			local v598 = math.huge;
-			if (not v320:FindFirstChild("Closets") or not v320:FindFirstChild("Closets"):FindFirstChild("Closet")) then
-				for v892, v893 in pairs(v323:GetChildren()) do
-					if (v893:IsA("BasePart") and (v893.Name == "GhostCloset")) then
-						local v979 = (v23.Position - v893.Position).Magnitude;
-						if (v979 < v598) then
-							v598 = v979;
-							v597 = v893.Position;
+	if v325 then
+		local v526 = v9:CreateButton("Teleport to the closest closet", v10['SCF'], 7, 150);
+		v526.Activated:Connect(function()
+			local v598 = nil;
+			local v599 = math.huge;
+			if (not v322:FindFirstChild("Closets") or not v322:FindFirstChild("Closets"):FindFirstChild("Closet")) then
+				for v890, v891 in pairs(v325:GetChildren()) do
+					if (v891:IsA("BasePart") and (v891.Name == "GhostCloset")) then
+						local v970 = (v23.Position - v891.Position).Magnitude;
+						if (v970 < v599) then
+							v599 = v970;
+							v598 = v891.Position;
 						end
 					end
 				end
 			else
-				local v834 = {};
-				for v894, v895 in pairs(v320:FindFirstChild("Closets"):GetChildren()) do
-					if (v895:IsA("Model") and (v895.Name == "Closet")) then
-						local v980 = v895:FindFirstChild("Base"):FindFirstChild("Cube");
-						table.insert(v834, v980.Position);
+				local v835 = {};
+				for v892, v893 in pairs(v322:FindFirstChild("Closets"):GetChildren()) do
+					if (v893:IsA("Model") and (v893.Name == "Closet")) then
+						local v971 = v893:FindFirstChild("Base"):FindFirstChild("Cube");
+						table.insert(v835, v971.Position);
 					end
 				end
-				for v896, v897 in pairs(v834) do
-					local v898 = (v23.Position - v897).Magnitude;
-					if (v898 < v598) then
-						v598 = v898;
-						v597 = v897;
+				for v894, v895 in pairs(v835) do
+					local v896 = (v23.Position - v895).Magnitude;
+					if (v896 < v599) then
+						v599 = v896;
+						v598 = v895;
 					end
 				end
 			end
-			if (v597 and v23) then
-				v23.CFrame = CFrame.new(v597) * v23.CFrame.Rotation;
+			if (v598 and v23) then
+				v23.CFrame = CFrame.new(v598) * v23.CFrame.Rotation;
 			end
-			if (v320 and (not v320:FindFirstChild("Closets") or not v320:FindFirstChild("Closets"):FindFirstChild("Closet")) and v321) then
-				for v899, v900 in pairs(v321:GetDescendants()) do
-					if string.find(v900.Name, "Closet") then
-						v23.Position = v900:GetPivot().Position;
+			if (v322 and (not v322:FindFirstChild("Closets") or not v322:FindFirstChild("Closets"):FindFirstChild("Closet")) and v323) then
+				for v897, v898 in pairs(v323:GetDescendants()) do
+					if string.find(v898.Name, "Closet") then
+						v23.Position = v898:GetPivot().Position;
 					end
 				end
 			end
 		end);
 	end
 	v9:CreateText("Players", v10['SCF'], 9, 150);
-	local v394 = v9:CreateButton("Teleport to the closest player", v10['SCF'], 10, 150);
-	local v395 = v9:CreateButton("Teleport to a random player", v10['SCF'], 11, 150);
+	local v395 = v9:CreateButton("Teleport to the closest player", v10['SCF'], 10, 150);
+	local v396 = v9:CreateButton("Teleport to a random player", v10['SCF'], 11, 150);
 	v9:CreateText("Ghost", v10['SCF'], 12, 150);
-	local v396 = v9:CreateButton("Teleport to the ghost", v10['SCF'], 13, 150);
-	local v397 = v9:CreateButton("Teleport to the ghost room", v10['SCF'], 14, 150);
-	v396.Activated:Connect(function()
+	local v397 = v9:CreateButton("Teleport to the ghost", v10['SCF'], 13, 150);
+	local v398 = v9:CreateButton("Teleport to the ghost room", v10['SCF'], 14, 150);
+	v397.Activated:Connect(function()
 		if (v0 and v27) then
 			if v0.Ghost:FindFirstChild("HumanoidRootPart") then
 				v23.CFrame = v0.Ghost.HumanoidRootPart.CFrame;
 			end
 		end
 	end);
-	v397.Activated:Connect(function()
+	v398.Activated:Connect(function()
 		if (v0 and v27) then
-			local v599 = v0.Ghost:GetAttribute("FavoriteRoom");
-			if v599 then
-				if v324 then
-					local v945 = v324:FindFirstChild(v0.Ghost:GetAttribute("FavoriteRoom"));
-					if v945 then
-						if (v945:FindFirstChild("BoundingBox") and v945.BoundingBox:IsA("BasePart")) then
-							v23.CFrame = v945.BoundingBox.CFrame;
-						elseif (v945:FindFirstChild("BoundingBox") and v945.BoundingBox:IsA("Folder")) then
-							v23.CFrame = v945.BoundingBox.Part.CFrame;
+			local v600 = v0.Ghost:GetAttribute("FavoriteRoom");
+			if v600 then
+				if v326 then
+					local v938 = v326:FindFirstChild(v0.Ghost:GetAttribute("FavoriteRoom"));
+					if v938 then
+						if (v938:FindFirstChild("BoundingBox") and v938.BoundingBox:IsA("BasePart")) then
+							v23.CFrame = v938.BoundingBox.CFrame;
+						elseif (v938:FindFirstChild("BoundingBox") and v938.BoundingBox:IsA("Folder")) then
+							v23.CFrame = v938.BoundingBox.Part.CFrame;
 						end
 					end
 				end
 			end
 		end
 	end);
-	v394.Activated:Connect(function()
-		if (#v139:GetPlayers() <= 1) then
+	v395.Activated:Connect(function()
+		if (#v140:GetPlayers() <= 1) then
 			v9:CreateNotification("You are playing alone.");
 			return;
 		end
-		for v526, v527 in pairs(v0:GetChildren()) do
-			if (v527:FindFirstChild("Humanoid") and v527:FindFirstChild("HumanoidRootPart")) then
-				if ((v527.Name ~= "Ghost") and (v527.Name ~= v2.Name)) then
-					v23.CFrame = v527.HumanoidRootPart.CFrame;
+		for v527, v528 in pairs(v0:GetChildren()) do
+			if (v528:FindFirstChild("Humanoid") and v528:FindFirstChild("HumanoidRootPart")) then
+				if ((v528.Name ~= "Ghost") and (v528.Name ~= v2.Name)) then
+					v23.CFrame = v528.HumanoidRootPart.CFrame;
 					break;
 				end
 			end
 		end
 	end);
-	v395.Activated:Connect(function()
-		if (#v139:GetPlayers() <= 1) then
+	v396.Activated:Connect(function()
+		if (#v140:GetPlayers() <= 1) then
 			v9:CreateNotification("You are playing alone.");
 			return;
 		end
-		local v471 = {};
-		for v528, v529 in pairs(workspace:GetChildren()) do
-			if (v529:FindFirstChild("Humanoid") and v529:FindFirstChild("HumanoidRootPart")) then
-				if ((v529.Name ~= "Ghost") and (v529.Name ~= v2.Name)) then
-					table.insert(v471, v529);
+		local v472 = {};
+		for v529, v530 in pairs(workspace:GetChildren()) do
+			if (v530:FindFirstChild("Humanoid") and v530:FindFirstChild("HumanoidRootPart")) then
+				if ((v530.Name ~= "Ghost") and (v530.Name ~= v2.Name)) then
+					table.insert(v472, v530);
 				end
 			end
 		end
-		local v472 = v471[math.random(1, #v471)];
-		v23.CFrame = v472.HumanoidRootPart.CFrame;
+		local v473 = v472[math.random(1, #v472)];
+		v23.CFrame = v473.HumanoidRootPart.CFrame;
 	end);
-	for v475, v476 in pairs(v10["2"]:GetDescendants()) do
-		if (v476.Name == "Divider") then
-			v476.Size = UDim2.new(v476.Size.X.Scale, v476.Size.X.Offset, v476.Size.Y.Scale, 1);
+	for v476, v477 in pairs(v10["2"]:GetDescendants()) do
+		if (v477.Name == "Divider") then
+			v477.Size = UDim2.new(v477.Size.X.Scale, v477.Size.X.Offset, v477.Size.Y.Scale, 1);
 		end
 	end
-	local v398 = nil;
-	local v399 = "None";
-	local v400 = game:GetService("HttpService");
-	local v401 = "https://www.npoint.io/docs/35a1db3895cf6b3e0e31";
-	local function v402(v477, v478)
-		local v479 = v400:JSONEncode(v478);
+	local v399 = nil;
+	local v400 = "None";
+	local v401 = game:GetService("HttpService");
+	local v402 = "https://www.npoint.io/docs/35a1db3895cf6b3e0e31";
+	local function v403(v478, v479)
+		local v480 = v401:JSONEncode(v479);
 	end
-	local function v403()
-		local v480, v481 = pcall(function()
-			return v400:GetAsync(v401);
+	local function v404()
+		local v481, v482 = pcall(function()
+			return v401:GetAsync(v402);
 		end);
-		return (v480 and v400:JSONDecode(v481)) or {};
+		return (v481 and v401:JSONDecode(v482)) or {};
 	end
-	local v404 = v9:CreateButton("Create a new preset", v216, 1, 165);
-	local v405 = v9:CreateButton("Delete the selected preset", v216, 3, 165);
-	local v406 = v9:CreateButton("Load the selected preset", v216, 4, 165);
-	local v407 = v9:CreateLog("Selected Preset: ", v216, 0, 165, false, "Frame", false);
+	local v405 = v9:CreateButton("Create a new preset", v218, 1, 165);
+	local v406 = v9:CreateButton("Delete the selected preset", v218, 3, 165);
+	local v407 = v9:CreateButton("Load the selected preset", v218, 4, 165);
+	local v408 = v9:CreateLog("Selected Preset: ", v218, 0, 165, false, "Frame", false);
 	task.spawn(function()
-		while v407 do
-			if (v398 == nil) then
-				v399 = "None";
+		while v408 do
+			if (v399 == nil) then
+				v400 = "None";
 			end
-			v407.Text = "Selected Preset: " .. tostring(v399);
+			v408.Text = "Selected Preset: " .. tostring(v400);
 			task.wait(0.1);
 		end
 	end);
-	local v408 = "LeftAlt";
-	local v409 = "V";
-	local v410 = "B";
-	local function v411(v482)
-		local v483 = ((v482 == "Presets") and v11) or {togglekeybind=v408,ghostkeybind=v409,playerkeybind=v410};
+	local v409 = "LeftAlt";
+	local v410 = "V";
+	local v411 = "B";
+	local function v412(v483)
+		local v484 = ((v483 == "Presets") and v11) or {togglekeybind=v409,ghostkeybind=v410,playerkeybind=v411};
 		if (v12 == "PC") then
 			if not isfolder(v33) then
 				makefolder(v33);
 			end
-			local v601, v602 = pcall(function()
-				return v400:JSONEncode(v483);
+			local v602, v603 = pcall(function()
+				return v401:JSONEncode(v484);
 			end);
-			if v601 then
-				writefile(((v482 == "Presets") and v31) or v32, v602);
+			if v602 then
+				writefile(((v483 == "Presets") and v31) or v32, v603);
 			end
 		else
-			v402(v482, v483);
+			v403(v483, v484);
 		end
 	end
-	local function v412(v484, v485)
-		if (v484 == "Toggle") then
-			v408 = v485;
-		elseif (v484 == "Ghost") then
-			v409 = v485;
-		elseif (v484 == "Player") then
-			v410 = v485;
+	local function v413(v485, v486)
+		if (v485 == "Toggle") then
+			v409 = v486;
+		elseif (v485 == "Ghost") then
+			v410 = v486;
+		elseif (v485 == "Player") then
+			v411 = v486;
 		end
-		v411("Toggle");
+		v412("Toggle");
 	end
-	local function v413()
+	local function v414()
 		if isfile(v32) then
-			local v603, v604 = pcall(function()
-				return v400:JSONDecode(readfile(v32));
+			local v604, v605 = pcall(function()
+				return v401:JSONDecode(readfile(v32));
 			end);
-			if (v603 and (type(v604) == "table")) then
-				if v604.togglekeybind then
-					v408 = v604.togglekeybind;
+			if (v604 and (type(v605) == "table")) then
+				if v605.togglekeybind then
+					v409 = v605.togglekeybind;
 				end
-				if v604.ghostkeybind then
-					v409 = v604.ghostkeybind;
+				if v605.ghostkeybind then
+					v410 = v605.ghostkeybind;
 				end
 			end
 		end
 	end
-	v413();
-	local function v414(v486)
-		local v487 = v11[v486];
-		if v487 then
-			v34 = v487.AE;
-			v35 = v487.AP;
-			v36 = v487.AG;
-			v37 = v487.AB;
-			v38 = v487.Max;
-			v39 = v487.AF;
-			v40 = v487.AES;
-			v42 = v487.NOH;
-			v43 = v487.IEsp;
-			v44 = v487.Notify;
-			v45 = v487.GEs;
-			v46 = v487.ev;
-			v41 = v487.PlEs;
-			v47 = v487.RM;
-			v48 = v487.Fb;
-			v49 = v487.isInf;
-			val = v487.val;
-			val2 = v487.val2;
-			v50 = v487.NoEvidence;
+	v414();
+	local function v415(v487)
+		local v488 = v11[v487];
+		if v488 then
+			v34 = v488.AE;
+			v35 = v488.AP;
+			v36 = v488.AG;
+			v37 = v488.AB;
+			v38 = v488.Max;
+			v39 = v488.AF;
+			v40 = v488.AES;
+			v42 = v488.NOH;
+			v43 = v488.IEsp;
+			v44 = v488.Notify;
+			v45 = v488.GEs;
+			v46 = v488.ev;
+			v41 = v488.PlEs;
+			v47 = v488.RM;
+			v48 = v488.Fb;
+			v49 = v488.isInf;
+			val = v488.val;
+			val2 = v488.val2;
+			v50 = v488.NoEvidence;
 		end
 		if v22 then
-			if v487.WalkSpeed then
-				v22.WalkSpeed = v487.WalkSpeed;
+			if v488.WalkSpeed then
+				v22.WalkSpeed = v488.WalkSpeed;
 			end
-			if v487.JumpPower then
-				v22.JumpPower = v487.JumpPower;
+			if v488.JumpPower then
+				v22.JumpPower = v488.JumpPower;
 			end
 		end
-		for v531, v532 in pairs(v487) do
-			v18[v531] = v532;
-			if (v316 and v316[v531]) then
-				v316[v531].Update(v532);
+		for v532, v533 in pairs(v488) do
+			v18[v532] = v533;
+			if (v318 and v318[v532]) then
+				v318[v532].Update(v533);
 			end
-			if (v19 and v19[v531]) then
-				v19[v531].Update(v532);
+			if (v19 and v19[v532]) then
+				v19[v532].Update(v533);
 			end
 		end
 		task.spawn(function()
 			if v34 then
 				task.spawn(function()
 					while v34 do
-						v370();
+						v371();
 						task.wait(0.1);
 					end
 				end);
@@ -2380,7 +2293,7 @@ if (v26 == "MainGame") then
 			if v36 then
 				task.spawn(function()
 					while v36 do
-						v357();
+						v359();
 						task.wait(0.1);
 					end
 				end);
@@ -2390,7 +2303,7 @@ if (v26 == "MainGame") then
 			if v37 then
 				task.spawn(function()
 					while v37 do
-						v363();
+						v365();
 						task.wait(0.1);
 					end
 				end);
@@ -2400,10 +2313,10 @@ if (v26 == "MainGame") then
 			if v40 then
 				task.spawn(function()
 					while v40 do
-						if v324 then
+						if v326 then
 							v27:GetAttributeChangedSignal("Hunting"):Connect(function()
 								if (v40 and (v27:GetAttribute("Hunting") == true)) then
-									v361();
+									v363();
 								end
 							end);
 						end
@@ -2414,47 +2327,47 @@ if (v26 == "MainGame") then
 		end);
 		if v42 then
 			task.spawn(function()
-				v368 = v27:GetAttributeChangedSignal("Hunting"):Connect(function()
-					local v842 = v27:GetAttribute("Hunting");
-					if (v842 == true) then
+				v369 = v27:GetAttributeChangedSignal("Hunting"):Connect(function()
+					local v843 = v27:GetAttribute("Hunting");
+					if (v843 == true) then
 						v9:CreateNotification("Ghost hunt has started.", 2);
 					else
 						v9:CreateNotification("Ghost hunt has ended.", 2);
 					end
 				end);
 			end);
-		elseif v368 then
-			v368:Disconnect();
-			v368 = nil;
+		elseif v369 then
+			v369:Disconnect();
+			v369 = nil;
 		end
 		if v43 then
-			v374("Create");
+			v375("Create");
 		else
-			v374("Destroy");
+			v375("Destroy");
 		end
 		if v44 then
 			task.spawn(function()
 				while v44 do
-					v331();
+					v333();
 					task.wait(0.1);
 				end
 			end);
 		end
 		if v45 then
-			v378("Create");
+			v379("Create");
 		else
-			v378("Destroy");
+			v379("Destroy");
 		end
 		if v46 then
-			v381("Create");
+			v382("Create");
 		else
-			v381("Destroy");
+			v382("Destroy");
 		end
 		task.spawn(function()
 			if v47 then
-				v385("Create");
+				v386("Create");
 			else
-				v385("Destroy");
+				v386("Destroy");
 			end
 		end);
 		task.spawn(function()
@@ -2471,9 +2384,9 @@ if (v26 == "MainGame") then
 		end);
 		task.spawn(function()
 			if v41 then
-				v375("Create");
+				v376("Create");
 			else
-				v375("Destroy");
+				v376("Destroy");
 			end
 		end);
 		task.spawn(function()
@@ -2481,104 +2394,104 @@ if (v26 == "MainGame") then
 				if not game:GetService("Lighting"):FindFirstChild("Atmosphere") then
 					Instance.new("Atmosphere", game.Lighting);
 				end
-				v393("Light");
+				v394("Light");
 				task.wait(1);
 			else
 				if game:GetService("Lighting"):FindFirstChild("Atmosphere") then
 					game.Lighting.Atmosphere:Destroy();
 				end
-				v393("ha");
+				v394("ha");
 				task.wait(1);
 			end
 		end);
 	end
-	v404.Activated:Connect(function()
-		local v488 = 0;
-		for v534 in pairs(v11) do
-			v488 = v488 + 1;
+	v405.Activated:Connect(function()
+		local v489 = 0;
+		for v535 in pairs(v11) do
+			v489 = v489 + 1;
 		end
-		if (v488 >= 5) then
+		if (v489 >= 5) then
 			v9:CreateNotification("You've already reached the maximum of 5 presets", 2);
 			return;
 		end
-		local v489, v490 = v9:CreateInner(v10["2"], false);
-		v490.Activated:Connect(function()
-			if (v489.Text == "") then
+		local v490, v491 = v9:CreateInner(v10["2"], false);
+		v491.Activated:Connect(function()
+			if (v490.Text == "") then
 				v9:CreateNotification("Please, give a name to the preset.", 2);
 				return;
 			end
-			if v11[v489.Text] then
+			if v11[v490.Text] then
 				v9:CreateNotification("There is already a preset wtih that name.", 2);
 				return;
 			end
-			v11[v489.Text] = v51();
-			local v536 = v9:CreateButton(v489.Text, v216, 7, 165, true);
-			v536.Activated:Connect(function()
-				v398 = v536;
-				v399 = v489.Text;
+			v11[v490.Text] = v51();
+			local v537 = v9:CreateButton(v490.Text, v218, 7, 165, true);
+			v537.Activated:Connect(function()
+				v399 = v537;
+				v400 = v490.Text;
 			end);
-			v411("Presets");
+			v412("Presets");
 			v9:CreateInner(v10["2"], true);
 		end);
 	end);
-	v405.Activated:Connect(function()
-		if (v398 and (typeof(v398) == "Instance")) then
-			local v625 = v398.TextLabel.Text;
-			v398:Destroy();
-			v11[v625] = nil;
-			v411("Presets");
-			v398 = nil;
+	v406.Activated:Connect(function()
+		if (v399 and (typeof(v399) == "Instance")) then
+			local v626 = v399.TextLabel.Text;
+			v399:Destroy();
+			v11[v626] = nil;
+			v412("Presets");
+			v399 = nil;
 		end
 	end);
-	local function v415(v491)
-		if not v491 then
-			v491 = v216;
+	local function v416(v492)
+		if not v492 then
+			v492 = v218;
 		end
-		local v492 = {};
+		local v493 = {};
 		if (v12 == "PC") then
 			if isfile(v31) then
-				v492 = v400:JSONDecode(readfile(v31));
+				v493 = v401:JSONDecode(readfile(v31));
 			end
 		else
-			v492 = v403();
+			v493 = v404();
 		end
-		v11 = v492;
-		for v537, v538 in pairs(v11) do
-			local v539 = v9:CreateButton(v537, v491, 7, 165, true);
-			v539.Activated:Connect(function()
-				v398 = v539;
-				v399 = v537;
+		v11 = v493;
+		for v538, v539 in pairs(v11) do
+			local v540 = v9:CreateButton(v538, v492, 7, 165, true);
+			v540.Activated:Connect(function()
+				v399 = v540;
+				v400 = v538;
 			end);
 		end
 	end
-	v415();
-	v406.Activated:Connect(function()
-		if (v399 ~= "None") then
-			v414(v399);
+	v416();
+	v407.Activated:Connect(function()
+		if (v400 ~= "None") then
+			v415(v400);
 		else
 			v9:CreateNotification("Select a preset first.", 2);
 		end
 	end);
-	local v416;
 	local v417;
 	local v418;
+	local v419;
 	if (v12 == "PC") then
-		v416 = v9:CreateButton("Toggle Keybind: " .. v408, v216, 9, 165, true);
-		v417 = v9:CreateButton("Ghost aimbot keybind: " .. v409, v10['PlayerSettings'], 11, 185, true);
-		v418 = v9:CreateButton("Player aimbot keybind: " .. v410, v10['PlayerSettings'], 12, 185, true);
+		v417 = v9:CreateButton("Toggle Keybind: " .. v409, v218, 9, 165, true);
+		v418 = v9:CreateButton("Ghost aimbot keybind: " .. v410, v10['PlayerSettings'], 11, 185, true);
+		v419 = v9:CreateButton("Player aimbot keybind: " .. v411, v10['PlayerSettings'], 12, 185, true);
 	else
-		v416 = v9:CreateMobileButton("Toggle Gui", v10.MobileBtnHolder, 9, 50, "ToggleMobile");
-		v417 = v9:CreateMobileButton("Toggle Ghost Aimbot", v10.MobileBtnHolder, 11, 50, "GhostMobile");
-		v418 = v9:CreateMobileButton("Toggle Player Aimbot", v10.MobileBtnHolder, 12, 50, "PlayerMobile");
+		v417 = v9:CreateMobileButton("Toggle Gui", v10.MobileBtnHolder, 9, 50, "ToggleMobile");
+		v418 = v9:CreateMobileButton("Toggle Ghost Aimbot", v10.MobileBtnHolder, 11, 50, "GhostMobile");
+		v419 = v9:CreateMobileButton("Toggle Player Aimbot", v10.MobileBtnHolder, 12, 50, "PlayerMobile");
 	end
-	local v419 = false;
 	local v420 = false;
+	local v421 = false;
 	if (v12 == "PC") then
-		v5.InputBegan:Connect(function(v627, v628)
-			if v628 then
+		v5.InputBegan:Connect(function(v628, v629)
+			if v629 then
 				return;
 			end
-			if (v627.KeyCode.Name == v409) then
+			if (v628.KeyCode.Name == v410) then
 				isAiming = not isAiming;
 			end
 		end);
@@ -2587,153 +2500,153 @@ if (v26 == "MainGame") then
 				v0.Camera.CFrame = CFrame.lookAt(v0.Camera.CFrame.Position, v27.HumanoidRootPart.Position);
 			end
 		end);
-		local v540 = nil;
-		v5.InputBegan:Connect(function(v629, v630)
-			if v630 then
+		local v541 = nil;
+		v5.InputBegan:Connect(function(v630, v631)
+			if v631 then
 				return;
 			end
-			if (v629.KeyCode.Name == v410) then
+			if (v630.KeyCode.Name == v411) then
 				isAiming = not isAiming;
-			elseif ((v629.KeyCode == Enum.KeyCode.E) and isAiming) then
-				local v948 = false;
-				local v949 = {};
-				for v983, v984 in pairs(v0:GetChildren()) do
-					if (v984:FindFirstChild("Humanoid") and (v984 ~= v21) and (v984.Name ~= "Ghost")) then
-						table.insert(v949, v984);
+			elseif ((v630.KeyCode == Enum.KeyCode.E) and isAiming) then
+				local v941 = false;
+				local v942 = {};
+				for v974, v975 in pairs(v0:GetChildren()) do
+					if (v975:FindFirstChild("Humanoid") and (v975 ~= v21) and (v975.Name ~= "Ghost")) then
+						table.insert(v942, v975);
 					end
 				end
-				for v985, v986 in ipairs(v949) do
-					if (v986 == v540) then
-						v540 = v949[v985 + 1] or v949[1];
-						v948 = true;
+				for v976, v977 in ipairs(v942) do
+					if (v977 == v541) then
+						v541 = v942[v976 + 1] or v942[1];
+						v941 = true;
 						break;
 					end
 				end
-				if not v948 then
-					v540 = v949[1];
+				if not v941 then
+					v541 = v942[1];
 				end
 			end
 		end);
 		game:GetService("RunService").RenderStepped:Connect(function()
-			if (isAiming and v540 and v540:FindFirstChild("HumanoidRootPart")) then
-				workspace.CurrentCamera.CFrame = CFrame.lookAt(workspace.CurrentCamera.CFrame.Position, v540.HumanoidRootPart.Position);
+			if (isAiming and v541 and v541:FindFirstChild("HumanoidRootPart")) then
+				workspace.CurrentCamera.CFrame = CFrame.lookAt(workspace.CurrentCamera.CFrame.Position, v541.HumanoidRootPart.Position);
 			end
-		end);
-		v417.Activated:Connect(function()
-			if v419 then
-				return;
-			end
-			local v631 = v417:FindFirstChild("TextLabel");
-			if not v631 then
-				return;
-			end
-			v419 = true;
-			local v632 = v631.Text;
-			v631.Text = "...";
-			v5.ModalEnabled = true;
-			local v635;
-			v635 = v5.InputBegan:Connect(function(v724, v725)
-				if (v724.KeyCode == Enum.KeyCode.Escape) then
-					v631.Text = v632;
-					v419 = false;
-					v5.ModalEnabled = false;
-					v635:Disconnect();
-					return;
-				end
-				if v725 then
-					return;
-				end
-				v412("Ghost", v724.KeyCode.Name);
-				v631.Text = "Ghost aimbot keybind: " .. v724.KeyCode.Name;
-				v5.ModalEnabled = false;
-				v635:Disconnect();
-				task.defer(function()
-					v419 = false;
-				end);
-			end);
 		end);
 		v418.Activated:Connect(function()
-			if v419 then
+			if v420 then
 				return;
 			end
-			local v636 = v418:FindFirstChild("TextLabel");
-			if not v636 then
+			local v632 = v418:FindFirstChild("TextLabel");
+			if not v632 then
 				return;
 			end
-			v419 = true;
-			local v637 = v636.Text;
-			v636.Text = "...";
+			v420 = true;
+			local v633 = v632.Text;
+			v632.Text = "...";
 			v5.ModalEnabled = true;
-			local v640;
-			v640 = v5.InputBegan:Connect(function(v728, v729)
-				if (v728.KeyCode == Enum.KeyCode.Escape) then
-					v636.Text = v637;
-					v419 = false;
+			local v636;
+			v636 = v5.InputBegan:Connect(function(v725, v726)
+				if (v725.KeyCode == Enum.KeyCode.Escape) then
+					v632.Text = v633;
+					v420 = false;
 					v5.ModalEnabled = false;
-					v640:Disconnect();
+					v636:Disconnect();
 					return;
 				end
-				if v729 then
+				if v726 then
 					return;
 				end
-				v412("Player", v728.KeyCode.Name);
-				v636.Text = "Player aimbot keybind: " .. v728.KeyCode.Name;
+				v413("Ghost", v725.KeyCode.Name);
+				v632.Text = "Ghost aimbot keybind: " .. v725.KeyCode.Name;
 				v5.ModalEnabled = false;
-				v640:Disconnect();
+				v636:Disconnect();
 				task.defer(function()
-					v419 = false;
+					v420 = false;
 				end);
 			end);
 		end);
-		v416.Activated:Connect(function()
-			if v419 then
+		v419.Activated:Connect(function()
+			if v420 then
 				return;
 			end
-			local v641 = v416:FindFirstChild("TextLabel");
-			if not v641 then
+			local v637 = v419:FindFirstChild("TextLabel");
+			if not v637 then
 				return;
 			end
-			v419 = true;
-			local v642 = v641.Text;
-			v641.Text = "...";
+			v420 = true;
+			local v638 = v637.Text;
+			v637.Text = "...";
 			v5.ModalEnabled = true;
-			local v645;
-			v645 = v5.InputBegan:Connect(function(v732, v733)
-				if (v732.KeyCode == Enum.KeyCode.Escape) then
-					v641.Text = v642;
-					v419 = false;
+			local v641;
+			v641 = v5.InputBegan:Connect(function(v729, v730)
+				if (v729.KeyCode == Enum.KeyCode.Escape) then
+					v637.Text = v638;
+					v420 = false;
 					v5.ModalEnabled = false;
-					v645:Disconnect();
+					v641:Disconnect();
 					return;
 				end
-				if v733 then
+				if v730 then
 					return;
 				end
-				v412("Toggle", v732.KeyCode.Name);
-				v641.Text = "Toggle Keybind: " .. v732.KeyCode.Name;
+				v413("Player", v729.KeyCode.Name);
+				v637.Text = "Player aimbot keybind: " .. v729.KeyCode.Name;
 				v5.ModalEnabled = false;
-				v645:Disconnect();
+				v641:Disconnect();
 				task.defer(function()
-					v419 = false;
+					v420 = false;
 				end);
 			end);
 		end);
-		v5.InputBegan:Connect(function(v646, v647)
-			if v647 then
+		v417.Activated:Connect(function()
+			if v420 then
 				return;
 			end
-			if v419 then
+			local v642 = v417:FindFirstChild("TextLabel");
+			if not v642 then
 				return;
 			end
-			if (v646.KeyCode.Name == v408) then
+			v420 = true;
+			local v643 = v642.Text;
+			v642.Text = "...";
+			v5.ModalEnabled = true;
+			local v646;
+			v646 = v5.InputBegan:Connect(function(v733, v734)
+				if (v733.KeyCode == Enum.KeyCode.Escape) then
+					v642.Text = v643;
+					v420 = false;
+					v5.ModalEnabled = false;
+					v646:Disconnect();
+					return;
+				end
+				if v734 then
+					return;
+				end
+				v413("Toggle", v733.KeyCode.Name);
+				v642.Text = "Toggle Keybind: " .. v733.KeyCode.Name;
+				v5.ModalEnabled = false;
+				v646:Disconnect();
+				task.defer(function()
+					v420 = false;
+				end);
+			end);
+		end);
+		v5.InputBegan:Connect(function(v647, v648)
+			if v648 then
+				return;
+			end
+			if v420 then
+				return;
+			end
+			if (v647.KeyCode.Name == v409) then
 				v9:togglevis();
 			end
 		end);
 	else
-		v416.Activated:Connect(function()
+		v417.Activated:Connect(function()
 			v9:togglevis();
 		end);
-		v417.Activated:Connect(function()
+		v418.Activated:Connect(function()
 			isAiming = not isAiming;
 			game:GetService("RunService").RenderStepped:Connect(function()
 				if isAiming then
@@ -2741,30 +2654,30 @@ if (v26 == "MainGame") then
 				end
 			end);
 		end);
-		local v541 = nil;
-		v418.Activated:Connect(function()
+		local v542 = nil;
+		v419.Activated:Connect(function()
 			isAiming = not isAiming;
-			local v648 = false;
-			local v649 = {};
-			for v736, v737 in pairs(workspace:GetChildren()) do
-				if (v737:FindFirstChild("Humanoid") and (v737 ~= v21)) then
-					table.insert(v649, v737);
+			local v649 = false;
+			local v650 = {};
+			for v737, v738 in pairs(workspace:GetChildren()) do
+				if (v738:FindFirstChild("Humanoid") and (v738 ~= v21)) then
+					table.insert(v650, v738);
 				end
 			end
-			for v738, v739 in ipairs(v649) do
-				if (v739 == v541) then
-					v541 = v649[v738 + 1] or v649[1];
-					v648 = true;
+			for v739, v740 in ipairs(v650) do
+				if (v740 == v542) then
+					v542 = v650[v739 + 1] or v650[1];
+					v649 = true;
 					break;
 				end
 			end
-			if not v648 then
-				v541 = v649[1];
+			if not v649 then
+				v542 = v650[1];
 			end
 		end);
 		game:GetService("RunService").RenderStepped:Connect(function()
-			if (isAiming and v541 and v541:FindFirstChild("HumanoidRootPart")) then
-				workspace.CurrentCamera.CFrame = CFrame.lookAt(workspace.CurrentCamera.CFrame.Position, v541.HumanoidRootPart.Position);
+			if (isAiming and v542 and v542:FindFirstChild("HumanoidRootPart")) then
+				workspace.CurrentCamera.CFrame = CFrame.lookAt(workspace.CurrentCamera.CFrame.Position, v542.HumanoidRootPart.Position);
 			end
 		end);
 	end
