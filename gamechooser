@@ -1,0 +1,8 @@
+local v0 = {};
+v0.GameType = nil;
+if (game.PlaceId == 18199615050) then
+	v0.GameType = "DemonologyLobby";
+elseif (game.PlaceId == 18794863104) then
+	v0.GameType = "DemonologySite";
+end
+return v0;
