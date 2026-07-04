@@ -1,0 +1,6 @@
+local v0 = loadstring(game:HttpGet("https://raw.githubusercontent.com/steadyrinetintin3/unnamedscript/refs/heads/main/gamechooser"))();
+if v0 then
+	if ((v0.GameType == "DemonologyLobby") or (v0.GameType == "DemonologySite")) then
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/steadyrinetintin3/unnamedscript/refs/heads/main/unnamed"))();
+	end
+end
