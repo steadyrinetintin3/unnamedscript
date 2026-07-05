@@ -8,7 +8,12 @@ local v6 = game:GetService("VirtualInputManager");
 local v7 = game:GetService("ReplicatedStorage");
 local v8 = game:GetService("HttpService");
 local v9 = {};
-local v10 = loadstring(game:HttpGet("https://raw.githubusercontent.com/steadyrinetintin3/unnamedscript/refs/heads/main/gamechooser"))();
+local v10 = nil;
+if (game.PlaceId == 18199615050) then
+	v10 = "DemonologyLobby";
+elseif (game.PlaceId == 18794863104) then
+	v10 = "DemonologySite";
+end
 local v11 = "Beh";
 v9.Settings = {WalkSpeed=10,JumpPower=0};
 local function v13(v60)
@@ -743,7 +748,7 @@ v9.CreateNotification = function(v332, v333, v334)
 		end
 	end
 end;
-if (v10.GameType == nil) then
+if (v10 == nil) then
 	v9:CreateNotification("This game is not supported.", 2);
 end
 v9.CreateInner = function(v345, v346, v347, v348, v349)
