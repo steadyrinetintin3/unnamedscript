@@ -102,7 +102,7 @@ local v56;
 local v57;
 local v58;
 local v59;
-if (GameChooser.GameType == "DemonologySite") then
+if (v13 == "DemonologySite") then
 	v10['PlayerTab'] = Instance.new("Frame", v10["4"]);
 	v10['PlayerTab']['BorderSizePixel'] = 0;
 	v10['PlayerTab']['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
@@ -135,7 +135,7 @@ if (GameChooser.GameType == "DemonologySite") then
 	v57 = v9:CreateSwitchButton([[GHOST]]);
 	v58 = v9:CreateSwitchButton([[OTHER]]);
 	v59 = v9:CreateSwitchButton([[AUTO]]);
-	if (GameChooser.GameType == "DemonologyLobby") then
+	if (v13 == "DemonologyLobby") then
 		local v495 = v9:CreateSwitchButton([[MAIN]]);
 	end
 end
@@ -205,13 +205,13 @@ local function v68(v89, v90)
 end
 local v69 = "rbxassetid://89871052622148";
 task.spawn(function()
-	if (GameChooser.GameType == "DemonologySite") then
+	if (v13 == "DemonologySite") then
 		v68(v9.MainBtn, v10["5"]);
 		v68(v56, v10['PlayerTab']);
 		v68(v57, v10['GhostTab']);
 		v68(v58, v10['OtherTab']);
 		v68(v59, v10['AutoFarmTab']);
-	elseif (GameChooser.GameType == "DemonologyLobby") then
+	elseif (v13 == "DemonologyLobby") then
 		v68(v10['LobbyMain'], v10["5"]);
 	end
 	v10['Minimize'].Activated:Connect(function()
@@ -380,7 +380,7 @@ v9:CreateLog("-0.35: added animations for switching tabs,fixed presets for mobil
 v9:CreateLog("-0.36: fixed images backgrounds being visible", v10["1f"], -26, 189, true, nil, false, false);
 v9:CreateLog("-0.37: Added autofarm tab and moved auto toggles there(without autofarm yet)", v10["1f"], -27, 189, true, nil, false, false);
 v9:CreateLog("Loaded.", v10["14"], -1, 152);
-if (GameChooser.GameType == "DemonologySite") then
+if (v13 == "DemonologySite") then
 	v10['PlayerTabInfo'] = Instance.new("Frame", v10['PlayerTab']);
 	v10['PlayerTabInfo'].Size = UDim2.new(0, 579, 0, 360);
 	v10['PlayerTabInfo'].Position = UDim2.new(0, 0, 0, 5);
