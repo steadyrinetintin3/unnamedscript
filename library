@@ -745,7 +745,6 @@ v9.CreateNotification = function(v332, v333, v334)
 end;
 if (v10.GameType == nil) then
 	v9:CreateNotification("This game is not supported.", 2);
-	return;
 end
 v9.CreateInner = function(v345, v346, v347, v348, v349)
 	if not v346 then
