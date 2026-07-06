@@ -377,7 +377,7 @@ function v9:CreateSlider(title, parent, sizeX, layoutOrder, min, max, settingNam
     end)
     v5.InputChanged:Connect(function(input)
         if (isDragging and ((input.UserInputType == Enum.UserInputType.MouseMovement) or (input.UserInputType == Enum.UserInputType.Touch))) then
-            v21['FrameDragDetector'].Enabled = false
+            v20['FrameDragDetector'].Enabled = false
             local relX = input.Position.X - frame.AbsolutePosition.X
             local percent = math.clamp(relX / frame.AbsoluteSize.X, 0, 1)
             local val = minVal + ((maxVal - minVal) * percent)
@@ -386,7 +386,7 @@ function v9:CreateSlider(title, parent, sizeX, layoutOrder, min, max, settingNam
     end)
     v5.InputEnded:Connect(function(input)
         if ((input.UserInputType == Enum.UserInputType.MouseButton1) or (input.UserInputType == Enum.UserInputType.Touch)) then
-            v21['FrameDragDetector'].Enabled = true
+            v20['FrameDragDetector'].Enabled = true
             isDragging = false
         end
     end)
@@ -1417,4 +1417,5 @@ v9.CreateMobileButton = function(v612, v613, v614, v615, v616, v617)
 	end
 	return v618;
 end;
+
 return v9, v20;
