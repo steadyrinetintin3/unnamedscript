@@ -355,7 +355,7 @@ v9.CreateSlider = function(v135, v136, v137, v138, v139, v140, v141, v142, v143,
 	local v168 = Instance.new("UIStroke", v145);
 	v168.Color = Color3.fromRGB(255, 255, 255);
 	v168.Thickness = 2;
-	v9.update = function(v663, v664)
+	update = function(v663, v664)
 		local v665 = math.floor(v664);
 		if v9.Settings then
 			v9.Settings[v143] = v665;
