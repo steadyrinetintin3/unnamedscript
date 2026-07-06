@@ -1254,7 +1254,7 @@ v9.GuideButton = function(v540, v541, v542)
 		end
 	end);
 	v541.Activated:Connect(function()
-		SwitchTab(v541, v542);
+		v9:SwitchTab(v541, v542);
 		v541:FindFirstChildWhichIsA("Frame").BackgroundTransparency = 0;
 	end);
 	v541.MouseLeave:Connect(function()
