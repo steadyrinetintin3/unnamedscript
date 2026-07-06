@@ -328,6 +328,10 @@ v9.CreateLog = function(v97, v98, v99, v100, v101, v102, v103, v104)
 	return TextLabelLog;
 end;
 v9.CreateSlider = function(title, parent, sizeX, layoutOrder, min, max, settingName, callback)
+	print("title:", typeof(title), title)
+	print("settingName:", typeof(settingName), settingName)
+	print("callback:", typeof(callback), callback)
+
     local minVal = min or 0
     local maxVal = max or 100
     local frame = Instance.new("Frame")
@@ -335,7 +339,7 @@ v9.CreateSlider = function(title, parent, sizeX, layoutOrder, min, max, settingN
     frame.Parent = parent
     frame.AutomaticSize = Enum.AutomaticSize.Y
     frame.Size = UDim2.new(0, sizeX, 0, 28)
-    frame.Name = settingName .. "_Slider"
+    frame.Name = settingName
     local corner = Instance.new("UICorner")
     corner.Parent = frame
     corner.CornerRadius = UDim.new(0, 10)
