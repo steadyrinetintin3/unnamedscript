@@ -327,7 +327,7 @@ v9.CreateLog = function(v94, v95, v96, v97, v98, v99, v100, v101)
 	v9:FadeOut(0.25, TextLabelLog, 0);
 	return TextLabelLog;
 end;
-v9.CreateSlider = function(v132, v133, v134, v135, v136, v137, v138, v139, v140, v141)
+function v9:CreateSlider(v132, v133, v134, v135, v136, v137, v138, v139, v140, v141)
 	v138 = v138 or 0;
 	v139 = v139 or 100;
 	local v142 = Instance.new("Frame");
