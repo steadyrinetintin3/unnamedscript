@@ -364,9 +364,6 @@ function v9:CreateSlider(title, parent, sizeX, layoutOrder, min, max, settingNam
         percent = math.clamp(percent, 0, 1)
         gradient.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(math.clamp(percent, 0, 0.999), 0),NumberSequenceKeypoint.new(math.clamp(percent + 0.001, 0.001, 1), 1),NumberSequenceKeypoint.new(1, 1)})
         textLabel.Text = title .. ": " .. displayVal
-        if callback then
-            callback(displayVal)
-        end
     end
     update(v9.Settings[settingName] or minVal)
     local isDragging = false
@@ -377,7 +374,9 @@ function v9:CreateSlider(title, parent, sizeX, layoutOrder, min, max, settingNam
     end)
     v5.InputChanged:Connect(function(input)
         if (isDragging and ((input.UserInputType == Enum.UserInputType.MouseMovement) or (input.UserInputType == Enum.UserInputType.Touch))) then
-            v20['FrameDragDetector'].Enabled = false
+            if v20 then
+				v20['FrameDragDetector'].Enabled = false
+			end
             local relX = input.Position.X - frame.AbsolutePosition.X
             local percent = math.clamp(relX / frame.AbsoluteSize.X, 0, 1)
             local val = minVal + ((maxVal - minVal) * percent)
@@ -386,7 +385,9 @@ function v9:CreateSlider(title, parent, sizeX, layoutOrder, min, max, settingNam
     end)
     v5.InputEnded:Connect(function(input)
         if ((input.UserInputType == Enum.UserInputType.MouseButton1) or (input.UserInputType == Enum.UserInputType.Touch)) then
-            v20['FrameDragDetector'].Enabled = true
+            if v20 then
+				v20['FrameDragDetector'].Enabled = true
+			end
             isDragging = false
         end
     end)
