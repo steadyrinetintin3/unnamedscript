@@ -327,71 +327,71 @@ v9.CreateLog = function(v94, v95, v96, v97, v98, v99, v100, v101)
 	v9:FadeOut(0.25, TextLabelLog, 0);
 	return TextLabelLog;
 end;
-function v9:CreateSlider(v132, v133, v134, v135, v136, v137, v138, v139, v140, v141)
-	v138 = v138 or 0;
-	v139 = v139 or 100;
-	local v142 = Instance.new("Frame");
-	v142.LayoutOrder = v135 or 0;
-	v142.Parent = v134;
-	v142.AutomaticSize = Enum.AutomaticSize.Y;
-	v142.Size = UDim2.new(0, v136, 0, 28);
-	v142.Name = v140 .. "_Slider";
-	local v149 = Instance.new("UICorner");
-	v149.Parent = v142;
-	v149.CornerRadius = UDim.new(0, 10);
-	local v152 = Instance.new("UIGradient");
-	v152.Parent = v142;
-	v152.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 75, 91)),ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))});
-	local v155 = Instance.new("TextLabel", v142);
-	v155.TextWrapped = true;
-	v155.BorderSizePixel = 0;
-	v155.TextScaled = v137;
-	v155.TextSize = 12;
-	v155.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
-	v155.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-	v155.TextColor3 = Color3.fromRGB(255, 255, 255);
-	v155.BackgroundTransparency = 1;
-	v155.Size = UDim2.new(0, v136, 0, 28);
-	local v165 = Instance.new("UIStroke", v142);
-	v165.Color = Color3.fromRGB(255, 255, 255);
-	v165.Thickness = 2;
-	v9.update = function(v665, v666)
-		local v667 = math.floor(v666);
-		if v9.Settings then
-			v9.Settings[v140] = v667;
-		end
-		local v668 = (v666 - v138) / (v139 - v138);
-		v668 = math.clamp(v668, 0, 1);
-		v152.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(math.clamp(v668, 0, 0.999), 0),NumberSequenceKeypoint.new(math.clamp(v668 + 0.001, 0.001, 1), 1),NumberSequenceKeypoint.new(1, 1)});
-		v155.Text = v133 .. ": " .. v667;
-		if v141 then
-			v141(v667);
-		end
-	end;
-	update(v9.Settings[v140] or v138);
-	local v169 = false;
-	v142.InputBegan:Connect(function(v671)
-		if ((v671.UserInputType == Enum.UserInputType.MouseButton1) or (v671.UserInputType == Enum.UserInputType.Touch)) then
-			v169 = true;
-		end
-	end);
-	v5.InputChanged:Connect(function(v672)
-		if (v169 and ((v672.UserInputType == Enum.UserInputType.MouseMovement) or (v672.UserInputType == Enum.UserInputType.Touch))) then
-			v20['FrameDragDetector'].Enabled = false;
-			local v787 = v672.Position.X - v142.AbsolutePosition.X;
-			local v788 = math.clamp(v787 / v142.AbsoluteSize.X, 0, 1);
-			local v789 = v138 + ((v139 - v138) * v788);
-			update(v789);
-		end
-	end);
-	v5.InputEnded:Connect(function(v673)
-		if ((v673.UserInputType == Enum.UserInputType.MouseButton1) or (v673.UserInputType == Enum.UserInputType.Touch)) then
-			v20['FrameDragDetector'].Enabled = true;
-			v169 = false;
-		end
-	end);
-	return {Gui=v142,Update=update};
-end;
+function v9:CreateSlider(title, parent, sizeX, layoutOrder, min, max, settingName, callback)
+    local minVal = min or 0
+    local maxVal = max or 100
+    local frame = Instance.new("Frame")
+    frame.LayoutOrder = layoutOrder or 0
+    frame.Parent = parent
+    frame.AutomaticSize = Enum.AutomaticSize.Y
+    frame.Size = UDim2.new(0, sizeX, 0, 28)
+    frame.Name = settingName .. "_Slider"
+    local corner = Instance.new("UICorner")
+    corner.Parent = frame
+    corner.CornerRadius = UDim.new(0, 10)
+    local gradient = Instance.new("UIGradient")
+    gradient.Parent = frame
+    gradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 75, 91)),ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))})
+    local textLabel = Instance.new("TextLabel", frame)
+    textLabel.TextWrapped = true
+    textLabel.BorderSizePixel = 0
+    textLabel.TextScaled = true
+    textLabel.TextSize = 12
+    textLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    textLabel.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+    textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    textLabel.BackgroundTransparency = 1
+    textLabel.Size = UDim2.new(0, sizeX, 0, 28)
+    local stroke = Instance.new("UIStroke", frame)
+    stroke.Color = Color3.fromRGB(255, 255, 255)
+    stroke.Thickness = 2
+    local update = function(val)
+        local displayVal = math.floor(val)
+        if v9.Settings then
+            v9.Settings[settingName] = displayVal
+        end
+        local percent = (val - minVal) / (maxVal - minVal)
+        percent = math.clamp(percent, 0, 1)
+        gradient.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(math.clamp(percent, 0, 0.999), 0),NumberSequenceKeypoint.new(math.clamp(percent + 0.001, 0.001, 1), 1),NumberSequenceKeypoint.new(1, 1)})
+        textLabel.Text = title .. ": " .. displayVal
+        if callback then
+            callback(displayVal)
+        end
+    end
+    update(v9.Settings[settingName] or minVal)
+    local isDragging = false
+    frame.InputBegan:Connect(function(input)
+        if ((input.UserInputType == Enum.UserInputType.MouseButton1) or (input.UserInputType == Enum.UserInputType.Touch)) then
+            isDragging = true
+        end
+    end)
+    v5.InputChanged:Connect(function(input)
+        if (isDragging and ((input.UserInputType == Enum.UserInputType.MouseMovement) or (input.UserInputType == Enum.UserInputType.Touch))) then
+            v21['FrameDragDetector'].Enabled = false
+            local relX = input.Position.X - frame.AbsolutePosition.X
+            local percent = math.clamp(relX / frame.AbsoluteSize.X, 0, 1)
+            local val = minVal + ((maxVal - minVal) * percent)
+            update(val)
+        end
+    end)
+    v5.InputEnded:Connect(function(input)
+        if ((input.UserInputType == Enum.UserInputType.MouseButton1) or (input.UserInputType == Enum.UserInputType.Touch)) then
+            v21['FrameDragDetector'].Enabled = true
+            isDragging = false
+        end
+    end)
+    return {Gui=frame,Update=update}
+end
 v9.CreateLoader = function(v170, v171, v172, v173, v174, v175, v176)
 	local v177 = Instance.new("Frame");
 	v177.LayoutOrder = v173 or 0;
