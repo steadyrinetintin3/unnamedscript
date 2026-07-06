@@ -364,7 +364,8 @@ function v9:CreateSlider(title, parent, sizeX, layoutOrder, min, max, settingNam
         percent = math.clamp(percent, 0, 1)
         gradient.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(math.clamp(percent, 0, 0.999), 0),NumberSequenceKeypoint.new(math.clamp(percent + 0.001, 0.001, 1), 1),NumberSequenceKeypoint.new(1, 1)})
         textLabel.Text = title .. ": " .. displayVal
-        if callback then
+        
+        if type(callback) == "function" then
             callback(displayVal)
         end
     end
