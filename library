@@ -16,17 +16,6 @@ elseif (game.PlaceId == 18794863104) then
 end
 local v11 = "Beh";
 v9.Settings = {WalkSpeed=10,JumpPower=0};
-v9.GetPlayer = function(v72, v73)
-	Humanoid = v73:WaitForChild("Humanoid");
-	HumanoidRootPart = Character:WaitForChild("HumanoidRootPart");
-	Humanoid.Died:Connect(function()
-		Humanoid, HumanoidRootPart = nil;
-	end);
-	return Humanoid, HumanoidRootPart;
-end;
-if v2.Character then
-	v9:GetPlayer(v2.Character);
-end
 local v14 = {};
 local v15 = {};
 local v16 = os.clock();
