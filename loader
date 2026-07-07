@@ -1,9 +1,23 @@
-local v0 = nil;
+if getgenv().v33 then return end
+getgenv().v33 = true
+
+task.spawn(function()
+    local v12 = game.PlaceId
+    while task.wait(1) do
+        if game.PlaceId ~= v12 then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/steadyrinetintin3/unnamedscript/refs/heads/main/unnamed"))()
+            lastPlace = game.PlaceId
+        end
+    end
+end)
+
+local v0 = nil
 if (game.PlaceId == 18199615050) then
-	v0 = "DemonologyLobby";
+	v0 = "DemonologyLobby"
 elseif (game.PlaceId == 18794863104) then
-	v0 = "DemonologySite";
+	v0 = "DemonologySite"
 end
+
 if ((v0 == "DemonologyLobby") or (v0 == "DemonologySite")) then
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/steadyrinetintin3/unnamedscript/refs/heads/main/unnamed"))();
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/steadyrinetintin3/unnamedscript/refs/heads/main/unnamed"))()
 end
