@@ -1,10 +1,28 @@
-local v0 = nil
+local v0 = nil;
 if (game.PlaceId == 18199615050) then
-	v0 = "DemonologyLobby"
+	v0 = "DemonologyLobby";
 elseif (game.PlaceId == 18794863104) then
-	v0 = "DemonologySite"
+	v0 = "DemonologySite";
 end
-
 if ((v0 == "DemonologyLobby") or (v0 == "DemonologySite")) then
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/steadyrinetintin3/unnamedscript/refs/heads/main/unnamed"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/steadyrinetintin3/unnamedscript/refs/heads/main/unnamed"))();
+end
+local v1 = queue_on_teleport or (syn and syn.queue_on_teleport);
+if v1 then
+	game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(v2)
+		if ((v2 == Enum.TeleportState.Started) or (v2 == Enum.TeleportState.InProgress)) then
+			v1([[
+				local v0 = nil
+				if (game.PlaceId == 18199615050) then
+					v0 = "DemonologyLobby"
+				elseif (game.PlaceId == 18794863104) then
+					v0 = "DemonologySite"
+				end
+
+				if ((v0 == "DemonologyLobby") or (v0 == "DemonologySite")) then
+					loadstring(game:HttpGet("https://raw.githubusercontent.com/steadyrinetintin3/unnamedscript/refs/heads/main/unnamed"))()
+				end
+			]]);
+		end
+	end);
 end
