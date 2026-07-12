@@ -867,28 +867,29 @@ v9.CreateInner = function(v354, v355, v356, v357, v358)
 	end
 	return v364, v366, v363;
 end;
-if v20["1"] then
-	local v682, v683, v684 = v9:CreateInner(v20["1"], false, "Key:", "Authenticate");
-	if (v682 and v683) then
-		local v795;
-		v795 = v683.Activated:Connect(function()
-			local v812 = v682.Text;
-			if (v812 == "") then
-				v9:CreateNotification("Please enter the key.", 2);
-			elseif (v812 == "Typicalscriptkeysystem67") then
-				v27 = true;
-				v9:CreateNotification("Authenticated!", 2);
-				v9:CreateInner(v20["1"], true);
-				v795:Disconnect();
-			else
-				v9:CreateNotification("Invalid key.", 2);
-			end
-		end);
-	end
-	while not v27 do
-		task.wait(0.1);
-	end
-end
+v27 = true;
+--if v20["1"] then
+	--local v682, v683, v684 = v9:CreateInner(v20["1"], false, "Key:", "Authenticate");
+	--if (v682 and v683) then
+		--local v795;
+		--v795 = v683.Activated:Connect(function()
+			--local v812 = v682.Text;
+			--if (v812 == "") then
+				--v9:CreateNotification("Please enter the key.", 2);
+			--elseif (v812 == "Typicalscriptkeysystem67") then
+				--v27 = true;
+				--v9:CreateNotification("Authenticated!", 2);
+				--v9:CreateInner(v20["1"], true);
+				--v795:Disconnect();
+			--else
+				--v9:CreateNotification("Invalid key.", 2);
+			--end
+		--end);
+	--end
+	--while not v27 do
+		--task.wait(0.1);
+	--end
+--end
 v9.CreateMain = function(v368)
 	v20["2"] = Instance.new("Frame", v20["1"]);
 	v20["2"]['Visible'] = false;
