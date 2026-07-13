@@ -3389,48 +3389,54 @@ if (v0 == "DemonologySite") then
 	end
 else
 	v60();
-	if v41 then
-		local v492 = v4:FindFirstChild("ComputerScreen"):FindFirstChild("JobSite"):FindFirstChild("Content"):FindFirstChild("MapContainer"):FindFirstChild("Locations");
-		if v492 then
-			local v674 = nil;
-			if not v674 then
-				for v875, v876 in pairs(v492:GetChildren()) do
-					if v876:FindFirstChild("Info") then
-						if v876.Info:FindFirstChild("MapName") then
-							if ((v876.Info.MapName.Text == v56) and v876:FindFirstChild("Outline") and v876.Outline:FindFirstChild("UIStroke") and (v876.Outline.UIStroke.Color ~= Color3.fromRGB(0, 255, 0))) then
-								v674 = v876;
+	task.spawn(function()
+		while not v41 do
+			task.wait(0.1)
+		end
+
+		if v41 then
+			local v492 = v4:FindFirstChild("ComputerScreen"):FindFirstChild("JobSite"):FindFirstChild("Content"):FindFirstChild("MapContainer"):FindFirstChild("Locations");
+			if v492 then
+				local v674 = nil;
+				if not v674 then
+					for v875, v876 in pairs(v492:GetChildren()) do
+						if v876:FindFirstChild("Info") then
+							if v876.Info:FindFirstChild("MapName") then
+								if ((v876.Info.MapName.Text == v56) and v876:FindFirstChild("Outline") and v876.Outline:FindFirstChild("UIStroke") and (v876.Outline.UIStroke.Color ~= Color3.fromRGB(0, 255, 0))) then
+									v674 = v876;
+								end
 							end
 						end
 					end
-				end
-				if (v674 and v674:FindFirstChild("Detection")) then
-					for v967, v968 in pairs(getconnections(v674.Detection.Activated)) do
-						v968:Fire();
-					end
-				end
-			end
-			task.wait(0.1);
-			local v675 = v4:FindFirstChild("Menu"):FindFirstChild("PartyControls");
-			if v675 then
-				local v819 = v675:FindFirstChild("Ready");
-				local v820 = v675:FindFirstChild("Start");
-				if (v819 and v820) then
-					local function v935(v969)
-						for v990, v991 in pairs(getconnections(v969.MouseButton1Click)) do
-							if v991.Function then
-								v991.Function();
-							else
-								v991:Fire();
-							end
+					if (v674 and v674:FindFirstChild("Detection")) then
+						for v967, v968 in pairs(getconnections(v674.Detection.Activated)) do
+							v968:Fire();
 						end
 					end
-					if (v819.TextLabel.TextColor3 == Color3.fromRGB(84, 203, 92)) then
-						v935(v819.Detection);
+				end
+				task.wait(0.1);
+				local v675 = v4:FindFirstChild("Menu"):FindFirstChild("PartyControls");
+				if v675 then
+					local v819 = v675:FindFirstChild("Ready");
+					local v820 = v675:FindFirstChild("Start");
+					if (v819 and v820) then
+						local function v935(v969)
+							for v990, v991 in pairs(getconnections(v969.MouseButton1Click)) do
+								if v991.Function then
+									v991.Function();
+								else
+									v991:Fire();
+								end
+							end
+						end
+						if (v819.TextLabel.TextColor3 == Color3.fromRGB(84, 203, 92)) then
+							v935(v819.Detection);
+						end
+						task.wait(0.25);
+						v935(v820.Detection);
 					end
-					task.wait(0.25);
-					v935(v820.Detection);
 				end
 			end
 		end
-	end
+	end)
 end
