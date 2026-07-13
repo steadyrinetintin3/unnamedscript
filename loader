@@ -9,6 +9,7 @@ if ((v0 == "DemonologyLobby") or (v0 == "DemonologySite")) then
 end
 local v1 = queue_on_teleport or (syn and syn.queue_on_teleport);
 if v1 then
+	return
 	game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(v2)
 		if ((v2 == Enum.TeleportState.Started) or (v2 == Enum.TeleportState.InProgress)) then
 			v1([[
