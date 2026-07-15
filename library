@@ -1329,17 +1329,6 @@ v13.SwitchTab = function(v545, v546, v547)
 		v69 = v546;
 	end);
 end;
-for v713, v714 in pairs(v25["4"]:GetChildren()) do
-	if v714:IsA("GuiObject") then
-		if (v714 ~= v68) then
-			v714.Visible = false;
-			v714.Position = UDim2.new(0, 0, 0, 400);
-		else
-			v714.Visible = true;
-			v714.Position = UDim2.new(0, 0, 0, 0);
-		end
-	end
-end
 v13.GuideButton = function(v555, v556, v557)
 	v556.MouseEnter:Connect(function()
 		if (v68 ~= v557) then
