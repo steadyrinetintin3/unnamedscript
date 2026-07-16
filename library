@@ -1317,18 +1317,19 @@ v9.SwitchTab = function(v549, v550, v551)
 		v75 = v551;
 		v76 = v550;
 	end);
-	for v713, v714 in pairs(v21["4"]:GetChildren()) do
-		if v714:IsA("GuiObject") then
-			if (v714 ~= v75) then
-				v714.Visible = false;
-				v714.Position = UDim2.new(0, 0, 0, 400);
-			else
-				v714.Visible = true;
-				v714.Position = UDim2.new(0, 0, 0, 0);
-			end
+end;
+
+for v713, v714 in pairs(v21["4"]:GetChildren()) do
+	if v714:IsA("GuiObject") then
+		if (v714 ~= v75) then
+			v714.Visible = false;
+			v714.Position = UDim2.new(0, 0, 0, 400);
+		else
+			v714.Visible = true;
+			v714.Position = UDim2.new(0, 0, 0, 0);
 		end
 	end
-end;
+end
 v9.GuideButton = function(v559, v560, v561)
 	v560.MouseEnter:Connect(function()
 		if (v75 ~= v561) then
