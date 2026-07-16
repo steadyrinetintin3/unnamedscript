@@ -775,6 +775,7 @@ v9.CreateInner = function(v368, v369, v370, v371, v372, v373)
 	local v381;
 	local v382;
 	local v383;
+	local btn3;
 	if (v369 and not v370) then
 		if game:GetService("Lighting"):FindFirstChild("Blur") then
 			game.Lighting.Blur.Enabled = true;
