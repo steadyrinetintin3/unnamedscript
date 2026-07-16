@@ -964,7 +964,7 @@ local v61 = false;
 if v59() then
 	v61 = true;
 else
-	local v705, v706, v707, v708 = v9:CreateInner(v21["1"], false, "Authentication", "Verify key");
+	local v705, v706, v707, v708 = v9:CreateInner(v21["1"], false, "Authentication", "Verify key", true);
 	v707.Activated:Connect(function()
 		v9:CreateInner(v21["1"], true, "Authentication", "Verify key");
 	end);
