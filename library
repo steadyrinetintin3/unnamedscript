@@ -775,7 +775,7 @@ v9.CreateInner = function(v368, v369, v370, v371, v372, v373)
 	local v381;
 	local v382;
 	local v383;
-	local btn3;
+	local v384;
 	if (v369 and not v370) then
 		if game:GetService("Lighting"):FindFirstChild("Blur") then
 			game.Lighting.Blur.Enabled = true;
@@ -822,7 +822,7 @@ v9.CreateInner = function(v368, v369, v370, v371, v372, v373)
 		v381 = v9:CreateButton(v372, Holder, 2, 175, false);
 		if v373 then
 			v382 = v9:CreateDivider(Holder, 3, 175, nil, nil);
-			btn3 = v9:CreateButton("Get key", Holder, 4, 175, false);
+			v384 = v9:CreateButton("Get key", Holder, 4, 175, false);
 		end
 		v379.Noice.ImageTransparency = 1;
 		v380.TextTransparency = 1;
@@ -837,9 +837,9 @@ v9.CreateInner = function(v368, v369, v370, v371, v372, v373)
 		v9:FadeOut(0.25, v381.UIStroke, 0);
 		v9:FadeOut(0.25, v381.Noice, 0.5);
 		v9:FadeOut(0.25, v381.TextLabel, 0);
-		v9:FadeOut(0.25, btn3.UIStroke, 0);
-		v9:FadeOut(0.25, btn3.Noice, 0.5);
-		v9:FadeOut(0.25, btn3.TextLabel, 0);
+		v9:FadeOut(0.25, v384.UIStroke, 0);
+		v9:FadeOut(0.25, v384.Noice, 0.5);
+		v9:FadeOut(0.25, v384.TextLabel, 0);
 		v9:FadeOut(0.25, v383, 0);
 	end
 	v9.Closef = function(v701)
@@ -884,9 +884,9 @@ v9.CreateInner = function(v368, v369, v370, v371, v372, v373)
 			if v382 then
 				v9:FadeOut(0.25, v382, 1);
 			end
-			v9:FadeOut(0.25, btn3.UIStroke, 1);
-			v9:FadeOut(0.25, btn3.Noice, 1);
-			v9:FadeOut(0.25, btn3.TextLabel, 1);
+			v9:FadeOut(0.25, v384.UIStroke, 1);
+			v9:FadeOut(0.25, v384.Noice, 1);
+			v9:FadeOut(0.25, v384.TextLabel, 1);
 			task.wait(0.5);
 			v374:Destroy();
 			v378:Destroy();
@@ -902,7 +902,7 @@ v9.CreateInner = function(v368, v369, v370, v371, v372, v373)
 	if v370 then
 		v9:Closef();
 	end
-	return v379, v381, v378, btn3;
+	return v379, v381, v378, v384;
 end;
 local v50 = {Service="typical",SilentMode=false,SaveKey=true,SaveKeyPath="panda_key.txt",AutoKick=false,KickMessage="Invalid Key.",HubName="Your Hub",MaxRetries=3,DiscordURL=nil};
 local v51 = (task and task.wait) or wait;
