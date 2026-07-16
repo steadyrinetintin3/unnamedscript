@@ -1,7 +1,7 @@
 local v0 = loadstring(game:HttpGet("https://jnkie.com/sdk/library.lua"))();
-v0.service = "Typical key system";
+v0.service = "Typical script";
 v0.identifier = "1156227";
-v0.provider = "Typical scripty";
+v0.provider = "hohoho";
 local v4 = game:GetService("Workspace");
 local v5 = game:GetService("Players");
 local v6 = v5.LocalPlayer;
