@@ -1381,7 +1381,7 @@ v9.Tween = function(v564, v565, v566, v567)
 	local v569 = v4:Create(v567, v568, v566);
 	v569:Play();
 end;
-v9.Update = function(v570, v571, v572, v573)
+v9.Update = function(v570, v571, v572, v573, sizeX)
 	v572 = v571;
 	if v572 then
 		v573.BackgroundColor3 = Color3.fromRGB(46, 117, 89);
@@ -1453,7 +1453,7 @@ v9.CreateToggle = function(v574, v575, v576, v577, v578, v579, v580, v581, v582,
 	local v626 = false;
 	v618.Activated:Connect(function(v719)
 		if (v719.UserInputType == Enum.UserInputType.MouseButton1) then
-			v9:Update(not isEnabled, v626, v618);
+			v9:Update(not isEnabled, v626, v618, v617);
 		end
 	end);
 	if v584 then
@@ -1472,6 +1472,7 @@ v9.CreateToggle = function(v574, v575, v576, v577, v578, v579, v580, v581, v582,
 	v629.ApplyStrokeMode = "Border";
 	return v618;
 end;
+
 v9.CreateMobileButton = function(v633, v634, v635, v636, v637, v638)
 	if not v638 then
 		v638 = "Button";
