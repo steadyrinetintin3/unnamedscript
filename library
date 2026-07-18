@@ -1381,6 +1381,21 @@ v9.Tween = function(v563, v564, v565, v566)
 	local v568 = v4:Create(v566, v567, v565);
 	v568:Play();
 end;
+
+v9.Update = function(v715, v716)
+	v621 = v716;
+	if v621 then
+		v613.BackgroundColor3 = Color3.fromRGB(46, 117, 89);
+		v9:Tween(0.25, {Position=UDim2.new(0, v612 / 2, 0, 0)}, v613);
+	else
+		v613.BackgroundColor3 = Color3.fromRGB(81, 32, 37);
+		v9:Tween(0.25, {Position=UDim2.new(0, 0, 0, 0)}, v613);
+	end
+	if v580 then
+		v580(v621);
+	end
+end;
+
 v9.CreateToggle = function(v569, v570, v571, v572, v573, v574, v575, v576, v577, v578, v579, v580)
 	if not v573 then
 		v573 = 185;
@@ -1438,22 +1453,9 @@ v9.CreateToggle = function(v569, v570, v571, v572, v573, v574, v575, v576, v577,
 	v613.ZIndex = 7;
 	v613.AutoButtonColor = false;
 	local v621 = false;
-	v9.Update = function(v715, v716)
-		v621 = v716;
-		if v621 then
-			v613.BackgroundColor3 = Color3.fromRGB(46, 117, 89);
-			v9:Tween(0.25, {Position=UDim2.new(0, v612 / 2, 0, 0)}, v613);
-		else
-			v613.BackgroundColor3 = Color3.fromRGB(81, 32, 37);
-			v9:Tween(0.25, {Position=UDim2.new(0, 0, 0, 0)}, v613);
-		end
-		if v580 then
-			v580(v621);
-		end
-	end;
 	v613.Activated:Connect(function(v717)
 		if (v717.UserInputType == Enum.UserInputType.MouseButton1) then
-			Update(not v621);
+			v9:Update(not v621);
 		end
 	end);
 	if v579 then
