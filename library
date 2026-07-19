@@ -1338,6 +1338,7 @@ v9.SwitchTab = function(v568, v569, v570)
 		v79 = v569;
 	end);
 end;
+v21["4"].ClipsDescendants = true
 for v578, v579 in pairs(v21["4"]:GetChildren()) do
 	if v579:IsA("GuiObject") then
 		if (v579 ~= v78) then
