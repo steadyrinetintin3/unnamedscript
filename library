@@ -365,7 +365,7 @@ v9.CreateSlider = function(v149, v150, v151, v152, v153, v154, v155, v156, v157,
 	local v182 = Instance.new("UIStroke", v159);
 	v182.Color = Color3.fromRGB(255, 255, 255);
 	v182.Thickness = 2;
-	function v9:update(v704, v705)
+	v9.update = function(v704, v705)
 		local v706 = math.floor(v705);
 		if v9.Settings then
 			v9.Settings[v157] = v706;
@@ -1338,7 +1338,6 @@ v9.SwitchTab = function(v566, v567, v568)
 		v79 = v567;
 	end);
 end;
-v21["4"].ClipsDescendants = true
 for v576, v577 in pairs(v21["4"]:GetChildren()) do
 	if v577:IsA("GuiObject") then
 		if (v577 ~= v78) then
@@ -1447,7 +1446,7 @@ v9.CreateToggle = function(v592, v593, v594, v595, v596, v597, v598, v599, v600,
 	v636.Activated:Connect(function(v737)
 		if (v737.UserInputType == Enum.UserInputType.MouseButton1) then
 			v644 = not v644;
-			v9:Update(not v644, v636, v596, v603);
+			v9:Update(not v644, v636, v599, v603);
 		end
 	end);
 	if v602 then
