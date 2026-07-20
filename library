@@ -1346,14 +1346,13 @@ v9.CreateScrollingFrame = function(v603, v604, v605, v606, v607)
 	v21[v607 .. "Layout"].SortOrder = "LayoutOrder";
 	v21[v607 .. "Layout"].HorizontalAlignment = "Center";
 end;
-v9:CreateSubTab(188, 360, true, "Vertical", v21.PlayerTabInfo, "VisualsFrame");
-v9:CreateSubTab(188, 360, true, "Vertical", v21.PlayerTabInfo, "MiscFrame");
-v9:CreateSubTab(188, 360, true, "Vertical", v21.PlayerTabInfo, "PlayerSettingsFrame");
-v9:CreateScrollingFrame(180, 360, v21.VisualsFrame, "Visuals");
-v9:CreateScrollingFrame(180, 360, v21.MiscFrame, "Misc");
-v9:CreateScrollingFrame(180, 360, v21.PlayerSettingsFrame, "PlayerSettings");
+v9:CreateSubTab(188, 290, true, "Vertical", v21.PlayerTabInfo, "VisualsFrame");
+v9:CreateSubTab(188, 290, true, "Vertical", v21.PlayerTabInfo, "MiscFrame");
+v9:CreateSubTab(188, 290, true, "Vertical", v21.PlayerTabInfo, "PlayerSettingsFrame");
+v9:CreateScrollingFrame(180, 290, v21.VisualsFrame, "Visuals");
+v9:CreateScrollingFrame(180, 290, v21.MiscFrame, "Misc");
+v9:CreateScrollingFrame(180, 290, v21.PlayerSettingsFrame, "PlayerSettings");
 v9:CreateText("VISUALS", v21.Visuals, 0, 170, 28, true, true, false);
-v9:CreateText("TELEPORTATION", v21.Misc, 0, 170, 28, true, true, false);
 v9:CreateText("PLAYER SETTINGS", v21.PlayerSettings, 0, 170, 28, true, true, false);
 if v9.MainBtn then
 	v9.MainBtn.LayoutOrder = 0;
