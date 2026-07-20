@@ -380,11 +380,7 @@ v9.CreateSlider = function(v203, v204, v205, v206, v207, v208, v209, v210, v211,
 			v212(v759);
 		end
 	end;
-	task.spawn(function()
-		while task.wait(0.1) do
-			v9:update(v9.Settings[v211] or v209);
-		end
-	end);
+	v9:update(v9.Settings[v211] or v209);
 	local v240 = false;
 	v213.InputBegan:Connect(function(v763)
 		if ((v763.UserInputType == Enum.UserInputType.MouseButton1) or (v763.UserInputType == Enum.UserInputType.Touch)) then
