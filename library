@@ -784,7 +784,7 @@ v9.CreateInner = function(v426, v427, v428, v429, v430, v431)
 			game.Lighting.Blur.Size = 50;
 		end
 		v432 = Instance.new("Frame", v427);
-		v432.Size = UDim2.new(1, 0, 1.25, 0);
+		v432.Size = UDim2.new(50, 0, 50, 0);
 		v432.AnchorPoint = Vector2.new(0.5, 0.5);
 		v432.Position = UDim2.new(0.5, 0, 0.5, 0);
 		v432.BackgroundTransparency = 1;
@@ -853,7 +853,7 @@ v9.CreateInner = function(v426, v427, v428, v429, v430, v431)
 			v9:FadeOut(0.25, v436, 1);
 			if game:GetService("Lighting"):FindFirstChild("Blur") then
 				game.Lighting.Blur.Enabled = false;
-				game.Lighting.Blur.Size = 5;
+				game.Lighting.Blur.Size = 0;
 			end
 			task.spawn(function()
 				v9:FadeOut(0.25, v437, 1);
@@ -1223,7 +1223,14 @@ v21['Minimize'].Activated:Connect(function()
 				v4:Create(v905, v602, v906):Play();
 			end
 		end
+
+		if Guis["2"] and Guis["2"]:FindFirstChild("Shadow") then
+			game.Lighting.Blur.Size = 0
+		end
 	else
+		if Guis["2"] and Guis["2"]:FindFirstChild("Shadow") then
+			game.Lighting.Blur.Size = 50
+		end
 		v15[v21["2"]] = {Size=v21["2"].Size};
 		v4:Create(v21["2"], v602, {Size=UDim2.new(0, 700, 0, 25)}):Play();
 		for v907, v908 in pairs(v21["2"]:GetChildren()) do
