@@ -797,6 +797,7 @@ v9.CreateInner = function(v426, v427, v428, v429, v430, v431)
 		v433.AnchorPoint = Vector2.new(0.5, 0.5);
 		v433.Position = UDim2.new(0.5, 0, 0.5, 0);
 		v433.Name = "Main";
+		v433.ClipsDescendants = true;
 		v9:CreateItems(v433, "DarkRed2");
 		v435 = v4:Create(v433, v434, {Size=UDim2.new(0, 250, 0, 150)});
 		v435:Play();
