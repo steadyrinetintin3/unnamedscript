@@ -1224,12 +1224,12 @@ v21['Minimize'].Activated:Connect(function()
 			end
 		end
 
-		if Guis["2"] and Guis["2"]:FindFirstChild("Shadow") then
-			game.Lighting.Blur.Size = 0
+		if v21["2"] and v21["2"]:FindFirstChild("Shadow") then
+			game.Lighting.Blur.Size = 50
 		end
 	else
-		if Guis["2"] and Guis["2"]:FindFirstChild("Shadow") then
-			game.Lighting.Blur.Size = 50
+		if v21["2"] and v21["2"]:FindFirstChild("Shadow") then
+			game.Lighting.Blur.Size = 0
 		end
 		v15[v21["2"]] = {Size=v21["2"].Size};
 		v4:Create(v21["2"], v602, {Size=UDim2.new(0, 700, 0, 25)}):Play();
