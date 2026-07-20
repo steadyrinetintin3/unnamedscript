@@ -1148,9 +1148,11 @@ v9.CreateSubTab = function(v583, v584, v585, v586, v587, v588, v589)
 	end
 end;
 v9:CreateMain();
-if (v10 ~= nil and v10 ~= "DemonologyLobby") then
+if (v10 ~= nil) then
 	v9.MainBtn = v9:CreateSwitchButton([[MAIN]], "MainTab");
-	v9.PlayerBtn = v9:CreateSwitchButton([[PLAYER]], "PlayerTab");
+	if v10 ~= "DemonologyLobby" then
+		v9.PlayerBtn = v9:CreateSwitchButton([[PLAYER]], "PlayerTab");
+	end
 end
 local v68 = Instance.new("UIListLayout", v21['PlayerTab']);
 v68.Padding = UDim.new(0, 10);
