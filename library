@@ -59,18 +59,18 @@ v9.FadeOutWithSaves = function(v142, v143, v144, v145)
 		elseif (v750:IsA("UIGradient") and (v750.Parent.Name == "Divider")) then
 			v14[v750] = {Transparency=v750.Transparency};
 			task.spawn(function()
-				local v1058 = os.clock();
-				while (os.clock() - v1058) < v144 do
-					local v1061 = os.clock() - v1058;
-					local v1062 = math.clamp(v1061 / v144, 0, 1);
-					local v1063 = 0.5 - (0.5 * math.cos(v1062 * math.pi));
-					local v1064 = v14[v750].Transparency;
-					local v1065 = {};
-					for v1068, v1069 in ipairs(v1064.Keypoints) do
-						local v1070 = v1069.Value + ((1 - v1069.Value) * v1063);
-						table.insert(v1065, NumberSequenceKeypoint.new(v1069.Time, v1070));
+				local v1056 = os.clock();
+				while (os.clock() - v1056) < v144 do
+					local v1059 = os.clock() - v1056;
+					local v1060 = math.clamp(v1059 / v144, 0, 1);
+					local v1061 = 0.5 - (0.5 * math.cos(v1060 * math.pi));
+					local v1062 = v14[v750].Transparency;
+					local v1063 = {};
+					for v1066, v1067 in ipairs(v1062.Keypoints) do
+						local v1068 = v1067.Value + ((1 - v1067.Value) * v1061);
+						table.insert(v1063, NumberSequenceKeypoint.new(v1067.Time, v1068));
 					end
-					v750.Transparency = NumberSequence.new(v1065);
+					v750.Transparency = NumberSequence.new(v1063);
 					task.wait();
 				end
 				v750.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))});
@@ -89,29 +89,29 @@ v9.FadeInWithSaves = function(v147, v148, v149)
 		local v756 = v14[v755];
 		if v756 then
 			if v755:IsA("UIGradient") then
-				local v945 = v756.Transparency or v755.Transparency;
+				local v943 = v756.Transparency or v755.Transparency;
 				task.spawn(function()
-					local v1001 = os.clock();
-					while (os.clock() - v1001) < v149 do
-						local v1021 = os.clock() - v1001;
-						local v1022 = math.clamp(v1021 / v149, 0, 1);
-						local v1023 = 0.5 - (0.5 * math.cos(v1022 * math.pi));
-						local v1024 = {};
-						if v945 then
-							for v1045, v1046 in ipairs(v945.Keypoints) do
-								local v1047 = 1 - ((1 - v1046.Value) * v1023);
-								table.insert(v1024, NumberSequenceKeypoint.new(v1046.Time, v1047));
+					local v999 = os.clock();
+					while (os.clock() - v999) < v149 do
+						local v1019 = os.clock() - v999;
+						local v1020 = math.clamp(v1019 / v149, 0, 1);
+						local v1021 = 0.5 - (0.5 * math.cos(v1020 * math.pi));
+						local v1022 = {};
+						if v943 then
+							for v1043, v1044 in ipairs(v943.Keypoints) do
+								local v1045 = 1 - ((1 - v1044.Value) * v1021);
+								table.insert(v1022, NumberSequenceKeypoint.new(v1044.Time, v1045));
 							end
 						end
-						if (#v1024 == 1) then
-							table.insert(v1024, NumberSequenceKeypoint.new(1, v1024[1].Value));
-						elseif (#v1024 == 0) then
-							v1024 = {NumberSequenceKeypoint.new(0, 1),NumberSequenceKeypoint.new(1, 1)};
+						if (#v1022 == 1) then
+							table.insert(v1022, NumberSequenceKeypoint.new(1, v1022[1].Value));
+						elseif (#v1022 == 0) then
+							v1022 = {NumberSequenceKeypoint.new(0, 1),NumberSequenceKeypoint.new(1, 1)};
 						end
-						v755.Transparency = NumberSequence.new(v1024);
+						v755.Transparency = NumberSequence.new(v1022);
 						task.wait();
 					end
-					v755.Transparency = v945;
+					v755.Transparency = v943;
 				end);
 			else
 				v4:Create(v755, v150, v756):Play();
@@ -137,19 +137,19 @@ v9.FadeInWithSaves = function(v147, v148, v149)
 					v4:Create(v755, v150, {Transparency=v756.Transparency}):Play();
 				end
 			elseif (v755:IsA("UIGradient") and (v755.Parent.Name == "Divider")) then
-				local v1071 = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
+				local v1069 = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
 				task.spawn(function()
-					local v1072 = os.clock();
-					while (os.clock() - v1072) < v149 do
-						local v1074 = os.clock() - v1072;
-						local v1075 = math.clamp(v1074 / v149, 0, 1);
-						local v1076 = 0.5 - (0.5 * math.cos(v1075 * math.pi));
-						local v1077 = {};
-						for v1079, v1080 in ipairs(v1071.Keypoints) do
-							local v1081 = 1 - ((1 - v1080.Value) * v1076);
-							table.insert(v1077, NumberSequenceKeypoint.new(v1080.Time, v1081));
+					local v1070 = os.clock();
+					while (os.clock() - v1070) < v149 do
+						local v1072 = os.clock() - v1070;
+						local v1073 = math.clamp(v1072 / v149, 0, 1);
+						local v1074 = 0.5 - (0.5 * math.cos(v1073 * math.pi));
+						local v1075 = {};
+						for v1077, v1078 in ipairs(v1069.Keypoints) do
+							local v1079 = 1 - ((1 - v1078.Value) * v1074);
+							table.insert(v1075, NumberSequenceKeypoint.new(v1078.Time, v1079));
 						end
-						v755.Transparency = NumberSequence.new(v1077);
+						v755.Transparency = NumberSequence.new(v1075);
 						task.wait();
 					end
 					v755.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
@@ -380,7 +380,11 @@ v9.CreateSlider = function(v203, v204, v205, v206, v207, v208, v209, v210, v211,
 			v212(v759);
 		end
 	end;
-	v9:update(v9.Settings[v211] or v209);
+	task.spawn(function()
+		while task.wait(0.1) do
+			v9:update(v9.Settings[v211] or v209);
+		end
+	end);
 	local v240 = false;
 	v213.InputBegan:Connect(function(v763)
 		if ((v763.UserInputType == Enum.UserInputType.MouseButton1) or (v763.UserInputType == Enum.UserInputType.Touch)) then
@@ -547,8 +551,8 @@ v9.CreateEsp = function(v319, v320, v321, v322)
 			if v767:FindFirstChild("ImageLabel") then
 				task.spawn(function()
 					FadeIn(0.25, v767.ImageLabel);
-					for v1034, v1035 in pairs(v767.ImageLabel:GetDescendants()) do
-						FadeIn(0.25, v1035);
+					for v1032, v1033 in pairs(v767.ImageLabel:GetDescendants()) do
+						FadeIn(0.25, v1033);
 					end
 					task.wait(0.25);
 					v767:Destroy();
@@ -1219,9 +1223,6 @@ v21['Minimize'].Activated:Connect(function()
 				v4:Create(v905, v602, v906):Play();
 			end
 		end
-		if game:GetService("Lighting"):FindFirstChild("Blur") then
-			game:GetService("Lighting").Blur.Size = 0;
-		end
 	else
 		v15[v21["2"]] = {Size=v21["2"].Size};
 		v4:Create(v21["2"], v602, {Size=UDim2.new(0, 700, 0, 25)}):Play();
@@ -1300,9 +1301,6 @@ v21['Minimize'].Activated:Connect(function()
 				v4:Create(v913, v602, v915):Play();
 			end
 		end
-		if game:GetService("Lighting"):FindFirstChild("Blur") then
-			game:GetService("Lighting").Blur.Size = 5;
-		end
 		v15[v21['b']] = v15[v21['b']] or {Position=v21['b'].Position};
 		v4:Create(v21['b'], v602, {Position=UDim2.new(0, 150, 0, 1)}):Play();
 	end
@@ -1310,27 +1308,27 @@ end);
 v21['Close'].Activated:Connect(function()
 	for v783, v784 in pairs(v3:GetChildren()) do
 		if (v784:IsA("ScreenGui") and (v784.Name == v11)) then
-			for v930, v931 in pairs(v784:GetDescendants()) do
-				local v932 = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
-				local v933 = {};
-				if (v931:IsA("Frame") or v931:IsA("ScrollingFrame") or v931:IsA("TextBox")) then
-					v933['BackgroundTransparency'] = 1;
+			for v928, v929 in pairs(v784:GetDescendants()) do
+				local v930 = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
+				local v931 = {};
+				if (v929:IsA("Frame") or v929:IsA("ScrollingFrame") or v929:IsA("TextBox")) then
+					v931['BackgroundTransparency'] = 1;
 				end
-				if (v931:IsA("TextLabel") or v931:IsA("TextBox") or v931:IsA("TextButton")) then
-					v933['BackgroundTransparency'] = 1;
-					v933['TextTransparency'] = 1;
+				if (v929:IsA("TextLabel") or v929:IsA("TextBox") or v929:IsA("TextButton")) then
+					v931['BackgroundTransparency'] = 1;
+					v931['TextTransparency'] = 1;
 				end
-				if (v931:IsA("ImageLabel") or v931:IsA("ImageButton")) then
-					v933['BackgroundTransparency'] = 1;
-					v933['ImageTransparency'] = 1;
+				if (v929:IsA("ImageLabel") or v929:IsA("ImageButton")) then
+					v931['BackgroundTransparency'] = 1;
+					v931['ImageTransparency'] = 1;
 				end
-				if (v931:IsA("UIStroke") or v931:IsA("UIShadow")) then
-					v933['Transparency'] = 1;
+				if (v929:IsA("UIStroke") or v929:IsA("UIShadow")) then
+					v931['Transparency'] = 1;
 				end
-				if next(v933) then
-					v4:Create(v931, v932, v933):Play();
-				elseif v931:IsA("UIGradient") then
-					v4:Create(v931, v932, {Offset=Vector2.new(1, 0)}):Play();
+				if next(v931) then
+					v4:Create(v929, v930, v931):Play();
+				elseif v929:IsA("UIGradient") then
+					v4:Create(v929, v930, {Offset=Vector2.new(1, 0)}):Play();
 				end
 			end
 			task.wait(0.5);
