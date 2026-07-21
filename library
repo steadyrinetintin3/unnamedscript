@@ -481,7 +481,7 @@ v9.CreateText = function(v269, v270, v271, v272, v273, v274, v275, v276, v277)
 			Divider['Position'] = UDim2.new(0.0365, 0, 0.75624, 0);
 		else
 			Divider['Size'] = UDim2.new(0, v273, 0, 1);
-			Divider['Position'] = UDim2.new(0, 0, 0, 5);
+			Divider['Position'] = UDim2.new(0, 0, 0, 25);
 		end
 		Divider['BorderColor3'] = Color3.fromRGB(0, 0, 0);
 		Divider.Rotation = 180;
