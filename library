@@ -1428,10 +1428,9 @@ v9.SwitchTab = function(v624, v625, v626)
 	local v634 = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut);
 	v4:Create(v132, v634, {Position=v630}):Play();
 	v4:Create(v626, v634, {Position=UDim2.new(0, 0, 0, 0)}):Play();
-	v132 = v626;
-	v133 = v625;
 	task.delay(0.25, function()
-		v132.Visible = false;
+		v132 = v626;
+		v133 = v625;
 	end);
 end;
 v21["4"].ClipsDescendants = true;
