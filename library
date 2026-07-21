@@ -18,9 +18,9 @@ elseif (game.PlaceId == 104522435597696) then
 end
 local v11 = "Beh";
 v9.Settings = {WalkSpeed=10,JumpPower=0};
-local function v13(v141)
-	Humanoid = v141:WaitForChild("Humanoid");
-	HumanoidRootPart = v141:WaitForChild("HumanoidRootPart");
+local function v13(v142)
+	Humanoid = v142:WaitForChild("Humanoid");
+	HumanoidRootPart = v142:WaitForChild("HumanoidRootPart");
 	Humanoid.Died:Connect(function()
 		Humanoid, HumanoidRootPart = nil;
 	end);
@@ -32,203 +32,203 @@ end
 local v14 = {};
 local v15 = {};
 local v16 = os.clock();
-v9.FadeOutWithSaves = function(v142, v143, v144, v145)
-	local v146 = TweenInfo.new(v144, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
-	for v751, v752 in pairs(v143:GetDescendants()) do
-		local v753 = {};
+v9.FadeOutWithSaves = function(v143, v144, v145, v146)
+	local v147 = TweenInfo.new(v145, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
+	for v752, v753 in pairs(v144:GetDescendants()) do
 		local v754 = {};
-		v14[v752] = v14[v752] or {};
-		if (v752:IsA("Frame") or (v752:IsA("ScrollingFrame")) or v752:IsA("ViewportFrame")) then
-			v753['BackgroundTransparency'] = v752.BackgroundTransparency;
-			v754['BackgroundTransparency'] = 1;
-		elseif (v752:IsA("TextLabel") or v752:IsA("TextBox") or v752:IsA("TextButton")) then
-			v753['BackgroundTransparency'] = v752.BackgroundTransparency;
-			v753['TextTransparency'] = v752.TextTransparency;
-			v754['BackgroundTransparency'] = 1;
-			v754['TextTransparency'] = v145;
-		elseif (v752:IsA("ImageLabel") or v752:IsA("ImageButton")) then
-			v753['BackgroundTransparency'] = v752.BackgroundTransparency;
-			v753['ImageTransparency'] = v752.ImageTransparency;
-			v754['BackgroundTransparency'] = 1;
-			v754['ImageTransparency'] = v145;
-		elseif v752:IsA("Texture") then
-			v753['Transparency'] = v752.Transparency;
-			v754['Transparency'] = 1;
-		elseif v752:IsA("UIStroke") then
-			v14[v752].Transparency = v752.Transparency;
-		elseif (v752:IsA("UIGradient") and (v752.Parent.Name == "Divider")) then
-			v14[v752] = {Transparency=v752.Transparency};
+		local v755 = {};
+		v14[v753] = v14[v753] or {};
+		if (v753:IsA("Frame") or (v753:IsA("ScrollingFrame")) or v753:IsA("ViewportFrame")) then
+			v754['BackgroundTransparency'] = v753.BackgroundTransparency;
+			v755['BackgroundTransparency'] = 1;
+		elseif (v753:IsA("TextLabel") or v753:IsA("TextBox") or v753:IsA("TextButton")) then
+			v754['BackgroundTransparency'] = v753.BackgroundTransparency;
+			v754['TextTransparency'] = v753.TextTransparency;
+			v755['BackgroundTransparency'] = 1;
+			v755['TextTransparency'] = v146;
+		elseif (v753:IsA("ImageLabel") or v753:IsA("ImageButton")) then
+			v754['BackgroundTransparency'] = v753.BackgroundTransparency;
+			v754['ImageTransparency'] = v753.ImageTransparency;
+			v755['BackgroundTransparency'] = 1;
+			v755['ImageTransparency'] = v146;
+		elseif v753:IsA("Texture") then
+			v754['Transparency'] = v753.Transparency;
+			v755['Transparency'] = 1;
+		elseif v753:IsA("UIStroke") then
+			v14[v753].Transparency = v753.Transparency;
+		elseif (v753:IsA("UIGradient") and (v753.Parent.Name == "Divider")) then
+			v14[v753] = {Transparency=v753.Transparency};
 			task.spawn(function()
-				local v1059 = os.clock();
-				while (os.clock() - v1059) < v144 do
-					local v1062 = os.clock() - v1059;
-					local v1063 = math.clamp(v1062 / v144, 0, 1);
-					local v1064 = 0.5 - (0.5 * math.cos(v1063 * math.pi));
-					local v1065 = v14[v752].Transparency;
-					local v1066 = {};
-					for v1069, v1070 in ipairs(v1065.Keypoints) do
-						local v1071 = v1070.Value + ((1 - v1070.Value) * v1064);
-						table.insert(v1066, NumberSequenceKeypoint.new(v1070.Time, v1071));
+				local v1060 = os.clock();
+				while (os.clock() - v1060) < v145 do
+					local v1063 = os.clock() - v1060;
+					local v1064 = math.clamp(v1063 / v145, 0, 1);
+					local v1065 = 0.5 - (0.5 * math.cos(v1064 * math.pi));
+					local v1066 = v14[v753].Transparency;
+					local v1067 = {};
+					for v1070, v1071 in ipairs(v1066.Keypoints) do
+						local v1072 = v1071.Value + ((1 - v1071.Value) * v1065);
+						table.insert(v1067, NumberSequenceKeypoint.new(v1071.Time, v1072));
 					end
-					v752.Transparency = NumberSequence.new(v1066);
+					v753.Transparency = NumberSequence.new(v1067);
 					task.wait();
 				end
-				v752.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))});
-				v752.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
+				v753.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))});
+				v753.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
 			end);
 		end
-		if next(v754) then
-			v14[v752] = v753;
-			v4:Create(v752, v146, v754):Play();
+		if next(v755) then
+			v14[v753] = v754;
+			v4:Create(v753, v147, v755):Play();
 		end
 	end
 end;
-v9.FadeInWithSaves = function(v147, v148, v149)
-	local v150 = TweenInfo.new(v149, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
-	for v756, v757 in pairs(v148:GetDescendants()) do
-		local v758 = v14[v757];
-		if v758 then
-			if v757:IsA("UIGradient") then
-				local v946 = v758.Transparency or v757.Transparency;
+v9.FadeInWithSaves = function(v148, v149, v150)
+	local v151 = TweenInfo.new(v150, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
+	for v757, v758 in pairs(v149:GetDescendants()) do
+		local v759 = v14[v758];
+		if v759 then
+			if v758:IsA("UIGradient") then
+				local v947 = v759.Transparency or v758.Transparency;
 				task.spawn(function()
-					local v1002 = os.clock();
-					while (os.clock() - v1002) < v149 do
-						local v1022 = os.clock() - v1002;
-						local v1023 = math.clamp(v1022 / v149, 0, 1);
-						local v1024 = 0.5 - (0.5 * math.cos(v1023 * math.pi));
-						local v1025 = {};
-						if v946 then
-							for v1046, v1047 in ipairs(v946.Keypoints) do
-								local v1048 = 1 - ((1 - v1047.Value) * v1024);
-								table.insert(v1025, NumberSequenceKeypoint.new(v1047.Time, v1048));
+					local v1003 = os.clock();
+					while (os.clock() - v1003) < v150 do
+						local v1023 = os.clock() - v1003;
+						local v1024 = math.clamp(v1023 / v150, 0, 1);
+						local v1025 = 0.5 - (0.5 * math.cos(v1024 * math.pi));
+						local v1026 = {};
+						if v947 then
+							for v1047, v1048 in ipairs(v947.Keypoints) do
+								local v1049 = 1 - ((1 - v1048.Value) * v1025);
+								table.insert(v1026, NumberSequenceKeypoint.new(v1048.Time, v1049));
 							end
 						end
-						if (#v1025 == 1) then
-							table.insert(v1025, NumberSequenceKeypoint.new(1, v1025[1].Value));
-						elseif (#v1025 == 0) then
-							v1025 = {NumberSequenceKeypoint.new(0, 1),NumberSequenceKeypoint.new(1, 1)};
+						if (#v1026 == 1) then
+							table.insert(v1026, NumberSequenceKeypoint.new(1, v1026[1].Value));
+						elseif (#v1026 == 0) then
+							v1026 = {NumberSequenceKeypoint.new(0, 1),NumberSequenceKeypoint.new(1, 1)};
 						end
-						v757.Transparency = NumberSequence.new(v1025);
+						v758.Transparency = NumberSequence.new(v1026);
 						task.wait();
 					end
-					v757.Transparency = v946;
+					v758.Transparency = v947;
 				end);
 			else
-				v4:Create(v757, v150, v758):Play();
+				v4:Create(v758, v151, v759):Play();
 			end
 		else
-			local v893 = {};
-			if ((v757:IsA("Frame") and (not v757.Name == "Text")) or v757:IsA("ViewportFrame")) then
-				v893['BackgroundTransparency'] = 0;
-			elseif v757:IsA("ScrollingFrame") then
-				v893['BackgroundTransparency'] = 1;
-			elseif (v757:IsA("TextLabel") or v757:IsA("TextBox") or (v757:IsA("TextButton") and (not v757.Name == "Button"))) then
-				v893['BackgroundTransparency'] = 1;
-				v893['TextTransparency'] = 0;
-			elseif (v757:IsA("ImageLabel") or v757:IsA("ImageButton")) then
-				v893['BackgroundTransparency'] = 1;
-				v893['ImageTransparency'] = 0;
-			elseif v757:IsA("UIShadow") then
-				v893.Transparency = 0;
-			elseif v757:IsA("Texture") then
-				v893['Transparency'] = 0;
-			elseif v757:IsA("UIStroke") then
-				if (v758 and (v758.Transparency ~= nil)) then
-					v4:Create(v757, v150, {Transparency=v758.Transparency}):Play();
+			local v894 = {};
+			if ((v758:IsA("Frame") and (not v758.Name == "Text")) or v758:IsA("ViewportFrame")) then
+				v894['BackgroundTransparency'] = 0;
+			elseif v758:IsA("ScrollingFrame") then
+				v894['BackgroundTransparency'] = 1;
+			elseif (v758:IsA("TextLabel") or v758:IsA("TextBox") or (v758:IsA("TextButton") and (not v758.Name == "Button"))) then
+				v894['BackgroundTransparency'] = 1;
+				v894['TextTransparency'] = 0;
+			elseif (v758:IsA("ImageLabel") or v758:IsA("ImageButton")) then
+				v894['BackgroundTransparency'] = 1;
+				v894['ImageTransparency'] = 0;
+			elseif v758:IsA("UIShadow") then
+				v894.Transparency = 0;
+			elseif v758:IsA("Texture") then
+				v894['Transparency'] = 0;
+			elseif v758:IsA("UIStroke") then
+				if (v759 and (v759.Transparency ~= nil)) then
+					v4:Create(v758, v151, {Transparency=v759.Transparency}):Play();
 				end
-			elseif (v757:IsA("UIGradient") and (v757.Parent.Name == "Divider")) then
-				local v1072 = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
+			elseif (v758:IsA("UIGradient") and (v758.Parent.Name == "Divider")) then
+				local v1073 = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
 				task.spawn(function()
-					local v1073 = os.clock();
-					while (os.clock() - v1073) < v149 do
-						local v1075 = os.clock() - v1073;
-						local v1076 = math.clamp(v1075 / v149, 0, 1);
-						local v1077 = 0.5 - (0.5 * math.cos(v1076 * math.pi));
-						local v1078 = {};
-						for v1080, v1081 in ipairs(v1072.Keypoints) do
-							local v1082 = 1 - ((1 - v1081.Value) * v1077);
-							table.insert(v1078, NumberSequenceKeypoint.new(v1081.Time, v1082));
+					local v1074 = os.clock();
+					while (os.clock() - v1074) < v150 do
+						local v1076 = os.clock() - v1074;
+						local v1077 = math.clamp(v1076 / v150, 0, 1);
+						local v1078 = 0.5 - (0.5 * math.cos(v1077 * math.pi));
+						local v1079 = {};
+						for v1081, v1082 in ipairs(v1073.Keypoints) do
+							local v1083 = 1 - ((1 - v1082.Value) * v1078);
+							table.insert(v1079, NumberSequenceKeypoint.new(v1082.Time, v1083));
 						end
-						v757.Transparency = NumberSequence.new(v1078);
+						v758.Transparency = NumberSequence.new(v1079);
 						task.wait();
 					end
-					v757.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
+					v758.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0)});
 				end);
 			end
-			if next(v893) then
-				v4:Create(v757, v150, v893):Play();
+			if next(v894) then
+				v4:Create(v758, v151, v894):Play();
 			end
 		end
 	end
 end;
-v9.FadeIn = function(v151, v152, v153)
-	local v154 = TweenInfo.new(v152, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
-	local v155 = {};
-	if (v153:IsA("Frame") or (v153:IsA("ScrollingFrame") and (v153.Name ~= "UserConsoleInfo")) or v153:IsA("TextBox")) then
-		v155['BackgroundTransparency'] = 1;
+v9.FadeIn = function(v152, v153, v154)
+	local v155 = TweenInfo.new(v153, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
+	local v156 = {};
+	if (v154:IsA("Frame") or (v154:IsA("ScrollingFrame") and (v154.Name ~= "UserConsoleInfo")) or v154:IsA("TextBox")) then
+		v156['BackgroundTransparency'] = 1;
 	end
-	if (v153:IsA("TextLabel") or v153:IsA("TextBox") or v153:IsA("TextButton")) then
-		v155['BackgroundTransparency'] = 1;
-		v155['TextTransparency'] = 1;
+	if (v154:IsA("TextLabel") or v154:IsA("TextBox") or v154:IsA("TextButton")) then
+		v156['BackgroundTransparency'] = 1;
+		v156['TextTransparency'] = 1;
 	end
-	if (v153:IsA("ImageLabel") or v153:IsA("ImageButton")) then
-		v155['ImageTransparency'] = 1;
-		v155['BackgroundTransparency'] = 1;
+	if (v154:IsA("ImageLabel") or v154:IsA("ImageButton")) then
+		v156['ImageTransparency'] = 1;
+		v156['BackgroundTransparency'] = 1;
 	end
-	if (v153:IsA("UIStroke") or v153:IsA("BasePart") or v153:IsA("Decal") or v153:IsA("Texture")) then
-		v155['Transparency'] = 1;
+	if (v154:IsA("UIStroke") or v154:IsA("BasePart") or v154:IsA("Decal") or v154:IsA("Texture")) then
+		v156['Transparency'] = 1;
 	end
-	if v153:IsA("UIShadow") then
-		v155['Transparency'] = 1;
+	if v154:IsA("UIShadow") then
+		v156['Transparency'] = 1;
 	end
-	if next(v155) then
-		v4:Create(v153, v154, v155):Play();
-	elseif v153:IsA("UIGradient") then
-		v4:Create(v153, v154, {Offset=Vector2.new(1, 0)}):Play();
+	if next(v156) then
+		v4:Create(v154, v155, v156):Play();
+	elseif v154:IsA("UIGradient") then
+		v4:Create(v154, v155, {Offset=Vector2.new(1, 0)}):Play();
 	end
 end;
-v9.FadeOut = function(v156, v157, v158, v159)
-	local v160 = TweenInfo.new(v157, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
-	if not v159 then
-		v159 = 0;
+v9.FadeOut = function(v157, v158, v159, v160)
+	local v161 = TweenInfo.new(v158, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
+	if not v160 then
+		v160 = 0;
 	end
-	if not v158 then
+	if not v159 then
 		warn("hey");
 		return;
 	end
-	local v161 = {};
-	if (v158:IsA("Frame") or (v158:IsA("ScrollingFrame") and (v158.Name ~= "UserConsoleInfo"))) then
-		v161['BackgroundTransparency'] = v159;
+	local v162 = {};
+	if (v159:IsA("Frame") or (v159:IsA("ScrollingFrame") and (v159.Name ~= "UserConsoleInfo"))) then
+		v162['BackgroundTransparency'] = v160;
 	end
-	if (v158:IsA("TextBox") or v158:IsA("TextButton")) then
-		v161['TextTransparency'] = v159;
+	if (v159:IsA("TextBox") or v159:IsA("TextButton")) then
+		v162['TextTransparency'] = v160;
 	end
-	if v158:IsA("TextLabel") then
-		v161['TextTransparency'] = v159;
+	if v159:IsA("TextLabel") then
+		v162['TextTransparency'] = v160;
 	end
-	if (v158:IsA("ImageLabel") or v158:IsA("ImageButton")) then
-		v161['ImageTransparency'] = v159;
-		v161['BackgroundTransparency'] = 1;
+	if (v159:IsA("ImageLabel") or v159:IsA("ImageButton")) then
+		v162['ImageTransparency'] = v160;
+		v162['BackgroundTransparency'] = 1;
 	end
-	if (v158:IsA("UIStroke") or v158:IsA("BasePart") or v158:IsA("Decal") or v158:IsA("Texture")) then
-		v161['Transparency'] = v159;
+	if (v159:IsA("UIStroke") or v159:IsA("BasePart") or v159:IsA("Decal") or v159:IsA("Texture")) then
+		v162['Transparency'] = v160;
 	end
-	if v158:IsA("UIShadow") then
-		v161['Transparency'] = v159;
+	if v159:IsA("UIShadow") then
+		v162['Transparency'] = v160;
 	end
-	if next(v161) then
-		v4:Create(v158, v160, v161):Play();
-	elseif v158:IsA("UIGradient") then
-		v4:Create(v158, v160, {Offset=Vector2.new(1, 0)}):Play();
+	if next(v162) then
+		v4:Create(v159, v161, v162):Play();
+	elseif v159:IsA("UIGradient") then
+		v4:Create(v159, v161, {Offset=Vector2.new(1, 0)}):Play();
 	end
 end;
-for v162, v163 in pairs(v3:GetChildren()) do
-	if (v163:IsA("ScreenGui") and (v163.Name == v11)) then
-		for v894, v895 in pairs(v163:GetDescendants()) do
-			v9:FadeIn(0.5, v895);
+for v163, v164 in pairs(v3:GetChildren()) do
+	if (v164:IsA("ScreenGui") and (v164.Name == v11)) then
+		for v895, v896 in pairs(v164:GetDescendants()) do
+			v9:FadeIn(0.5, v896);
 		end
 		task.wait(0.5);
-		v163:Destroy();
+		v164:Destroy();
 		task.wait(1);
 	end
 end
@@ -243,54 +243,54 @@ local v29 = true;
 local v30 = false;
 local v31 = 1;
 local v32 = {};
-v9.togglevis = function(v164)
+v9.togglevis = function(v165)
 	if v30 then
 		return;
 	end
 	v30 = true;
 	v29 = not v29;
 	if not v29 then
-		for v896, v897 in pairs(v21["2"]:GetDescendants()) do
-			local v898 = {};
-			if (v897:IsA("Frame") or v897:IsA("ScrollingFrame") or v897:IsA("ViewportFrame")) then
-				v32[v897] = {BackgroundTransparency=v897.BackgroundTransparency};
-				v898.BackgroundTransparency = 1;
-			elseif (v897:IsA("TextLabel") or v897:IsA("TextBox") or v897:IsA("TextButton")) then
-				v32[v897] = {BackgroundTransparency=v897.BackgroundTransparency,TextTransparency=v897.TextTransparency};
-				v898.BackgroundTransparency = 1;
-				v898.TextTransparency = 1;
-			elseif (v897:IsA("ImageLabel") or (v897:IsA("ImageButton") and (v897.Name ~= "Noice"))) then
-				v32[v897] = {BackgroundTransparency=v897.BackgroundTransparency,ImageTransparency=v897.ImageTransparency};
-				v898.BackgroundTransparency = 1;
-				v898.ImageTransparency = 1;
-			elseif (v897:IsA("Texture") or v897:IsA("UIStroke") or v897:IsA("UIShadow")) then
-				v32[v897] = {Transparency=v897.Transparency};
-				v898.Transparency = 1;
-			elseif (v897:IsA("UIGradient") and (v897.Parent.Name == "Divider")) then
-				v32[v897] = {Transparency=v897.Transparency,Color=v897.Color};
-				v897.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 1),NumberSequenceKeypoint.new(1, 1)});
+		for v897, v898 in pairs(v21["2"]:GetDescendants()) do
+			local v899 = {};
+			if (v898:IsA("Frame") or v898:IsA("ScrollingFrame") or v898:IsA("ViewportFrame")) then
+				v32[v898] = {BackgroundTransparency=v898.BackgroundTransparency};
+				v899.BackgroundTransparency = 1;
+			elseif (v898:IsA("TextLabel") or v898:IsA("TextBox") or v898:IsA("TextButton")) then
+				v32[v898] = {BackgroundTransparency=v898.BackgroundTransparency,TextTransparency=v898.TextTransparency};
+				v899.BackgroundTransparency = 1;
+				v899.TextTransparency = 1;
+			elseif (v898:IsA("ImageLabel") or (v898:IsA("ImageButton") and (v898.Name ~= "Noice"))) then
+				v32[v898] = {BackgroundTransparency=v898.BackgroundTransparency,ImageTransparency=v898.ImageTransparency};
+				v899.BackgroundTransparency = 1;
+				v899.ImageTransparency = 1;
+			elseif (v898:IsA("Texture") or v898:IsA("UIStroke") or v898:IsA("UIShadow")) then
+				v32[v898] = {Transparency=v898.Transparency};
+				v899.Transparency = 1;
+			elseif (v898:IsA("UIGradient") and (v898.Parent.Name == "Divider")) then
+				v32[v898] = {Transparency=v898.Transparency,Color=v898.Color};
+				v898.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 1),NumberSequenceKeypoint.new(1, 1)});
 			end
-			if next(v898) then
+			if next(v899) then
 				task.spawn(function()
 					v4:Create(v21["2"], v28, {BackgroundTransparency=1}):Play();
 				end);
-				v4:Create(v897, v28, v898):Play();
+				v4:Create(v898, v28, v899):Play();
 			end
 		end
 		task.wait(0.25);
 		v21["2"].Visible = false;
 	else
 		v21["2"].Visible = true;
-		for v899, v900 in pairs(v32) do
-			if (v899 and v899.Parent) then
-				if v899:IsA("UIGradient") then
-					v899.Transparency = v900.Transparency;
-					v899.Color = v900.Color;
+		for v900, v901 in pairs(v32) do
+			if (v900 and v900.Parent) then
+				if v900:IsA("UIGradient") then
+					v900.Transparency = v901.Transparency;
+					v900.Color = v901.Color;
 				else
 					task.spawn(function()
 						v4:Create(v21["2"], v28, {BackgroundTransparency=0}):Play();
 					end);
-					v4:Create(v899, v28, v900):Play();
+					v4:Create(v900, v28, v901):Play();
 				end
 			end
 		end
@@ -298,189 +298,189 @@ v9.togglevis = function(v164)
 	task.wait(v31);
 	v30 = false;
 end;
-v9.CreateLog = function(v165, v166, v167, v168, v169, v170, v171, v172)
-	if not v172 then
-		v172 = false;
+v9.CreateLog = function(v166, v167, v168, v169, v170, v171, v172, v173)
+	if not v173 then
+		v173 = false;
 	end
 	Log = Instance.new("Frame");
-	Log.LayoutOrder = v168 or 0;
-	Log.Parent = v167;
+	Log.LayoutOrder = v169 or 0;
+	Log.Parent = v168;
 	Log.AutomaticSize = Enum.AutomaticSize.Y;
-	Log.Size = UDim2.new(0, v169, 0, 28);
-	Log.Name = v171 or "Frame";
+	Log.Size = UDim2.new(0, v170, 0, 28);
+	Log.Name = v172 or "Frame";
 	Log.BackgroundTransparency = 1;
-	local v180 = Instance.new("UICorner", Log);
-	local v181 = Instance.new("UIStroke", Log);
-	v181.Thickness = 1.5;
-	v181.Color = Color3.fromRGB(255, 255, 255);
-	v181.ApplyStrokeMode = "Border";
-	v181.Transparency = 1;
-	v9:FadeOut(0.25, v181, 0);
+	local v181 = Instance.new("UICorner", Log);
+	local v182 = Instance.new("UIStroke", Log);
+	v182.Thickness = 1.5;
+	v182.Color = Color3.fromRGB(255, 255, 255);
+	v182.ApplyStrokeMode = "Border";
+	v182.Transparency = 1;
+	v9:FadeOut(0.25, v182, 0);
 	Noice2 = Instance.new("ImageLabel", Log);
-	Noice2.Size = UDim2.new(0, v169, 0, 28);
+	Noice2.Size = UDim2.new(0, v170, 0, 28);
 	Noice2.Image = "rbxassetid://73660298439922";
 	Noice2.ImageTransparency = 1;
 	Noice2.Name = "Noice";
 	Noice2.BackgroundTransparency = 1;
-	local v191 = Instance.new("UICorner", Noice2);
+	local v192 = Instance.new("UICorner", Noice2);
 	v9:FadeOut(0.25, Noice2, 0.5);
 	v14[Noice2] = {BackgroundTransparency=1,ImageTransparency=0.5};
 	TextLabelLog = Instance.new("TextLabel");
 	TextLabelLog.TextWrapped = true;
-	TextLabelLog.TextScaled = v170;
+	TextLabelLog.TextScaled = v171;
 	TextLabelLog.TextTransparency = 1;
 	TextLabelLog.TextSize = 12;
 	TextLabelLog.BackgroundTransparency = 1;
 	TextLabelLog.Size = UDim2.new(1, 0, 0, 28);
 	TextLabelLog.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold);
 	TextLabelLog.TextColor3 = Color3.fromRGB(255, 255, 255);
-	TextLabelLog.Text = v166;
+	TextLabelLog.Text = v167;
 	TextLabelLog.Parent = Log;
 	v9:FadeOut(0.25, TextLabelLog, 0);
 	return TextLabelLog;
 end;
-v9.CreateSlider = function(v203, v204, v205, v206, v207, v208, v209, v210, v211, v212)
-	v209 = v209 or 0;
-	v210 = v210 or 100;
-	local v213 = Instance.new("Frame");
-	v213.LayoutOrder = v206 or 0;
-	v213.Parent = v205;
-	v213.AutomaticSize = Enum.AutomaticSize.Y;
-	v213.Size = UDim2.new(0, v207, 0, 28);
-	v213.Name = v211 .. "_Slider";
-	local v220 = Instance.new("UICorner");
-	v220.CornerRadius = UDim.new(0, 10);
-	v220.Parent = v213;
-	local v223 = Instance.new("UIGradient");
-	v223.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 75, 91)),ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))});
-	v223.Parent = v213;
-	local v226 = Instance.new("TextLabel");
-	v226.TextWrapped = true;
-	v226.BorderSizePixel = 0;
-	v226.TextScaled = v208 or false;
-	v226.TextSize = 12;
-	v226.BackgroundTransparency = 1;
-	v226.Size = UDim2.new(1, 0, 1, 0);
-	v226.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold);
-	v226.TextColor3 = Color3.fromRGB(255, 255, 255);
-	v226.Parent = v213;
-	local v236 = Instance.new("UIStroke");
-	v236.Color = Color3.fromRGB(255, 255, 255);
-	v236.Thickness = 2;
-	v236.Parent = v213;
-	local function v240(v759)
-		v759 = math.clamp(v759, v209, v210);
-		local v760 = math.floor(v759);
+v9.CreateSlider = function(v204, v205, v206, v207, v208, v209, v210, v211, v212, v213)
+	v210 = v210 or 0;
+	v211 = v211 or 100;
+	local v214 = Instance.new("Frame");
+	v214.LayoutOrder = v207 or 0;
+	v214.Parent = v206;
+	v214.AutomaticSize = Enum.AutomaticSize.Y;
+	v214.Size = UDim2.new(0, v208, 0, 28);
+	v214.Name = v212 .. "_Slider";
+	local v221 = Instance.new("UICorner");
+	v221.CornerRadius = UDim.new(0, 10);
+	v221.Parent = v214;
+	local v224 = Instance.new("UIGradient");
+	v224.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 75, 91)),ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))});
+	v224.Parent = v214;
+	local v227 = Instance.new("TextLabel");
+	v227.TextWrapped = true;
+	v227.BorderSizePixel = 0;
+	v227.TextScaled = v209 or false;
+	v227.TextSize = 12;
+	v227.BackgroundTransparency = 1;
+	v227.Size = UDim2.new(1, 0, 1, 0);
+	v227.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold);
+	v227.TextColor3 = Color3.fromRGB(255, 255, 255);
+	v227.Parent = v214;
+	local v237 = Instance.new("UIStroke");
+	v237.Color = Color3.fromRGB(255, 255, 255);
+	v237.Thickness = 2;
+	v237.Parent = v214;
+	local function v241(v760)
+		v760 = math.clamp(v760, v210, v211);
+		local v761 = math.floor(v760);
 		if v9.Settings then
-			v9.Settings[v211] = v760;
+			v9.Settings[v212] = v761;
 		end
-		local v761 = (v759 - v209) / (v210 - v209);
-		v761 = math.clamp(v761, 0, 1);
-		v223.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(math.clamp(v761, 0, 0.999), 0),NumberSequenceKeypoint.new(math.clamp(v761 + 0.001, 0.001, 1), 1),NumberSequenceKeypoint.new(1, 1)});
-		v226.Text = v204 .. ": " .. v760;
-		if v212 then
-			v212(v760);
+		local v762 = (v760 - v210) / (v211 - v210);
+		v762 = math.clamp(v762, 0, 1);
+		v224.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(math.clamp(v762, 0, 0.999), 0),NumberSequenceKeypoint.new(math.clamp(v762 + 0.001, 0.001, 1), 1),NumberSequenceKeypoint.new(1, 1)});
+		v227.Text = v205 .. ": " .. v761;
+		if v213 then
+			v213(v761);
 		end
 	end
-	local v241 = (v9.Settings and v9.Settings[v211]) or v209;
-	v240(v241);
+	local v242 = (v9.Settings and v9.Settings[v212]) or v210;
+	v241(v242);
 	task.spawn(function()
 		while task.wait(0.3) do
-			local v817 = v9.Settings and v9.Settings[v211];
-			if v817 then
-				v240(v817);
+			local v818 = v9.Settings and v9.Settings[v212];
+			if v818 then
+				v241(v818);
 			end
 		end
 	end);
-	local v242 = false;
-	v213.InputBegan:Connect(function(v764)
-		if ((v764.UserInputType == Enum.UserInputType.MouseButton1) or (v764.UserInputType == Enum.UserInputType.Touch)) then
-			v242 = true;
+	local v243 = false;
+	v214.InputBegan:Connect(function(v765)
+		if ((v765.UserInputType == Enum.UserInputType.MouseButton1) or (v765.UserInputType == Enum.UserInputType.Touch)) then
+			v243 = true;
 			v21['FrameDragDetector'].Enabled = false;
 		end
 	end);
-	v5.InputChanged:Connect(function(v765)
-		if not v242 then
+	v5.InputChanged:Connect(function(v766)
+		if not v243 then
 			return;
 		end
-		if ((v765.UserInputType ~= Enum.UserInputType.MouseMovement) and (v765.UserInputType ~= Enum.UserInputType.Touch)) then
+		if ((v766.UserInputType ~= Enum.UserInputType.MouseMovement) and (v766.UserInputType ~= Enum.UserInputType.Touch)) then
 			return;
 		end
-		local v766 = v765.Position.X - v213.AbsolutePosition.X;
-		local v767 = math.clamp(v766 / v213.AbsoluteSize.X, 0, 1);
-		local v768 = v209 + ((v210 - v209) * v767);
-		v240(v768);
+		local v767 = v766.Position.X - v214.AbsolutePosition.X;
+		local v768 = math.clamp(v767 / v214.AbsoluteSize.X, 0, 1);
+		local v769 = v210 + ((v211 - v210) * v768);
+		v241(v769);
 	end);
-	v5.InputEnded:Connect(function(v769)
-		if ((v769.UserInputType == Enum.UserInputType.MouseButton1) or (v769.UserInputType == Enum.UserInputType.Touch)) then
-			v242 = false;
+	v5.InputEnded:Connect(function(v770)
+		if ((v770.UserInputType == Enum.UserInputType.MouseButton1) or (v770.UserInputType == Enum.UserInputType.Touch)) then
+			v243 = false;
 			v21['FrameDragDetector'].Enabled = true;
 		end
 	end);
-	return {Gui=v213,Update=v240};
+	return {Gui=v214,Update=v241};
 end;
-v9.CreateLoader = function(v243, v244, v245, v246, v247, v248, v249)
-	local v250 = Instance.new("Frame");
-	v250.LayoutOrder = v246 or 0;
-	v250.Parent = v245;
-	v250.AutomaticSize = Enum.AutomaticSize.Y;
-	v250.Size = UDim2.new(0, v247, 0, 28);
-	local v256 = Instance.new("UICorner");
-	v256.Parent = v250;
-	v256.CornerRadius = UDim.new(0, 10);
-	local v259 = Instance.new("UIGradient");
-	v259.Parent = v250;
-	v259.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 75, 91)),ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))});
-	local v262 = Instance.new("TextLabel", v250);
-	v262.TextWrapped = true;
-	v262.BorderSizePixel = 0;
-	v262.TextScaled = v248;
-	v262.TextSize = 12;
+v9.CreateLoader = function(v244, v245, v246, v247, v248, v249, v250)
+	local v251 = Instance.new("Frame");
+	v251.LayoutOrder = v247 or 0;
+	v251.Parent = v246;
+	v251.AutomaticSize = Enum.AutomaticSize.Y;
+	v251.Size = UDim2.new(0, v248, 0, 28);
+	local v257 = Instance.new("UICorner");
+	v257.Parent = v251;
+	v257.CornerRadius = UDim.new(0, 10);
+	local v260 = Instance.new("UIGradient");
+	v260.Parent = v251;
+	v260.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 75, 91)),ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))});
+	local v263 = Instance.new("TextLabel", v251);
+	v263.TextWrapped = true;
+	v263.BorderSizePixel = 0;
+	v263.TextScaled = v249;
+	v263.TextSize = 12;
 	SliderStroke.Color = Color3.fromRGB(255, 255, 255);
 	SliderStroke.Thickness = 2;
-	return v262;
+	return v263;
 end;
-v9.CreateText = function(v269, v270, v271, v272, v273, v274, v275, v276, v277)
-	if not v273 then
-		v273 = 156;
-	end
+v9.CreateText = function(v270, v271, v272, v273, v274, v275, v276, v277, v278)
 	if not v274 then
-		v274 = 28;
+		v274 = 156;
 	end
-	if (v275 == nil) then
-		v275 = true;
+	if not v275 then
+		v275 = 28;
 	end
 	if (v276 == nil) then
 		v276 = true;
 	end
 	if (v277 == nil) then
-		v277 = false;
+		v277 = true;
 	end
-	local v278 = Instance.new("TextLabel", v271);
-	v278['TextWrapped'] = v276;
-	v278['BorderSizePixel'] = 0;
-	v278['TextScaled'] = v277;
-	v278['TextSize'] = 18;
-	v278.LayoutOrder = v272;
-	v278['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
-	v278['FontFace'] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-	v278['TextColor3'] = Color3.fromRGB(255, 255, 255);
-	v278['BackgroundTransparency'] = 1;
-	v278['Size'] = UDim2.new(0, v273, 0, v274);
-	v278['BorderColor3'] = Color3.fromRGB(0, 0, 0);
-	v278['Text'] = v270;
-	if v275 then
-		Divider = Instance.new("Frame", v278);
+	if (v278 == nil) then
+		v278 = false;
+	end
+	local v279 = Instance.new("TextLabel", v272);
+	v279['TextWrapped'] = v277;
+	v279['BorderSizePixel'] = 0;
+	v279['TextScaled'] = v278;
+	v279['TextSize'] = 18;
+	v279.LayoutOrder = v273;
+	v279['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
+	v279['FontFace'] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+	v279['TextColor3'] = Color3.fromRGB(255, 255, 255);
+	v279['BackgroundTransparency'] = 1;
+	v279['Size'] = UDim2.new(0, v274, 0, v275);
+	v279['BorderColor3'] = Color3.fromRGB(0, 0, 0);
+	v279['Text'] = v271;
+	if v276 then
+		Divider = Instance.new("Frame", v279);
 		Divider['BorderSizePixel'] = 0;
 		Divider['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
-		if ((v273 == 156) and (v274 == 50)) then
+		if ((v274 == 156) and (v275 == 50)) then
 			Divider['Size'] = UDim2.new(1, -10, 0, 1);
 			Divider['Position'] = UDim2.new(0.036, 0, 0.756, 0);
-		elseif ((v273 == 200) and (v274 == 50)) then
+		elseif ((v274 == 200) and (v275 == 50)) then
 			Divider['Size'] = UDim2.new(1, -10, 0, 1);
 			Divider['Position'] = UDim2.new(0.0365, 0, 0.75624, 0);
 		else
-			Divider['Size'] = UDim2.new(0, v273, 0, 1);
+			Divider['Size'] = UDim2.new(0, v274, 0, 1);
 			Divider['Position'] = UDim2.new(0, 0, 0, 25);
 		end
 		Divider['BorderColor3'] = Color3.fromRGB(0, 0, 0);
@@ -491,274 +491,274 @@ v9.CreateText = function(v269, v270, v271, v272, v273, v274, v275, v276, v277)
 		DividerGradient['Transparency'] = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0, 0.0125),NumberSequenceKeypoint.new(0, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0.556),NumberSequenceKeypoint.new(1, 0.725),NumberSequenceKeypoint.new(1, 0.0313),NumberSequenceKeypoint.new(1, 0)});
 		DividerGradient['Color'] = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))});
 	end
-	return v278;
+	return v279;
 end;
-v9.CreateDivider = function(v291, v292, v293, v294, v295, v296)
-	if not v294 then
-		v294 = 156;
-	end
+v9.CreateDivider = function(v292, v293, v294, v295, v296, v297)
 	if not v295 then
-		v295 = UDim2.new(0, 0, 0, 0);
+		v295 = 156;
 	end
 	if not v296 then
-		v296 = 0;
+		v296 = UDim2.new(0, 0, 0, 0);
 	end
-	Divider = Instance.new("Frame", v292);
+	if not v297 then
+		v297 = 0;
+	end
+	Divider = Instance.new("Frame", v293);
 	Divider['BorderSizePixel'] = 0;
 	Divider['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
-	Divider['Size'] = UDim2.new(0, v294, 0, 1);
-	Divider['Position'] = v295;
+	Divider['Size'] = UDim2.new(0, v295, 0, 1);
+	Divider['Position'] = v296;
 	Divider['BorderColor3'] = Color3.fromRGB(0, 0, 0);
-	Divider.Rotation = v296;
+	Divider.Rotation = v297;
 	Divider['Name'] = [[Divider]];
 	Divider['BackgroundTransparency'] = 0.5;
-	Divider.LayoutOrder = v293;
+	Divider.LayoutOrder = v294;
 	DividerGradient = Instance.new("UIGradient", Divider);
 	DividerGradient['Transparency'] = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0, 0.0125),NumberSequenceKeypoint.new(0, 0.637),NumberSequenceKeypoint.new(0.167, 0.375),NumberSequenceKeypoint.new(0.5, 0.106),NumberSequenceKeypoint.new(0.65, 0.419),NumberSequenceKeypoint.new(1, 0.556),NumberSequenceKeypoint.new(1, 0.725),NumberSequenceKeypoint.new(1, 0.0313),NumberSequenceKeypoint.new(1, 0)});
 	DividerGradient['Color'] = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))});
 end;
-v9.CreateItems = function(v308, v309, v310, v311, v312, v313, v314, v315)
-	local v316 = Instance.new("UICorner");
-	v316.Parent = v309;
-	v316.CornerRadius = UDim.new(0, 10);
-	if not v313 then
-		v313 = "Vertical";
-	end
+v9.CreateItems = function(v309, v310, v311, v312, v313, v314, v315, v316)
+	local v317 = Instance.new("UICorner");
+	v317.Parent = v310;
+	v317.CornerRadius = UDim.new(0, 10);
 	if not v314 then
-		v314 = Color3.fromRGB(175, 165, 180);
+		v314 = "Vertical";
 	end
 	if not v315 then
-		v315 = 0;
+		v315 = Color3.fromRGB(175, 165, 180);
 	end
-	local v319 = Instance.new("UIGradient");
-	v319.Parent = v309;
-	if (v310 == "Red") then
-		v319.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(1, 0)});
-		v319.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(0, 0, 0)),ColorSequenceKeypoint.new(0.221, Color3.new(0.0823529, 0.0823529, 0.0823529)),ColorSequenceKeypoint.new(0.588, Color3.new(0.203922, 0.203922, 0.203922)),ColorSequenceKeypoint.new(1, Color3.new(0.352941, 0.12549, 0.141176))});
-	elseif (v310 == "DarkRed") then
-		v319.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.85),NumberSequenceKeypoint.new(1, 0.85)});
-		v319.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 75, 91)),ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))});
-	elseif (v310 == "DarkRed2") then
-		v319.Rotation = 90;
-		v319.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),ColorSequenceKeypoint.new(0.221, Color3.fromRGB(21, 21, 21)),ColorSequenceKeypoint.new(0.588, Color3.fromRGB(52, 52, 52)),ColorSequenceKeypoint.new(1, Color3.fromRGB(90, 32, 36))});
+	if not v316 then
+		v316 = 0;
 	end
-	if v311 then
-		local v828 = Instance.new("UIStroke", v309);
-		v828.Color = v314;
-		v828.Thickness = 1.5;
-		v828.Transparency = v315;
+	local v320 = Instance.new("UIGradient");
+	v320.Parent = v310;
+	if (v311 == "Red") then
+		v320.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(1, 0)});
+		v320.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(0, 0, 0)),ColorSequenceKeypoint.new(0.221, Color3.new(0.0823529, 0.0823529, 0.0823529)),ColorSequenceKeypoint.new(0.588, Color3.new(0.203922, 0.203922, 0.203922)),ColorSequenceKeypoint.new(1, Color3.new(0.352941, 0.12549, 0.141176))});
+	elseif (v311 == "DarkRed") then
+		v320.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.85),NumberSequenceKeypoint.new(1, 0.85)});
+		v320.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 75, 91)),ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))});
+	elseif (v311 == "DarkRed2") then
+		v320.Rotation = 90;
+		v320.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),ColorSequenceKeypoint.new(0.221, Color3.fromRGB(21, 21, 21)),ColorSequenceKeypoint.new(0.588, Color3.fromRGB(52, 52, 52)),ColorSequenceKeypoint.new(1, Color3.fromRGB(90, 32, 36))});
 	end
 	if v312 then
-		local v832 = Instance.new("UIListLayout", v309);
-		v832.Padding = UDim.new(0, 5);
-		v832.HorizontalAlignment = "Center";
-		v832.VerticalAlignment = "Top";
-		v832.SortOrder = "LayoutOrder";
+		local v829 = Instance.new("UIStroke", v310);
+		v829.Color = v315;
+		v829.Thickness = 1.5;
+		v829.Transparency = v316;
+	end
+	if v313 then
+		local v833 = Instance.new("UIListLayout", v310);
+		v833.Padding = UDim.new(0, 5);
+		v833.HorizontalAlignment = "Center";
+		v833.VerticalAlignment = "Top";
+		v833.SortOrder = "LayoutOrder";
 	end
 end;
-v9.CreateEsp = function(v321, v322, v323, v324)
-	for v770, v771 in pairs(v323:GetChildren()) do
-		if ((v771.Name == "Esp") or (v771.Name == "BillboardGui")) then
-			if v771:FindFirstChild("ImageLabel") then
+v9.CreateEsp = function(v322, v323, v324, v325)
+	for v771, v772 in pairs(v324:GetChildren()) do
+		if ((v772.Name == "Esp") or (v772.Name == "BillboardGui")) then
+			if v772:FindFirstChild("ImageLabel") then
 				task.spawn(function()
-					FadeIn(0.25, v771.ImageLabel);
-					for v1035, v1036 in pairs(v771.ImageLabel:GetDescendants()) do
-						FadeIn(0.25, v1036);
+					FadeIn(0.25, v772.ImageLabel);
+					for v1036, v1037 in pairs(v772.ImageLabel:GetDescendants()) do
+						FadeIn(0.25, v1037);
 					end
 					task.wait(0.25);
-					v771:Destroy();
+					v772:Destroy();
 				end);
 			end
 		end
 	end
-	if not v322 then
-		v322 = "Label";
+	if not v323 then
+		v323 = "Label";
 	end
 	task.wait(0.25);
-	local v325 = Instance.new("BillboardGui");
-	v325.Parent = v323;
-	v325.AlwaysOnTop = true;
-	v325.Name = "Esp";
-	v325.Size = UDim2.new(4, 0, 1, 0);
-	v325.SizeOffset = Vector2.new(0, 2.5);
-	local v331 = Instance.new("Frame", v325);
-	v331.BackgroundTransparency = 1;
-	v331.Size = UDim2.new(1, 0, 1, 0);
-	v9:FadeOut(0.25, v331);
-	v9:CreateItems(v331, "DarkRed2");
-	local v334 = Instance.new("UIListLayout", v331);
-	v334.Padding = UDim.new(0, 10);
-	v334.HorizontalAlignment = "Center";
-	v334.VerticalAlignment = "Bottom";
-	v334.SortOrder = "LayoutOrder";
-	local v339 = Instance.new("TextLabel", v331);
-	v339.BackgroundTransparency = 1;
-	v339.Size = UDim2.new(0.7, 0, 1, 0);
-	v339.Text = v322;
-	v339.TextScaled = true;
-	v339.TextColor3 = Color3.fromRGB(255, 255, 255);
-	v339.Position = UDim2.new(0.165, 0, 0, 0);
-	return v331, v339;
+	local v326 = Instance.new("BillboardGui");
+	v326.Parent = v324;
+	v326.AlwaysOnTop = true;
+	v326.Name = "Esp";
+	v326.Size = UDim2.new(4, 0, 1, 0);
+	v326.SizeOffset = Vector2.new(0, 2.5);
+	local v332 = Instance.new("Frame", v326);
+	v332.BackgroundTransparency = 1;
+	v332.Size = UDim2.new(1, 0, 1, 0);
+	v9:FadeOut(0.25, v332);
+	v9:CreateItems(v332, "DarkRed2");
+	local v335 = Instance.new("UIListLayout", v332);
+	v335.Padding = UDim.new(0, 10);
+	v335.HorizontalAlignment = "Center";
+	v335.VerticalAlignment = "Bottom";
+	v335.SortOrder = "LayoutOrder";
+	local v340 = Instance.new("TextLabel", v332);
+	v340.BackgroundTransparency = 1;
+	v340.Size = UDim2.new(0.7, 0, 1, 0);
+	v340.Text = v323;
+	v340.TextScaled = true;
+	v340.TextColor3 = Color3.fromRGB(255, 255, 255);
+	v340.Position = UDim2.new(0.165, 0, 0, 0);
+	return v332, v340;
 end;
-v9.CreateTextBox = function(v346, v347, v348, v349, v350, v351)
+v9.CreateTextBox = function(v347, v348, v349, v350, v351, v352)
 	if not order then
 		order = 0;
 	end
-	if not v349 then
-		v349 = 185;
-	end
 	if not v350 then
-		v350 = 28;
+		v350 = 185;
 	end
 	if not v351 then
-		v351 = true;
+		v351 = 28;
 	end
-	local v352 = Instance.new("TextBox", v347);
-	v352.Size = UDim2.new(0, v349, 0, v350);
-	v352.LayoutOrder = v348;
-	v352.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-	v352.TextColor3 = Color3.fromRGB(255, 255, 255);
-	v352.TextScaled = true;
-	v352.PlaceholderText = "This textbar is used for applying custom sounds for hunts.";
-	v352.Text = "";
-	v352.BackgroundTransparency = 1;
-	if (v351 == false) then
-		v352.TextTransparency = 1;
+	if not v352 then
+		v352 = true;
 	end
-	v9:CreateItems(v352, "DarkRed");
-	local v361 = Instance.new("Frame", v352);
-	v361.Size = UDim2.new(0, v349, 0, v350);
-	if (v351 == false) then
-		v361.BackgroundTransparency = 1;
+	local v353 = Instance.new("TextBox", v348);
+	v353.Size = UDim2.new(0, v350, 0, v351);
+	v353.LayoutOrder = v349;
+	v353.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+	v353.TextColor3 = Color3.fromRGB(255, 255, 255);
+	v353.TextScaled = true;
+	v353.PlaceholderText = "This textbar is used for applying custom sounds for hunts.";
+	v353.Text = "";
+	v353.BackgroundTransparency = 1;
+	if (v352 == false) then
+		v353.TextTransparency = 1;
 	end
-	v9:CreateItems(v361, "DarkRed", true, 0, _, Color3.fromRGB(255, 255, 255), 0.25);
-	if (v351 == false) then
-		v361.UIStroke.Transparency = 1;
+	v9:CreateItems(v353, "DarkRed");
+	local v362 = Instance.new("Frame", v353);
+	v362.Size = UDim2.new(0, v350, 0, v351);
+	if (v352 == false) then
+		v362.BackgroundTransparency = 1;
 	end
-	if v352:FindFirstChild("UIGradient") then
-		v352.UIGradient:Destroy();
+	v9:CreateItems(v362, "DarkRed", true, 0, _, Color3.fromRGB(255, 255, 255), 0.25);
+	if (v352 == false) then
+		v362.UIStroke.Transparency = 1;
 	end
-	local v363 = Instance.new("ImageLabel", v352);
-	v363.Size = UDim2.new(0, v349, 0, v350);
-	v363.Image = "rbxassetid://73660298439922";
-	v363.ImageTransparency = 0.5;
-	v363.BackgroundTransparency = 1;
-	v363.Name = "Noice";
-	if (v351 == false) then
-		v363.BackgroundTransparency = 1;
-		v363.ImageTransparency = 1;
+	if v353:FindFirstChild("UIGradient") then
+		v353.UIGradient:Destroy();
 	end
-	local v369 = Instance.new("UICorner", v363);
-	return v352;
+	local v364 = Instance.new("ImageLabel", v353);
+	v364.Size = UDim2.new(0, v350, 0, v351);
+	v364.Image = "rbxassetid://73660298439922";
+	v364.ImageTransparency = 0.5;
+	v364.BackgroundTransparency = 1;
+	v364.Name = "Noice";
+	if (v352 == false) then
+		v364.BackgroundTransparency = 1;
+		v364.ImageTransparency = 1;
+	end
+	local v370 = Instance.new("UICorner", v364);
+	return v353;
 end;
-v9.CreateButton = function(v370, v371, v372, v373, v374, v375)
-	local v376 = Instance.new("TextButton");
-	v376.LayoutOrder = v373;
-	if (v373 == nil) then
-		v376.LayoutOrder = 0;
+v9.CreateButton = function(v371, v372, v373, v374, v375, v376)
+	local v377 = Instance.new("TextButton");
+	v377.LayoutOrder = v374;
+	if (v374 == nil) then
+		v377.LayoutOrder = 0;
 	end
-	v376.Parent = v372;
-	v376.AutomaticSize = "Y";
-	v376.Size = UDim2.new(0, v374, 0, 28);
-	v376.Text = "";
-	v376.Name = "Button";
-	v376.BackgroundTransparency = 1;
+	v377.Parent = v373;
+	v377.AutomaticSize = "Y";
+	v377.Size = UDim2.new(0, v375, 0, 28);
+	v377.Text = "";
+	v377.Name = "Button";
+	v377.BackgroundTransparency = 1;
 	if not Name then
-		v376.Name = "Button";
+		v377.Name = "Button";
 	end
-	if not v375 then
-		v375 = true;
+	if not v376 then
+		v376 = true;
 	end
-	local v384 = Instance.new("UICorner", v376);
-	local v385 = Instance.new("UIStroke", v376);
-	v385.Thickness = 1.5;
-	v385.Color = Color3.fromRGB(255, 255, 255);
-	v385.ApplyStrokeMode = "Border";
-	v385.Transparency = 1;
-	if v375 then
-		v9:FadeOut(0.25, v385, 0);
+	local v385 = Instance.new("UICorner", v377);
+	local v386 = Instance.new("UIStroke", v377);
+	v386.Thickness = 1.5;
+	v386.Color = Color3.fromRGB(255, 255, 255);
+	v386.ApplyStrokeMode = "Border";
+	v386.Transparency = 1;
+	if v376 then
+		v9:FadeOut(0.25, v386, 0);
 	end
-	Noice3 = Instance.new("ImageLabel", v376);
-	Noice3.Size = UDim2.new(0, v374, 0, 28);
+	Noice3 = Instance.new("ImageLabel", v377);
+	Noice3.Size = UDim2.new(0, v375, 0, 28);
 	Noice3.Image = "rbxassetid://73660298439922";
 	Noice3.ImageTransparency = 1;
 	Noice3.Name = "Noice";
 	Noice3.BackgroundTransparency = 1;
-	local v395 = Instance.new("UICorner", Noice3);
-	if v375 then
+	local v396 = Instance.new("UICorner", Noice3);
+	if v376 then
 		v9:FadeOut(0.25, Noice3, 0.5);
 	end
-	local v396 = Instance.new("UICorner");
-	v396.Parent = v376;
-	v396.CornerRadius = UDim.new(0, 10);
-	local v399 = Instance.new("UIGradient");
-	v399.Parent = v376;
-	v399.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(1, 0)});
-	v399.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))});
-	local v403 = Instance.new("TextLabel", v376);
-	v403['TextWrapped'] = true;
-	v403['BorderSizePixel'] = 0;
-	v403['TextScaled'] = false;
-	v403['TextSize'] = 12;
-	v403['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
-	v403['FontFace'] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-	v403['TextColor3'] = Color3.fromRGB(255, 255, 255);
-	v403['BackgroundTransparency'] = 1;
-	v403['Size'] = UDim2.new(0, v374, 0, 28);
-	v403['BorderColor3'] = Color3.fromRGB(0, 0, 0);
-	v403['Text'] = v371;
-	if v375 then
+	local v397 = Instance.new("UICorner");
+	v397.Parent = v377;
+	v397.CornerRadius = UDim.new(0, 10);
+	local v400 = Instance.new("UIGradient");
+	v400.Parent = v377;
+	v400.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(1, 0)});
+	v400.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))});
+	local v404 = Instance.new("TextLabel", v377);
+	v404['TextWrapped'] = true;
+	v404['BorderSizePixel'] = 0;
+	v404['TextScaled'] = false;
+	v404['TextSize'] = 12;
+	v404['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
+	v404['FontFace'] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+	v404['TextColor3'] = Color3.fromRGB(255, 255, 255);
+	v404['BackgroundTransparency'] = 1;
+	v404['Size'] = UDim2.new(0, v375, 0, 28);
+	v404['BorderColor3'] = Color3.fromRGB(0, 0, 0);
+	v404['Text'] = v372;
+	if v376 then
 	else
-		v403.TextTransparency = 1;
+		v404.TextTransparency = 1;
 	end
-	return v376;
+	return v377;
 end;
 v21['NotificationHolder'] = Instance.new("Frame", v21["1"]);
 v21['NotificationHolder'].Size = UDim2.new(0, 275, 0.95, 0);
 v21['NotificationHolder'].Position = UDim2.new(0.85, 0, 0, 0);
 v21['NotificationHolder'].BackgroundTransparency = 1;
 v21['NotificationHolder'].Name = "NotificationHolder";
-v9.CreateNotification = function(v415, v416, v417)
-	if not v417 then
-		v417 = 1;
+v9.CreateNotification = function(v416, v417, v418)
+	if not v418 then
+		v418 = 1;
 	end
-	for v772, v773 in pairs(v21['NotificationHolder']:GetChildren()) do
-		if (v773:IsA("Frame") and v773:FindFirstChild("TextLabel") and (v773.TextLabel.Text == v416)) then
-			v773.Destroying:Wait();
+	for v773, v774 in pairs(v21['NotificationHolder']:GetChildren()) do
+		if (v774:IsA("Frame") and v774:FindFirstChild("TextLabel") and (v774.TextLabel.Text == v417)) then
+			v774.Destroying:Wait();
 		end
 	end
 	while v21['NotificationHolder']:FindFirstChildWhichIsA("Frame") do
 		task.wait(0.1);
 	end
-	local v418 = Instance.new("Frame", v21['NotificationHolder']);
-	v418.Size = UDim2.new(0, 275, 0, 100);
-	v418.BackgroundTransparency = 0;
-	v418.Position = UDim2.new(0, 300, 0.9, 0);
-	for v774, v775 in pairs(v21['NotificationHolder']:GetChildren()) do
-		if ((v775 ~= v418) and v775:IsA("Frame")) then
-			v418.Position = v418.Position - UDim2.new(0, 0, 0, 110);
+	local v419 = Instance.new("Frame", v21['NotificationHolder']);
+	v419.Size = UDim2.new(0, 275, 0, 100);
+	v419.BackgroundTransparency = 0;
+	v419.Position = UDim2.new(0, 300, 0.9, 0);
+	for v775, v776 in pairs(v21['NotificationHolder']:GetChildren()) do
+		if ((v776 ~= v419) and v776:IsA("Frame")) then
+			v419.Position = v419.Position - UDim2.new(0, 0, 0, 110);
 		end
 	end
-	v9:CreateItems(v418, "Red", false, true);
-	v9:CreateText("NOTIFICATION", v418, 0);
-	v9:CreateText(v416, v418, 1, 156, 60, false, false, true, true);
-	local v422 = TweenInfo.new(0.35, Enum.EasingStyle.Back, Enum.EasingDirection.Out);
-	local v423 = v4:Create(v418, v422, {Position=UDim2.new(0, 25, 0.9, v418.Position.Y.Offset)});
-	v423:Play();
-	v423.Completed:Wait();
-	local v424 = TweenInfo.new(0.15, Enum.EasingStyle.Back, Enum.EasingDirection.Out);
-	local v425 = v4:Create(v418, v424, {Position=UDim2.new(0, 15, 0.9, v418.Position.Y.Offset)});
-	v425:Play();
-	v425.Completed:Wait();
-	task.wait(v417);
-	local v426 = TweenInfo.new(0.35, Enum.EasingStyle.Back, Enum.EasingDirection.In);
-	local v427 = v4:Create(v418, v426, {Position=UDim2.new(0, 300, 0.9, v418.Position.Y.Offset)});
-	v427:Play();
-	v427.Completed:Wait();
-	v418:Destroy();
-	for v776, v777 in pairs(v21['NotificationHolder']:GetChildren()) do
-		if (v777:IsA("Frame") and (v777.Position.Y.Offset < v418.Position.Y.Offset)) then
-			v4:Create(v777, TweenInfo.new(0.25), {Position=UDim2.new(v777.Position.X.Scale, v777.Position.X.Offset, 0.9, v777.Position.Y.Offset + 110)}):Play();
+	v9:CreateItems(v419, "Red", false, true);
+	v9:CreateText("NOTIFICATION", v419, 0);
+	v9:CreateText(v417, v419, 1, 156, 60, false, false, true, true);
+	local v423 = TweenInfo.new(0.35, Enum.EasingStyle.Back, Enum.EasingDirection.Out);
+	local v424 = v4:Create(v419, v423, {Position=UDim2.new(0, 25, 0.9, v419.Position.Y.Offset)});
+	v424:Play();
+	v424.Completed:Wait();
+	local v425 = TweenInfo.new(0.15, Enum.EasingStyle.Back, Enum.EasingDirection.Out);
+	local v426 = v4:Create(v419, v425, {Position=UDim2.new(0, 15, 0.9, v419.Position.Y.Offset)});
+	v426:Play();
+	v426.Completed:Wait();
+	task.wait(v418);
+	local v427 = TweenInfo.new(0.35, Enum.EasingStyle.Back, Enum.EasingDirection.In);
+	local v428 = v4:Create(v419, v427, {Position=UDim2.new(0, 300, 0.9, v419.Position.Y.Offset)});
+	v428:Play();
+	v428.Completed:Wait();
+	v419:Destroy();
+	for v777, v778 in pairs(v21['NotificationHolder']:GetChildren()) do
+		if (v778:IsA("Frame") and (v778.Position.Y.Offset < v419.Position.Y.Offset)) then
+			v4:Create(v778, TweenInfo.new(0.25), {Position=UDim2.new(v778.Position.X.Scale, v778.Position.X.Offset, 0.9, v778.Position.Y.Offset + 110)}):Play();
 		end
 	end
 end;
@@ -766,156 +766,156 @@ if (v10 == nil) then
 	v9:CreateNotification("This game is not supported.", 2);
 	return;
 end
-v9.CreateInner = function(v428, v429, v430, v431, v432, v433)
-	if not v429 then
+v9.CreateInner = function(v429, v430, v431, v432, v433, v434)
+	if not v430 then
 		return;
 	end
-	if not v430 then
-		v430 = false;
-	end
 	if not v431 then
-		v431 = "Preset Name: ";
+		v431 = false;
 	end
 	if not v432 then
-		v432 = "Create Preset";
+		v432 = "Preset Name: ";
 	end
-	local v434;
+	if not v433 then
+		v433 = "Create Preset";
+	end
 	local v435;
-	local v436 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
-	local v437;
+	local v436;
+	local v437 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
 	local v438;
 	local v439;
 	local v440;
 	local v441;
 	local v442;
-	if (v429 and not v430) then
+	local v443;
+	if (v430 and not v431) then
 		if game:GetService("Lighting"):FindFirstChild("Blur") then
 			game.Lighting.Blur.Enabled = true;
 			game.Lighting.Blur.Size = 50;
 		end
-		v434 = Instance.new("Frame", v429);
-		v434.Size = UDim2.new(50, 0, 50, 0);
-		v434.AnchorPoint = Vector2.new(0.5, 0.5);
-		v434.Position = UDim2.new(0.5, 0, 0.5, 0);
-		v434.BackgroundTransparency = 1;
-		v434.BackgroundColor3 = Color3.fromRGB(0, 0, 0);
-		v434.Name = "Shadow";
-		local v851 = Instance.new("UICorner", v434);
-		v9:FadeOut(0.25, v434, 0.4);
-		v435 = Instance.new("Frame", v429);
-		v435.Size = UDim2.new(0, 250, 0, 0);
+		v435 = Instance.new("Frame", v430);
+		v435.Size = UDim2.new(50, 0, 50, 0);
 		v435.AnchorPoint = Vector2.new(0.5, 0.5);
 		v435.Position = UDim2.new(0.5, 0, 0.5, 0);
-		v435.Name = "Main";
-		v435.ClipsDescendants = true;
-		v9:CreateItems(v435, "DarkRed2");
-		v437 = v4:Create(v435, v436, {Size=UDim2.new(0, 250, 0, 150)});
-		v437:Play();
-		v438 = Instance.new("ImageButton", v435);
-		v438['Size'] = UDim2.new(0, 9, 0, 9);
-		v438['Position'] = UDim2.new(0, 235, 0, 5);
-		v438['BackgroundTransparency'] = 1;
-		v438['ImageTransparency'] = 0.2;
-		v438['Image'] = "rbxassetid://120671325651381";
-		v438.Name = "Close";
-		Holder = Instance.new("Frame", v435);
+		v435.BackgroundTransparency = 1;
+		v435.BackgroundColor3 = Color3.fromRGB(0, 0, 0);
+		v435.Name = "Shadow";
+		local v852 = Instance.new("UICorner", v435);
+		v9:FadeOut(0.25, v435, 0.4);
+		v436 = Instance.new("Frame", v430);
+		v436.Size = UDim2.new(0, 250, 0, 0);
+		v436.AnchorPoint = Vector2.new(0.5, 0.5);
+		v436.Position = UDim2.new(0.5, 0, 0.5, 0);
+		v436.Name = "Main";
+		v436.ClipsDescendants = true;
+		v9:CreateItems(v436, "DarkRed2");
+		v438 = v4:Create(v436, v437, {Size=UDim2.new(0, 250, 0, 150)});
+		v438:Play();
+		v439 = Instance.new("ImageButton", v436);
+		v439['Size'] = UDim2.new(0, 9, 0, 9);
+		v439['Position'] = UDim2.new(0, 235, 0, 5);
+		v439['BackgroundTransparency'] = 1;
+		v439['ImageTransparency'] = 0.2;
+		v439['Image'] = "rbxassetid://120671325651381";
+		v439.Name = "Close";
+		Holder = Instance.new("Frame", v436);
 		Holder.Size = UDim2.new(0, 175, 0, 100);
 		Holder.AnchorPoint = Vector2.new(0.5, 0.5);
 		Holder.Position = UDim2.new(0.5, 0, 0.5, 0);
 		Holder.BackgroundTransparency = 1;
-		local v867 = Instance.new("UIListLayout", Holder);
-		v867.Padding = UDim.new(0, 5);
-		v867.SortOrder = "LayoutOrder";
-		v440 = v9:CreateText(v431, Holder, 0, 175, 28, true);
-		v439 = v9:CreateTextBox(Holder, 1, 175, 28, false);
-		v441 = v9:CreateButton(v432, Holder, 2, 175, false);
-		v439.Noice.ImageTransparency = 1;
-		v440.TextTransparency = 1;
-		v9:FadeOut(0.25, v439.Noice, 0.5);
-		v9:FadeOut(0.25, v439.Frame.UIStroke, 0);
-		v9:FadeOut(0.25, v439, 0);
+		local v868 = Instance.new("UIListLayout", Holder);
+		v868.Padding = UDim.new(0, 5);
+		v868.SortOrder = "LayoutOrder";
+		v441 = v9:CreateText(v432, Holder, 0, 175, 28, true);
+		v440 = v9:CreateTextBox(Holder, 1, 175, 28, false);
+		v442 = v9:CreateButton(v433, Holder, 2, 175, false);
+		v440.Noice.ImageTransparency = 1;
+		v441.TextTransparency = 1;
+		v9:FadeOut(0.25, v440.Noice, 0.5);
+		v9:FadeOut(0.25, v440.Frame.UIStroke, 0);
 		v9:FadeOut(0.25, v440, 0);
-		v9:FadeOut(0.25, v440.Divider, 0);
-		v9:FadeOut(0.25, v441.UIStroke, 0);
-		v9:FadeOut(0.25, v441.Noice, 0.5);
-		v9:FadeOut(0.25, v441.TextLabel, 0);
-		v9:FadeOut(0.25, v442, 0);
+		v9:FadeOut(0.25, v441, 0);
+		v9:FadeOut(0.25, v441.Divider, 0);
+		v9:FadeOut(0.25, v442.UIStroke, 0);
+		v9:FadeOut(0.25, v442.Noice, 0.5);
+		v9:FadeOut(0.25, v442.TextLabel, 0);
+		v9:FadeOut(0.25, v443, 0);
 	end
-	v9.Closef = function(v778)
-		if not v429 then
+	v9.Closef = function(v779)
+		if not v430 then
 			warn("Parent is missing, cannot close library.");
 			return;
 		end
-		if not v438 then
-			v435 = v429:FindFirstChild("Main");
-			if not v435 then
+		if not v439 then
+			v436 = v430:FindFirstChild("Main");
+			if not v436 then
 				return;
 			end
-			v439 = v435:FindFirstChild("Frame"):FindFirstChild("TextBox");
-			v440 = v435:FindFirstChild("Frame") and v435.Frame:FindFirstChild("TextLabel");
-			v434 = v429:FindFirstChild("Shadow");
-			v438 = v435:FindFirstChild("Close");
-			v441 = v435:FindFirstChild("Frame") and v435.Frame:FindFirstChild("Button");
+			v440 = v436:FindFirstChild("Frame"):FindFirstChild("TextBox");
+			v441 = v436:FindFirstChild("Frame") and v436.Frame:FindFirstChild("TextLabel");
+			v435 = v430:FindFirstChild("Shadow");
+			v439 = v436:FindFirstChild("Close");
+			v442 = v436:FindFirstChild("Frame") and v436.Frame:FindFirstChild("Button");
 		end
-		if (v435 and v434 and v438 and v439 and v440 and v441) then
-			v9:FadeOut(0.25, v434, 1);
-			local v905 = v4:Create(v435, v436, {Size=UDim2.new(0, 250, 0, 0)});
-			v905:Play();
-			v9:FadeOut(0.25, v438, 1);
+		if (v436 and v435 and v439 and v440 and v441 and v442) then
+			v9:FadeOut(0.25, v435, 1);
+			local v906 = v4:Create(v436, v437, {Size=UDim2.new(0, 250, 0, 0)});
+			v906:Play();
+			v9:FadeOut(0.25, v439, 1);
 			if game:GetService("Lighting"):FindFirstChild("Blur") then
 				game.Lighting.Blur.Enabled = false;
 				game.Lighting.Blur.Size = 5;
 			end
 			task.spawn(function()
-				v9:FadeOut(0.25, v439, 1);
+				v9:FadeOut(0.25, v440, 1);
 			end);
 			task.spawn(function()
-				v9:FadeOut(0.25, v439.Noice, 1);
+				v9:FadeOut(0.25, v440.Noice, 1);
 			end);
 			task.spawn(function()
-				v9:FadeOut(0.25, v439.Frame.UIStroke, 1);
+				v9:FadeOut(0.25, v440.Frame.UIStroke, 1);
 			end);
-			v9:FadeOut(0.25, v440, 1);
-			v9:FadeOut(0.25, v440.Divider, 1);
-			v9:FadeOut(0.25, v441.UIStroke, 1);
-			v9:FadeOut(0.25, v441.Noice, 1);
-			v9:FadeOut(0.25, v441.TextLabel, 1);
+			v9:FadeOut(0.25, v441, 1);
+			v9:FadeOut(0.25, v441.Divider, 1);
+			v9:FadeOut(0.25, v442.UIStroke, 1);
+			v9:FadeOut(0.25, v442.Noice, 1);
+			v9:FadeOut(0.25, v442.TextLabel, 1);
 			task.wait(0.5);
-			v434:Destroy();
-			v438:Destroy();
 			v435:Destroy();
 			v439:Destroy();
+			v436:Destroy();
+			v440:Destroy();
 		end
 	end;
-	if (v438 and not v430) then
-		v438.Activated:Connect(function()
+	if (v439 and not v431) then
+		v439.Activated:Connect(function()
 			v9:Closef();
 		end);
 	end
-	if v430 then
+	if v431 then
 		v9:Closef();
 	end
-	return v439, v441, v438;
+	return v440, v442, v439;
 end;
 local v50 = {Service="typical",SilentMode=false,SaveKey=true,SaveKeyPath="panda_key.txt",AutoKick=false,KickMessage="Invalid Key.",HubName="Your Hub",MaxRetries=3,DiscordURL=nil};
 local v51 = {card=Color3.fromRGB(255, 255, 255),border=Color3.fromRGB(226, 232, 240),text=Color3.fromRGB(15, 23, 42),muted=Color3.fromRGB(100, 116, 139),inputBg=Color3.fromRGB(248, 250, 252),primary=Color3.fromRGB(79, 70, 229),primaryH=Color3.fromRGB(67, 56, 202),success=Color3.fromRGB(16, 185, 129),error_=Color3.fromRGB(239, 68, 68)};
 local v52 = {key={id=16898613509,offset=Vector2.new(869, 404)},lock={id=16898613509,offset=Vector2.new(918, 857)},copy={id=16898613044,offset=Vector2.new(918, 612)},check={id=16898612819,offset=Vector2.new(710, 869)},x={id=16898613869,offset=Vector2.new(869, 906)},arrowRight={id=16898612629,offset=Vector2.new(453, 820)},shield={id=16898613777,offset=Vector2.new(820, 257)},sparkles={id=16898613777,offset=Vector2.new(918, 49)},circleCheck={id=16898612819,offset=Vector2.new(869, 955)},circleX={id=16898613044,offset=Vector2.new(820, 306)}};
-local function v53(v444, v445, v446, v447)
-	local v448 = v52[v445];
-	if not v448 then
+local function v53(v445, v446, v447, v448)
+	local v449 = v52[v446];
+	if not v449 then
 		return nil;
 	end
-	local v449 = Instance.new("ImageLabel", v444);
-	v449.BackgroundTransparency = 1;
-	v449.BorderSizePixel = 0;
-	v449.Image = "rbxassetid://" .. v448.id;
-	v449.ImageRectOffset = v448.offset;
-	v449.ImageRectSize = Vector2.new(48, 48);
-	v449.Size = UDim2.new(0, v446 or 20, 0, v446 or 20);
-	if v447 then
-		v449.ImageColor3 = v447;
+	local v450 = Instance.new("ImageLabel", v445);
+	v450.BackgroundTransparency = 1;
+	v450.BorderSizePixel = 0;
+	v450.Image = "rbxassetid://" .. v449.id;
+	v450.ImageRectOffset = v449.offset;
+	v450.ImageRectSize = Vector2.new(48, 48);
+	v450.Size = UDim2.new(0, v447 or 20, 0, v447 or 20);
+	if v448 then
+		v450.ImageColor3 = v448;
 	end
-	return v449;
+	return v450;
 end
 local v54 = (task and task.wait) or wait;
 local v55 = ((typeof(setclipboard) == "function") and setclipboard) or function()
@@ -929,27 +929,27 @@ local v58 = ((typeof(isfile) == "function") and isfile) or function()
 	return false;
 end;
 local function v59()
-	local v457, v458 = pcall(function()
+	local v458, v459 = pcall(function()
 		return game:HttpGet("https://api.pandauth.com/lib/external/panda-v3-external.lua");
 	end);
-	if (not v457 or not v458) then
+	if (not v458 or not v459) then
 		return nil;
 	end
-	local v459 = loadstring(v458);
-	if not v459 then
+	local v460 = loadstring(v459);
+	if not v460 then
 		return nil;
 	end
-	local v460, v461 = pcall(v459);
-	return (v460 and v461) or nil;
+	local v461, v462 = pcall(v460);
+	return (v461 and v462) or nil;
 end
 local v60 = v59();
 if not v60 then
 	return;
 end
-local function v61(v462)
-	for v779 = 1, v50.MaxRetries do
-		local v780, v781 = pcall(v60.Init, {Service=v50.Service,Key=v462,SilentMode=v50.SilentMode});
-		if (v780 and (v781 == "validated!!")) then
+local function v61(v463)
+	for v780 = 1, v50.MaxRetries do
+		local v781, v782 = pcall(v60.Init, {Service=v50.Service,Key=v463,SilentMode=v50.SilentMode});
+		if (v781 and (v782 == "validated!!")) then
 			return true;
 		end
 		v54(0.4);
@@ -960,15 +960,15 @@ local function v62()
 	if (not v50.SaveKey or not v58(v50.SaveKeyPath)) then
 		return false;
 	end
-	local v463 = v57(v50.SaveKeyPath);
-	return v463 and (v463 ~= "") and v61((v463:gsub("%s+", "")));
+	local v464 = v57(v50.SaveKeyPath);
+	return v464 and (v464 ~= "") and v61((v464:gsub("%s+", "")));
 end
 local function v63()
-	local v464, v465 = pcall(function()
+	local v465, v466 = pcall(function()
 		return game:GetService("CoreGui");
 	end);
-	if (v464 and v465) then
-		return v465;
+	if (v465 and v466) then
+		return v466;
 	end
 	return game.Players.LocalPlayer:WaitForChild("PlayerGui");
 end
@@ -977,19 +977,19 @@ if v62() then
 	v64 = false;
 end
 if v64 then
-	local v782, v783, v784 = v9:CreateInner(v21["1"], false, "Authentication", "Verify key");
-	v784.Activated:Connect(function()
+	local v783, v784, v785 = v9:CreateInner(v21["1"], false, "Authentication", "Verify key");
+	v785.Activated:Connect(function()
 		v9:CreateInner(v21["1"], true, "Authentication", "Verify key");
 	end);
-	v783.Activated:Connect(function()
-		local v873 = v782.Text:gsub("%s+", "");
-		if (v873 == "") then
+	v784.Activated:Connect(function()
+		local v874 = v783.Text:gsub("%s+", "");
+		if (v874 == "") then
 			v9:CreateNotification("Please enter ur key.", 2);
 			return;
 		end
-		if v61(v873) then
+		if v61(v874) then
 			if v50.SaveKey then
-				v56(v50.SaveKeyPath, v873);
+				v56(v50.SaveKeyPath, v874);
 			end
 			v9:CreateNotification("Authenticated.", 2);
 			v64 = false;
@@ -1004,7 +1004,7 @@ end
 while v64 do
 	task.wait(0.1);
 end
-v9.CreateMain = function(v466)
+v9.CreateMain = function(v467)
 	v21["2"] = Instance.new("Frame", v21["1"]);
 	v21["2"]['Visible'] = false;
 	v21["2"]['BackgroundTransparency'] = 1;
@@ -1088,73 +1088,73 @@ v9.CreateMain = function(v466)
 	v21['MobileBtnHolder'].Position = UDim2.new(0, 0, 0, -50);
 	v21['MobileBtnHolder'].BackgroundTransparency = 1;
 	v21['MobileBtnHolder'].Name = "MobileBtnHolder";
-	local v540 = Instance.new("UIListLayout", v21.MobileBtnHolder);
-	v540.SortOrder = "LayoutOrder";
-	v540.FillDirection = "Horizontal";
-	v540.Padding = UDim.new(0, 5);
-	v540.HorizontalAlignment = "Center";
+	local v541 = Instance.new("UIListLayout", v21.MobileBtnHolder);
+	v541.SortOrder = "LayoutOrder";
+	v541.FillDirection = "Horizontal";
+	v541.Padding = UDim.new(0, 5);
+	v541.HorizontalAlignment = "Center";
 end;
-v9.CreateSwitchButton = function(v545, v546, v547)
-	v21[v546] = Instance.new("TextButton", v21['TabHolder']);
-	v21[v546]['TextWrapped'] = true;
-	v21[v546]['TextStrokeTransparency'] = 0.8;
-	v21[v546]['RichText'] = true;
-	v21[v546]['BorderSizePixel'] = 0;
-	v21[v546]['TextStrokeColor3'] = Color3.fromRGB(101, 0, 0);
-	v21[v546]['TextSize'] = 18;
-	v21[v546]['TextColor3'] = Color3.fromRGB(255, 255, 255);
-	v21[v546]['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
-	v21[v546]['FontFace'] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-	v21[v546]['ZIndex'] = 100;
-	v21[v546]['BackgroundTransparency'] = 1;
-	v21[v546]['Size'] = UDim2.new(0, 65, 0, 35);
-	v21[v546]['LayoutOrder'] = 5;
-	v21[v546]['BorderColor3'] = Color3.fromRGB(0, 0, 0);
-	v21[v546]['Text'] = v546;
-	v21[v546]['Position'] = UDim2.new(0.17, 0, 0.045, 0);
-	v21[v546]['Name'] = "Button";
-	v21[v546 .. "Cover"] = Instance.new("Frame", v21[v546]);
-	v21[v546 .. "Cover"]['BackgroundTransparency'] = 1;
-	v21[v546 .. "Cover"]['BorderSizePixel'] = 0;
-	v21[v546 .. "Cover"]['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
-	v21[v546 .. "Cover"]['Size'] = UDim2.new(0, 65, 0, 35);
-	v21[v546 .. "Cover"]['Position'] = UDim2.new(-0.00667, 0, -0.00286, 0);
-	v21[v546 .. "Cover"]['BorderColor3'] = Color3.fromRGB(0, 0, 0);
-	v21[v546 .. "Cover"]['Name'] = v546 .. "Cover";
-	v21["23"] = Instance.new("UICorner", v21[v546 .. "Cover"]);
-	v21["22"] = Instance.new("UIGradient", v21[v546 .. "Cover"]);
+v9.CreateSwitchButton = function(v546, v547, v548)
+	v21[v547] = Instance.new("TextButton", v21['TabHolder']);
+	v21[v547]['TextWrapped'] = true;
+	v21[v547]['TextStrokeTransparency'] = 0.8;
+	v21[v547]['RichText'] = true;
+	v21[v547]['BorderSizePixel'] = 0;
+	v21[v547]['TextStrokeColor3'] = Color3.fromRGB(101, 0, 0);
+	v21[v547]['TextSize'] = 18;
+	v21[v547]['TextColor3'] = Color3.fromRGB(255, 255, 255);
+	v21[v547]['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
+	v21[v547]['FontFace'] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+	v21[v547]['ZIndex'] = 100;
+	v21[v547]['BackgroundTransparency'] = 1;
+	v21[v547]['Size'] = UDim2.new(0, 65, 0, 35);
+	v21[v547]['LayoutOrder'] = 5;
+	v21[v547]['BorderColor3'] = Color3.fromRGB(0, 0, 0);
+	v21[v547]['Text'] = v547;
+	v21[v547]['Position'] = UDim2.new(0.17, 0, 0.045, 0);
+	v21[v547]['Name'] = "Button";
+	v21[v547 .. "Cover"] = Instance.new("Frame", v21[v547]);
+	v21[v547 .. "Cover"]['BackgroundTransparency'] = 1;
+	v21[v547 .. "Cover"]['BorderSizePixel'] = 0;
+	v21[v547 .. "Cover"]['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
+	v21[v547 .. "Cover"]['Size'] = UDim2.new(0, 65, 0, 35);
+	v21[v547 .. "Cover"]['Position'] = UDim2.new(-0.00667, 0, -0.00286, 0);
+	v21[v547 .. "Cover"]['BorderColor3'] = Color3.fromRGB(0, 0, 0);
+	v21[v547 .. "Cover"]['Name'] = v547 .. "Cover";
+	v21["23"] = Instance.new("UICorner", v21[v547 .. "Cover"]);
+	v21["22"] = Instance.new("UIGradient", v21[v547 .. "Cover"]);
 	v21["22"]['Transparency'] = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.85),NumberSequenceKeypoint.new(1, 0.85)});
 	v21["22"]['Color'] = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 75, 91)),ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))});
-	v21[v547] = Instance.new("Frame", v21["4"]);
-	v21[v547]['BorderSizePixel'] = 0;
-	v21[v547]['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
-	v21[v547]['Size'] = UDim2.new(0, 584, 0, 382);
-	v21[v547]['BorderColor3'] = Color3.fromRGB(0, 0, 0);
-	v21[v547]['Name'] = v547;
-	v21[v547]['BackgroundTransparency'] = 1;
-	return v21[v546], v21[v547];
+	v21[v548] = Instance.new("Frame", v21["4"]);
+	v21[v548]['BorderSizePixel'] = 0;
+	v21[v548]['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
+	v21[v548]['Size'] = UDim2.new(0, 584, 0, 382);
+	v21[v548]['BorderColor3'] = Color3.fromRGB(0, 0, 0);
+	v21[v548]['Name'] = v548;
+	v21[v548]['BackgroundTransparency'] = 1;
+	return v21[v547], v21[v548];
 end;
-v9.CreateSubTab = function(v585, v586, v587, v588, v589, v590, v591)
-	if not v588 then
-		v588 = false;
+v9.CreateSubTab = function(v586, v587, v588, v589, v590, v591, v592)
+	if not v589 then
+		v589 = false;
 	end
-	v21[v591] = Instance.new("Frame", v590);
-	v21[v591]['Active'] = true;
-	v21[v591]['BorderSizePixel'] = 0;
-	v21[v591]['Name'] = [[UserConsoleInfo]];
-	v21[v591]['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
-	v21[v591]['Size'] = UDim2.new(0, v586, 0, v587);
-	v21[v591]['Position'] = UDim2.new(0, 0, 0, 0);
-	v21[v591]['BorderColor3'] = Color3.fromRGB(0, 0, 0);
-	v21['grad'] = Instance.new("UIGradient", v21[v591]);
+	v21[v592] = Instance.new("Frame", v591);
+	v21[v592]['Active'] = true;
+	v21[v592]['BorderSizePixel'] = 0;
+	v21[v592]['Name'] = [[UserConsoleInfo]];
+	v21[v592]['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
+	v21[v592]['Size'] = UDim2.new(0, v587, 0, v588);
+	v21[v592]['Position'] = UDim2.new(0, 0, 0, 0);
+	v21[v592]['BorderColor3'] = Color3.fromRGB(0, 0, 0);
+	v21['grad'] = Instance.new("UIGradient", v21[v592]);
 	v21['grad']['Transparency'] = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.85),NumberSequenceKeypoint.new(1, 0.85)});
 	v21['grad']['Color'] = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 75, 91)),ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))});
-	v21['corn'] = Instance.new("UICorner", v21[v591]);
-	if v588 then
-		v21['listet'] = Instance.new("UIListLayout", v21[v591]);
+	v21['corn'] = Instance.new("UICorner", v21[v592]);
+	if v589 then
+		v21['listet'] = Instance.new("UIListLayout", v21[v592]);
 		v21['listet']['Padding'] = UDim.new(0, 10);
 		v21['listet']['SortOrder'] = Enum.SortOrder.LayoutOrder;
-		v21['listet']['FillDirection'] = v589;
+		v21['listet']['FillDirection'] = v590;
 		v21['listet'].HorizontalAlignment = "Center";
 	end
 end;
@@ -1171,7 +1171,6 @@ v68.SortOrder = "LayoutOrder";
 v9:CreateSubTab(579, 75, true, "Horizontal", v21.PlayerTab, "PlayerInfoTab");
 v21.PlayerInfoTab.LayoutOrder = -1;
 v21.PlayerInfoTab.UIListLayout.VerticalAlignment = "Center";
-v9:CreateSubTab(579, 360, true, "Horizontal", v21.PlayerTab, "PlayerTabInfo");
 local v73 = Instance.new("ImageLabel", v21.PlayerInfoTab);
 v73.Size = UDim2.new(0, 65, 0, 65);
 v73.Position = UDim2.new(0, 15, 0, 5);
@@ -1223,126 +1222,126 @@ v114.TextColor3 = Color3.fromRGB(128, 128, 128);
 v114.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
 v114.TextSize = 18;
 v21['Minimize'].Activated:Connect(function()
-	local v604 = TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
+	local v605 = TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
 	if (v21["2"].Size == UDim2.new(0, 700, 0, 25)) then
-		local v881 = (v15[v21["2"]] and v15[v21["2"]].Size) or UDim2.new(0, 700, 0, 400);
-		v4:Create(v21["2"], v604, {Size=v881}):Play();
-		for v907, v908 in pairs(v21["2"]:GetDescendants()) do
-			local v909 = v15[v908];
-			if v909 then
-				v4:Create(v908, v604, v909):Play();
+		local v882 = (v15[v21["2"]] and v15[v21["2"]].Size) or UDim2.new(0, 700, 0, 400);
+		v4:Create(v21["2"], v605, {Size=v882}):Play();
+		for v908, v909 in pairs(v21["2"]:GetDescendants()) do
+			local v910 = v15[v909];
+			if v910 then
+				v4:Create(v909, v605, v910):Play();
 			end
 		end
 	else
 		v15[v21["2"]] = {Size=v21["2"].Size};
-		v4:Create(v21["2"], v604, {Size=UDim2.new(0, 700, 0, 25)}):Play();
-		for v910, v911 in pairs(v21["2"]:GetChildren()) do
-			local v912 = v911:FindFirstAncestor("PlayerTab") or v911:FindFirstAncestor("GhostTab");
-			if (v912 and not v912.Visible) then
+		v4:Create(v21["2"], v605, {Size=UDim2.new(0, 700, 0, 25)}):Play();
+		for v911, v912 in pairs(v21["2"]:GetChildren()) do
+			local v913 = v912:FindFirstAncestor("PlayerTab") or v912:FindFirstAncestor("GhostTab");
+			if (v913 and not v913.Visible) then
 				continue;
 			end
-			local v913 = {};
 			local v914 = {};
-			if v911:IsA("Frame") then
-				v914.BackgroundTransparency = v911.BackgroundTransparency;
-				v914.Size = v911.Size;
-				v913.BackgroundTransparency = 1;
-				v913.Size = UDim2.new(v911.Size.X.Scale, v911.Size.X.Offset, 0, 0);
+			local v915 = {};
+			if v912:IsA("Frame") then
+				v915.BackgroundTransparency = v912.BackgroundTransparency;
+				v915.Size = v912.Size;
+				v914.BackgroundTransparency = 1;
+				v914.Size = UDim2.new(v912.Size.X.Scale, v912.Size.X.Offset, 0, 0);
 			end
-			if v911:IsA("ScrollingFrame") then
-				v914.BackgroundTransparency = v911.BackgroundTransparency;
-				v914.Size = v911.Size;
-				v913.BackgroundTransparency = 1;
-				v913.Size = UDim2.new(v911.Size.X.Scale, v911.Size.X.Offset, 0, 0);
+			if v912:IsA("ScrollingFrame") then
+				v915.BackgroundTransparency = v912.BackgroundTransparency;
+				v915.Size = v912.Size;
+				v914.BackgroundTransparency = 1;
+				v914.Size = UDim2.new(v912.Size.X.Scale, v912.Size.X.Offset, 0, 0);
 			end
-			if ((v911:IsA("TextLabel") or v911:IsA("TextBox") or v911:IsA("TextButton")) and (v911.Name ~= "Discord")) then
-				v914.BackgroundTransparency = v911.BackgroundTransparency;
-				v914.TextTransparency = v911.TextTransparency;
-				v914.Size = v911.Size;
-				v913.BackgroundTransparency = 1;
-				v913.TextTransparency = 1;
-				v913.Size = UDim2.new(v911.Size.X.Scale, v911.Size.X.Offset, 0, 0);
+			if ((v912:IsA("TextLabel") or v912:IsA("TextBox") or v912:IsA("TextButton")) and (v912.Name ~= "Discord")) then
+				v915.BackgroundTransparency = v912.BackgroundTransparency;
+				v915.TextTransparency = v912.TextTransparency;
+				v915.Size = v912.Size;
+				v914.BackgroundTransparency = 1;
+				v914.TextTransparency = 1;
+				v914.Size = UDim2.new(v912.Size.X.Scale, v912.Size.X.Offset, 0, 0);
 			end
-			if v911:IsA("ViewportFrame") then
-				v914.Visible = v911.Visible;
-				v913.Visible = false;
+			if v912:IsA("ViewportFrame") then
+				v915.Visible = v912.Visible;
+				v914.Visible = false;
 			end
-			if ((v911:IsA("ImageLabel") or v911:IsA("ImageButton")) and (v911.Name ~= "Minimize") and (v911.Name ~= "Close")) then
-				v914.BackgroundTransparency = v911.BackgroundTransparency;
-				v914.ImageTransparency = v911.ImageTransparency;
-				v913.BackgroundTransparency = 1;
-				v913.ImageTransparency = 1;
+			if ((v912:IsA("ImageLabel") or v912:IsA("ImageButton")) and (v912.Name ~= "Minimize") and (v912.Name ~= "Close")) then
+				v915.BackgroundTransparency = v912.BackgroundTransparency;
+				v915.ImageTransparency = v912.ImageTransparency;
+				v914.BackgroundTransparency = 1;
+				v914.ImageTransparency = 1;
 			end
-			if v911:IsA("UIStroke") then
-				v914.Transparency = v911.Transparency;
-				v913.Transparency = 1;
+			if v912:IsA("UIStroke") then
+				v915.Transparency = v912.Transparency;
+				v914.Transparency = 1;
 			end
-			if next(v913) then
-				v15[v911] = v914;
-				v4:Create(v911, v604, v913):Play();
-			elseif v911:IsA("UIGradient") then
-				v15[v911] = {Offset=v911.Offset};
-				v4:Create(v911, v604, {Offset=Vector2.new(1, 0)}):Play();
+			if next(v914) then
+				v15[v912] = v915;
+				v4:Create(v912, v605, v914):Play();
+			elseif v912:IsA("UIGradient") then
+				v15[v912] = {Offset=v912.Offset};
+				v4:Create(v912, v605, {Offset=Vector2.new(1, 0)}):Play();
 			end
 		end
-		for v915, v916 in pairs(v21["2"].TabHolder:GetDescendants()) do
-			local v917 = v916:FindFirstAncestor("PlayerTab") or v916:FindFirstAncestor("GhostTab");
-			if (v917 and not v917.Visible) then
+		for v916, v917 in pairs(v21["2"].TabHolder:GetDescendants()) do
+			local v918 = v917:FindFirstAncestor("PlayerTab") or v917:FindFirstAncestor("GhostTab");
+			if (v918 and not v918.Visible) then
 				continue;
 			end
-			local v918 = {};
 			local v919 = {};
-			if ((v916:IsA("TextLabel") or v916:IsA("TextBox") or v916:IsA("TextButton")) and (v916.Name ~= "Discord")) then
-				v919.BackgroundTransparency = v916.BackgroundTransparency;
-				v919.TextTransparency = v916.TextTransparency;
-				v919.Size = v916.Size;
-				v918.BackgroundTransparency = 1;
-				v918.TextTransparency = 1;
-				v918.Size = UDim2.new(v916.Size.X.Scale, v916.Size.X.Offset, 0, 0);
+			local v920 = {};
+			if ((v917:IsA("TextLabel") or v917:IsA("TextBox") or v917:IsA("TextButton")) and (v917.Name ~= "Discord")) then
+				v920.BackgroundTransparency = v917.BackgroundTransparency;
+				v920.TextTransparency = v917.TextTransparency;
+				v920.Size = v917.Size;
+				v919.BackgroundTransparency = 1;
+				v919.TextTransparency = 1;
+				v919.Size = UDim2.new(v917.Size.X.Scale, v917.Size.X.Offset, 0, 0);
 			end
-			if v916:IsA("Frame") then
-				v919.BackgroundTransparency = v916.BackgroundTransparency;
-				v919.Size = v916.Size;
-				v918.BackgroundTransparency = 1;
-				v918.Size = UDim2.new(v916.Size.X.Scale, v916.Size.X.Offset, 0, 0);
+			if v917:IsA("Frame") then
+				v920.BackgroundTransparency = v917.BackgroundTransparency;
+				v920.Size = v917.Size;
+				v919.BackgroundTransparency = 1;
+				v919.Size = UDim2.new(v917.Size.X.Scale, v917.Size.X.Offset, 0, 0);
 			end
-			if next(v918) then
-				v15[v916] = v919;
-				v4:Create(v916, v604, v918):Play();
+			if next(v919) then
+				v15[v917] = v920;
+				v4:Create(v917, v605, v919):Play();
 			end
 		end
 		v15[v21['b']] = v15[v21['b']] or {Position=v21['b'].Position};
-		v4:Create(v21['b'], v604, {Position=UDim2.new(0, 150, 0, 1)}):Play();
+		v4:Create(v21['b'], v605, {Position=UDim2.new(0, 150, 0, 1)}):Play();
 	end
 end);
 v21['Close'].Activated:Connect(function()
-	for v786, v787 in pairs(v3:GetChildren()) do
-		if (v787:IsA("ScreenGui") and (v787.Name == v11)) then
-			for v931, v932 in pairs(v787:GetDescendants()) do
-				local v933 = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
-				local v934 = {};
-				if (v932:IsA("Frame") or v932:IsA("ScrollingFrame") or v932:IsA("TextBox")) then
-					v934['BackgroundTransparency'] = 1;
+	for v787, v788 in pairs(v3:GetChildren()) do
+		if (v788:IsA("ScreenGui") and (v788.Name == v11)) then
+			for v932, v933 in pairs(v788:GetDescendants()) do
+				local v934 = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0);
+				local v935 = {};
+				if (v933:IsA("Frame") or v933:IsA("ScrollingFrame") or v933:IsA("TextBox")) then
+					v935['BackgroundTransparency'] = 1;
 				end
-				if (v932:IsA("TextLabel") or v932:IsA("TextBox") or v932:IsA("TextButton")) then
-					v934['BackgroundTransparency'] = 1;
-					v934['TextTransparency'] = 1;
+				if (v933:IsA("TextLabel") or v933:IsA("TextBox") or v933:IsA("TextButton")) then
+					v935['BackgroundTransparency'] = 1;
+					v935['TextTransparency'] = 1;
 				end
-				if (v932:IsA("ImageLabel") or v932:IsA("ImageButton")) then
-					v934['BackgroundTransparency'] = 1;
-					v934['ImageTransparency'] = 1;
+				if (v933:IsA("ImageLabel") or v933:IsA("ImageButton")) then
+					v935['BackgroundTransparency'] = 1;
+					v935['ImageTransparency'] = 1;
 				end
-				if (v932:IsA("UIStroke") or v932:IsA("UIShadow")) then
-					v934['Transparency'] = 1;
+				if (v933:IsA("UIStroke") or v933:IsA("UIShadow")) then
+					v935['Transparency'] = 1;
 				end
-				if next(v934) then
-					v4:Create(v932, v933, v934):Play();
-				elseif v932:IsA("UIGradient") then
-					v4:Create(v932, v933, {Offset=Vector2.new(1, 0)}):Play();
+				if next(v935) then
+					v4:Create(v933, v934, v935):Play();
+				elseif v933:IsA("UIGradient") then
+					v4:Create(v933, v934, {Offset=Vector2.new(1, 0)}):Play();
 				end
 			end
 			task.wait(0.5);
-			v787:Destroy();
+			v788:Destroy();
 			task.wait(1);
 		end
 	end
@@ -1350,19 +1349,20 @@ v21['Close'].Activated:Connect(function()
 		game:GetService("Lighting").Blur.Size = 0;
 	end
 end);
-v9.CreateScrollingFrame = function(v605, v606, v607, v608, v609)
-	v21[v609] = Instance.new("ScrollingFrame", v608);
-	v21[v609].BackgroundTransparency = 1;
-	v21[v609].Size = UDim2.new(0, v606, 0, v607);
-	v21[v609].ScrollBarImageTransparency = 0.5;
-	v21[v609].ScrollBarThickness = 0;
-	v21[v609].CanvasSize = UDim2.new(0, 0, 0, 0);
-	v21[v609].AutomaticCanvasSize = "XY";
-	v21[v609 .. "Layout"] = Instance.new("UIListLayout", v21[v609]);
-	v21[v609 .. "Layout"].Padding = UDim.new(0, 5);
-	v21[v609 .. "Layout"].SortOrder = "LayoutOrder";
-	v21[v609 .. "Layout"].HorizontalAlignment = "Center";
+v9.CreateScrollingFrame = function(v606, v607, v608, v609, v610)
+	v21[v610] = Instance.new("ScrollingFrame", v609);
+	v21[v610].BackgroundTransparency = 1;
+	v21[v610].Size = UDim2.new(0, v607, 0, v608);
+	v21[v610].ScrollBarImageTransparency = 0.5;
+	v21[v610].ScrollBarThickness = 0;
+	v21[v610].CanvasSize = UDim2.new(0, 0, 0, 0);
+	v21[v610].AutomaticCanvasSize = "XY";
+	v21[v610 .. "Layout"] = Instance.new("UIListLayout", v21[v610]);
+	v21[v610 .. "Layout"].Padding = UDim.new(0, 5);
+	v21[v610 .. "Layout"].SortOrder = "LayoutOrder";
+	v21[v610 .. "Layout"].HorizontalAlignment = "Center";
 end;
+v9:CreateSubTab(579, 290, true, "Horizontal", v21.PlayerTab, "PlayerTabInfo");
 v9:CreateSubTab(188, 290, true, "Vertical", v21.PlayerTabInfo, "VisualsFrame");
 v9:CreateSubTab(188, 290, true, "Vertical", v21.PlayerTabInfo, "MiscFrame");
 v9:CreateSubTab(188, 290, true, "Vertical", v21.PlayerTabInfo, "PlayerSettingsFrame");
@@ -1382,10 +1382,10 @@ v21['listet'] = Instance.new("UIListLayout", v21['MainTab']);
 v21['listet']['Padding'] = UDim.new(0, 10);
 v21['listet']['SortOrder'] = Enum.SortOrder.LayoutOrder;
 v21['listet']['FillDirection'] = Enum.FillDirection.Horizontal;
-local function v129(v621)
-	local v622 = math.floor(v621 / 60);
-	local v623 = math.floor(v621 % 60);
-	return string.format("%02d:%02d", v622, v623);
+local function v129(v622)
+	local v623 = math.floor(v622 / 60);
+	local v624 = math.floor(v622 % 60);
+	return string.format("%02d:%02d", v623, v624);
 end
 local v130 = os.clock();
 v9:CreateSubTab(185, 380, true, Enum.FillDirection.Vertical, v21['MainTab'], "UpdateLog");
@@ -1401,68 +1401,70 @@ v9:CreateLog("Loaded.", v21['Console'], 1, 155);
 local v131 = v9:CreateLog("Runtime: 00:00", v21['ScriptUserInfo'], nil, 155, false, nil, false, false);
 task.spawn(function()
 	while true do
-		local v790 = os.clock() - v130;
-		v131.Text = "Runtime: " .. v129(v790);
+		local v791 = os.clock() - v130;
+		v131.Text = "Runtime: " .. v129(v791);
 		task.wait(1);
 	end
 end);
 local v132 = v21['MainTab'];
 local v133 = v9.MainBtn;
-v9.SwitchTab = function(v624, v625, v626)
-	if (v132 == v626) then
+v133:FindFirstChildWhichIsA("Frame").BackgroundTransparency = 0;
+v9.SwitchTab = function(v625, v626, v627)
+	if (v132 == v627) then
 		return;
 	end
-	for v792, v793 in pairs(v21['TabHolder']:GetChildren()) do
-		if ((v793 ~= v625) and v793:FindFirstChildWhichIsA("Frame")) then
-			local v920 = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out);
-			v4:Create(v793:FindFirstChildWhichIsA("Frame"), v920, {BackgroundTransparency=1}):Play();
+	for v793, v794 in pairs(v21['TabHolder']:GetChildren()) do
+		if ((v794 ~= v626) and v794:FindFirstChildWhichIsA("Frame")) then
+			local v921 = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out);
+			v4:Create(v794:FindFirstChildWhichIsA("Frame"), v921, {BackgroundTransparency=1}):Play();
 		end
 	end
 	v21["4"].ClipsDescendants = true;
-	v625:FindFirstChildWhichIsA("Frame").BackgroundTransparency = 0;
-	local v629 = v625.LayoutOrder > v133.LayoutOrder;
-	local v630 = (v629 and UDim2.new(0, 0, 0, -400)) or UDim2.new(0, 0, 0, 400);
-	local v631 = (v629 and UDim2.new(0, 0, 0, 400)) or UDim2.new(0, 0, 0, -400);
-	v626.Position = v631;
-	v626.Visible = true;
-	local v634 = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut);
-	v4:Create(v132, v634, {Position=v630}):Play();
-	v4:Create(v626, v634, {Position=UDim2.new(0, 0, 0, 0)}):Play();
+	v626:FindFirstChildWhichIsA("Frame").BackgroundTransparency = 0;
+	local v630 = v626.LayoutOrder > v133.LayoutOrder;
+	local v631 = (v630 and UDim2.new(0, 0, 0, -400)) or UDim2.new(0, 0, 0, 400);
+	local v632 = (v630 and UDim2.new(0, 0, 0, 400)) or UDim2.new(0, 0, 0, -400);
+	v627.Position = v632;
+	v627.Visible = true;
+	local v635 = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut);
+	v4:Create(v132, v635, {Position=v631}):Play();
+	v4:Create(v627, v635, {Position=UDim2.new(0, 0, 0, 0)}):Play();
 	task.delay(0.25, function()
-		v132 = v626;
-		v133 = v625;
+		v132.Visible = false;
+		v132 = v627;
+		v133 = v626;
 	end);
 end;
 v21["4"].ClipsDescendants = true;
-for v635, v636 in pairs(v21["4"]:GetChildren()) do
-	if v636:IsA("GuiObject") then
-		if (v636 ~= v132) then
-			v636.Visible = false;
-			v636.Position = UDim2.new(0, 0, 0, 400);
+for v636, v637 in pairs(v21["4"]:GetChildren()) do
+	if v637:IsA("GuiObject") then
+		if (v637 ~= v132) then
+			v637.Visible = false;
+			v637.Position = UDim2.new(0, 0, 0, 400);
 		else
-			v636.Visible = true;
-			v636.Position = UDim2.new(0, 0, 0, 0);
+			v637.Visible = true;
+			v637.Position = UDim2.new(0, 0, 0, 0);
 		end
 	end
 end
-v9.GuideButton = function(v637, v638, v639)
-	v638.MouseEnter:Connect(function()
+v9.GuideButton = function(v638, v639, v640)
+	v639.Activated:Connect(function()
 		v21["4"].ClipsDescendants = true;
-		if (v132 ~= v639) then
-			local v921 = TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
-			v4:Create(v638:FindFirstChildWhichIsA("Frame"), v921, {BackgroundTransparency=0}):Play();
+		v9:SwitchTab(v639, v640);
+		v639:FindFirstChildWhichIsA("Frame").BackgroundTransparency = 0;
+	end);
+	v639.MouseEnter:Connect(function()
+		v21["4"].ClipsDescendants = true;
+		if ((v132 ~= v640) and (v639.BackgroundTransparency == 1)) then
+			local v922 = TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
+			v4:Create(v639:FindFirstChildWhichIsA("Frame"), v922, {BackgroundTransparency=0}):Play();
 		end
 	end);
-	v638.Activated:Connect(function()
+	v639.MouseLeave:Connect(function()
 		v21["4"].ClipsDescendants = true;
-		v9:SwitchTab(v638, v639);
-		v638:FindFirstChildWhichIsA("Frame").BackgroundTransparency = 0;
-	end);
-	v638.MouseLeave:Connect(function()
-		v21["4"].ClipsDescendants = true;
-		if (v132 ~= v639) then
-			local v922 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
-			v4:Create(v638:FindFirstChildWhichIsA("Frame"), v922, {BackgroundTransparency=1}):Play();
+		if ((v132 ~= v640) and (v639.BackgroundTransparency == 0)) then
+			local v923 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
+			v4:Create(v639:FindFirstChildWhichIsA("Frame"), v923, {BackgroundTransparency=1}):Play();
 		end
 	end);
 end;
@@ -1471,165 +1473,165 @@ if v9.PlayerBtn then
 	v9:GuideButton(v9.PlayerBtn, v21['PlayerTab']);
 end
 v9.ToggleButtons = {};
-v9.Tween = function(v640, v641, v642, v643)
-	local v644 = TweenInfo.new(v641, Enum.EasingStyle.Back, Enum.EasingDirection.Out);
-	local v645 = v4:Create(v643, v644, v642);
-	v645:Play();
+v9.Tween = function(v641, v642, v643, v644)
+	local v645 = TweenInfo.new(v642, Enum.EasingStyle.Back, Enum.EasingDirection.Out);
+	local v646 = v4:Create(v644, v645, v643);
+	v646:Play();
 end;
-v9.CreateToggle = function(v646, v647, v648, v649, v650, v651, v652, v653, v654, v655, v656, v657)
-	if not v650 then
-		v650 = 185;
-	end
+v9.CreateToggle = function(v647, v648, v649, v650, v651, v652, v653, v654, v655, v656, v657, v658)
 	if not v651 then
-		v651 = 100;
+		v651 = 185;
 	end
-	if not v653 then
-		v653 = 75;
+	if not v652 then
+		v652 = 100;
 	end
 	if not v654 then
-		v654 = 100;
+		v654 = 75;
 	end
 	if not v655 then
-		v655 = false;
+		v655 = 100;
 	end
-	local v658 = Instance.new("Frame", v648);
-	v658.Size = UDim2.new(0, v650, 0, 28);
-	v658.LayoutOrder = v649;
-	v658.BackgroundTransparency = 1;
-	local v662 = Instance.new("UICorner", v658);
-	local v663 = Instance.new("UIStroke", v658);
-	v663.Thickness = 1.5;
-	v663.Color = Color3.fromRGB(255, 255, 255);
-	v663.ApplyStrokeMode = "Border";
-	local v667 = Instance.new("TextLabel", v658);
-	v667.BackgroundTransparency = 1;
-	v667.TextColor3 = Color3.fromRGB(255, 255, 255);
-	v667.Text = v647;
-	v667.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold);
-	v667.TextWrapped = true;
-	v667.TextScaled = true;
-	v667.ZIndex = 6;
-	v667.Size = UDim2.new(0, v651, 0, 28);
-	v667.Position = UDim2.new(0, 5, 0, 0);
-	local v677 = Instance.new("Frame", v658);
-	v677.Size = UDim2.new(0, v653, 0, 15);
-	v677.Position = UDim2.new(0, v654, 0, 6);
-	v677.BackgroundTransparency = 1;
-	v677.ZIndex = 6;
-	local v682 = Instance.new("ImageLabel", v658);
-	v682.Size = UDim2.new(0, v650, 0, 28);
-	v682.Image = "rbxassetid://73660298439922";
-	v682.ImageTransparency = 0.5;
-	v682.BackgroundTransparency = 1;
-	v682.Name = "Noice";
-	local v688 = Instance.new("UICorner", v682);
-	local v689 = v653;
-	local v690 = Instance.new("TextButton", v677);
-	v690.Size = UDim2.new(0, v689 / 2, 0, 15);
-	v690.Position = UDim2.new(0, 0, 0, 0);
-	v690.BackgroundColor3 = Color3.fromRGB(81, 32, 37);
-	v690.BorderSizePixel = 0;
-	v690.Text = "";
-	v690.ZIndex = 7;
-	v690.AutoButtonColor = false;
-	local v698 = false;
-	local function v699(v799)
-		v698 = v799;
-		if v698 then
-			v690.BackgroundColor3 = Color3.fromRGB(46, 117, 89);
-			v9:Tween(0.25, {Position=UDim2.new(0, v689 / 2, 0, 0)}, v690);
+	if not v656 then
+		v656 = false;
+	end
+	local v659 = Instance.new("Frame", v649);
+	v659.Size = UDim2.new(0, v651, 0, 28);
+	v659.LayoutOrder = v650;
+	v659.BackgroundTransparency = 1;
+	local v663 = Instance.new("UICorner", v659);
+	local v664 = Instance.new("UIStroke", v659);
+	v664.Thickness = 1.5;
+	v664.Color = Color3.fromRGB(255, 255, 255);
+	v664.ApplyStrokeMode = "Border";
+	local v668 = Instance.new("TextLabel", v659);
+	v668.BackgroundTransparency = 1;
+	v668.TextColor3 = Color3.fromRGB(255, 255, 255);
+	v668.Text = v648;
+	v668.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold);
+	v668.TextWrapped = true;
+	v668.TextScaled = true;
+	v668.ZIndex = 6;
+	v668.Size = UDim2.new(0, v652, 0, 28);
+	v668.Position = UDim2.new(0, 5, 0, 0);
+	local v678 = Instance.new("Frame", v659);
+	v678.Size = UDim2.new(0, v654, 0, 15);
+	v678.Position = UDim2.new(0, v655, 0, 6);
+	v678.BackgroundTransparency = 1;
+	v678.ZIndex = 6;
+	local v683 = Instance.new("ImageLabel", v659);
+	v683.Size = UDim2.new(0, v651, 0, 28);
+	v683.Image = "rbxassetid://73660298439922";
+	v683.ImageTransparency = 0.5;
+	v683.BackgroundTransparency = 1;
+	v683.Name = "Noice";
+	local v689 = Instance.new("UICorner", v683);
+	local v690 = v654;
+	local v691 = Instance.new("TextButton", v678);
+	v691.Size = UDim2.new(0, v690 / 2, 0, 15);
+	v691.Position = UDim2.new(0, 0, 0, 0);
+	v691.BackgroundColor3 = Color3.fromRGB(81, 32, 37);
+	v691.BorderSizePixel = 0;
+	v691.Text = "";
+	v691.ZIndex = 7;
+	v691.AutoButtonColor = false;
+	local v699 = false;
+	local function v700(v800)
+		v699 = v800;
+		if v699 then
+			v691.BackgroundColor3 = Color3.fromRGB(46, 117, 89);
+			v9:Tween(0.25, {Position=UDim2.new(0, v690 / 2, 0, 0)}, v691);
 		else
-			v690.BackgroundColor3 = Color3.fromRGB(81, 32, 37);
-			v9:Tween(0.25, {Position=UDim2.new(0, 0, 0, 0)}, v690);
+			v691.BackgroundColor3 = Color3.fromRGB(81, 32, 37);
+			v9:Tween(0.25, {Position=UDim2.new(0, 0, 0, 0)}, v691);
 		end
-		if v657 then
-			v657(v698);
+		if v658 then
+			v658(v699);
 		end
 	end
-	v690.Activated:Connect(function(v800)
-		if (v800.UserInputType == Enum.UserInputType.MouseButton1) then
-			v699(not v698);
+	v691.Activated:Connect(function(v801)
+		if (v801.UserInputType == Enum.UserInputType.MouseButton1) then
+			v700(not v699);
 		end
 	end);
-	if v656 then
+	if v657 then
 		if not v9.ToggleButtons then
 			v9.ToggleButtons = {};
 		end
-		v9.ToggleButtons[v656] = {Update=v699,GetState=function()
-			return v698;
+		v9.ToggleButtons[v657] = {Update=v700,GetState=function()
+			return v699;
 		end};
 	end
-	local v700 = Instance.new("UICorner", v690);
-	local v701 = Instance.new("UICorner", v677);
-	local v702 = Instance.new("UIStroke", v677);
-	v702.Thickness = 1.5;
-	v702.Color = Color3.fromRGB(255, 255, 255);
-	v702.ApplyStrokeMode = "Border";
-	return v690;
+	local v701 = Instance.new("UICorner", v691);
+	local v702 = Instance.new("UICorner", v678);
+	local v703 = Instance.new("UIStroke", v678);
+	v703.Thickness = 1.5;
+	v703.Color = Color3.fromRGB(255, 255, 255);
+	v703.ApplyStrokeMode = "Border";
+	return v691;
 end;
-v9.CreateMobileButton = function(v706, v707, v708, v709, v710, v711)
-	if not v711 then
-		v711 = "Button";
+v9.CreateMobileButton = function(v707, v708, v709, v710, v711, v712)
+	if not v712 then
+		v712 = "Button";
 	end
-	local v712 = Instance.new("TextButton");
-	v712.LayoutOrder = v709;
-	if (v709 == nil) then
-		v712.LayoutOrder = 0;
+	local v713 = Instance.new("TextButton");
+	v713.LayoutOrder = v710;
+	if (v710 == nil) then
+		v713.LayoutOrder = 0;
 	end
-	v712.Parent = v708;
-	v712.AutomaticSize = "Y";
-	v712.Size = UDim2.new(0, v710, 0, 50);
-	v712.Text = "";
-	v712.Name = v711;
-	v712.BackgroundTransparency = 1;
+	v713.Parent = v709;
+	v713.AutomaticSize = "Y";
+	v713.Size = UDim2.new(0, v711, 0, 50);
+	v713.Text = "";
+	v713.Name = v712;
+	v713.BackgroundTransparency = 1;
 	if not Name then
-		v712.Name = "Button";
+		v713.Name = "Button";
 	end
 	if not visible then
 		visible = true;
 	end
-	local v720 = Instance.new("UICorner", v712);
-	local v721 = Instance.new("UIStroke", v712);
-	v721.Thickness = 1.5;
-	v721.Color = Color3.fromRGB(255, 255, 255);
-	v721.ApplyStrokeMode = "Border";
-	v721.Transparency = 1;
+	local v721 = Instance.new("UICorner", v713);
+	local v722 = Instance.new("UIStroke", v713);
+	v722.Thickness = 1.5;
+	v722.Color = Color3.fromRGB(255, 255, 255);
+	v722.ApplyStrokeMode = "Border";
+	v722.Transparency = 1;
 	if visible then
-		v9:FadeOut(0.25, v721, 0);
+		v9:FadeOut(0.25, v722, 0);
 	end
-	Noice3 = Instance.new("ImageLabel", v712);
-	Noice3.Size = UDim2.new(0, v710, 0, 50);
+	Noice3 = Instance.new("ImageLabel", v713);
+	Noice3.Size = UDim2.new(0, v711, 0, 50);
 	Noice3.Image = "rbxassetid://73660298439922";
 	Noice3.ImageTransparency = 1;
 	Noice3.Name = "Noice";
 	Noice3.BackgroundTransparency = 1;
-	local v731 = Instance.new("UICorner", Noice3);
+	local v732 = Instance.new("UICorner", Noice3);
 	if visible then
 		v9:FadeOut(0.25, Noice3, 0.5);
 	end
-	local v732 = Instance.new("UICorner");
-	v732.Parent = v712;
-	v732.CornerRadius = UDim.new(0, 5);
-	local v735 = Instance.new("UIGradient");
-	v735.Parent = v712;
-	v735.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(1, 0)});
-	v735.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))});
-	local v739 = Instance.new("TextLabel", v712);
-	v739['TextWrapped'] = true;
-	v739['BorderSizePixel'] = 0;
-	v739['TextScaled'] = false;
-	v739['TextSize'] = 12;
-	v739['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
-	v739['FontFace'] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-	v739['TextColor3'] = Color3.fromRGB(255, 255, 255);
-	v739['BackgroundTransparency'] = 1;
-	v739['Size'] = UDim2.new(0, v710, 0, 50);
-	v739['BorderColor3'] = Color3.fromRGB(0, 0, 0);
-	v739['Text'] = v707;
+	local v733 = Instance.new("UICorner");
+	v733.Parent = v713;
+	v733.CornerRadius = UDim.new(0, 5);
+	local v736 = Instance.new("UIGradient");
+	v736.Parent = v713;
+	v736.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(1, 0)});
+	v736.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(192, 80, 91)),ColorSequenceKeypoint.new(1, Color3.fromRGB(91, 33, 37))});
+	local v740 = Instance.new("TextLabel", v713);
+	v740['TextWrapped'] = true;
+	v740['BorderSizePixel'] = 0;
+	v740['TextScaled'] = false;
+	v740['TextSize'] = 12;
+	v740['BackgroundColor3'] = Color3.fromRGB(255, 255, 255);
+	v740['FontFace'] = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+	v740['TextColor3'] = Color3.fromRGB(255, 255, 255);
+	v740['BackgroundTransparency'] = 1;
+	v740['Size'] = UDim2.new(0, v711, 0, 50);
+	v740['BorderColor3'] = Color3.fromRGB(0, 0, 0);
+	v740['Text'] = v708;
 	if visible then
 	else
-		v739.TextTransparency = 1;
+		v740.TextTransparency = 1;
 	end
-	return v712;
+	return v713;
 end;
 return v9, v21;
