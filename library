@@ -1430,7 +1430,6 @@ v9.SwitchTab = function(v625, v626, v627)
 	v4:Create(v132, v635, {Position=v631}):Play();
 	v4:Create(v627, v635, {Position=UDim2.new(0, 0, 0, 0)}):Play();
 	task.delay(0.25, function()
-		v132.Visible = false;
 		v132 = v627;
 		v133 = v626;
 	end);
