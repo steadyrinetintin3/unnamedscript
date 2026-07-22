@@ -4,10 +4,12 @@ if (game.PlaceId == 18199615050) then
 elseif (game.PlaceId == 18794863104) then
 	v0 = "DemonologySite";
 elseif (game.PlaceId == 104522435597696) then
-	v0 = "Animal";
+	v0 = "Animal"
 end
 if ((v0 == "DemonologyLobby") or (v0 == "DemonologySite")) then
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/steadyrinetintin3/unnamedscript/refs/heads/main/unnamed"))();
+elseif ((v0 == "Animal")) then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/steadyrinetintin3/unnamedscript/refs/heads/main/animal"))()
 end
 local v1 = queue_on_teleport or (syn and syn.queue_on_teleport);
 if v1 then
@@ -19,10 +21,14 @@ if v1 then
 					v0 = "DemonologyLobby"
 				elseif (game.PlaceId == 18794863104) then
 					v0 = "DemonologySite"
+				elseif (game.PlaceId == 104522435597696) then
+					v0 = "Animal"
 				end
 
 				if ((v0 == "DemonologyLobby") or (v0 == "DemonologySite")) then
 					loadstring(game:HttpGet("https://raw.githubusercontent.com/steadyrinetintin3/unnamedscript/refs/heads/main/unnamed"))()
+				elseif ((v0 == "Animal")) then
+					loadstring(game:HttpGet("https://raw.githubusercontent.com/steadyrinetintin3/unnamedscript/refs/heads/main/animal"))()
 				end
 			]]);
 		end
