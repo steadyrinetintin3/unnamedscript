@@ -1,0 +1,515 @@
+local v0 = game:GetService("Workspace");
+local v1 = game:GetService("Players");
+local v2 = v1.LocalPlayer;
+local v3 = v2:WaitForChild("PlayerGui");
+local v4 = game:GetService("TweenService");
+local v5 = game:GetService("UserInputService");
+local v6 = game:GetService("VirtualInputManager");
+local v7 = game:GetService("ReplicatedStorage");
+local v8 = game:GetService("HttpService");
+local v9 = game:GetService("CollectionService");
+local v10, v11 = loadstring(game:HttpGet("https://raw.githubusercontent.com/steadyrinetintin3/unnamedscript/refs/heads/main/library"))();
+local v12 = {};
+local v13;
+if ((v5.TouchEnabled == true) and (v5.KeyboardEnabled == false)) then
+	v13 = "Mobile";
+else
+	v13 = "PC";
+end
+local v14 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
+local v15 = true;
+local v16 = false;
+local v17 = 1;
+local v18 = v10.Settings;
+local v19 = v10.ToggleButtons or v10.v55;
+local v20 = 1;
+local v21, v22, v23;
+if v2.Character then
+	v21 = v2.Character;
+	v22 = v21:FindFirstChild("Humanoid");
+	v23 = v21:FindFirstChild("HumanoidRootPart");
+end
+local v24 = "TypicalScript/Presets.json";
+local v25 = "TypicalScript/Keybinds.json";
+local v26 = "TypicalScript";
+local v27 = nil;
+local v28 = "None";
+local function v29(v63)
+	if not v63 then
+		v63 = Script;
+	end
+	local v64 = {};
+	if (v13 == "PC") then
+		if isfile(v24) then
+			v64 = v8:JSONDecode(readfile(v24));
+		end
+	else
+		v64 = LoadFromWeb();
+	end
+	v12 = v64;
+	for v95, v96 in pairs(v12) do
+		local v97 = v10:CreateButton(v95, v63, 7, 165, true);
+		v97.Activated:Connect(function()
+			v27 = v97;
+			v28 = v95;
+		end);
+	end
+end
+local v30 = false;
+local v31 = false;
+local v32 = false;
+local v33 = false;
+local v34 = false;
+local v35 = "LeftAlt";
+local function v36()
+	if isfile(v25) then
+		local v124, v125 = pcall(function()
+			return v8:JSONDecode(readfile(v25));
+		end);
+		if (v124 and (type(v125) == "table")) then
+		end
+	end
+end
+local function v37()
+	return {FB=v30,IEsp=v31,PlEs=v32,SkinEs=v34,NpcEsp=v33};
+end
+if v0:FindFirstChild("BrokenGlass") then
+	if v0.BrokenGlass:FindFirstChildWhichIsA("Model") then
+		task.spawn(function()
+			while true do
+				for v190, v191 in pairs(v0.BrokenGlass:GetDescendants()) do
+					if v191:IsA("TouchTransmitter") then
+						v191:Destroy();
+					end
+				end
+				task.wait(0.5);
+			end
+		end);
+	end
+end
+local v38, v39;
+local function v40(v65)
+	local v66;
+	local v67;
+	if (v65 == "Presets") then
+		v66 = v12;
+	else
+		v66 = {};
+	end
+	if (v13 == "PC") then
+		if not isfolder(v26) then
+			makefolder(v26);
+		end
+		local v126, v127 = pcall(function()
+			return v8:JSONEncode(v66);
+		end);
+		if v126 then
+			writefile(((v65 == "Presets") and v24) or v25, v127);
+		end
+	else
+		SaveToWeb(v65, v66);
+	end
+end
+v38, v39 = v10:CreateSwitchButton([[OTHER]], "OtherTab");
+if v10.MainBtn then
+	v10.MainBtn.LayoutOrder = 0;
+end
+if PlayerBtn then
+	PlayerBtn.LayoutOrder = 1;
+end
+if v38 then
+	v38.LayoutOrder = 4;
+end
+local v41 = v11['MainTab'];
+task.spawn(function()
+	v10:GuideButton(v10.MainBtn, v11['MainTab']);
+	if v38 then
+		v10:GuideButton(v38, v11['OtherTab']);
+	end
+end);
+for v68, v69 in pairs(v11["4"]:GetChildren()) do
+	if v69:IsA("GuiObject") then
+		if (v69 ~= v41) then
+			v69.Visible = false;
+			v69.Position = UDim2.new(0, 0, 0, 400);
+		else
+			v69.Visible = true;
+			v69.Position = UDim2.new(0, 0, 0, 0);
+		end
+	end
+end
+local function v42(v70, v71, v72, v73, v74, v75)
+	if not evidence then
+		evidence = true;
+	end
+	if not v73 then
+		v73 = "Evidence";
+	end
+	if not v74 then
+		v74 = false;
+	end
+	if not v75 then
+		v75 = 2.5;
+	end
+	if not v71 then
+		if (v70:FindFirstChild("Esp2") and not v74) then
+			return;
+		end
+		if not v74 then
+			local v151 = Instance.new("BillboardGui");
+			v151.Parent = v70;
+			v151.AlwaysOnTop = true;
+			v151.Name = "Esp2";
+			v151.Size = UDim2.new(4, 0, 1, 0);
+			v151.SizeOffset = Vector2.new(0, v75);
+			local v157 = Instance.new("Frame", v151);
+			v157.Size = UDim2.new(1, 0, 1, 0);
+			v157.BackgroundTransparency = 1;
+			v10:CreateItems(v157, "DarkRed2");
+			local v160 = Instance.new("TextLabel", v151);
+			v160.TextColor3 = Color3.fromRGB(255, 255, 255);
+			v160.Size = UDim2.new(1, 0, 0.7, 0);
+			v160.BackgroundTransparency = 1;
+			v160.TextTransparency = 1;
+			v160.TextScaled = true;
+			v160.Text = v72;
+			v10:FadeOut(0.25, v157, 0);
+			v10:FadeOut(0.25, v160, 0);
+			task.wait(0.25);
+			local v167 = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
+			local v168 = v4:Create(v157, v167, {Size=UDim2.new(1, 0, 2, 0)});
+			v168:Play();
+			v168.Completed:Connect(function()
+				local v177 = Instance.new("TextLabel", v151);
+				v177.Name = "Evidence";
+				v177.TextColor3 = Color3.fromRGB(255, 255, 255);
+				v177.Size = UDim2.new(1, 0, 0.7, 0);
+				v177.BackgroundTransparency = 1;
+				v177.MaxVisibleGraphemes = 0;
+				v177.Position = UDim2.new(0, 0, 0.99, 0);
+				v177.TextScaled = true;
+				v177.Text = v73;
+				for v192 = 1, 30 do
+					v177.MaxVisibleGraphemes = v192;
+					task.wait(0.025);
+				end
+				v10:FadeOut(0.25, v177, 0);
+			end);
+		else
+			local v169 = v70:FindFirstChild("Esp2");
+			local v170 = v169 and v169:FindFirstChild("Evidence");
+			local v171 = v169 and v169:FindFirstChildOfClass("TextLabel");
+			if (v171 and v170) then
+				for v198 = string.len(v170.Text), 0, -1 do
+					v170.MaxVisibleGraphemes = v198;
+					task.wait(0.025);
+				end
+				v171.Text = v72;
+				v170.Text = v73;
+				for v200 = 1, #v73 do
+					v170.MaxVisibleGraphemes = v200;
+					task.wait(0.025);
+				end
+			end
+		end
+	else
+		local v128 = v70:FindFirstChild("Esp2");
+		if v128 then
+			for v186, v187 in pairs(v128:GetDescendants()) do
+				if (v187:IsA("Frame") or v187:IsA("TextLabel")) then
+					v10:FadeOut(0.25, v187, 1);
+				end
+			end
+			task.wait(0.25);
+			v128:Destroy();
+		end
+	end
+end
+local v43 = {};
+local function v44(v76)
+	if (v76 == "Destroy") then
+		for v137, v138 in pairs(v43) do
+			v138:Disconnect();
+		end
+		table.clear(v43);
+	end
+	for v101, v102 in pairs(v1:GetPlayers()) do
+		local v103 = v102.Character;
+		if (v103 and v103:FindFirstChild("Humanoid")) then
+			local v139 = v103:FindFirstChild("Head");
+			if (v76 == "Create") then
+				for v196, v197 in pairs(v103:GetDescendants()) do
+					if (v197:IsA("BasePart") and (v197.Name ~= "HumanoidRootPart")) then
+						local v203 = v197:FindFirstChild("Highlight") or Instance.new("Highlight", v197);
+						v203.FillTransparency = 1;
+						v203.OutlineTransparency = 1;
+						v4:Create(v203, TweenInfo.new(0.25), {OutlineTransparency=0}):Play();
+					end
+				end
+				if (v139 and not v139:FindFirstChild("Esp2")) then
+					v42(v139, false, v103.Name, "Alive");
+				end
+				table.insert(v43, v103.ChildAdded:Connect(function()
+					if PEsp then
+						v42(v139, false, v103.Name, "Alive");
+					end
+				end));
+			elseif (v76 == "Destroy") then
+				for v206, v207 in pairs(v103:GetDescendants()) do
+					if v207:IsA("BasePart") then
+						local v208 = v207:FindFirstChild("Highlight");
+						if v208 then
+							local v209 = v4:Create(v208, TweenInfo.new(0.25), {OutlineTransparency=1});
+							v209:Play();
+							v209.Completed:Connect(function()
+								v208:Destroy();
+							end);
+						end
+					end
+				end
+				if (v139 and v139:FindFirstChild("Esp2")) then
+					v42(v139, true, v103.Name, "Alive");
+				end
+			end
+		end
+	end
+end
+local function v45(v77)
+	local v78 = {};
+	for v104, v105 in pairs(v0:GetChildren()) do
+		if v9:HasTag(v105, "MedicalDispenser") then
+			table.insert(v78, v105);
+		end
+	end
+	for v106, v107 in pairs(v78) do
+		local v108;
+		local v109 = v107:FindFirstChild("Model"):FindFirstChild("Model");
+		if v109 then
+			for v172, v173 in pairs(v109:GetChildren()) do
+				if v173:FindFirstChild("Model") then
+					if v173.Model:FindFirstChild("uni002B") then
+						v108 = v173;
+					end
+				end
+			end
+		end
+		local v110;
+		local v111;
+		local v112 = v107:FindFirstChild("Items");
+		if v112 then
+			local v140 = v112:GetChildren();
+			v110 = v140[1];
+			v111 = v140[2];
+		end
+		if (v77 == "Create") then
+			if v108 then
+				v42(v108, false, tostring(v110) .. "|" .. tostring(v111), "Stand", false, 2.5);
+			end
+		elseif v108 then
+			v42(v108, true, tostring(v110) .. "|" .. tostring(v111), "Stand", false, 2.5);
+		end
+	end
+end
+local function v46(v79)
+	for v113, v114 in pairs(v0:FindFirstChild("NPCs"):GetChildren()) do
+		if (v114:GetAttribute("Skinwalker") == true) then
+			local v143 = v114:FindFirstChild("Head");
+			if (v79 == "Create") then
+				if (v143 and not v143:FindFirstChildWhichIsA("BillboardGui")) then
+					v42(v143, false, v114.Name, "Skinwalker", false, 2.5);
+				else
+					local v202 = v143:FindFirstChildWhichIsA("BillboardGui");
+					if v202 then
+						if (v202:FindFirstChild("Evidence") and (v202.Evidence == "NPC")) then
+							v42(v143, false, v114.Name, "Skinwalker", true, 2.5);
+						end
+					end
+				end
+			elseif (v79 == "Destroy") then
+				if (v143 and v143:FindFirstChildWhichIsA("BillboardGui")) then
+					v42(v143, true, v114.Name, "Skinwalker", false, 2.5);
+				end
+			end
+		end
+	end
+end
+local function v47(v80)
+	for v115, v116 in pairs(v0:FindFirstChild("NPCs"):GetChildren()) do
+		if not v116:GetAttribute("Skinwalker") then
+			local v144 = v116:FindFirstChild("Head");
+			if (v80 == "Create") then
+				if (v144 and not v144:FindFirstChildWhichIsA("BillboardGui")) then
+					v42(v144, false, v116.Name, "Patient", false, 2.5);
+				end
+			elseif (v80 == "Destroy") then
+				if (v144 and v144:FindFirstChildWhichIsA("BillboardGui")) then
+					v42(v144, true, v116.Name, "Patient", false, 2.5);
+				end
+			end
+		end
+	end
+end
+local v48 = v10:CreateToggle("Skinwalker ESP", v11['Visuals'], 4, 170, 85, nil, 67, nil, false, "SkinEs");
+v48.Activated:Connect(function()
+	v34 = not v34;
+	task.spawn(function()
+		while task.wait(0.5) do
+			if v34 then
+				v46("Create");
+			else
+				v46("Destroy");
+			end
+		end
+	end);
+end);
+local v49 = v10:CreateToggle("Patient ESP", v11['Visuals'], 5, 170, 85, nil, 67, nil, false, "NpcEsp");
+v49.Activated:Connect(function()
+	v33 = not v33;
+	task.spawn(function()
+		while task.wait(0.5) do
+			if v33 then
+				v47("Create");
+			else
+				v47("Destroy");
+			end
+		end
+	end);
+end);
+local v50 = v10:CreateToggle("Player ESP", v11['Visuals'], 2, 170, 85, nil, 67, nil, false, "PlEs");
+v50.Activated:Connect(function()
+	v32 = not v32;
+	if v32 then
+		v44("Create");
+	else
+		v44("Destroy");
+	end
+end);
+local v51 = v10:CreateToggle("Stand ESP", v11['Visuals'], 1, 170, 85, nil, 67, nil, false, "IEsp");
+v51.Activated:Connect(function()
+	v31 = not v31;
+	if v31 then
+		v45("Create");
+	else
+		v45("Destroy");
+	end
+end);
+local v52 = v10:CreateToggle("Fullbright", v11['Visuals'], 3, 170, 85, nil, 67, nil, false, "Fb");
+local function v53(v81)
+	if (v81 == "Light") then
+		local v129 = game:GetService("Lighting");
+		local v130 = TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
+		v4:Create(v129, v130, {Ambient=Color3.fromRGB(255, 255, 255)}):Play();
+	else
+		local v131 = game:GetService("Lighting");
+		local v132 = TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut);
+		v4:Create(v131, v132, {Ambient=Color3.fromRGB(0, 0, 0)}):Play();
+	end
+end
+v52.Activated:Connect(function()
+	Fb = not Fb;
+	task.spawn(function()
+		while true do
+			if Fb then
+				if not game:GetService("Lighting"):FindFirstChild("Atmosphere") then
+					Instance.new("Atmosphere", game.Lighting);
+				end
+				v53("Light");
+				task.wait(1);
+			else
+				if game:GetService("Lighting"):FindFirstChild("Atmosphere") then
+					game.Lighting.Atmosphere:Destroy();
+				end
+				v53("ha");
+				task.wait(1);
+			end
+			task.wait(0.1);
+		end
+	end);
+end);
+v10:CreateDivider(v11['Visuals'], 6, 170, nil, nil);
+local v54 = v10:CreateToggle("Instant proximity prompts", v11['Visuals'], 7, 170, 85, nil, 67, nil, false, "ips");
+v54.Activated:Connect(function()
+	ips = not ips;
+	local v82 = {};
+	for v117, v118 in pairs(v0:GetDescendants()) do
+		if v118:IsA("ProximityPrompt") then
+			table.insert(v82, v118);
+		end
+	end
+	local v83;
+	if not ips then
+		v83 = v.HoldDuration;
+	end
+	for v119, v120 in pairs(v82) do
+		if ips then
+			v120.HoldDuration = 0;
+		else
+			v120.HoldDuration = v83;
+		end
+	end
+	v0.DescendantAdded:Connect(function(v121)
+		if v121:IsA("ProximityPrompt") then
+			if ips then
+				v121.HoldDuration = 0;
+			else
+				v121.HoldDuration = v83;
+			end
+		end
+	end);
+end);
+local v55 = {{Name="Room 1",Position=CFrame.new(-167.85, 2.95, -50.47)},{Name="Room 2",Position=CFrame.new(-121.85, 2.95, -50.47)},{Name="Room 3",Position=CFrame.new(-167.85, 2.95, -89.47)},{Name="Room 4",Position=CFrame.new(-121.85, 2.95, -89.47)},{Name="Room 5",Position=CFrame.new(-144.85, 2.95, -113.97)},{Name="Room 6",Position=CFrame.new(-164.85, 2.95, 47.53)},{Name="Room 7",Position=CFrame.new(-124.85, 2.95, 51.03)},{Name="Room 8",Position=CFrame.new(-144.85, 2.95, 84.53)},{Name="Emergency",Position=CFrame.new(-144.85, 2.95, 31.03)},{Name="Medical",Position=CFrame.new(-144.85, 2.95, -68.47)},{Name="Main",Position=CFrame.new(-107.85, 2.95, -12.97)},{Name="Security Room",Position=CFrame.new(-107.85, 2.95, 6.03)},{Name="Outside",Position=CFrame.new(-34.35, 2.95, -8.47)}};
+for v84, v85 in ipairs(v55) do
+	local v86 = v10:CreateButton(v85.Name, v11.Misc, 1, 170, true);
+	if (v85.Name == "Room 8") then
+		v10:CreateText("HALLWAYS", v11.Misc, 1, 170, 28, true, true, false);
+	elseif (v85.Name == "Main") then
+		v10:CreateText("OTHER", v11.Misc, 1, 170, 28, true, true, false);
+	end
+	v86.Activated:Connect(function()
+		v23.CFrame = v85.Position;
+	end);
+end
+local function v56(v87)
+	task.spawn(function()
+		while task.wait(0.1) do
+			local v134 = game.Players.LocalPlayer;
+			if (v134.Character and v134.Character:FindFirstChild("Humanoid")) then
+				v134.Character.Humanoid.WalkSpeed = v87;
+			end
+		end
+	end);
+end
+task.spawn(function()
+	local v88, v89 = v10:CreateSlider("Walk speed", v11.PlayerSettings, 5, 170, false, 16, 100, "WalkSpeed", v56);
+end);
+local function v57(v90)
+	task.spawn(function()
+		while task.wait(0.1) do
+			local v135 = game.Players.LocalPlayer;
+			if (v135.Character and v135.Character:FindFirstChild("Humanoid")) then
+				v135.Character.Humanoid.JumpPower = v90;
+			end
+		end
+	end);
+end
+task.spawn(function()
+	local v91, v92 = v10:CreateSlider("Jump Power", v11.PlayerSettings, 5, 170, false, 0, 100, "JumpPower", v57);
+end);
+local v58 = Instance.new("UIListLayout", v39);
+v58.SortOrder = "LayoutOrder";
+v58.FillDirection = "Horizontal";
+v58.Padding = UDim.new(0, 5);
+v10:CreateSubTab(200, 360, true, "Vertical", v39, "OtherTabInfo1");
+v10:CreateSubTab(365, 360, true, "Horizontal", v39, "OtherTabInfo2");
+v10:CreateText("OTHER", v11.OtherTabInfo1, 0, 165, 28, true, true, true);
+local v62 = v10:CreateButton("Enable cameras", v11.OtherTabInfo1, 2, 165, true);
+v62.Activated:Connect(function()
+	local v93 = v0:FindFirstChild("Misc"):FindFirstChild("SecurityCamPC");
+	if v93 then
+		local v136 = v93:FindFirstChildWhichIsA("ProximityPrompt");
+		if v136 then
+			v136.Enabled = true;
+		end
+	end
+end);
+v10:CreateDivider(v11.OtherTabInfo1, 2, 165, nil, nil);
